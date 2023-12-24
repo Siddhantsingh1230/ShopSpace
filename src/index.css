@@ -20,3 +20,29 @@ html {
   scroll-behavior: smooth;
   font-family: Gilroy;
 }
+
+/* change pc styles here */
+@media (min-width: 650px) {
+  /* Styling scroll bars */
+  *::-webkit-scrollbar {
+    width: 12px;
+    /* Width of the scrollbar */
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    /* Background color of the track */
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #444;
+    /* Color of the scrollbar thumb */
+    border-radius: 5px;
+    /* Rounded corners for the thumb */
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #666;
+    /* Color of the thumb on hover */
+  }
+}

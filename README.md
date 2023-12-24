@@ -20,3 +20,5 @@
 
 
 ## Added TailWind CSS (2:59AM)
+
+### Added Custom ScrollBar for PC Styles
