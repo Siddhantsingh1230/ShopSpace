@@ -4,9 +4,15 @@ html {
   width: 100%;
 }
 
-*{
+@font-face {
+  font-family: Gilroy;
+  src: url("./assets/fonts/Gilroy-Black.ttf");
+}
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  font-family: Gilroy;
 }
