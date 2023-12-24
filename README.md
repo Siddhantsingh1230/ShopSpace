@@ -4,7 +4,7 @@
 
 ### Added logos and favicons and removed some boilerplate codes from public and src folder (2:34)
 
-### Added CSS BoilerPlate and vercel deplyment
+### Added CSS BoilerPlate and vercel deployment
 
 ### Added Axios libraries for making api calls
 
@@ -17,3 +17,6 @@
 #### ./src/pages -> contains all React Pages
 #### ./src/components -> contains all Reusable React Components
 #### ./src/slices -> contains all slices from RTK(redux - toolkit)
+
+
+## Added TailWind CSS (2:59AM)
