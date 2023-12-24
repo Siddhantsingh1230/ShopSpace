@@ -29,3 +29,4 @@
  -> react-top-loading-bar  # for creating top loading/ progressbar
  -> Redux Tool Kit # for State Management
  -> react-redux # for Interfacing redux to react
+ -> react-router-dom # for ROuting
