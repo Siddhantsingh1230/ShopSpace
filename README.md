@@ -24,10 +24,10 @@
 ### Added Custom ScrollBar for PC Styles
 
 ## Added Libraries
- -> react-scroll-to-top # To add go to top on click functionality
- -> react-toastify # for react toasts and messages
- -> react-top-loading-bar  # for creating top loading/ progressbar
- -> Redux Tool Kit # for State Management
- -> react-redux # for Interfacing redux to react
- -> react-router-dom # for Routing
- -> react-confetti # for confetti effects
+### -> react-scroll-to-top # To add go to top on click functionality
+### -> react-toastify # for react toasts and messages
+### -> react-top-loading-bar  # for creating top loading/ progressbar
+### -> Redux Tool Kit # for State Management
+### -> react-redux # for Interfacing redux to react
+### -> react-router-dom # for Routing
+### -> react-confetti # for confetti effects
