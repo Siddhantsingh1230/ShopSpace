@@ -100,3 +100,16 @@ html {
     transform: rotate(450deg);
   }
 }
+
+/* Navlinks */
+.navlinks:after {
+  display:block;
+  margin-top: 0.8rem;
+  transform: translateY(50%);
+  content: '';
+  border-bottom: solid 3px #019fb6;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+  transform-origin:  0% 50%;
+}
+.navlinks:hover:after { transform: scaleX(1); }

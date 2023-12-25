@@ -28,23 +28,35 @@ const Home = ({ setProgress }) => {
         <div className="links my-3 flex justify-between ">
           <div className="sharelinks flex gap-2">
             <div className="h-7 w-7 rounded-md  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
-              <a href="#">
-                <i className="text-gray-600 transition-all hover:text-white  ri-github-fill"></i>
+              <a
+                href="#"
+                className="hover:text-white text-gray-600 h-full w-full flex justify-center items-center"
+              >
+                <i className=" transition-all   ri-github-fill"></i>
               </a>
             </div>
             <div className="h-7 w-7 rounded-md transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
-              <a href="#">
-                <i className="text-gray-600 transition-all hover:text-white  ri-linkedin-box-fill"></i>
+              <a
+                href="#"
+                className="hover:text-white text-gray-600 h-full w-full flex justify-center items-center"
+              >
+                <i className="transition-all ri-linkedin-box-fill"></i>
               </a>
             </div>
             <div className="h-7 w-7 rounded-md transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
-              <a href="#">
-                <i className="text-gray-600 transition-all hover:text-white  ri-instagram-line"></i>
+              <a
+                href="#"
+                className="hover:text-white text-gray-600 h-full w-full flex justify-center items-center"
+              >
+                <i className=" transition-all   ri-instagram-line"></i>
               </a>
             </div>
             <div className="h-7 w-7 rounded-md transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
-              <a href="#">
-                <i className="text-gray-600 transition-all hover:text-white ri-facebook-circle-fill"></i>
+              <a
+                href="#"
+                className="hover:text-white text-gray-600 h-full w-full flex justify-center items-center"
+              >
+                <i className="ransition-all  ri-facebook-circle-fill"></i>
               </a>
             </div>
           </div>
@@ -100,6 +112,33 @@ const Home = ({ setProgress }) => {
         </div>
         {/* Divider */}
         <hr className="w-full" />
+        {/* NavLink */}
+        <div className="navlink my-5 flex justify-center items-center gap-11">
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks ">
+            HOME
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            CATEGORIES
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            MEN'S
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            WOMEN'S
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            JEWELRY
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            PERFUME
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            BLOG
+          </div>
+          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            HOT OFFERS
+          </div>
+        </div>
       </div>
       <div className="footer"></div>
     </>
