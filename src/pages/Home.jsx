@@ -27,24 +27,24 @@ const Home = ({ setProgress }) => {
         {/* Top Links */}
         <div className="links my-3 flex justify-between ">
           <div className="sharelinks flex gap-2">
-            <div className="h-7 w-7 rounded-md bg-gray-200 flex justify-center items-center">
+            <div className="h-7 w-7 rounded-md  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a href="#">
-                <i className="text-gray-600  ri-github-fill"></i>
+                <i className="text-gray-600 transition-all hover:text-white  ri-github-fill"></i>
               </a>
             </div>
-            <div className="h-7 w-7 rounded-md bg-gray-200 flex justify-center items-center">
+            <div className="h-7 w-7 rounded-md transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a href="#">
-                <i className="text-gray-600  ri-linkedin-box-fill"></i>
+                <i className="text-gray-600 transition-all hover:text-white  ri-linkedin-box-fill"></i>
               </a>
             </div>
-            <div className="h-7 w-7 rounded-md bg-gray-200 flex justify-center items-center">
+            <div className="h-7 w-7 rounded-md transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a href="#">
-                <i className="text-gray-600  ri-instagram-line"></i>
+                <i className="text-gray-600 transition-all hover:text-white  ri-instagram-line"></i>
               </a>
             </div>
-            <div className="h-7 w-7 rounded-md bg-gray-200 flex justify-center items-center">
+            <div className="h-7 w-7 rounded-md transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a href="#">
-                <i className="text-gray-600  ri-facebook-circle-fill"></i>
+                <i className="text-gray-600 transition-all hover:text-white ri-facebook-circle-fill"></i>
               </a>
             </div>
           </div>
@@ -86,11 +86,15 @@ const Home = ({ setProgress }) => {
             </div>
             <div className="cursor-pointer flex justify-center items-center relative ">
               <i className="text-4xl ri-heart-3-line "></i>
-              <span className="badge absolute  -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center"><b>2</b></span>
+              <span className="badge absolute  -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
+                <b>2</b>
+              </span>
             </div>
             <div className="cursor-pointer flex justify-center items-center relative">
               <i className="text-4xl ri-shopping-bag-line"></i>
-              <span className="badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center"><b>2</b></span>
+              <span className="badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
+                <b>2</b>
+              </span>
             </div>
           </div>
         </div>
