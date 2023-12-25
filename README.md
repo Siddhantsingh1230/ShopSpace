@@ -31,3 +31,6 @@
 ### -> react-redux # for Interfacing redux to react
 ### -> react-router-dom # for Routing
 ### -> react-confetti # for confetti effects
+
+
+### Added 3 pages Home.jsx ,Login.jsx and Signup.jsx
