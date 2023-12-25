@@ -1,5 +1,12 @@
 import { useEffect } from "react";
-import Logo from "../assets/images/logo.svg";
+import DressFrock from "../assets/images/dressfrock.svg";
+import glasses from "../assets/images/glasses.svg";
+import hatcaps from "../assets/images/hatcaps.svg";
+import jacket from "../assets/images/jacket.svg";
+import shorts from "../assets/images/shorts.svg";
+import tshirts from "../assets/images/tshirts.svg";
+import watch from "../assets/images/watch.svg";
+import winterwear from "../assets/images/winterwear.svg";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -141,9 +148,109 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap Offer Carousel */}
         <div className="offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3">
-          <div className="scroll-item flex-none w-full h-full snap-center rounded-xl  bg-pink-500"></div>
-          <div className="scroll-item flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
-          <div className="scroll-item flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
+          <div className=" flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
+          <div className=" flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
+          <div className=" flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
+        </div>
+        {/* ScrollSnap categories Carousel */}
+        <div className="categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={DressFrock} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm font-bold">
+                <p >DRESS & FROCK</p> 
+                <span className="pr-2">(53)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={winterwear} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm  font-bold">
+                <p>WINTER WEAR</p> 
+                <span className="pr-2">(58)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={glasses} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm  font-bold">
+                <p>GLASSES & LENS</p> 
+                <span className="pr-2">(68)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={shorts} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm  font-bold">
+                <p>SHORTS & JEANS</p> 
+                <span className="pr-2">(82)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={tshirts} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm font-bold">
+                <p>T-SHIRTS</p> 
+                <span className="pr-2">(29)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={jacket} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm  font-bold">
+                <p>JACKET</p> 
+                <span className="pr-2">(34)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={watch} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm  font-bold">
+                <p>WATCH</p> 
+                <span className="pr-2">(56)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+            <div className="flex flex-col justify-center bg-slate-200 border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+              <img src={hatcaps} className="w-6 h-6" alt="dress and frock" />
+            </div>
+            <div className="flex justify-center  flex-col w-4/5">
+              <div className="flex items-center justify-between text-sm font-bold">
+                <p>HAT & CAPS</p> 
+                <span className="pr-2">(65)</span>
+              </div>
+              <div className="mt-3 text-blue-500 cursor-pointer text-sm">Show All</div>
+            </div>
+          </div>
+          
         </div>
       </div>
       <div className="footer"></div>

@@ -73,6 +73,16 @@ html {
     border-radius: 10px;
     /* Rounded corners for the thumb */
   }
+  .categoryCarousel::-webkit-scrollbar {
+    width: 10px;
+    height:8px;
+  }
+  .categoryCarousel::-webkit-scrollbar-thumb {
+    background: #a3a3a3;
+    /* Color of the scrollbar thumb */
+    border-radius: 10px;
+    /* Rounded corners for the thumb */
+  }
 }
 
 /* google Style Spinner */
