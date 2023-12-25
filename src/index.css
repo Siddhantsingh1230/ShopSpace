@@ -5,13 +5,16 @@
 body,
 html {
   width: 100%;
-  height: 200%;
+  height: 100%;
 }
 
 /* Adding Fonts */
 @font-face {
-  font-family: Gilroy;
+  font-family: GilroyB;
   src: url("./assets/fonts/Gilroy-Black.ttf");
+}@font-face {
+  font-family: GilroyL;
+  src: url("./assets/fonts/Gilroy-Light.ttf");
 }
 
 * {
@@ -19,7 +22,7 @@ html {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: 'Poppins', Gilroy;
+  font-family: 'Poppins', GilroyL;
 }
 
 #root{
