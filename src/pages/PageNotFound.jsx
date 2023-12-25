@@ -15,10 +15,10 @@ const PageNotFound = () => {
           Once upon an eternity, in the cosmic expanse beyond understanding, stood the "Infinite Marketplace of Destiny," where Astro discovered "The Boundless Cart."
           </p>
           <button onClick={()=>navigate("/")} className="max-sm:mt-7 border-[1.6px] rounded-3xl w-24 h-9 text-white text-sm mt-6 hover:bg-white hover:text-black transition-all active:opacity-60">
-            <i className="ri-play-fill"></i>Home
+          <i className="ri-vip-crown-fill"></i>&nbsp;Home
           </button>
         </div>
-        <img className="notFound relative w-[68%] h-full max-sm:hidden" src={Img} alt="" />
+        <img className="notFound w-[68%] h-full max-sm:hidden" src={Img} alt="" />
       </div>
       <div className="hidden  max-sm:block max-sm:bg-cover max-sm:bg-center w-screen  opacity-15 h-screen absolute top-0 left-0" style={{backgroundImage: `url(${ImgBg})`}}></div>
     </>
