@@ -36,3 +36,4 @@
 ### Added 3 pages Home.jsx ,Login.jsx and Signup.jsx
 
 ## Added A Google Like Spinner in components which gets full height and width of parent 
+## Added Toasts ,ScrollToTop and TopLoading Bar Controls
