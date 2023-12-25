@@ -4,9 +4,10 @@
 
 body,
 html {
-  height: 100%;
   width: 100%;
+  height: 100%;
 }
+
 /* Adding Fonts */
 @font-face {
   font-family: Gilroy;
@@ -18,7 +19,12 @@ html {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  font-family: Gilroy;
+  font-family: 'Poppins', Gilroy;
+}
+
+#root{
+  width: 100%;
+  height: 100%;
 }
 
 /* change pc styles here */
@@ -44,5 +50,43 @@ html {
   *::-webkit-scrollbar-thumb:hover {
     background: #666;
     /* Color of the thumb on hover */
+  }
+}
+
+/* google Style Spinner */
+/* Spinner */
+.goog-te-spinner {
+  margin: 2px 0 0 2px;
+  animation: goog-te-spinner-rotator 1.4s linear infinite;
+  transform: translateY(-50%);
+  background: transparent;
+}
+.goog-te-spinner-path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  stroke: #4285f4;
+  transform-origin: center;
+  animation: goog-te-spinner-dash 1.4s ease-in-out infinite;
+  background: transparent;
+}
+@keyframes goog-te-spinner-rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+@keyframes goog-te-spinner-dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
   }
 }
