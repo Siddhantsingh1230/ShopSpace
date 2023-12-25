@@ -6,8 +6,13 @@ body,
 html {
   width: 100%;
   height: 100%;
+  background: #00020E;
 }
 
+/* Css Variables */
+:root{
+  --b1:#00020E;
+}
 /* Adding Fonts */
 @font-face {
   font-family: GilroyB;

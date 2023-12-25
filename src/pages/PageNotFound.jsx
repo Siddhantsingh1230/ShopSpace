@@ -7,7 +7,7 @@ const PageNotFound = () => {
   const navigate = useNavigate();
   return (
     <>
-      <div className="h-full bg-[#00020E] w-full flex  justify-end items-center ">
+      <div className="h-full bg-[var(--b1)] w-full flex  justify-end items-center ">
         <div className="z-10 select-none flex justify-center relative left-48  flex-col  max-sm:static max-sm:items-center">
           <p className="text-white text-2xl opacity-55 max-sm:text-xl">Episode 0</p>
           <p className="text-white text-4xl  my-2 max-sm:my-6">Page Not Found</p>

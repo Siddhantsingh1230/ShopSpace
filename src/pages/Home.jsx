@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
@@ -20,6 +19,7 @@ const Home = ({ setProgress }) => {
       };
     }
   }, []);
+  
   return <>Home</>;
 };
 
