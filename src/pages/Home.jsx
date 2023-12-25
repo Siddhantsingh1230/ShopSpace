@@ -113,7 +113,7 @@ const Home = ({ setProgress }) => {
         {/* Divider */}
         <hr className="w-full" />
         {/* NavLink */}
-        <div className="navlink my-5 flex justify-center items-center gap-11">
+        <div className="navlink mt-5 flex justify-center items-center gap-11">
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks ">
             HOME
           </div>
@@ -138,6 +138,12 @@ const Home = ({ setProgress }) => {
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             HOT OFFERS
           </div>
+        </div>
+        {/* ScrollSnap Offer Carousel */}
+        <div className="offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3">
+          <div className="scroll-item flex-none w-full h-full snap-center rounded-xl  bg-pink-500"></div>
+          <div className="scroll-item flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
+          <div className="scroll-item flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
         </div>
       </div>
       <div className="footer"></div>
