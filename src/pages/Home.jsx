@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+// Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
 import hatcaps from "../assets/images/hatcaps.svg";
@@ -8,6 +9,11 @@ import tshirts from "../assets/images/tshirts.svg";
 import watch from "../assets/images/watch.svg";
 import winterwear from "../assets/images/winterwear.svg";
 import Sparkle from "../assets/images/sparkle.gif";
+import mens from "../assets/images/mens-banner.jpg";
+import women from "../assets/images/women-banner.jpg";
+import gadgets from "../assets/images/gadgets-banner.jpg";
+import electronics from "../assets/images/electronicsbanner.jpg";
+// Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
 
 const Home = ({ setProgress }) => {
@@ -92,7 +98,7 @@ const Home = ({ setProgress }) => {
         <hr className="w-full" />
         {/* Nav */}
         <div className="nav my-7 flex justify-between items-center">
-          <div className="text-3xl font-[GilroyB]">SP/ACE</div>
+          <div className="text-3xl logo relative font-[GilroyB]">SP/ACE</div>
           <div className="w-[60%] h-[3rem] border rounded-xl relative">
             <input
               className="w-full h-full rounded-xl px-4 pr-14"
@@ -122,12 +128,161 @@ const Home = ({ setProgress }) => {
         {/* Divider */}
         <hr className="w-full" />
         {/* NavLink */}
-        <div className="navlink mt-5 flex justify-center items-center gap-11">
+        <div className="navlink mt-5 flex justify-center items-center gap-11 relative">
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks ">
             HOME
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
+            <div className="categorybox grid gap-[30px] p-[30px] grid-cols-4 ">
+              <ul class="dropdown-list list-none ">
+                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+                  <a href="#">Electronics</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Desktop</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Laptop</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Camera</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Tablet</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Headphone</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img
+                      src={electronics}
+                      alt="headphone collection"
+                      width="250"
+                      height="119"
+                    />
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="dropdown-list list-none ">
+                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+                  <a href="#">Men's</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Formal</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Casual</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Sports</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Jacket</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Sunglasses</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img
+                      src={mens}
+                      alt="men's fashion"
+                      width="250"
+                      height="119"
+                    />
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="dropdown-list list-none ">
+                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+                  <a href="#">Women's</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Formal</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Casual</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Perfume</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Cosmetics</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Bags</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img
+                      src={women}
+                      alt="women's fashion"
+                      width="250"
+                      height="119"
+                    />
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="dropdown-list list-none ">
+                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+                  <a href="#">Electronics</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Smart Watch</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Smart TV</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Keyboard</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Mouse</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">Microphone</a>
+                </li>
+
+                <li class="panel-list-item">
+                  <a href="#">
+                    <img
+                      src={gadgets}
+                      alt="mouse collection"
+                      width="250"
+                      height="119"
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             MEN'S
@@ -271,7 +426,7 @@ const Home = ({ setProgress }) => {
         </div>
         {/* Shoes 3DCarousel */}
         <div className="flex justify-center items-center m-16 flex-col">
-          <h1 className="shoesCarouseltitle font-[Rastano] text-5xl text-3xl relative">
+          <h1 className="shoesCarouseltitle font-[Rastano] text-5xl relative">
             Flex in Style
             <img src={Sparkle} className="absolute top-0 left-0" alt="Wear" />
           </h1>
