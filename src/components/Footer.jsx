@@ -425,7 +425,7 @@ const Footer = () => {
 
       <div className="p-8 flex flex-col gap-4 items-center ">
         <img className="" src={Payment} alt="payment methods"></img>
-        <p className="text-[#696969] capitalize">Copyright &copy; <a href="#">Space Space</a> all rights reserved.</p>
+        <p className="text-[#696969] capitalize">Copyright &copy; <a href="#">Shop Space</a> all rights reserved.</p>
       </div>
     </div>
   );
