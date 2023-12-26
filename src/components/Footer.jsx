@@ -3,7 +3,7 @@ import Payment from "../assets/images/payment.png";
 
 const Footer = () => {
   return (
-    <div className="bg-[#212121]  w-full">
+    <div className="bg-[#212121] w-full">
 
       {/* footer section 1 for brand category */}
       <div className=" p-12">
@@ -425,7 +425,7 @@ const Footer = () => {
 
       <div className="p-8 flex flex-col gap-4 items-center ">
         <img className="" src={Payment} alt="payment methods"></img>
-        <p className="text-[#696969]">Copyright &copy; <a href="#">Space</a> all rights reserved.</p>
+        <p className="text-[#696969] capitalize">Copyright &copy; <a href="#">Space Space</a> all rights reserved.</p>
       </div>
     </div>
   );

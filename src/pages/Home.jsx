@@ -36,10 +36,17 @@ import jacket1 from "../assets/images/jacket.jpg";
 import newshirt from "../assets/images/newshirt.jpg";
 import newjacket from "../assets/images/newjacket.jpg";
 import newfrock from "../assets/images/newfrock.jpg";
+import newshoes from "../assets/images/newshoes.jpg";
+import newwatch from "../assets/images/newwatch.jpg";
+import newjacket2 from "../assets/images/newjacket2.jpg";
+import newformal from "../assets/images/newformal.jpg";
+import newsandals from "../assets/images/newsandals.jpg";
+import newshorts from "../assets/images/newshorts.jpg";
+import newsport from "../assets/images/newsport.jpg";
 
 // Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
-import Stars from "../components/Sgittars";
+import Stars from "../components/Stars";
 import ProgressBar from "../components/ProgressBar";
 import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
@@ -861,7 +868,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -900,7 +907,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -939,7 +946,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -978,7 +985,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -991,7 +998,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newformal}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1017,7 +1024,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1030,7 +1037,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newwatch}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1056,7 +1063,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1069,7 +1076,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newsandals}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1095,7 +1102,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1108,7 +1115,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={watch2}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1134,7 +1141,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1147,7 +1154,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newshoes}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1173,7 +1180,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1186,7 +1193,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newshorts}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1212,7 +1219,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1225,7 +1232,7 @@ const Home = ({ setProgress }) => {
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newsport}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1251,7 +1258,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
@@ -1260,11 +1267,11 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"SALE"}/>
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
-                    src={jacket1}
+                    src={newjacket2}
                     alt="new"
                     className="w-full hover:scale-105 transition-all"
                   />
@@ -1290,7 +1297,7 @@ const Home = ({ setProgress }) => {
                       href="#"
                       className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
                     >
-                      <i class="ri-eye-line"></i>
+                      <i className="ri-eye-line"></i>
                     </a>
                     <a
                       href="#"
