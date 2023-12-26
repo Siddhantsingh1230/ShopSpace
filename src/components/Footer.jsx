@@ -243,7 +243,7 @@ const Footer = () => {
       <div className="grid grid-cols-5 p-12 gap-4">
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">POPULAR CATEGORIES</p>
-          <hr className="border-b-2 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
 
           <a
             href="#"
@@ -279,7 +279,7 @@ const Footer = () => {
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">PRODUCTS</p>
-          <hr className="border-b-2 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
 
           <a
             href="#"
@@ -315,7 +315,7 @@ const Footer = () => {
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">OUR COMPANY</p>
-          <hr className="border-b-2 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
 
           <a
             href="#"
@@ -351,7 +351,7 @@ const Footer = () => {
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">SERVICES</p>
-          <hr className="border-b-2 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
 
           <a
             href="#"
@@ -387,7 +387,7 @@ const Footer = () => {
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">CONTACT</p>
-          <hr className="border-b-2 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
 
           <div className="flex gap-2 items-center">
             <i className="ri-map-pin-line text-[#696969] text-3xl"></i>
