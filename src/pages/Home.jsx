@@ -31,9 +31,13 @@ import necklace from "../assets/images/necklace.jpg";
 import perfume from "../assets/images/perfume.jpg";
 import watch2 from "../assets/images/watch2.jpg";
 import belt from "../assets/images/belt.jpg";
+import jwellery from "../assets/images/jwellery.jpg";
 
 // Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
+import Stars from "../components/Stars";
+import ProgressBar from "../components/ProgressBar";
+import CountDownTimer from "../components/CountDownTimer";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -106,7 +110,7 @@ const Home = ({ setProgress }) => {
               name="currency"
             >
               <option value="usd">IND ₹</option>
-              <option value="usd">USD $</option>
+              <option value="usd">USD ₹</option>
               <option value="eur">EUR €</option>
             </select>
             <select
@@ -160,32 +164,32 @@ const Home = ({ setProgress }) => {
           <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
             <div className="categorybox grid gap-[30px] p-[30px] grid-cols-4 ">
-              <ul class="dropdown-list list-none ">
-                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+              <ul className="dropdown-list list-none ">
+                <li className="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
                   <a href="#">Electronics</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Desktop</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Laptop</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Camera</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Tablet</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Headphone</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">
                     <img
                       src={electronics}
@@ -197,32 +201,32 @@ const Home = ({ setProgress }) => {
                 </li>
               </ul>
 
-              <ul class="dropdown-list list-none ">
-                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+              <ul className="dropdown-list list-none ">
+                <li className="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
                   <a href="#">Men's</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Formal</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Casual</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Sports</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Jacket</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Sunglasses</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">
                     <img
                       src={mens}
@@ -234,32 +238,32 @@ const Home = ({ setProgress }) => {
                 </li>
               </ul>
 
-              <ul class="dropdown-list list-none ">
-                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+              <ul className="dropdown-list list-none ">
+                <li className="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
                   <a href="#">Women's</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Formal</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Casual</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Perfume</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Cosmetics</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Bags</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">
                     <img
                       src={women}
@@ -271,32 +275,32 @@ const Home = ({ setProgress }) => {
                 </li>
               </ul>
 
-              <ul class="dropdown-list list-none ">
-                <li class="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
+              <ul className="dropdown-list list-none ">
+                <li className="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
                   <a href="#">Electronics</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Smart Watch</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Smart TV</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Keyboard</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Mouse</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">Microphone</a>
                 </li>
 
-                <li class="panel-list-item">
+                <li className="panel-list-item">
                   <a href="#">
                     <img
                       src={gadgets}
@@ -483,9 +487,10 @@ const Home = ({ setProgress }) => {
           <Shoes3DCarousel />
         </div>
         {/* Product Section */}
-        <div className="flex justify-center items-center  mb-12 border gap-10">
+        <div className="flex justify-center items-center  mb-12  gap-10">
           <div className="sidebar w-[30%]"></div>
           <div className="productsWrapper w-[70%]">
+            {/* Product trend and list */}
             <div className="grid grid-cols-3 gap-5 mb-10">
               <div className="flex flex-col gap-5">
                 <p className="font-bold border-b py-2 tracking-wider">
@@ -506,9 +511,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -529,9 +534,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -552,9 +557,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -575,9 +580,9 @@ const Home = ({ setProgress }) => {
                         Men's Fashion
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -603,9 +608,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -626,9 +631,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -649,9 +654,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -672,9 +677,9 @@ const Home = ({ setProgress }) => {
                         Men's Fashion
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -689,7 +694,7 @@ const Home = ({ setProgress }) => {
                   <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
                     <img
                       className="mx-2 w-20 cursor-pointer"
-                      src={perfume}
+                      src={watch2}
                       alt="product"
                     />
                     <div>
@@ -700,9 +705,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -723,9 +728,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -746,9 +751,9 @@ const Home = ({ setProgress }) => {
                         Clothes
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -769,9 +774,9 @@ const Home = ({ setProgress }) => {
                         Men's Fashion
                       </p>
                       <p className="text-blue-500 font-bold">
-                        $45.00
+                        ₹45.00
                         <span className="ml-3 font-normal text-[#787878] line-through">
-                          $12.00
+                          ₹12.00
                         </span>
                       </p>
                     </div>
@@ -779,7 +784,44 @@ const Home = ({ setProgress }) => {
                 </div>
               </div>
             </div>
-            <div className=""></div>
+            {/* Deal of the Day */}
+            <div className="flex flex-col">
+              <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
+              <div className="flex border rounded-md p-10">
+                <img src={jwellery} alt="offer" className="w-2/4"></img>
+                <div className="w-2/4">
+                  <Stars star={5} />
+                  <h1 className="font-bold font-[GilroyB] text-lg">
+                    ROSE GOLD DIAMONDS EARRING
+                  </h1>
+                  <p className="my-2 text-[#787878] text-md">
+                    Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor
+                    dolor sit amet consectetur Lorem ipsum dolor
+                  </p>
+                  <p className="text-blue-500 text-2xl font-bold ">
+                    ₹1990.00
+                    <span className="ml-5 text-black font-normal line-through">
+                      ₹2000.00
+                    </span>
+                  </p>
+                  <button className="py-2 px-3 bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5">
+                    ADD TO CART
+                  </button>
+                  <div className="flex justify-between items-center mb-3">
+                    <p>
+                      ALREADY SOLD: <span className="font-bold">15</span>{" "}
+                    </p>
+                    <p>
+                      AVAILABLE: <span className="font-bold">40</span>
+                    </p>
+                  </div>
+                  <ProgressBar value={(40 / (40 + 15)) * 100} />
+                  <p className="font-bold text-sm my-5">HURRY UP! OFFER ENDS IN:</p>
+                  <CountDownTimer seconds={4000}/>
+                </div>
+              </div>
+            </div>
+            {/* Other Products */}
             <div className=""></div>
           </div>
         </div>
