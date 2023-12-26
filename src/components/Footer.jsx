@@ -364,7 +364,7 @@ const Footer = () => {
             href="#"
             className="text-[#696969] capitalize hover:text-[#ff8f9c]"
           >
-            nest day delivery
+            best day delivery
           </a>
           <a
             href="#"
@@ -404,7 +404,7 @@ const Footer = () => {
               href="#"
               className="text-[#696969] capitalize hover:text-[#ff8f9c]"
             >
-              (012) 186-4084
+              (+91) 9023134084
             </a>
           </div>
           <div className="flex gap-2 items-center">
