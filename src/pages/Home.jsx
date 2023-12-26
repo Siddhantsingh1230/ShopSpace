@@ -32,12 +32,17 @@ import perfume from "../assets/images/perfume.jpg";
 import watch2 from "../assets/images/watch2.jpg";
 import belt from "../assets/images/belt.jpg";
 import jwellery from "../assets/images/jwellery.jpg";
+import jacket1 from "../assets/images/jacket.jpg";
+import newshirt from "../assets/images/newshirt.jpg";
+import newjacket from "../assets/images/newjacket.jpg";
+import newfrock from "../assets/images/newfrock.jpg";
 
 // Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
-import Stars from "../components/Stars";
+import Stars from "../components/Sgittars";
 import ProgressBar from "../components/ProgressBar";
 import CountDownTimer from "../components/CountDownTimer";
+import Ribbon from "../components/Ribbon";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -785,7 +790,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
             {/* Deal of the Day */}
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-10">
               <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
               <div className="flex border rounded-md p-10">
                 <img src={jwellery} alt="offer" className="w-2/4"></img>
@@ -816,13 +821,488 @@ const Home = ({ setProgress }) => {
                     </p>
                   </div>
                   <ProgressBar value={(40 / (40 + 15)) * 100} />
-                  <p className="font-bold text-sm my-5">HURRY UP! OFFER ENDS IN:</p>
-                  <CountDownTimer seconds={4000}/>
+                  <p className="font-bold text-sm my-5">
+                    HURRY UP! OFFER ENDS IN:
+                  </p>
+                  <CountDownTimer seconds={4000} />
                 </div>
               </div>
             </div>
-            {/* Other Products */}
-            <div className=""></div>
+            {/* New Products */}
+            <div className="flex flex-col gap-5">
+              <h1 className="font-bold border-b py-3">New Products</h1>
+              <div className="grid grid-cols-4 gap-5">
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={newshirt}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={3} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"SALE"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={newjacket}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={5} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"SALE"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={newfrock}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
+                  <img
+                    src={jacket1}
+                    alt="new"
+                    className="w-full hover:scale-105 transition-all"
+                  />
+                  <p className="text-blue-500 text-sm">JACKET</p>
+                  <h1 className="text-[#787878]">
+                    Mens Winter Leathers Jackets
+                  </h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    $48.00
+                    <span className="ml-5 font-normal line-through">
+                      $75.00
+                    </span>
+                  </p>
+                  <div className="newProductCardOptions absolute flex flex-col gap-3">
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black  bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-heart-3-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i class="ri-eye-line"></i>
+                    </a>
+                    <a
+                      href="#"
+                      className="flex py-1 px-2 outline-1 outline-slate-300 outline hover:outline-0 out rounded-md justify-center items-center transition-colors text-black bg-white hover:text-white  hover:bg-black"
+                    >
+                      <i className="ri-share-line"></i>
+                    </a>
+                  </div>
+                  <Ribbon type={"NEW"}/>
+                </div>
+                
+              </div>
+            </div>
           </div>
         </div>
         {/* Other Section */}

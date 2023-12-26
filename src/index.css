@@ -431,11 +431,48 @@ html {
   animation: fall 0.32s ease-in forwards;
 }
 
-.cta{
+.cta {
   background-image: url("./assets/images/ctabanner.jpg");
   background-position: center;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   border-radius: 1rem;
   background-size: cover;
   overflow: hidden;
+}
+
+.newProductCard:hover .newProductCardOptions {
+  display: flex;
+  flex-direction: column;
+  animation: slidein 0.12s ease forwards;
+}
+.newProductCardOptions {
+  display: none;
+  top: 1rem;
+  right: 1rem;
+}
+.newProductCardOptions:not(:hover) {
+  animation: slideout .2s ease-in forwards;
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+@keyframes slideout {
+  0% {
+    display: flex;
+    transform: translateX(0%);
+  }
+  50% {
+    display: flex;
+    transform: translateX(0%);
+  }
+  100% {
+    display: flex;
+    transform: translateX(180%);
+  }
 }
