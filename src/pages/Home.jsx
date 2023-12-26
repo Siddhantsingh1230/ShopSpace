@@ -38,6 +38,7 @@ import Shoes3DCarousel from "../components/Shoe3DCarousel";
 import Stars from "../components/Stars";
 import ProgressBar from "../components/ProgressBar";
 import CountDownTimer from "../components/CountDownTimer";
+import Footer from "../components/Footer";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -972,9 +973,9 @@ const Home = ({ setProgress }) => {
             </div>
           </a>
         </div>
-        {/* Footer */}
       </div>
-      <div className="footer"></div>
+      {/* footer */}
+      <Footer></Footer>
     </>
   );
 };
