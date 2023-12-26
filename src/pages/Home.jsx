@@ -15,6 +15,11 @@ import women from "../assets/images/women-banner.jpg";
 import gadgets from "../assets/images/gadgets-banner.jpg";
 import electronics from "../assets/images/electronicsbanner.jpg";
 import ceo from "../assets/images/ceo.jpg";
+import blog1 from "../assets/images/blog-1.jpg";
+import blog2 from "../assets/images/blog-2.jpg";
+import blog3 from "../assets/images/blog-3.jpg";
+import blog4 from "../assets/images/blog-4.jpg";
+
 // Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
 
@@ -462,6 +467,7 @@ const Home = ({ setProgress }) => {
         {/* Product Section */}
         {/* later */}
         {/* Other Section */}
+        {/* section1 */}
         <div className="flex h-[450px]  gap-10 mb-11">
           <div className="h-[90%] w-[24%] flex flex-col gap-8">
             <p className="font-bold border-b py-2 tracking-wider">
@@ -553,6 +559,42 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
+        </div>
+        {/* section2 */}
+        <div className="grid grid-cols-4 gap-4 mb-5">
+          <a href="#" className=" w-full">
+            <img className="w-full rounded-md mb-6" src={blog1} alt="blog" />
+            <div>
+              <p className="font-bold text-blue-500">Fashion</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">Clothes Retail KPIs 2021 Guide for Clothes Executives.</h1>
+              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+            </div>
+          </a>
+          <a href="#" className=" w-full">
+            <img className="w-full rounded-md mb-6" src={blog2} alt="blog" />
+            <div>
+              <p className="font-bold text-blue-500">Clothes</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">Curbside fashion Trends: How to Win the Pickup Battle.</h1>
+              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+            </div>
+          </a>
+          <a href="#" className=" w-full">
+            <img className="w-full rounded-md mb-6" src={blog3} alt="blog" />
+            <div>
+              <p className="font-bold text-blue-500">Shoes</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">EBT vendors: Claim Your Share of SNAP Online Revenue.</h1>
+              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+            </div>
+          </a>
+          <a href="#" className=" w-full">
+            <img className="w-full rounded-md mb-6" src={blog4} alt="blog" />
+            <div>
+              <p className="font-bold text-blue-500">Electronics</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">Curbside fashion Trends: How to Win the Pickup Battle.</h1>
+              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+            </div>
+          </a>
+          
         </div>
         {/* Footer */}
       </div>
