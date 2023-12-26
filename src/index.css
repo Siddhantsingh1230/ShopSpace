@@ -376,20 +376,57 @@ html {
 }
 /* category box list item styling */
 .panel-list-item {
-  margin-block:.65rem ;
+  margin-block: 0.65rem;
   cursor: auto;
 }
-.panel-list-item a{
+.panel-list-item a {
   color: hsl(0, 0%, 47%);
   font-weight: 400;
-  
-}.panel-list-item a:hover{
-  color: deepskyblue;
-  
+  transition: all ease 0.2s;
 }
-.panel-list-item img{
+.panel-list-item a:hover {
+  color: deepskyblue;
+}
+.panel-list-item img {
   border-radius: 0.5rem;
 }
-.menu-title a{
+.menu-title a {
   color: hsl(0, 0%, 27%);
+}
+
+.navlinkDropDown {
+  position: absolute;
+  display: none;
+  margin-top: 0.9rem;
+  width: 200px;
+  height: 10rem;
+  padding: 1.25rem;
+  background: white;
+  border-radius: 0.5rem;
+  outline: 1px solid hsl(0, 0%, 100%);
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 3px 5px hsla(0, 0%, 0%, 0.35);
+  box-shadow: 0 3px 5px hsla(0, 0%, 0%, 0.35);
+}
+.navlinkDropDown a {
+  margin: 0.25rem;
+  font-weight: 500;
+  color: hsl(0, 0%, 47%);
+  transition: all ease 0.2s;
+}
+.navlinkDropDown a:hover {
+  color: deepskyblue;
+}
+.navlinkHoverGrp:hover .navlinkDropDown {
+  display: flex;
+  flex-direction: column;
+  animation: rise 0.32s ease forwards;
+}
+
+.navlinkDropDown:not(:hover) {
+  display: flex;
+  flex-direction: column;
+  /* Reverse animation when not hovered */
+  animation: fall 0.32s ease-in forwards;
 }

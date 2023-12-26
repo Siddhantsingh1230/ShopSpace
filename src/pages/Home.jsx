@@ -284,17 +284,42 @@ const Home = ({ setProgress }) => {
               </ul>
             </div>
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          {/* Other navLinks are styled differently */}
+          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             MEN'S
+            <div className="navlinkDropDown">
+              <a href="#">Shirt</a>
+              <a href="#">Shorts & Jeans</a>
+              <a href="#">Sport Shoes</a>
+              <a href="#">Wallet</a>
+            </div>
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             WOMEN'S
+            <div className="navlinkDropDown">
+              <a href="#">Dress & Frock</a>
+              <a href="#">Earrings</a>
+              <a href="#">Necklace</a>
+              <a href="#">Makeup Kit</a>
+            </div>
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             JEWELRY
+            <div className="navlinkDropDown">
+              <a href="#">Couple Rings</a>
+              <a href="#">Earrings</a>
+              <a href="#">Necklace</a>
+              <a href="#">Bracelets</a>
+            </div>
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             PERFUME
+            <div className="navlinkDropDown">
+              <a href="#">Clothes Perfume</a>
+              <a href="#">Deodorant</a>
+              <a href="#">Air Freshner</a>
+              <a href="#">Flower Fragrance</a>
+            </div>
           </div>
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             BLOG
