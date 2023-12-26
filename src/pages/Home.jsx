@@ -801,7 +801,7 @@ const Home = ({ setProgress }) => {
             <div className="flex flex-col mb-10">
               <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
               <div className="flex border rounded-md p-10">
-                <img src={jwellery} alt="offer" className="w-2/4"></img>
+                <img src={jwellery} alt="offer" className="w-2/4 h-2/4"></img>
                 <div className="w-2/4">
                   <Stars star={5} />
                   <h1 className="font-bold font-[GilroyB] text-lg">
@@ -817,7 +817,7 @@ const Home = ({ setProgress }) => {
                       ₹2000.00
                     </span>
                   </p>
-                  <button className="py-2 px-3 bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5">
+                  <button className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5">
                     ADD TO CART
                   </button>
                   <div className="flex justify-between items-center mb-3">
