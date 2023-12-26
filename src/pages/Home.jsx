@@ -19,6 +19,18 @@ import blog1 from "../assets/images/blog-1.jpg";
 import blog2 from "../assets/images/blog-2.jpg";
 import blog3 from "../assets/images/blog-3.jpg";
 import blog4 from "../assets/images/blog-4.jpg";
+import cloth1 from "../assets/images/cloth1.jpg";
+import cloth2 from "../assets/images/cloth2.jpg";
+import cloth3 from "../assets/images/cloth3.jpg";
+import cloth4 from "../assets/images/cloth4.jpg";
+import shoes1 from "../assets/images/shoes1.jpg";
+import shoes2 from "../assets/images/shoes2.jpg";
+import shoes3 from "../assets/images/shoes3.jpg";
+import shoes4 from "../assets/images/shoes4.jpg";
+import necklace from "../assets/images/necklace.jpg";
+import perfume from "../assets/images/perfume.jpg";
+import watch2 from "../assets/images/watch2.jpg";
+import belt from "../assets/images/belt.jpg";
 
 // Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
@@ -89,12 +101,18 @@ const Home = ({ setProgress }) => {
             </span>
           </p>
           <div className="dropdown flex gap-2 opacity-70">
-            <select className="cursor-pointer opacity-70 hover:opacity-100" name="currency">
+            <select
+              className="cursor-pointer opacity-70 hover:opacity-100"
+              name="currency"
+            >
               <option value="usd">IND ₹</option>
               <option value="usd">USD $</option>
               <option value="eur">EUR €</option>
             </select>
-            <select className="cursor-pointer opacity-70 hover:opacity-100" name="language">
+            <select
+              className="cursor-pointer opacity-70 hover:opacity-100"
+              name="language"
+            >
               <option value="en-US">English</option>
               <option value="es-ES">Español</option>
               <option value="fr">Français</option>
@@ -465,7 +483,306 @@ const Home = ({ setProgress }) => {
           <Shoes3DCarousel />
         </div>
         {/* Product Section */}
-        {/* later */}
+        <div className="flex justify-center items-center  mb-12 border gap-10">
+          <div className="sidebar w-[30%]"></div>
+          <div className="productsWrapper w-[70%]">
+            <div className="grid grid-cols-3 gap-5 mb-10">
+              <div className="flex flex-col gap-5">
+                <p className="font-bold border-b py-2 tracking-wider">
+                  New Arrivals
+                </p>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={cloth1}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Relaxed Short Full Sleeve{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={cloth2}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Girls Pnk Embro Design{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={cloth3}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Black Floral Wrap Midi Skir{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={cloth4}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Pure Garment Dyed C{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Men's Fashion
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-5">
+                <p className="font-bold border-b py-2 tracking-wider">
+                  Trending
+                </p>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={shoes1}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Relaxed Short Full Sleeve{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={shoes2}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Girls Pnk Embro Design{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={shoes3}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Black Floral Wrap Midi Skir{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 h-15 cursor-pointer"
+                      src={shoes4}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Pure Garment Dyed C{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Men's Fashion
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex flex-col gap-5">
+                <p className="font-bold border-b py-2 tracking-wider">
+                  Top Rated
+                </p>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 cursor-pointer"
+                      src={perfume}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Relaxed Short Full Sleeve{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 cursor-pointer"
+                      src={necklace}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Girls Pnk Embro Design{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 cursor-pointer"
+                      src={perfume}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Black Floral Wrap Midi Skir{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Clothes
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col w-full">
+                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                    <img
+                      className="mx-2 w-20 cursor-pointer"
+                      src={belt}
+                      alt="product"
+                    />
+                    <div>
+                      <a href="#" className="text-sm font-bold">
+                        Pure Garment Dyed C{" "}
+                      </a>
+                      <p className="text-sm hover:text-blue-500 cursor-pointer">
+                        Men's Fashion
+                      </p>
+                      <p className="text-blue-500 font-bold">
+                        $45.00
+                        <span className="ml-3 font-normal text-[#787878] line-through">
+                          $12.00
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className=""></div>
+            <div className=""></div>
+          </div>
+        </div>
         {/* Other Section */}
         {/* section1 */}
         <div className="flex h-[450px]  gap-10 mb-11">
@@ -533,7 +850,9 @@ const Home = ({ setProgress }) => {
               <div className="flex justify-center items-center gap-5  cursor-pointer">
                 <i className="text-blue-500 hover:text-black ri-phone-line text-4xl"></i>
                 <div className="flex flex-col items-start">
-                  <p className="font-bold text-[#787878]">Best Online Support</p>
+                  <p className="font-bold text-[#787878]">
+                    Best Online Support
+                  </p>
                   <p className="text-sm font-normal text-[#787878]">
                     Hours: 8:00AM - 11PM
                   </p>
@@ -566,35 +885,50 @@ const Home = ({ setProgress }) => {
             <img className="w-full rounded-md mb-6" src={blog1} alt="blog" />
             <div>
               <p className="font-bold text-blue-500">Fashion</p>
-              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">Clothes Retail KPIs 2021 Guide for Clothes Executives.</h1>
-              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">
+                Clothes Retail KPIs 2021 Guide for Clothes Executives.
+              </h1>
+              <p className="mt-2 text-[#787878] ">
+                By Mr. Siddhant / Dec 17, 2023
+              </p>
             </div>
           </a>
           <a href="#" className=" w-full">
             <img className="w-full rounded-md mb-6" src={blog2} alt="blog" />
             <div>
               <p className="font-bold text-blue-500">Clothes</p>
-              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">Curbside fashion Trends: How to Win the Pickup Battle.</h1>
-              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">
+                Curbside fashion Trends: How to Win the Pickup Battle.
+              </h1>
+              <p className="mt-2 text-[#787878] ">
+                By Mr. Siddhant / Dec 17, 2023
+              </p>
             </div>
           </a>
           <a href="#" className=" w-full">
             <img className="w-full rounded-md mb-6" src={blog3} alt="blog" />
             <div>
               <p className="font-bold text-blue-500">Shoes</p>
-              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">EBT vendors: Claim Your Share of SNAP Online Revenue.</h1>
-              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">
+                EBT vendors: Claim Your Share of SNAP Online Revenue.
+              </h1>
+              <p className="mt-2 text-[#787878] ">
+                By Mr. Siddhant / Dec 17, 2023
+              </p>
             </div>
           </a>
           <a href="#" className=" w-full">
             <img className="w-full rounded-md mb-6" src={blog4} alt="blog" />
             <div>
               <p className="font-bold text-blue-500">Electronics</p>
-              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">Curbside fashion Trends: How to Win the Pickup Battle.</h1>
-              <p className="mt-2 text-[#787878] ">By Mr. Siddhant / Dec 17, 2023</p>
+              <h1 className="hover:text-blue-500 font-bold  text-[1.2rem]">
+                Curbside fashion Trends: How to Win the Pickup Battle.
+              </h1>
+              <p className="mt-2 text-[#787878] ">
+                By Mr. Siddhant / Dec 17, 2023
+              </p>
             </div>
           </a>
-          
         </div>
         {/* Footer */}
       </div>
