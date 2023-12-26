@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
 import hatcaps from "../assets/images/hatcaps.svg";
+import quotes from "../assets/images/quotes.svg";
 import jacket from "../assets/images/jacket.svg";
 import shorts from "../assets/images/shorts.svg";
 import tshirts from "../assets/images/tshirts.svg";
@@ -13,6 +14,7 @@ import mens from "../assets/images/mens-banner.jpg";
 import women from "../assets/images/women-banner.jpg";
 import gadgets from "../assets/images/gadgets-banner.jpg";
 import electronics from "../assets/images/electronicsbanner.jpg";
+import ceo from "../assets/images/ceo.jpg";
 // Components
 import Shoes3DCarousel from "../components/Shoe3DCarousel";
 
@@ -450,13 +452,109 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
         {/* Shoes 3DCarousel */}
-        <div className="flex justify-center items-center m-16 flex-col">
+        <div className="flex justify-center items-center m-16 mb-36 flex-col">
           <h1 className="shoesCarouseltitle font-[Rastano] text-5xl relative">
             Flex in Style
             <img src={Sparkle} className="absolute top-0 left-0" alt="Wear" />
           </h1>
           <Shoes3DCarousel />
         </div>
+        {/* Product Section */}
+        {/* later */}
+        {/* Other Section */}
+        <div className="flex h-[450px]  gap-10 mb-11">
+          <div className="h-[90%] w-[24%] flex flex-col gap-8">
+            <p className="font-bold border-b py-2 tracking-wider">
+              Testimonial
+            </p>
+            <div className="border text-center gap-2  h-[90%] rounded-xl justify-center items-center flex flex-col">
+              <img
+                className="h-20 w-20  rounded-full"
+                src={ceo}
+                alt="ceo image"
+              />
+              <h1 className="font-bold text-[#787878]">Khushi</h1>
+              <p className="">CEO ShopSpace</p>
+              <img className="h-6 w-6" src={quotes} alt="quotation" />
+              <p className="text-sm w-4/5 text-[#787878]">
+                Khushi, ShopSpace CEO, balances academics and e-commerce
+                leadership.
+              </p>
+            </div>
+          </div>
+          <div className="w-[52%] h-[95%] cta flex justify-center items-center">
+            <div className="h-[60%] w-[50%] bg-[#ffffffbf] rounded-md">
+              <a
+                href="#"
+                className="h-full w-full text-center flex-col flex gap-2 justify-center items-center"
+              >
+                <p className="bg-black px-3 py-2 text-white rounded-md font-bold text-sm">
+                  25% DISCOUNT
+                </p>
+                <h1 className="w-[50%] font-[GilroyB] text-2xl font-bold ">
+                  Winter Collection
+                </h1>
+                <p className="text-[#787878]">Starting @ ₹50</p>
+                <p className="text-[#787878] font-[GilroyB] text-md">
+                  SHOP NOW
+                </p>
+              </a>
+            </div>
+          </div>
+          <div className="h-[90%] w-[24%] flex flex-col gap-8">
+            <p className="font-bold border-b py-2 tracking-wider">
+              Our Services
+            </p>
+            <div className="border text-center gap-2 px-6  h-[90%] rounded-xl justify-center items-start flex flex-col">
+              <div className="flex justify-center items-center gap-5  cursor-pointer">
+                <i className="text-blue-500 hover:text-black ri-ship-line text-4xl"></i>
+                <div className="flex flex-col items-start">
+                  <p className="font-bold text-[#787878]">Worldwide Delivery</p>
+                  <p className="text-sm font-normal text-[#787878]">
+                    For Order Over ₹100
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-center items-center gap-5  cursor-pointer">
+                <i className="text-blue-500 hover:text-black ri-rocket-2-line text-4xl rotate-45"></i>
+                <div className="flex flex-col items-start">
+                  <p className="font-bold text-[#787878]">Next Day Delivery</p>
+                  <p className="text-sm font-normal text-[#787878]">
+                    Indian Orders Only
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-center items-center gap-5  cursor-pointer">
+                <i className="text-blue-500 hover:text-black ri-phone-line text-4xl"></i>
+                <div className="flex flex-col items-start">
+                  <p className="font-bold text-[#787878]">Best Online Support</p>
+                  <p className="text-sm font-normal text-[#787878]">
+                    Hours: 8:00AM - 11PM
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-center items-center gap-5  cursor-pointer ">
+                <i className="text-blue-500 hover:text-black ri-arrow-go-back-line text-4xl"></i>
+                <div className="flex flex-col items-start">
+                  <p className="font-bold text-[#787878]">Return Policy</p>
+                  <p className="text-sm font-normal text-[#787878]">
+                    Easy & Free Return
+                  </p>
+                </div>
+              </div>
+              <div className="flex justify-center items-center gap-5  cursor-pointer">
+                <i className="text-blue-500 hover:text-black ri-service-line text-4xl "></i>
+                <div className="flex flex-col items-start">
+                  <p className="font-bold text-[#787878]">30% Money Back</p>
+                  <p className="text-sm font-normal text-[#787878]">
+                    For Order Over ₹100
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Footer */}
       </div>
       <div className="footer"></div>
     </>

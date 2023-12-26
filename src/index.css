@@ -430,3 +430,12 @@ html {
   /* Reverse animation when not hovered */
   animation: fall 0.32s ease-in forwards;
 }
+
+.cta{
+  background-image: url("./assets/images/ctabanner.jpg");
+  background-position: center;
+  background-repeat: no-repeat; 
+  border-radius: 1rem;
+  background-size: cover;
+  overflow: hidden;
+}
