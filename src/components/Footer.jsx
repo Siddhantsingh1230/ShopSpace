@@ -7,7 +7,7 @@ const Footer = () => {
 
       {/* footer section 1 for brand category */}
       <div className=" p-12">
-        <p className="text-[#FF8F9C] font-bold">BRAND DIRECTORY</p>
+        <p className="text-blue-500 font-bold">BRAND DIRECTORY</p>
 
         <div className="flex  my-2 py-2">
           <h1 className="text-[#999995] font-bold mr-4 text-sm">FASHION : </h1>
@@ -243,157 +243,157 @@ const Footer = () => {
       <div className="grid grid-cols-5 p-12 gap-4">
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">POPULAR CATEGORIES</p>
-          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-blue-500 mb-4 "></hr>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             fashion
           </a>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             electronic
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             cosmetic
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             health
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             watches
           </a>
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">PRODUCTS</p>
-          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-blue-500 mb-4 "></hr>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             prices drop
           </a>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             new products
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             best sales
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             contact us
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             sitemap
           </a>
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">OUR COMPANY</p>
-          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-blue-500 mb-4 "></hr>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             delivery
           </a>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             legal notice
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             terms and conditions
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             about us
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             secure payment
           </a>
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">SERVICES</p>
-          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-blue-500 mb-4 "></hr>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             world wide delivery
           </a>
 
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             best day delivery
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             best online support
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             return policy
           </a>
           <a
             href="#"
-            className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+            className="text-[#696969] capitalize hover:text-blue-500"
           >
             30% money back
           </a>
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">CONTACT</p>
-          <hr className="border-b-1 w-1/3 border-[#ff8f9c] mb-4 "></hr>
+          <hr className="border-b-1 w-1/3 border-blue-500 mb-4 "></hr>
 
           <div className="flex gap-2 items-center">
             <i className="ri-map-pin-line text-[#696969] text-3xl"></i>
             <a
               href="#"
-              className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+              className="text-[#696969] capitalize hover:text-blue-500"
             >
               404, Dreamland, Gujarat, India
             </a>
@@ -402,7 +402,7 @@ const Footer = () => {
             <i className="ri-phone-line text-[#696969] text-2xl"></i>
             <a
               href="#"
-              className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+              className="text-[#696969] capitalize hover:text-blue-500"
             >
               (+91) 9023134084
             </a>
@@ -411,7 +411,7 @@ const Footer = () => {
             <i className="ri-mail-line text-[#696969] text-2xl"></i>
             <a
               href="#"
-              className="text-[#696969] capitalize hover:text-[#ff8f9c]"
+              className="text-[#696969] capitalize hover:text-blue-500"
             >
               spaceshop@gmail.com
             </a>
