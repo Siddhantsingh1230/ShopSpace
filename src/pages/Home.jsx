@@ -43,6 +43,7 @@ import Stars from "../components/Sgittars";
 import ProgressBar from "../components/ProgressBar";
 import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
+import Footer from "../components/Footer";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -1452,9 +1453,9 @@ const Home = ({ setProgress }) => {
             </div>
           </a>
         </div>
-        {/* Footer */}
       </div>
-      <div className="footer"></div>
+      {/* footer */}
+      <Footer></Footer>
     </>
   );
 };
