@@ -89,12 +89,12 @@ const Home = ({ setProgress }) => {
             </span>
           </p>
           <div className="dropdown flex gap-2 opacity-70">
-            <select name="currency">
+            <select className="cursor-pointer opacity-70 hover:opacity-100" name="currency">
               <option value="usd">IND ₹</option>
               <option value="usd">USD $</option>
               <option value="eur">EUR €</option>
             </select>
-            <select name="language">
+            <select className="cursor-pointer opacity-70 hover:opacity-100" name="language">
               <option value="en-US">English</option>
               <option value="es-ES">Español</option>
               <option value="fr">Français</option>
