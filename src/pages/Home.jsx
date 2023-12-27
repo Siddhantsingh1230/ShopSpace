@@ -51,6 +51,7 @@ import ProgressBar from "../components/ProgressBar";
 import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
 import Footer from "../components/Footer";
+import Accordian from "../components/Accordian";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -72,6 +73,76 @@ const Home = ({ setProgress }) => {
     }
   }, []);
 
+  const AccrodianData = [
+    {
+      title: "Clothes",
+      src: DressFrock,
+      list: [
+        { title: "Shirt", price: 300 },
+        { title: "Shorts & Jeans", price: 60 },
+        { title: "Jacket", price: 50 },
+        { title: "Dress & Frock", price: 87 },
+      ],
+    },
+    {
+      title: "Footwear",
+      src: winterwear,
+      list: [
+        { title: "Sports", price: 300 },
+        { title: "Formal", price: 60 },
+        { title: "Casual", price: 50 },
+        { title: "Safety Shoes", price: 87 },
+      ],
+    },
+    {
+      title: "Jwellery",
+      src: watch,
+      list: [
+        { title: "Earrings", price: 300 },
+        { title: "Couple Rings", price: 60 },
+        { title: "Necklace", price: 50 },
+      ],
+    },
+    {
+      title: "Clothes",
+      src: glasses,
+      list: [
+        { title: "Shirt", price: 300 },
+        { title: "Shorts & Jeans", price: 60 },
+        { title: "Jacket", price: 50 },
+        { title: "Dress & Frock", price: 87 },
+      ],
+    },
+    {
+      title: "Footwear",
+      src: hatcaps,
+      list: [
+        { title: "Sports", price: 300 },
+        { title: "Formal", price: 60 },
+        { title: "Casual", price: 50 },
+        { title: "Safety Shoes", price: 87 },
+      ],
+    },
+    {
+      title: "Jwellery",
+      src: shorts,
+      list: [
+        { title: "Earrings", price: 300 },
+        { title: "Couple Rings", price: 60 },
+        { title: "Necklace", price: 50 },
+      ],
+    },
+    {
+      title: "Footwear",
+      src: tshirts,
+      list: [
+        { title: "Sports", price: 300 },
+        { title: "Formal", price: 60 },
+        { title: "Casual", price: 50 },
+        { title: "Safety Shoes", price: 87 },
+      ],
+    },
+  ];
   return (
     <>
       <div className="container w-[88%] mx-10 ">
@@ -372,9 +443,9 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap Offer Carousel */}
         <div className="select-none offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3">
-          <div className=" flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
-          <div className=" flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
-          <div className=" flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
+          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
+          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
+          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
         </div>
         {/* ScrollSnap categories Carousel */}
         <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10">
@@ -500,8 +571,95 @@ const Home = ({ setProgress }) => {
           <Shoes3DCarousel />
         </div>
         {/* Product Section */}
-        <div className="flex justify-center items-center  mb-12  gap-10">
-          <div className="sidebar w-[30%]"></div>
+        <div className="flex justify-center  mb-12  gap-10 relative">
+          <div className="sidebar w-[30%] ">
+            <div className=" w-full sticky top-8">
+              <div className="w-full border rounded-xl p-5">
+                <Accordian title={"CATEGORY"} data={AccrodianData} />
+              </div>
+              <div className="mt-6">
+                <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
+                <div className="flex flex-col gap-3">
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={hatcaps}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={tshirts}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={shorts}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={glasses}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="productsWrapper w-[70%]">
             {/* Product trend and list */}
             <div className="grid grid-cols-3 gap-5 mb-10">
@@ -877,7 +1035,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -916,7 +1074,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"SALE"}/>
+                  <Ribbon type={"SALE"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -955,7 +1113,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"SALE"}/>
+                  <Ribbon type={"SALE"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -994,7 +1152,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1033,7 +1191,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1072,7 +1230,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1111,7 +1269,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1150,7 +1308,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1189,7 +1347,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1228,7 +1386,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1267,7 +1425,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"SALE"}/>
+                  <Ribbon type={"SALE"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1306,14 +1464,13 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
-        {/* Other Section */}
+        {/* Other Sections */}
         {/* section1 */}
         <div className="flex h-[450px]  gap-10 mb-11">
           <div className="h-[90%] w-[24%] flex flex-col gap-8">
