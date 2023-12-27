@@ -572,75 +572,89 @@ const Home = ({ setProgress }) => {
         </div>
         {/* Product Section */}
         <div className="flex justify-center  mb-12  gap-10 relative">
-          <div className="sidebar  w-[30%] sticky top-0 ">
-            <div className="w-full border rounded-xl p-5">
-              <Accordian title={"CATEGORY"} data={AccrodianData} />
-            </div>
-            <div className="mt-6">
-              <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
-              <div className="flex flex-col gap-3">
-                <div className="flex gap-5">
-                  <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                    <img
-                      className="object-cover w-10 h-10 cursor-pointer"
-                      src={hatcaps}
-                      alt="img"
-                    />
+          <div className="sidebar w-[30%] ">
+            <div className=" w-full sticky top-0">
+              <div className="w-full border rounded-xl p-5">
+                <Accordian title={"CATEGORY"} data={AccrodianData} />
+              </div>
+              <div className="mt-6">
+                <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
+                <div className="flex flex-col gap-3">
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={hatcaps}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col cursor-pointer">
-                    <h1>Baby Fabric Shoes</h1>
-                    <Stars star={4} />
-                    <p className="font-bold">
-                      <span className="line-through font-normal mr-5">₹5</span>₹4.00
-                    </p>
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={tshirts}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
                   </div>
-                </div>
-                <div className="flex gap-5">
-                  <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                    <img
-                      className="object-cover w-10 h-10 cursor-pointer"
-                      src={tshirts}
-                      alt="img"
-                    />
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={shorts}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col cursor-pointer">
-                    <h1>Baby Fabric Shoes</h1>
-                    <Stars star={4} />
-                    <p className="font-bold">
-                      <span className="line-through font-normal mr-5">₹5</span>₹4.00
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-5">
-                  <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                    <img
-                      className="object-cover w-10 h-10 cursor-pointer"
-                      src={shorts}
-                      alt="img"
-                    />
-                  </div>
-                  <div className="flex flex-col cursor-pointer">
-                    <h1>Baby Fabric Shoes</h1>
-                    <Stars star={4} />
-                    <p className="font-bold">
-                      <span className="line-through font-normal mr-5">₹5</span>₹4.00
-                    </p>
-                  </div>
-                </div>
-                <div className="flex gap-5">
-                  <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                    <img
-                      className="object-cover w-10 h-10 cursor-pointer"
-                      src={glasses}
-                      alt="img"
-                    />
-                  </div>
-                  <div className="flex flex-col cursor-pointer">
-                    <h1>Baby Fabric Shoes</h1>
-                    <Stars star={4} />
-                    <p className="font-bold">
-                      <span className="line-through font-normal mr-5">₹5</span>₹4.00
-                    </p>
+                  <div className="flex gap-5">
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={glasses}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>Baby Fabric Shoes</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹5
+                        </span>
+                        ₹4.00
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
