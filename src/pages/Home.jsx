@@ -443,9 +443,9 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap Offer Carousel */}
         <div className="select-none offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3">
-          <div className=" flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
-          <div className=" flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
-          <div className=" flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
+          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
+          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
+          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
         </div>
         {/* ScrollSnap categories Carousel */}
         <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10">
