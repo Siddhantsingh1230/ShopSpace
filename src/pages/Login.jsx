@@ -29,7 +29,7 @@ const Login = () => {
   };
   return (
     <div
-      className="w-full h-full sm:p-16 lg:px-48  relative "
+      className="w-full h-full p-4 sm:p-16 lg:px-48  relative "
       style={{ backgroundImage: `url(${Bg})` }}
     >
       <div className="flex h-full w-full  overflow-hidden rounded-2xl inset-0 relative z-10 backdrop-sepia-0 bg-white/5">
@@ -139,7 +139,7 @@ const Login = () => {
                 {errors.password.message}
               </p>
             )}
-            <button className="flex bg-purple-800 p-2 rounded-md w-96 hover:bg-purple-700 text-white my-8 justify-center ">
+            <button className="flex bg-purple-800 p-2 rounded-md w-80 xl:w-96 hover:bg-purple-700 text-white my-8 justify-center ">
               Login
             </button>
 
