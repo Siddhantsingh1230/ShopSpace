@@ -476,3 +476,8 @@ html {
     transform: translateX(180%);
   }
 }
+
+/* Accordian CSS */
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}

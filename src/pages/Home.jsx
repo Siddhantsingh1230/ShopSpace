@@ -51,6 +51,7 @@ import ProgressBar from "../components/ProgressBar";
 import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
 import Footer from "../components/Footer";
+import Accordian from "../components/Accordian";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -72,6 +73,76 @@ const Home = ({ setProgress }) => {
     }
   }, []);
 
+  const AccrodianData = [
+    {
+      title: "Clothes",
+      src: DressFrock,
+      list: [
+        { title: "Shirt", price: 300 },
+        { title: "Shorts & Jeans", price: 60 },
+        { title: "Jacket", price: 50 },
+        { title: "Dress & Frock", price: 87 },
+      ],
+    },
+    {
+      title: "Footwear",
+      src: winterwear,
+      list: [
+        { title: "Sports", price: 300 },
+        { title: "Formal", price: 60 },
+        { title: "Casual", price: 50 },
+        { title: "Safety Shoes", price: 87 },
+      ],
+    },
+    {
+      title: "Jwellery",
+      src: watch,
+      list: [
+        { title: "Earrings", price: 300 },
+        { title: "Couple Rings", price: 60 },
+        { title: "Necklace", price: 50 },
+      ],
+    },
+    {
+      title: "Clothes",
+      src: glasses,
+      list: [
+        { title: "Shirt", price: 300 },
+        { title: "Shorts & Jeans", price: 60 },
+        { title: "Jacket", price: 50 },
+        { title: "Dress & Frock", price: 87 },
+      ],
+    },
+    {
+      title: "Footwear",
+      src: hatcaps,
+      list: [
+        { title: "Sports", price: 300 },
+        { title: "Formal", price: 60 },
+        { title: "Casual", price: 50 },
+        { title: "Safety Shoes", price: 87 },
+      ],
+    },
+    {
+      title: "Jwellery",
+      src: shorts,
+      list: [
+        { title: "Earrings", price: 300 },
+        { title: "Couple Rings", price: 60 },
+        { title: "Necklace", price: 50 },
+      ],
+    },
+    {
+      title: "Footwear",
+      src: tshirts,
+      list: [
+        { title: "Sports", price: 300 },
+        { title: "Formal", price: 60 },
+        { title: "Casual", price: 50 },
+        { title: "Safety Shoes", price: 87 },
+      ],
+    },
+  ];
   return (
     <>
       <div className="container w-[88%] mx-10 ">
@@ -500,8 +571,12 @@ const Home = ({ setProgress }) => {
           <Shoes3DCarousel />
         </div>
         {/* Product Section */}
-        <div className="flex justify-center items-center  mb-12  gap-10">
-          <div className="sidebar w-[30%]"></div>
+        <div className="flex justify-center  mb-12  gap-10 relative">
+          <div className="sidebar w-[30%] sticky top-0 ">
+            <div className="w-full border rounded-xl p-5">
+              <Accordian title={"CATEGORY"} data={AccrodianData} />
+            </div>
+          </div>
           <div className="productsWrapper w-[70%]">
             {/* Product trend and list */}
             <div className="grid grid-cols-3 gap-5 mb-10">
@@ -877,7 +952,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -916,7 +991,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"SALE"}/>
+                  <Ribbon type={"SALE"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -955,7 +1030,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"SALE"}/>
+                  <Ribbon type={"SALE"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -994,7 +1069,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1033,7 +1108,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1072,7 +1147,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1111,7 +1186,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1150,7 +1225,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1189,7 +1264,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1228,7 +1303,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1267,7 +1342,7 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"SALE"}/>
+                  <Ribbon type={"SALE"} />
                 </div>
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
@@ -1306,14 +1381,13 @@ const Home = ({ setProgress }) => {
                       <i className="ri-share-line"></i>
                     </a>
                   </div>
-                  <Ribbon type={"NEW"}/>
+                  <Ribbon type={"NEW"} />
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
-        {/* Other Section */}
+        {/* Other Sections */}
         {/* section1 */}
         <div className="flex h-[450px]  gap-10 mb-11">
           <div className="h-[90%] w-[24%] flex flex-col gap-8">
