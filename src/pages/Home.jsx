@@ -572,7 +572,7 @@ const Home = ({ setProgress }) => {
         </div>
         {/* Product Section */}
         <div className="flex justify-center  mb-12  gap-10 relative">
-          <div className="sidebar h-auto w-[30%] sticky top-0 ">
+          <div className="sidebar  w-[30%] sticky top-0 ">
             <div className="w-full border rounded-xl p-5">
               <Accordian title={"CATEGORY"} data={AccrodianData} />
             </div>
