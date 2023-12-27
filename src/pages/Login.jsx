@@ -34,7 +34,7 @@ const Login = () => {
     >
       <div className="flex h-full w-full  overflow-hidden rounded-2xl inset-0 relative z-10 backdrop-sepia-0 bg-white/5">
         {/* image div */}
-        <div className=" h-full w-1/2 overflow-hidden sm:hidden ">
+        <div className=" h-full w-1/2 overflow-hidden sm:flex ">
           <img
             className=" hidden md:h-full w-full  object-cover md:flex  "
             src={ImageLogin}
