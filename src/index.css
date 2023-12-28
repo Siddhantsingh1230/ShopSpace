@@ -506,4 +506,26 @@ html {
   .logo:after {
     display: none;
   }
+  #root:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 15%;
+    width:40%;
+    background-image: url(./assets/images/starsfalling.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: longfade 10s ease infinite alternate;
+  }
+}
+@keyframes longfade {
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
 }
