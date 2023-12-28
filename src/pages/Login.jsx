@@ -6,14 +6,12 @@ import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  
   const handleRegistration = (data) => console.log(data);
   const [eyeClass, setEyeClass] = useState("ri-eye-off-line");
   const [passType, setPassType] = useState("password");
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigate = useNavigate();
   const navigateTosignup = () => {
     navigate("/signup");
@@ -27,9 +25,14 @@ const Login = () => {
       setPassType("text");
     }
   };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
     <div
-      className="w-full h-full p-4 sm:p-16 lg:px-48  relative "
+      className="w-full h-full p-4 sm:p-16 lg:px-52  relative "
       style={{ backgroundImage: `url(${Bg})` }}
     >
       <div className="flex h-full w-full  overflow-hidden rounded-2xl inset-0 relative z-10 backdrop-sepia-0 bg-white/5">
@@ -43,15 +46,15 @@ const Login = () => {
         </div>
 
         {/* content div  */}
-        <div className="flex w-full p-4 sm:w-1/2 items-center justify-center sm:p-24">
+        <div className="flex w-full p-8 sm:w-1/2 items-center justify-center sm:p-32">
           <form onSubmit={handleSubmit(handleRegistration)} >
-            <h1 className="text-xl xl:text-3xl font-bold text-white text-center">
-              Login
+            <h1 className="text-2xl xl:text-5xl font-bold text-purple-600 text-center">
+              Space Shop
             </h1>
             <div className="w-full flex-1 mt-8">
               <div className="flex flex-col items-center">
                 <button
-                  className="w-full max-w-xs font-bold shadow-sm rounded-md py-2  text-purple-800 flex items-center justify-center transition-all duration-300 ease-in-out  hover:bg-purple-400  hover:text-white  focus:shadow-sm focus:shadow-outline"
+                  className="w-full  font-bold shadow-sm rounded-md py-2  text-purple-800 flex items-center justify-center transition-all duration-300 ease-in-out  hover:bg-slate-700  hover:text-purple-400  focus:shadow-sm focus:shadow-outline"
                   onClick={navigateTosignup}
                 >
                   <span className="ml-4">Create Account</span>
@@ -75,6 +78,10 @@ const Login = () => {
                 type="email"
                 id="UserEmail"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 {...register("email", {
                   required: "Enter email",
                   pattern: {
@@ -82,21 +89,10 @@ const Login = () => {
                     message: "Enter valid email",
                   },
                 })}
-                className="w-full rounded-md bg-transparent border-2 border-purple-800 p-2 shadow-sm sm:text-sm "
+                className="w-full pr-9 rounded-md bg-transparent border-2 border-purple-800 p-2 shadow-sm sm:text-sm "
               />
-              <span className="pointer-events-none absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-300">
-                <svg
-                  xmlns="http://www.w3.org/2000/  "
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className="h-4 w-4"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.404 14.596A6.5 6.5 0 1116.5 10a1.25 1.25 0 01-2.5 0 4 4 0 10-.571 2.06A2.75 2.75 0 0018 10a8 8 0 10-2.343 5.657.75.75 0 00-1.06-1.06 6.5 6.5 0 01-9.193 0zM10 7.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <span className="absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-300">
+                <i className="ri-at-line"></i>
               </span>
             </div>
             {errors.email && (
@@ -114,6 +110,10 @@ const Login = () => {
                 type={passType}
                 id="password"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 {...register("password", {
                   required: "Enter password",
                   pattern: {
@@ -124,7 +124,7 @@ const Login = () => {
                     - Can contain special characters`,
                   },
                 })}
-                className="w-full rounded-md bg-transparent border-2 border-purple-800 p-2 shadow-sm  sm:text-sm"
+                className="w-full pr-9 rounded-md bg-transparent border-2 border-purple-800 p-2 shadow-sm  sm:text-sm"
               />
               <span className=" absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-300">
               <i
@@ -145,17 +145,17 @@ const Login = () => {
 
             <p className="mt-6 text-xs text-gray-600 text-center">
                     I agree to abide by SpaceShop's{" "}
-                    <a href="#" className="text-purple-800 font-bold">
+                    <a href="/" className="text-purple-800 hover:text-white font-bold">
                       Terms of Service{" "}
                     </a>
                     and its{" "}
-                    <a href="#" className="text-purple-800 font-bold">
+                    <a href="/" className="text-purple-800 hover:text-white font-bold">
                       Privacy Policy
                     </a>
                   </p>
                   <p className="mt-6 text-xs text-gray-600 text-center">
                    
-                    <a href="/" className="w-full text-black-500 rounded-md p-2 text-purple-800 hover:bg-purple-950 hover:text-white font-bold">
+                    <a href="/" className="w-full text-black-500 rounded-md p-2 text-purple-800 hover:text-white font-bold">
                       Forgot Password ?
                     </a>
                     
