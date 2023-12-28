@@ -572,7 +572,7 @@ const Home = ({ setProgress }) => {
         </div>
         {/* Product Section */}
         <div className="flex justify-center  mb-12  gap-10 relative">
-          <div className="sidebar w-[30%] ">
+          <div className="sidebar w-[30%] max-sm:hidden">
             <div className=" w-full sticky top-8">
               <div className="w-full border rounded-xl p-5">
                 <Accordian title={"CATEGORY"} data={AccrodianData} />
@@ -660,9 +660,9 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className="productsWrapper w-[70%]">
+          <div className="productsWrapper w-[70%] max-sm:w-full max-sm:mt-10">
             {/* Product trend and list */}
-            <div className="grid grid-cols-3 gap-5 mb-10">
+            <div className="grid grid-cols-3 gap-5 mb-10 max-sm:grid-cols-1">
               <div className="flex flex-col gap-5">
                 <p className="font-bold border-b py-2 tracking-wider">
                   New Arrivals
@@ -958,24 +958,24 @@ const Home = ({ setProgress }) => {
             {/* Deal of the Day */}
             <div className="flex flex-col mb-10">
               <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
-              <div className="flex border rounded-md p-10">
-                <img src={jwellery} alt="offer" className="w-2/4 h-2/4"></img>
-                <div className="w-2/4">
+              <div className="flex border rounded-md p-10 max-sm:flex-col max-sm:p-0 max-sm:items-center max-sm:px-6">
+                <img src={jwellery} alt="offer" className="w-2/4 h-2/4 max-sm:m-10 max-sm:w-4/5 "></img>
+                <div className="w-2/4 max-sm:w-full">
                   <Stars star={5} />
-                  <h1 className="font-bold font-[GilroyB] text-lg">
+                  <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
                     ROSE GOLD DIAMONDS EARRING
                   </h1>
-                  <p className="my-2 text-[#787878] text-md">
+                  <p className="my-2 text-[#787878] text-md max-sm:text-sm">
                     Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor
                     dolor sit amet consectetur Lorem ipsum dolor
                   </p>
-                  <p className="text-blue-500 text-2xl font-bold ">
+                  <p className="text-blue-500 text-2xl font-bold max-sm:text-xl max-sm:mt-3">
                     ₹1990.00
                     <span className="ml-5 text-black font-normal line-through">
                       ₹2000.00
                     </span>
                   </p>
-                  <button className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5">
+                  <button className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5 max-sm:text-lg">
                     ADD TO CART
                   </button>
                   <div className="flex justify-between items-center mb-3">
