@@ -45,6 +45,8 @@ const App = () => {
             overflow: "hidden",
             outline: "none",
             boxShadow: "none",
+            right:"1rem",
+            background:"black", // change the button styles  
           }}
           component={<ScrollUpBtn />}
         />
