@@ -497,3 +497,13 @@ html {
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
+
+
+
+/* Mobile Styles */
+
+@media (max-width: 767px){
+  .logo:after {
+    display: none;
+  }
+}

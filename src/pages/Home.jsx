@@ -145,9 +145,9 @@ const Home = ({ setProgress }) => {
   ];
   return (
     <>
-      <div className="container w-[88%] mx-10 ">
+      <div className="container w-[88%] mx-10 max-sm:w-full max-sm:px-4">
         {/* Top Links */}
-        <div className="links my-3 flex justify-between ">
+        <div className="links my-3 flex justify-between max-sm:hidden">
           <div className="sharelinks flex gap-2">
             <div className="h-7 w-7 rounded-md  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
@@ -210,17 +210,17 @@ const Home = ({ setProgress }) => {
         {/* Divider */}
         <hr className="w-full" />
         {/* Nav */}
-        <div className="nav my-7 flex justify-between items-center">
+        <div className="nav my-7 flex justify-between items-center max-sm:flex-col max-sm:gap-5">
           <div className="text-3xl logo relative font-[GilroyB]">SP/ACE</div>
-          <div className="w-[60%] h-[3rem] border rounded-xl relative">
+          <div className="w-[60%] h-12 border rounded-xl relative max-sm:w-full max-sm:h-[2.85rem]">
             <input
-              className="w-full h-full rounded-xl px-4 pr-14"
+              className="w-full h-full rounded-xl px-4 pr-14 max-sm:text-sm"
               placeholder="Enter your space product..."
               type="text"
             />
             <i className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"></i>
           </div>
-          <div className="icons flex justify-center items-center gap-5">
+          <div className="icons flex justify-center items-center gap-5 max-sm:hidden">
             <div className="cursor-pointer flex justify-center items-center relative">
               <i className="text-4xl ri-user-line"></i>
             </div>
@@ -241,7 +241,7 @@ const Home = ({ setProgress }) => {
         {/* Divider */}
         <hr className="w-full" />
         {/* NavLink */}
-        <div className="navlink mt-5 flex justify-center items-center gap-11 relative">
+        <div className="navlink mt-5 flex justify-center items-center gap-11 relative max-sm:hidden">
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks ">
             HOME
           </div>
@@ -448,8 +448,8 @@ const Home = ({ setProgress }) => {
           <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
         </div>
         {/* ScrollSnap categories Carousel */}
-        <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10">
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+        <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={DressFrock} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -463,7 +463,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={winterwear} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -477,7 +477,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={glasses} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -491,7 +491,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={shorts} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -505,7 +505,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={tshirts} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -519,7 +519,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={jacket} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -533,7 +533,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={watch} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -547,7 +547,7 @@ const Home = ({ setProgress }) => {
               </div>
             </div>
           </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2">
+          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={hatcaps} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -563,8 +563,8 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
         {/* Shoes 3DCarousel */}
-        <div className="flex justify-center items-center m-16 mb-36 flex-col">
-          <h1 className="shoesCarouseltitle font-[Rastano] text-5xl relative">
+        <div className="flex justify-center items-center m-16 mb-36 flex-col max-sm:m-0">
+          <h1 className="shoesCarouseltitle font-[Rastano] text-5xl relative max-sm:text-3xl">
             Flex in Style
             <img src={Sparkle} className="absolute top-0 left-0" alt="Wear" />
           </h1>
