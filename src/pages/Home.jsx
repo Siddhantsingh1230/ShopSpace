@@ -997,7 +997,7 @@ const Home = ({ setProgress }) => {
             {/* New Products */}
             <div className="flex flex-col gap-5">
               <h1 className="font-bold border-b py-3">New Products</h1>
-              <div className="grid grid-cols-4 gap-5">
+              <div className="grid grid-cols-4 gap-5 max-sm:grid-cols-1">
                 <div className="newProductCard relative flex flex-col gap-2 cursor-pointer border-2 overflow-hidden rounded-lg transition duration-300 ease-in-out hover:shadow-xl p-3 justify-center items-start">
                   <img
                     src={jacket1}
@@ -1472,12 +1472,12 @@ const Home = ({ setProgress }) => {
         </div>
         {/* Other Sections */}
         {/* section1 */}
-        <div className="flex h-[450px]  gap-10 mb-11">
-          <div className="h-[90%] w-[24%] flex flex-col gap-8">
+        <div className="flex h-[450px]  gap-10 mb-11 max-sm:flex-col max-sm:h-auto">
+          <div className="h-[90%] w-[24%] flex flex-col gap-8 max-sm:w-full ">
             <p className="font-bold border-b py-2 tracking-wider">
               Testimonial
             </p>
-            <div className="border text-center gap-2  h-[90%] rounded-xl justify-center items-center flex flex-col">
+            <div className="border text-center gap-2  h-[90%] rounded-xl justify-center items-center flex flex-col max-sm:py-5">
               <img
                 className="h-20 w-20  rounded-full"
                 src={ceo}
@@ -1492,8 +1492,8 @@ const Home = ({ setProgress }) => {
               </p>
             </div>
           </div>
-          <div className="w-[52%] h-[95%] cta flex justify-center items-center">
-            <div className="h-[60%] w-[50%] bg-[#ffffffbf] rounded-md">
+          <div className="w-[52%] h-[95%] cta flex justify-center items-center max-sm:w-full max-sm:h-[320px]">
+            <div className="h-[60%] w-[50%] bg-[#ffffffbf] rounded-md max-sm:w-[60%]">
               <a
                 href="#"
                 className="h-full w-full text-center flex-col flex gap-2 justify-center items-center"
@@ -1511,11 +1511,11 @@ const Home = ({ setProgress }) => {
               </a>
             </div>
           </div>
-          <div className="h-[90%] w-[24%] flex flex-col gap-8">
+          <div className="h-[90%] w-[24%] flex flex-col gap-8 max-sm:w-full">
             <p className="font-bold border-b py-2 tracking-wider">
               Our Services
             </p>
-            <div className="border text-center gap-2 px-6  h-[90%] rounded-xl justify-center items-start flex flex-col">
+            <div className="border text-center gap-2 px-6  h-[90%] rounded-xl justify-center items-start flex flex-col max-sm:py-5">
               <div className="flex justify-center items-center gap-5  cursor-pointer">
                 <i className="text-blue-500 hover:text-black ri-ship-line text-4xl"></i>
                 <div className="flex flex-col items-start">
@@ -1567,7 +1567,7 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
         {/* section2 */}
-        <div className="grid grid-cols-4 gap-4 mb-5">
+        <div className="grid grid-cols-4 gap-4 mb-5 max-sm:grid-cols-1 max-sm:gap-10">
           <a href="#" className=" w-full">
             <img className="w-full rounded-md mb-6" src={blog1} alt="blog" />
             <div>
