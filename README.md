@@ -43,3 +43,5 @@
 
 ------------------------------------------------------
 # Started building Homepage
+# HomePage Completed 28-12-23 (Added Login and SignUp) {Desktop Version}
+# Making HomePage Responsive
