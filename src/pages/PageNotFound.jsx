@@ -18,7 +18,7 @@ const PageNotFound = () => {
           <i className="ri-vip-crown-fill"></i>&nbsp;Home
           </button>
         </div>
-        <img className="notFound w-[68%] h-full max-sm:hidden" src={Img} alt="" />
+        <img className="notFound w-[68%] scale-x-[-1] h-full max-sm:hidden" src={Img} alt="" />
       </div>
       <div className="hidden  max-sm:block max-sm:bg-cover max-sm:bg-center w-screen  opacity-15 h-screen absolute top-0 left-0" style={{backgroundImage: `url(${ImgBg})`}}></div>
     </>
