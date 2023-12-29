@@ -52,6 +52,7 @@ import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
 import Footer from "../components/Footer";
 import Accordian from "../components/Accordian";
+import MenuAccordian from "../components/MenuAccordian";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
@@ -85,6 +86,7 @@ const Home = ({ setProgress }) => {
     setIsCategoryOpen((prevState) => !prevState);
   };
 
+  //  Sidebar Accordian Data of category
   const AccrodianData = [
     {
       title: "Clothes",
@@ -152,6 +154,45 @@ const Home = ({ setProgress }) => {
         { title: "Formal", price: 60 },
         { title: "Casual", price: 50 },
         { title: "Safety Shoes", price: 87 },
+      ],
+    },
+  ];
+
+  // Menu Accordian Data
+  const MenuAccordianData = [
+    {
+      title: "Men's",
+      list: [
+        { title: "Shirt" },
+        { title: "Shorts & Jeans" },
+        { title: "Safety Shoes" },
+        { title: "Wallet" },
+      ],
+    },
+    {
+      title: "Women",
+      list: [
+        { title: "Dress & Frock" },
+        { title: "Earrings" },
+        { title: "Necklace" },
+        { title: "Makeup Kit" },
+      ],
+    },
+    {
+      title: "Jwellery",
+      list: [
+        { title: "Earrings" },
+        { title: "Couple Rings" },
+        { title: "Necklace" },
+      ],
+    },
+    {
+      title: "Clothes",
+      list: [
+        { title: "Shirt" },
+        { title: "Shorts & Jeans" },
+        { title: "Jacket" },
+        { title: "Dress & Frock" },
       ],
     },
   ];
@@ -1675,8 +1716,9 @@ const Home = ({ setProgress }) => {
         onClose={toggleMenuDrawer}
         direction="left"
         size="85vw"
+        className="md:hidden"
       >
-        <div className="w-full flex flex-col p-5">
+        <div className="w-full flex flex-col p-5 overflow-y-scroll h-full">
           <div className="flex justify-between">
             <h1 className="text-blue-500 text-lg font-bold">Menu</h1>
             <i
@@ -1685,7 +1727,56 @@ const Home = ({ setProgress }) => {
             ></i>
           </div>
           <hr className="bg=[#787878] my-3" />
-          <div className="flex"></div>
+          <h1 className="my-3">Home</h1>
+          <MenuAccordian data={MenuAccordianData} />
+          <h1 className=" my-3">Blog</h1>
+          <h1 className=" my-3">Hot Offers</h1>
+
+          <select className="cursor-pointer my-3" name="currency">
+            <option value="usd">IND ₹</option>
+            <option value="usd">USD ₹</option>
+            <option value="eur">EUR €</option>
+          </select>
+          <select className="cursor-pointer  my-3" name="language">
+            <option value="en-US">English</option>
+            <option value="es-ES">Español</option>
+            <option value="fr">Français</option>
+          </select>
+
+          <div className="flex flex-1 w-full justify-center gap-5 my-10">
+            <div className="py-2 px-3  rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+              <a
+                href="#"
+                className="hover:text-white h-full w-full flex justify-center items-center"
+              >
+                <i className="text-xl  transition-all   ri-github-fill"></i>
+              </a>
+            </div>
+            <div className="py-2 px-3 rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+              <a
+                href="#"
+                className="hover:text-white h-full w-full flex justify-center items-center"
+              >
+                <i className="text-xl transition-all ri-linkedin-box-fill"></i>
+              </a>
+            </div>
+            <div className="py-2 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+              <a
+                href="#"
+                className="hover:text-white h-full w-full flex justify-center items-center"
+              >
+                <i className="text-xl  transition-all   ri-instagram-line"></i>
+              </a>
+            </div>
+            <div className="py-2 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+              <a
+                href="#"
+                className="hover:text-white h-full w-full flex justify-center items-center"
+              >
+                <i className="text-xl ransition-all  ri-facebook-circle-fill"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </Drawer>
       {/* Drawer2 (category Drawer) */}
@@ -1694,6 +1785,7 @@ const Home = ({ setProgress }) => {
         onClose={toggleCategoryDrawer}
         direction="left"
         size="85vw"
+        className="md:hidden"
       >
         <div className="w-full flex flex-col p-5 overflow-y-scroll h-full relative">
           <i
