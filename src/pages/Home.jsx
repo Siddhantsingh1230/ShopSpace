@@ -1732,19 +1732,19 @@ const Home = ({ setProgress }) => {
           <h1 className=" my-3">Blog</h1>
           <h1 className=" my-3">Hot Offers</h1>
 
-          <select className="cursor-pointer my-3" name="currency">
+          <select className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer my-3" name="currency">
             <option value="usd">IND ₹</option>
             <option value="usd">USD ₹</option>
             <option value="eur">EUR €</option>
           </select>
-          <select className="cursor-pointer  my-3" name="language">
+          <select className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer  my-3" name="language">
             <option value="en-US">English</option>
             <option value="es-ES">Español</option>
             <option value="fr">Français</option>
           </select>
 
-          <div className="flex flex-1 w-full justify-center gap-5 my-10">
-            <div className="py-2 px-3  rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+          <div className="flex w-full justify-center gap-5 my-10">
+            <div className="flex-1 py-3 px-3  rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
@@ -1752,7 +1752,7 @@ const Home = ({ setProgress }) => {
                 <i className="text-xl  transition-all   ri-github-fill"></i>
               </a>
             </div>
-            <div className="py-2 px-3 rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+            <div className="flex-1 py-3 px-3 rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
@@ -1760,7 +1760,7 @@ const Home = ({ setProgress }) => {
                 <i className="text-xl transition-all ri-linkedin-box-fill"></i>
               </a>
             </div>
-            <div className="py-2 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+            <div className="flex-1 py-3 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
@@ -1768,7 +1768,7 @@ const Home = ({ setProgress }) => {
                 <i className="text-xl  transition-all   ri-instagram-line"></i>
               </a>
             </div>
-            <div className="py-2 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+            <div className="flex-1 py-3 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
