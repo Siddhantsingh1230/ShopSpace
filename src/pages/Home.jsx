@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -52,6 +52,8 @@ import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
 import Footer from "../components/Footer";
 import Accordian from "../components/Accordian";
+import Drawer from "react-modern-drawer";
+import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -72,6 +74,16 @@ const Home = ({ setProgress }) => {
       };
     }
   }, []);
+
+  // For Mobile Viewport Drawer Control
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenuDrawer = () => {
+    setIsMenuOpen((prevState) => !prevState);
+  };
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const toggleCategoryDrawer = () => {
+    setIsCategoryOpen((prevState) => !prevState);
+  };
 
   const AccrodianData = [
     {
@@ -1628,7 +1640,10 @@ const Home = ({ setProgress }) => {
       {/* Mobile Viewport Components */}
       {/* bottom_fixed_toolbar */}
       <div className="z-10 bg-white fixed bottom-0 w-full flex flex-1 left-2/4 -translate-x-2/4  justify-around items-center md:hidden bottom_mobile_nav">
-        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+        <button
+          onClick={toggleMenuDrawer}
+          className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
+        >
           <i className=" ri-menu-line"></i>
         </button>
         <button className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
@@ -1646,10 +1661,121 @@ const Home = ({ setProgress }) => {
             5
           </span>
         </button>
-        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+        <button
+          onClick={toggleCategoryDrawer}
+          className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
+        >
           <i className=" ri-stack-fill"></i>
         </button>
+        {/* Mobile Drawer Component */}
       </div>
+      {/* Drawer1 (Menu Drawer) */}
+      <Drawer
+        open={isMenuOpen}
+        onClose={toggleMenuDrawer}
+        direction="left"
+        size="85vw"
+      >
+        <div className="w-full flex flex-col p-5">
+          <div className="flex justify-between">
+            <h1 className="text-blue-500 text-lg font-bold">Menu</h1>
+            <i
+              onClick={toggleMenuDrawer}
+              className="ri-close-line text-2xl font-bold"
+            ></i>
+          </div>
+          <hr className="bg=[#787878] my-3" />
+          <div className="flex"></div>
+        </div>
+      </Drawer>
+      {/* Drawer2 (category Drawer) */}
+      <Drawer
+        open={isCategoryOpen}
+        onClose={toggleCategoryDrawer}
+        direction="left"
+        size="85vw"
+      >
+        <div className="w-full flex flex-col p-5 overflow-y-scroll h-full relative">
+          <i
+            onClick={toggleCategoryDrawer}
+            className="ri-close-line text-2xl font-bold absolute right-5"
+          ></i>
+          <Accordian title={"CATEGORY"} data={AccrodianData} />
+          <div className="my-6">
+            <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-5">
+                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                  <img
+                    className="object-cover w-10 h-10 cursor-pointer"
+                    src={hatcaps}
+                    alt="img"
+                  />
+                </div>
+                <div className="flex flex-col cursor-pointer">
+                  <h1>Baby Fabric Shoes</h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    <span className="line-through font-normal mr-5">₹5</span>
+                    ₹4.00
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-5">
+                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                  <img
+                    className="object-cover w-10 h-10 cursor-pointer"
+                    src={tshirts}
+                    alt="img"
+                  />
+                </div>
+                <div className="flex flex-col cursor-pointer">
+                  <h1>Baby Fabric Shoes</h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    <span className="line-through font-normal mr-5">₹5</span>
+                    ₹4.00
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-5">
+                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                  <img
+                    className="object-cover w-10 h-10 cursor-pointer"
+                    src={shorts}
+                    alt="img"
+                  />
+                </div>
+                <div className="flex flex-col cursor-pointer">
+                  <h1>Baby Fabric Shoes</h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    <span className="line-through font-normal mr-5">₹5</span>
+                    ₹4.00
+                  </p>
+                </div>
+              </div>
+              <div className="flex gap-5">
+                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                  <img
+                    className="object-cover w-10 h-10 cursor-pointer"
+                    src={glasses}
+                    alt="img"
+                  />
+                </div>
+                <div className="flex flex-col cursor-pointer">
+                  <h1>Baby Fabric Shoes</h1>
+                  <Stars star={4} />
+                  <p className="font-bold">
+                    <span className="line-through font-normal mr-5">₹5</span>
+                    ₹4.00
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Drawer>
     </>
   );
 };
