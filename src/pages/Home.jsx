@@ -442,13 +442,13 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
         {/* ScrollSnap Offer Carousel */}
-        <div className="select-none offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3">
+        <div className="select-none offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
           <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
           <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
           <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
         </div>
         {/* ScrollSnap categories Carousel */}
-        <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10">
+        <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
           <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={DressFrock} className="w-8 h-8" alt="dress and frock" />
@@ -959,7 +959,11 @@ const Home = ({ setProgress }) => {
             <div className="flex flex-col mb-10">
               <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
               <div className="flex border rounded-md p-10 max-sm:flex-col max-sm:p-0 max-sm:items-center max-sm:px-6">
-                <img src={jwellery} alt="offer" className="w-2/4 h-2/4 max-sm:m-10 max-sm:w-4/5 "></img>
+                <img
+                  src={jwellery}
+                  alt="offer"
+                  className="w-2/4 h-2/4 max-sm:m-10 max-sm:w-4/5 "
+                ></img>
                 <div className="w-2/4 max-sm:w-full">
                   <Stars star={5} />
                   <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
@@ -1620,6 +1624,32 @@ const Home = ({ setProgress }) => {
       </div>
       {/* footer */}
       <Footer></Footer>
+
+      {/* Mobile Viewport Components */}
+      {/* bottom_fixed_toolbar */}
+      <div className="z-10 bg-white fixed bottom-0 w-full flex flex-1 left-2/4 -translate-x-2/4  justify-around items-center md:hidden bottom_mobile_nav">
+        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+          <i className=" ri-menu-line"></i>
+        </button>
+        <button className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+          <i className=" ri-shopping-bag-line"></i>
+          <span className="bg-red-400 absolute -top-0 right-0 text-white text-xs px-[5px] py-[1px] rounded-xl">
+            2
+          </span>
+        </button>
+        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+          <i className=" ri-home-5-line"></i>
+        </button>
+        <button className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+          <i className=" ri-heart-3-line"></i>
+          <span className="bg-red-400 absolute -top-0 right-0 text-white text-xs px-[5px] py-[2px] rounded-xl">
+            5
+          </span>
+        </button>
+        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+          <i className=" ri-stack-fill"></i>
+        </button>
+      </div>
     </>
   );
 };
