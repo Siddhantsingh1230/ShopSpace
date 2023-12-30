@@ -44,8 +44,8 @@ const App = () => {
             path="/orders"
             exact
             element={<Orders setProgress={setProgress} />}
-            />
-            <Route
+          />
+          <Route
             path="/products"
             exact
             element={<Products setProgress={setProgress} />}
@@ -58,23 +58,23 @@ const App = () => {
         </Routes>
       </AnimatePresence>
 
-        {/* Extra functionality Sections */}
-        {/* Scroll Up Btn Functionality */}
-        <ScrollToTop
-          smooth={true}
-          style={{
-            borderRadius: "50%",
-            overflow: "hidden",
-            outline: "none",
-            boxShadow: "none",
-            right: "1rem",
-            bottom: "5rem",
-            background: "black", // change the button styles
-          }}
-          component={<ScrollUpBtn />}
-        />
-        {/* Toast container to manage all toasts it act as parent container for toast calls */}
-        <ToastContainer />
+      {/* Extra functionality Sections */}
+      {/* Scroll Up Btn Functionality */}
+      <ScrollToTop
+        smooth={true}
+        style={{
+          borderRadius: "50%",
+          overflow: "hidden",
+          outline: "none",
+          boxShadow: "none",
+          right: "1rem",
+          bottom: "5rem",
+          background: "black", // change the button styles
+        }}
+        component={<ScrollUpBtn />}
+      />
+      {/* Toast container to manage all toasts it act as parent container for toast calls */}
+      <ToastContainer />
 
       {/* Top Loading bar component */}
       <LoadingBar
