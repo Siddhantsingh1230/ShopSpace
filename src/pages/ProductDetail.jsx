@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { CheckBadgeIcon, StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import MobileBottonNav from "../components/MobileBottonNav";
+import Stars from "../components/Stars";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -422,7 +422,7 @@ const ProductDetails = ({ setProgress }) => {
 
                     <div className="mt-4">
                       <ul className="list-disc space-y-2 pl-4 text-sm">
-                        {highlights.map((highlight,idx) => (
+                        {highlights.map((highlight, idx) => (
                           <li key={idx} className="text-gray-400">
                             <span className="text-gray-600">{highlight}</span>
                           </li>
@@ -430,7 +430,7 @@ const ProductDetails = ({ setProgress }) => {
                       </ul>
                     </div>
                   </div>
-
+                  {/* Review Section */}
                   <div className="mt-10">
                     <h2 className="text-sm font-medium text-gray-900 mb-2">
                       Write a Review
@@ -475,18 +475,7 @@ const ProductDetails = ({ setProgress }) => {
                       <h3 className="sr-only">Reviews</h3>
                       <div className="flex items-center">
                         <div className="flex items-center">
-                          {[0, 1, 2, 3, 4].map((rating) => (
-                            <StarIcon
-                              key={rating}
-                              className={classNames(
-                                product.rating > rating
-                                  ? "text-gray-900"
-                                  : "text-gray-200",
-                                "h-5 w-5 flex-shrink-0"
-                              )}
-                              aria-hidden="true"
-                            />
-                          ))}
+                          <Stars star={5} />
                         </div>
                         <p className="sr-only">
                           {product.rating} out of 5 stars
@@ -501,9 +490,9 @@ const ProductDetails = ({ setProgress }) => {
                     </div>
 
                     <ul role="list" className="divide-y divide-gray-100">
-                      {reviews.map((review,idx) => (
+                      {reviews.map((review, idx) => (
                         <li
-                          key={idx}// after creating backend use review id here
+                          key={idx} // after creating backend use review id here
                           className="flex justify-between gap-x-6 py-5"
                         >
                           <div className="flex min-w-0 gap-x-4">
@@ -527,7 +516,7 @@ const ProductDetails = ({ setProgress }) => {
                                 {review.createdAt}
                               </p>
 
-                              <CheckBadgeIcon className="ri-verified-badge-line h-4 w-4 text-blue-500" />
+                              <i className="ri-checkbox-circle-fill h-4 w-4 text-blue-500"></i>
                             </div>
                           </div>
                         </li>
