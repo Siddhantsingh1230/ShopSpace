@@ -205,7 +205,7 @@ const ProductDetails = ({ setProgress }) => {
                   />
                 </div>
 
-                <div className="flex md:flex-col justify-between w-[90px] max-sm:h-[72px] md:w-64 ">
+                <div className="flex md:flex-col justify-between w-full max-sm:h-[72px] md:w-64 overflow-scroll">
                   <img
                     src={product.images[1]}
                     alt={product.title}
