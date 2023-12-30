@@ -47,6 +47,7 @@ const App = () => {
             outline: "none",
             boxShadow: "none",
             right:"1rem",
+            bottom:"5rem",
             background:"black", // change the button styles  
           }}
           component={<ScrollUpBtn />}

@@ -423,7 +423,7 @@ const Footer = () => {
 
       {/* footer section 3 for all important link */}
 
-      <div className="p-12 flex flex-col gap-4 items-center text-center">
+      <div className="p-12 flex flex-col gap-4 items-center text-center max-sm:mb-12">
         <img className="" src={Payment} alt="payment methods"></img>
         <p className="text-[#696969] capitalize">Copyright &copy; <a href="#">Shop Space</a> all rights reserved.</p>
       </div>

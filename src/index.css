@@ -498,22 +498,20 @@ html {
   transition: height 500ms;
 }
 
-
-
 /* Mobile Styles */
 
-@media (max-width: 767px){
+@media (max-width: 767px) {
   .logo:after {
     display: none;
   }
-  #root:before{
+  #root:before {
     content: "";
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     height: 15%;
-    width:40%;
+    width: 40%;
     background-image: url(./assets/images/starsfalling.gif);
     background-position: center;
     background-repeat: no-repeat;
@@ -522,10 +520,14 @@ html {
   }
 }
 @keyframes longfade {
-  0%{
+  0% {
     opacity: 1;
   }
-  100%{
+  100% {
     opacity: 0;
   }
+}
+/* Mobile Bottom Navigation */
+.bottom_mobile_nav {
+  box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.25);
 }
