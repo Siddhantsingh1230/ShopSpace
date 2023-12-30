@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
+import ProductDetail from "./pages/ProductDetail";
 // libraries
 import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
 import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
@@ -29,7 +30,11 @@ const App = () => {
             exact
             element={<Signup setProgress={setProgress} />}
           />
-
+    <Route
+            path="/productdetail"
+            exact
+            element={<ProductDetail setProgress={setProgress} />}
+          />
           <Route
             exact
             path="*"
