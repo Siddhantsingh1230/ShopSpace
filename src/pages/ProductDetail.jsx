@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { CheckBadgeIcon, StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
-import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import Modal from "../components/Modal";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -32,8 +30,6 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 const ProductDetails = ({ setProgress }) => {
-  const navigate = useNavigate();
-
   useEffect(() => {
     // callback function to call when event triggers
     const onPageLoad = () => {
@@ -55,8 +51,6 @@ const ProductDetails = ({ setProgress }) => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [openModal, setOpenModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-  //p-1
-  const id = 1;
   let [reviews,setReviews] = useState([
     {
       userId: "2023-10-01T05:28:37.235Z",
@@ -91,7 +85,7 @@ const ProductDetails = ({ setProgress }) => {
   };
   const createReview = (e) => {
     if (user) {
-      if (reviewText.trim().length != 0) {
+      if (reviewText.trim().length !== 0) {
         const date = new Date();
         let currentDate = String(
           `${String(date.getDate()).padStart(2, "0")}/${String(
@@ -112,13 +106,6 @@ const ProductDetails = ({ setProgress }) => {
     }
   };
 
-  const navigation = [
-    { name: "Home", href: "/", current: false },
-    { name: "About", href: "/about", current: false },
-    { name: "Products", href: "/productpagelist", current: false },
-    { name: "Category", href: "/category", current: false },
-    { name: "Deals", href: "/deals", current: false },
-  ];
   return (
     <div className="absolute flex w-full">
       {/* <Navbar navigation={navigation} search={search} setSearch={setSearch} startsearch={startsearch} setStartSearch={setStartSearch} > */}
@@ -456,7 +443,6 @@ const ProductDetails = ({ setProgress }) => {
 
                   <div className="mt-4">
                     <ul
-                      role="list"
                       className="list-disc space-y-2 pl-4 text-sm"
                     >
                       {highlights.map((highlight) => (
