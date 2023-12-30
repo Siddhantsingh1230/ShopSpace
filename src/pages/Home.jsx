@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -56,6 +57,10 @@ import MenuAccordian from "../components/MenuAccordian";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
+// Page Transition variant import
+import { pageTransitionVariant } from "../constants/Transition";
+import { useNavigate } from "react-router-dom";
+
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
@@ -75,6 +80,9 @@ const Home = ({ setProgress }) => {
       };
     }
   }, []);
+
+  //navigation
+  const navigate = useNavigate();
 
   // For Mobile Viewport Drawer Control
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -198,7 +206,13 @@ const Home = ({ setProgress }) => {
   ];
   return (
     <>
-      <div className="container w-[88%] mx-10 max-sm:w-full max-sm:px-4">
+      <motion.div
+        variants={pageTransitionVariant}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="container w-[88%] mx-10 max-sm:w-full max-sm:px-4"
+      >
         {/* Top Links */}
         <div className="links my-3 flex justify-between max-sm:hidden">
           <div className="sharelinks flex gap-2">
@@ -294,8 +308,11 @@ const Home = ({ setProgress }) => {
         <hr className="w-full" />
         {/* NavLink */}
         <div className="navlink mt-5 flex justify-center items-center gap-11 relative max-sm:hidden">
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks ">
-            HOME
+          <div
+            onClick={() => navigate("/products")}
+            className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks "
+          >
+            PRODUCTS
           </div>
           <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
@@ -1673,7 +1690,7 @@ const Home = ({ setProgress }) => {
             </div>
           </a>
         </div>
-      </div>
+      </motion.div>
       {/* footer */}
       <Footer></Footer>
 
@@ -1726,17 +1743,31 @@ const Home = ({ setProgress }) => {
             ></i>
           </div>
           <hr className="bg=[#787878] my-3" />
-          <h1 className="my-3">Home</h1>
+          <h1
+            onClick={() => {
+              toggleMenuDrawer();
+              navigate("/products");
+            }}
+            className="my-3"
+          >
+            Products
+          </h1>
           <MenuAccordian data={MenuAccordianData} />
           <h1 className=" my-3">Blog</h1>
           <h1 className=" my-3">Hot Offers</h1>
 
-          <select className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer my-3" name="currency">
+          <select
+            className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer my-3"
+            name="currency"
+          >
             <option value="usd">IND ₹</option>
             <option value="usd">USD ₹</option>
             <option value="eur">EUR €</option>
           </select>
-          <select className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer  my-3" name="language">
+          <select
+            className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer  my-3"
+            name="language"
+          >
             <option value="en-US">English</option>
             <option value="es-ES">Español</option>
             <option value="fr">Français</option>

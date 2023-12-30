@@ -1,16 +1,25 @@
 import React from "react";
 import Payment from "../assets/images/payment.png";
+import { motion } from "framer-motion";
+import { pageTransitionVariant } from "../constants/Transition";
 
 const Footer = () => {
   return (
-    <div className="bg-[#212121] w-full">
-
+    <motion.div
+      variants={pageTransitionVariant}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="bg-[#212121] w-full"
+    >
       {/* footer section 1 for brand category */}
       <div className="p-12 max-sm:p-5 ">
         <p className="text-blue-500 font-bold">BRAND DIRECTORY</p>
 
         <div className="flex  my-2 py-2 max-sm:flex-wrap max-sm:items-center">
-          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">FASHION :</h1>
+          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
+            FASHION :
+          </h1>
           <a
             href="#"
             className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
@@ -62,7 +71,9 @@ const Footer = () => {
         </div>
 
         <div className="flex my-2 max-sm:flex-wrap max-sm:items-center">
-          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">FOOTWEAR : </h1>
+          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
+            FOOTWEAR :{" "}
+          </h1>
           <a
             href="#"
             className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
@@ -245,35 +256,20 @@ const Footer = () => {
           <p className="text-white font-bold text-sm">POPULAR CATEGORIES</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             fashion
           </a>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             electronic
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             cosmetic
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             health
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             watches
           </a>
         </div>
@@ -281,35 +277,20 @@ const Footer = () => {
           <p className="text-white font-bold text-sm">PRODUCTS</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             prices drop
           </a>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             new products
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             best sales
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             contact us
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             sitemap
           </a>
         </div>
@@ -317,35 +298,20 @@ const Footer = () => {
           <p className="text-white font-bold text-sm">OUR COMPANY</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             delivery
           </a>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             legal notice
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             terms and conditions
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             about us
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             secure payment
           </a>
         </div>
@@ -353,35 +319,20 @@ const Footer = () => {
           <p className="text-white font-bold text-sm">SERVICES</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             world wide delivery
           </a>
 
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             best day delivery
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             best online support
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             return policy
           </a>
-          <a
-            href="#"
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
+          <a href="#" className="text-[#696969] capitalize hover:text-blue-500">
             30% money back
           </a>
         </div>
@@ -425,9 +376,11 @@ const Footer = () => {
 
       <div className="p-12 flex flex-col gap-4 items-center text-center max-sm:mb-12">
         <img className="" src={Payment} alt="payment methods"></img>
-        <p className="text-[#696969] capitalize">Copyright &copy; <a href="#">Shop Space</a> all rights reserved.</p>
+        <p className="text-[#696969] capitalize">
+          Copyright &copy; <a href="#">Shop Space</a> all rights reserved.
+        </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
