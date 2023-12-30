@@ -29,6 +29,7 @@ const App = () => {
             exact
             element={<Signup setProgress={setProgress} />}
           />
+
           <Route
             exact
             path="*"
