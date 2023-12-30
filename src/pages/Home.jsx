@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -56,6 +58,9 @@ import MenuAccordian from "../components/MenuAccordian";
 import Drawer from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
+// Page Transition variant import
+import { pageTransitionVariant } from "../constants/Transition";
+
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
@@ -75,6 +80,10 @@ const Home = ({ setProgress }) => {
       };
     }
   }, []);
+
+  //navigation
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   // For Mobile Viewport Drawer Control
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -198,7 +207,13 @@ const Home = ({ setProgress }) => {
   ];
   return (
     <>
-      <div className="container w-[88%] mx-10 max-sm:w-full max-sm:px-4">
+      <motion.div
+        variants={pageTransitionVariant}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="container w-[88%] mx-10 max-sm:w-full max-sm:px-4"
+      >
         {/* Top Links */}
         <div className="links my-3 flex justify-between max-sm:hidden">
           <div className="sharelinks flex gap-2">
@@ -237,7 +252,6 @@ const Home = ({ setProgress }) => {
           </div>
           <p className="text-sm flex justify-center items-center opacity-70">
             <span>
-              {" "}
               <b>FREE SHIPPING</b> THIS WEEK ORDER OVER - ₹100
             </span>
           </p>
@@ -295,8 +309,11 @@ const Home = ({ setProgress }) => {
         <hr className="w-full" />
         {/* NavLink */}
         <div className="navlink mt-5 flex justify-center items-center gap-11 relative max-sm:hidden">
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks ">
-            HOME
+          <div
+            onClick={() => navigate("/products")}
+            className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks "
+          >
+            PRODUCTS
           </div>
           <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
@@ -495,13 +512,13 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
         {/* ScrollSnap Offer Carousel */}
-        <div className="select-none offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
-          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
-          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
-          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
+        <div className="select-none offers w-full h-[450px] max-sm:h-80 pb-2 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
+          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-100"></div>
+          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-100"></div>
+          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-100"></div>
         </div>
         {/* ScrollSnap categories Carousel */}
-        <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
+        <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
           <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={DressFrock} className="w-8 h-8" alt="dress and frock" />
@@ -1674,7 +1691,7 @@ const Home = ({ setProgress }) => {
             </div>
           </a>
         </div>
-      </div>
+      </motion.div>
       {/* footer */}
       <Footer></Footer>
 
@@ -1693,7 +1710,14 @@ const Home = ({ setProgress }) => {
             2
           </span>
         </button>
-        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+        <button
+          onClick={() => {
+            if (pathname != "/") {
+              navigate("/");
+            }
+          }}
+          className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
+        >
           <i className=" ri-home-5-line"></i>
         </button>
         <button className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
@@ -1727,17 +1751,31 @@ const Home = ({ setProgress }) => {
             ></i>
           </div>
           <hr className="bg=[#787878] my-3" />
-          <h1 className="my-3">Home</h1>
+          <h1
+            onClick={() => {
+              toggleMenuDrawer();
+              navigate("/products");
+            }}
+            className="my-3"
+          >
+            Products
+          </h1>
           <MenuAccordian data={MenuAccordianData} />
           <h1 className=" my-3">Blog</h1>
           <h1 className=" my-3">Hot Offers</h1>
 
-          <select className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer my-3" name="currency">
+          <select
+            className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer my-3"
+            name="currency"
+          >
             <option value="usd">IND ₹</option>
             <option value="usd">USD ₹</option>
             <option value="eur">EUR €</option>
           </select>
-          <select className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer  my-3" name="language">
+          <select
+            className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer  my-3"
+            name="language"
+          >
             <option value="en-US">English</option>
             <option value="es-ES">Español</option>
             <option value="fr">Français</option>
