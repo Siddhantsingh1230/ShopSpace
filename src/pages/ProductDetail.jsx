@@ -79,12 +79,13 @@ const ProductDetails = ({ setProgress }) => {
     category: "smartphones",
     thumbnail: "https://i.dummyjson.com/data/products/89/thumbnail.jpg",
     images: [
-      "https://i.dummyjson.com/data/products/1/1.jpg",
-      "https://i.dummyjson.com/data/products/1/2.jpg",
-      "https://i.dummyjson.com/data/products/1/3.jpg",
-      "https://i.dummyjson.com/data/products/1/4.jpg",
-      "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+      "https://i.dummyjson.com/data/products/76/1.jpg",
+      "https://i.dummyjson.com/data/products/76/2.jpg",
+      "https://i.dummyjson.com/data/products/76/3.jpg",
+      "https://i.dummyjson.com/data/products/76/4.jpg",
+      "https://i.dummyjson.com/data/products/76/thumbnail.jpg",
     ],
+    
   };
   const createReview = (e) => {
     if (user) {
@@ -112,6 +113,7 @@ const ProductDetails = ({ setProgress }) => {
     }
   };
 
+  let images = product.images;
   return (
     <>
       <motion.div
@@ -195,55 +197,32 @@ const ProductDetails = ({ setProgress }) => {
               {/* new image display design */}
 
               <div className="flex flex-col w-full md:flex-row-reverse pt-8 xl:px-40 md:h-[550px] gap-4 pb-6 ">
-                <div className="flex w-full p-1 rounded-md max-sm:h-[275px]">
+                <div className="flex w-full p-6 rounded-md items-center max-sm:h-[275px]">
                   <img
                     id="displayImage"
-                    src={product.images[0]}
+                    src={images[0]}
                     alt={product.title}
-                    className="w-full rounded-md object-cover"
+                    className=" w-full rounded-md object-scale-down md:max-h-[500px]"
                   />
                 </div>
 
-                <div className="flex md:flex-col justify-between w-full max-sm:h-[72px] md:w-64 overflow-scroll">
-                  <img
-                    src={product.images[1]}
-                    alt={product.title}
-                    className=" w-full h-full object-cover object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
-                    onClick={() => {
-                      document.getElementById("displayImage").src =
-                        product.images[1];
-                    }}
-                  />
-
-                  <img
-                    src={product.images[2]}
-                    alt={product.title}
-                    className="w-full h-full object-cover object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
-                    onClick={(r) => {
-                      document.getElementById("displayImage").src =
-                        product.images[2];
-                    }}
-                  />
-
-                  <img
-                    src={product.images[3]}
-                    alt={product.title}
-                    className="w-full h-full object-cover object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
-                    onClick={(r) => {
-                      document.getElementById("displayImage").src =
-                        product.images[3];
-                    }}
-                  />
-
-                  <img
-                    src={product.images[4]}
-                    alt={product.title}
-                    className="w-full h-full p-1 object-cover object-center rounded-md hover:border-2 hover:border-gray-600"
-                    onClick={(r) => {
-                      document.getElementById("displayImage").src =
-                        product.images[4];
-                    }}
-                  />
+                <div className="flex md:flex-col justify-between w-full max-sm:h-[72px] mt-3 sm:mt-0 md:w-64 overflow-scroll">
+                  
+                  {
+                     images.map((image )=> (
+                      <img
+                      key={image}
+                      src={image}
+                      alt="image"
+                      className=" w-full sm:h-32 object-scale-down object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
+                      onClick={()=> {
+                        document.getElementById("displayImage").src = image
+                      }}
+                      />
+                     )
+                     )
+                  }
+                  
                 </div>
               </div>
 
