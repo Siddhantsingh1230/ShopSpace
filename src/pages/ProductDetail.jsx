@@ -121,7 +121,6 @@ const ProductDetails = ({ setProgress }) => {
         exit="exit"
         className="absolute flex w-full"
       >
-        {/* <Navbar navigation={navigation} search={search} setSearch={setSearch} startsearch={startsearch} setStartSearch={setStartSearch} > */}
         {product ? (
           <div className="bg-white w-full px-3 md:px-16 flex justify-center flex-col">
             <div className="pt-6 md:pt-10">
