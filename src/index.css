@@ -532,3 +532,15 @@ html {
 .bottom_mobile_nav {
   box-shadow: 0 0 10px hsla(0, 0%, 0%, 0.25);
 }
+
+/* Mask  */
+.maskContainer {
+  -webkit-mask-image: url("./assets/images/bottle.png");
+  mask-image: url("./assets/images/bottle.png");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
