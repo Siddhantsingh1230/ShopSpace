@@ -12,7 +12,7 @@ export const pageTransitionVariant = {
   exit: {
     x: "-100vw",
     transition: {
-      duration: 0.45,
+      duration: 0.35,
     },
   },
 };
