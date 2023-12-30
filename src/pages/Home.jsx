@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -59,7 +60,6 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
-import { useNavigate } from "react-router-dom";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -83,6 +83,7 @@ const Home = ({ setProgress }) => {
 
   //navigation
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   // For Mobile Viewport Drawer Control
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1709,7 +1710,14 @@ const Home = ({ setProgress }) => {
             2
           </span>
         </button>
-        <button className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+        <button
+          onClick={() => {
+            if (pathname != "/") {
+              navigate("/");
+            }
+          }}
+          className="text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
+        >
           <i className=" ri-home-5-line"></i>
         </button>
         <button className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
