@@ -5,8 +5,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
-import Products from "./pages/Products";
+import ProductDetail from "./pages/ProductDetail";
+import Orders from "./pages/Orders";
 
+import Products from "./pages/Products";
 // libraries
 import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
 import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
@@ -34,6 +36,16 @@ const App = () => {
             element={<Signup setProgress={setProgress} />}
           />
           <Route
+            path="/productdetail"
+            exact
+            element={<ProductDetail setProgress={setProgress} />}
+          />
+          <Route
+            path="/orders"
+            exact
+            element={<Orders setProgress={setProgress} />}
+            />
+            <Route
             path="/products"
             exact
             element={<Products setProgress={setProgress} />}
@@ -46,23 +58,23 @@ const App = () => {
         </Routes>
       </AnimatePresence>
 
-      {/* Extra functionality Sections */}
-      {/* Scroll Up Btn Functionality */}
-      <ScrollToTop
-        smooth={true}
-        style={{
-          borderRadius: "50%",
-          overflow: "hidden",
-          outline: "none",
-          boxShadow: "none",
-          right: "1rem",
-          bottom: "5rem",
-          background: "black", // change the button styles
-        }}
-        component={<ScrollUpBtn />}
-      />
-      {/* Toast container to manage all toasts it act as parent container for toast calls */}
-      <ToastContainer />
+        {/* Extra functionality Sections */}
+        {/* Scroll Up Btn Functionality */}
+        <ScrollToTop
+          smooth={true}
+          style={{
+            borderRadius: "50%",
+            overflow: "hidden",
+            outline: "none",
+            boxShadow: "none",
+            right: "1rem",
+            bottom: "5rem",
+            background: "black", // change the button styles
+          }}
+          component={<ScrollUpBtn />}
+        />
+        {/* Toast container to manage all toasts it act as parent container for toast calls */}
+        <ToastContainer />
 
       {/* Top Loading bar component */}
       <LoadingBar
