@@ -237,7 +237,6 @@ const Home = ({ setProgress }) => {
           </div>
           <p className="text-sm flex justify-center items-center opacity-70">
             <span>
-              {" "}
               <b>FREE SHIPPING</b> THIS WEEK ORDER OVER - ₹100
             </span>
           </p>
@@ -495,13 +494,13 @@ const Home = ({ setProgress }) => {
           </div>
         </div>
         {/* ScrollSnap Offer Carousel */}
-        <div className="select-none offers w-full h-[450px] pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
-          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-500"></div>
-          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-500"></div>
-          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-500"></div>
+        <div className="select-none offers w-full h-[450px] max-sm:h-80 pb-2 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
+          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-100"></div>
+          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-100"></div>
+          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-100"></div>
         </div>
         {/* ScrollSnap categories Carousel */}
-        <div className="select-none categoryCarousel m-10  pb-2 border-red-100 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
+        <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
           <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={DressFrock} className="w-8 h-8" alt="dress and frock" />
