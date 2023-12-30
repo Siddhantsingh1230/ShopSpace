@@ -50,14 +50,14 @@ const ProductDetails = ({ setProgress }) => {
         setProgress(0);
       };
     }
-  }, []);
+  }, [] );
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [openModal, setOpenModal] = useState(false);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   //p-1
   const id = 1;
-  const reviews = [
+  let [reviews,setReviews] = useState([
     {
       userId: "2023-10-01T05:28:37.235Z",
       productId: 1,
@@ -65,8 +65,10 @@ const ProductDetails = ({ setProgress }) => {
       createdAt: "03/10/2023",
       id: 4,
     },
-  ];
+  ]);
+  
   const [reviewText, setReviewText] = useState("");
+
   const user = true;
   const product = {
     id: 1,
@@ -78,7 +80,7 @@ const ProductDetails = ({ setProgress }) => {
     stock: 94,
     brand: "Apple",
     category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+    thumbnail: "https://i.dummyjson.com/data/products/89/thumbnail.jpg",
     images: [
       "https://i.dummyjson.com/data/products/1/1.jpg",
       "https://i.dummyjson.com/data/products/1/2.jpg",
@@ -96,12 +98,13 @@ const ProductDetails = ({ setProgress }) => {
             date.getMonth() + 1
           ).padStart(2, "0")}/${date.getFullYear()}`
         );
-        reviews.push({
+        setReviews([...reviews,{
           userId: user.id,
           productId: product.id,
           content: reviewText.trim(),
           createdAt: currentDate,
-        });
+          id: reviews.length,
+        }]);
         toast.success("Review added", { pauseOnHover: false, theme: "dark" });
       }
     } else {
@@ -109,55 +112,84 @@ const ProductDetails = ({ setProgress }) => {
     }
   };
 
-  //   const navigation =[
-  //     { name: "Home", href: "/", current: false },
-  //     { name: "About", href: "/about", current: false },
-  //     { name: "Products", href: "/productpagelist", current: false },
-  //     { name: "Category", href: "/category", current: false },
-  //     { name: "Deals", href: "/deals", current: false },
-  //   ];
+  const navigation = [
+    { name: "Home", href: "/", current: false },
+    { name: "About", href: "/about", current: false },
+    { name: "Products", href: "/productpagelist", current: false },
+    { name: "Category", href: "/category", current: false },
+    { name: "Deals", href: "/deals", current: false },
+  ];
   return (
-    <>
+    <div className="absolute flex w-full">
       {/* <Navbar navigation={navigation} search={search} setSearch={setSearch} startsearch={startsearch} setStartSearch={setStartSearch} > */}
       {product ? (
-        <div className="bg-white">
-          <div className="pt-6">
-            <nav aria-label="Breadcrumb">
-              <ol
-                role="list"
-                className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-9xl lg:px-4"
-              >
-                {product.breadcrumbs &&
-                  product.breadcrumbs.map((breadcrumb) => (
-                    <li key={breadcrumb.id}>
-                      <div className="flex items-center">
-                        <a
-                          href={"#"}
-                          className="mr-2 text-sm font-medium text-gray-900"
-                        >
-                          {breadcrumb.name}
-                        </a>
-                        <svg
-                          width={16}
-                          height={20}
-                          viewBox="0 0 16 20"
-                          fill="currentColor"
-                          aria-hidden="true"
-                          className="h-5 w-4 text-gray-300"
-                        >
-                          <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-                        </svg>
-                      </div>
-                    </li>
-                  ))}
-                <li className="text-sm">
+        <div className="bg-white w-full px-3 md:px-16 flex justify-center flex-col">
+          <div className="pt-6 md:pt-10">
+            <nav className="flex " aria-label="Breadcrumb">
+              <ol className="inline-flex md:space-x-1  rtl:space-x-reverse text-md md:text-xl">
+                <li className="inline-flex ">
                   <a
-                    href={"#"}
-                    aria-current="page"
-                    className="font-medium text-gray-500 hover:text-gray-600"
+                    href="#"
+                    className="inline-flex items-center   text-gray-800 font-bold hover:text-blue-600 dark:text-gray-800 "
                   >
-                    {product.title}
+                    <svg
+                      className="w-3 h-3 me-2.5"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                    </svg>
+                    Home
                   </a>
+                </li>
+                <li>
+                  <div className="flex items-center">
+                    <svg
+                      className="rtl:rotate-180 w-3 h-3 text-gray-800 mx-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 9 4-4-4-4"
+                      />
+                    </svg>
+                    <a
+                      href="#"
+                      className="ms-1 font-bold text-gray-700 hover:text-blue-600 md:ms-2 "
+                    >
+                      Projects
+                    </a>
+                  </div>
+                </li>
+                <li aria-current="page">
+                  <div className="flex items-center">
+                    <svg
+                      className="rtl:rotate-180 w-3 h-3 text-gray-800 mx-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 9 4-4-4-4"
+                      />
+                    </svg>
+                    <span className="ms-1 font-bold hover:text-blue-600 md:ms-2 dark:text-gray-800">
+                      {product.title}
+                    </span>
+                  </div>
                 </li>
               </ol>
             </nav>
@@ -198,54 +230,63 @@ const ProductDetails = ({ setProgress }) => {
 
             {/* new image display design */}
 
-            <div className="flex items-center justify-center p-5">
-              <div className="flex h-96  object-cover object-center">
+            <div className="flex flex-col w-full md:flex-row-reverse pt-8 xl:px-40 md:h-[550px] gap-4 pb-6 ">
+              <div className="flex w-full p-1 rounded-md max-sm:h-[275px]">
                 <img
                   id="displayImage"
                   src={product.images[0]}
                   alt={product.title}
+                  className="w-full rounded-md"
                 />
-                \
               </div>
-            </div>
 
-            <div className="flex gap-2 justify-center">
-              <div className="h-20  ">
-                <img
-                  src={product.images[1]}
-                  alt={product.title}
-                  className="h-full w-full object-cover object-center"
-                  onClick={(r) => {
-                    document.getElementById("displayImage").style.src = product.images[1] ;
-                  }}
-                />
-              </div>
-              <div className="h-20  ">
-                <img
-                  src={product.images[2]}
-                  alt={product.title}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-              <div className="h-20  ">
-                <img
-                  src={product.images[3]}
-                  alt={product.title}
-                  className="h-full w-full object-cover object-center"
-                />
-              </div>
-              <div className="h-20  ">
-                <img
-                  src={product.images[4]}
-                  alt={product.title}
-                  className="h-full w-full object-cover object-center"
-                />
+              <div className="flex md:flex-col justify-between w-[90px] max-sm:h-[72px] md:w-64 ">
+                  <img
+                    src={product.images[1]}
+                    alt={product.title}
+                    className=" w-full h-full object-cover object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
+                    onClick={() => {
+                      document.getElementById("displayImage").src =
+                        product.images[1];
+                    }}
+                  />
+                
+                  <img
+                    src={product.images[2]}
+                    alt={product.title}
+                    className="w-full h-full object-cover object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
+                    onClick={(r) => {
+                      document.getElementById("displayImage").src =
+                        product.images[2];
+                    }}
+                  />
+                
+                  <img
+                    src={product.images[3]}
+                    alt={product.title}
+                    className="w-full h-full object-cover object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
+                    onClick={(r) => {
+                      document.getElementById("displayImage").src =
+                        product.images[3];
+                    }}
+                  />
+                
+                  <img
+                    src={product.images[4]}
+                    alt={product.title}
+                    className="w-full h-full p-1 object-cover object-center rounded-md hover:border-2 hover:border-gray-600"
+                    onClick={(r) => {
+                      document.getElementById("displayImage").src =
+                        product.images[4];
+                    }}
+                  />
               </div>
             </div>
 
             {/* Product info */}
-            <div className="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
-              <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+            <hr className="w-full border-1 border-gray-400"></hr>
+            <div className="mx-auto max-w-2xl  pb-16 pt-5  lg:grid lg:max-w-full lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:pb-24 lg:pt-8 ">
+              <div className="lg:col-span-2 lg:border-r lg:border-gray-200 ">
                 <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
                   {product.title}
                 </h1>
@@ -254,7 +295,7 @@ const ProductDetails = ({ setProgress }) => {
               {/* Options */}
               <div className="mt-4 lg:row-span-3 lg:mt-0">
                 <h2 className="sr-only">Product information</h2>
-                <p className="text-3xl tracking-tight text-gray-900">
+                <p className="max-sm:text-xl text-3xl tracking-tight text-gray-900">
                   ₹ {product.price}
                 </p>
 
@@ -432,7 +473,7 @@ const ProductDetails = ({ setProgress }) => {
                     Write a Review
                   </h2>
                   <div>
-                    <label htmlFor="OrderNotes" className="sr-only">
+                    <label className="sr-only">
                       Order notes
                     </label>
                     <div className=" overflow-hidden rounded-lg border border-gray-200 shadow-sm focus-within:border-blue-600  focus-within:ring-2 focus-within:ring-blue-600 p-2 ">
@@ -542,7 +583,7 @@ const ProductDetails = ({ setProgress }) => {
       )}
       <Modal open={openModal} setOpen={setOpenModal} />
       {/* </Navbar> */}
-    </>
+    </div>
   );
 };
 
