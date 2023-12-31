@@ -336,7 +336,7 @@ const Products = ({ setProgress }) => {
         {/* Other Product Sections */}
         <div ref={targetRef} className="w-full h-full p-5 ">
           {/* Nav */}
-          <div className="shopNavbar flex justify-between items-center mb-5 px-5  max-sm:gap-5 max-sm:flex-col-reverse">
+          <div className="shopNavbar flex justify-between max-sm:justify-center items-center mb-5 px-5  max-sm:gap-5 max-sm:flex-col-reverse">
             {/* Navlinks */}
             <div className="flex items-center gap-5 max-sm:gap-2">
               <strong className=" font-[Montserrat] ">Shop</strong>
