@@ -230,10 +230,10 @@ const Orders = ({ setProgress }) => {
           </ol>
         </nav>
 
-        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900 max-sm:mb-10">
+        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900">
           Your Orders<span className="text-blue-600">.</span>
         </h1>
-        <div className="flex flex-col max-w-screen-9xl">
+        <div className="flex flex-col max-w-screen-9xl max-sm:mb-20">
           {user && orders.length > 0 ? (
             orders.map((order) =>
               order.cart.map((item, idx) => (
