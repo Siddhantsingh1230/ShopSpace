@@ -214,7 +214,7 @@ const ProductDetails = ({ setProgress }) => {
                       key={image}
                       src={image}
                       alt="image"
-                      className=" w-full sm:h-32 object-scale-down object-center rounded-md hover:border-2 hover:border-gray-600 p-1"
+                      className=" w-full sm:h-32 object-scale-down object-center rounded-md hover:border-2 hover:border-gray-600 p-1 cursor-pointer"
                       onClick={()=> {
                         document.getElementById("displayImage").src = image
                       }}
