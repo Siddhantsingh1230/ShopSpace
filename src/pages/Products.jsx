@@ -4,6 +4,8 @@ import { pageTransitionVariant } from "../constants/Transition";
 import Spinner from "../components/Spinner";
 import MenuAccordian from "../components/MenuAccordian";
 import InfiniteScroll from "react-infinite-scroller";
+import MobileBottomNav from "../components/MobileBottonNav";
+import Drawer from "react-modern-drawer";
 
 // Image imports
 import CanMask from "../assets/images/bottle.png";
@@ -120,6 +122,12 @@ const Products = ({ setProgress }) => {
       const array = new Array(5).fill(1);
       setProducts((prev) => [...prev, ...array]);
     }, 1500);
+  };
+
+  // Filter Drawer
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const toggleFilterDrawer = () => {
+    setIsFilterOpen((prevState) => !prevState);
   };
   return (
     <>
@@ -320,31 +328,37 @@ const Products = ({ setProgress }) => {
             onClick={scrollToProducts}
             whileHover={{ opacity: 0.8 }}
             whileTap={{ opacity: 0.5 }}
-            className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 z-20  rounded-3xl flex justify-center items-center"
+            className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 max-sm:bottom-20  rounded-3xl flex justify-center items-center max-sm:scale-75"
           >
-            <p className="text-black font-bold bg-clip-text ">Shop now</p>
+            <p className="text-black font-bold ">Shop now</p>
           </motion.div>
         </div>
         {/* Other Product Sections */}
-        <div ref={targetRef} className="w-full h-full p-5">
+        <div ref={targetRef} className="w-full h-full p-5 ">
           {/* Nav */}
-          <div className="shopNavbar flex justify-between items-center mb-5">
+          <div className="shopNavbar flex justify-between items-center mb-5 px-5  max-sm:gap-5 max-sm:flex-col-reverse">
             {/* Navlinks */}
-            <div className="flex items-center gap-5 ">
-              <strong className=" font-[Montserrat] text-sm">Shop</strong>
-              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all text-sm">
+            <div className="flex items-center gap-5 max-sm:gap-2">
+              <strong className=" font-[Montserrat] ">Shop</strong>
+              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all ">
                 Women
               </p>
-              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all text-sm">
+              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all ">
                 Men
               </p>
-              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all text-sm">
+              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all ">
                 Children
               </p>
+              <div
+                onClick={toggleFilterDrawer}
+                className="md:hidden hover:bg-[#f4f4f4] px-2 py-1 rounded-md  transition-all"
+              >
+                <i className="ri-sound-module-fill"></i>
+              </div>
             </div>
             {/* Search */}
             <div className="flex gap-5">
-              <div className="search flex gap-2 rounded-3xl p-2 px-3 w-[20rem] bg-[#f4f4f4]">
+              <div className="search flex gap-2 rounded-3xl p-2 px-3 w-[20rem] bg-[#f4f4f4] max-sm:w-[15rem]">
                 <i className="ri-search-line  cursor-pointer hover:text-blue-500"></i>
                 <input
                   type="text"
@@ -363,8 +377,9 @@ const Products = ({ setProgress }) => {
           {/* Divider */}
           <hr className="bg-[#5c5c5c] mb-7" />
           {/* Products */}
-          <div className="products flex h-full gap-10  mb-10">
-            <div className="shopSidebar w-[20%]  h-full  p-5 ">
+          <div className="products flex h-full gap-10 ">
+            {/* Sidebar */}
+            <div className="shopSidebar w-[20%]  h-full  p-5 max-sm:hidden max-sm:p-0">
               <div className="flex justify-between items-center mb-1">
                 <strong>Filter</strong>
                 <i className="ri-sound-module-line"></i>
@@ -372,25 +387,25 @@ const Products = ({ setProgress }) => {
               <hr className="bg-[#5c5c5c] mb-5" />
               <MenuAccordian data={filterAccordianData} />
             </div>
-            <div className="w-[80%] h-full  overflow-y-scroll productList">
+            <div className="w-[80%] h-full  overflow-y-scroll productList max-sm:w-full max-sm:items-center">
               <InfiniteScroll
                 initialLoad={true}
                 useWindow={false}
                 loadMore={fetchMoreData}
                 hasMore={true}
                 loader={
-                  <div className="w-full my-10">
+                  <div className="w-full mb-20">
                     <Spinner />
                   </div>
                 }
               >
-                <div className="flex flex-wrap gap-4 my-10">
+                <div className="flex flex-wrap gap-4 ">
                   {products.map((i, idx) => (
                     <div
                       key={idx}
                       className="flex flex-col gap-2  p-1 cursor-pointer"
                     >
-                      <div className="h-[15rem] w-[15rem] bg-[#F5F5F7]  rounded-lg relative overflow-hidden">
+                      <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
                         <img
                           className="h-full w-full  object-cover rounded-md object-center"
                           src={womenmodel}
@@ -416,7 +431,25 @@ const Products = ({ setProgress }) => {
             </div>
           </div>
         </div>
+        <MobileBottomNav />
       </motion.div>
+      {/* Filter Drawer */}
+      <Drawer
+        open={isFilterOpen}
+        onClose={toggleFilterDrawer}
+        direction="right"
+        size="85vw"
+        className=""
+      >
+        <div className="p-5">
+          <div className="flex justify-between items-center mb-1">
+            <strong>Filters</strong>
+            <i onClick={toggleFilterDrawer} className="ri-close-line text-xl"></i>
+          </div>
+          <hr className="bg-[#d0d0d0] mb-5" />
+          <MenuAccordian data={filterAccordianData} />
+        </div>
+      </Drawer>
     </>
   );
 };

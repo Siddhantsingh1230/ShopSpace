@@ -199,8 +199,10 @@ const MobileBottonNav = () => {
           <hr className="bg=[#787878] my-3" />
           <h1
             onClick={() => {
-              toggleMenuDrawer();
-              navigate("/products");
+              if (pathname != "/products") {
+                toggleMenuDrawer();
+                navigate("/products");
+              }
             }}
             className="my-3"
           >
