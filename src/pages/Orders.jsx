@@ -257,7 +257,7 @@ const Orders = ({ setProgress }) => {
                               .getElementById(`orderDetail-${order.id}-${idx}`)
                               .classList.remove("hidden");
                           }}
-                          className="text-blue-600 hover:underline"
+                          className="text-blue-600 hover:underline max-sm:text-xs"
                         >
                           View order detail
                         </button>
@@ -321,7 +321,7 @@ const Orders = ({ setProgress }) => {
                               <p className="justify-self-end">₹00</p>
                               <p className="justify-self-end ">₹{item.price}</p>
                               <p className="justify-self-end font-bold">
-                                ₹{item.price}
+                                {item.price}
                               </p>
                             </div>
                             <div className="grid gap-1 capitalize"></div>
