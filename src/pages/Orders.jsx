@@ -230,10 +230,10 @@ const Orders = ({ setProgress }) => {
           </ol>
         </nav>
 
-        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900 ">
+        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900">
           Your Orders<span className="text-blue-600">.</span>
         </h1>
-        <div className="flex flex-col max-w-screen-9xl">
+        <div className="flex flex-col max-w-screen-9xl max-sm:mb-20">
           {user && orders.length > 0 ? (
             orders.map((order) =>
               order.cart.map((item, idx) => (
@@ -257,7 +257,7 @@ const Orders = ({ setProgress }) => {
                               .getElementById(`orderDetail-${order.id}-${idx}`)
                               .classList.remove("hidden");
                           }}
-                          className="text-blue-600 hover:underline"
+                          className="text-blue-600 hover:underline max-sm:text-xs"
                         >
                           View order detail
                         </button>
@@ -321,7 +321,7 @@ const Orders = ({ setProgress }) => {
                               <p className="justify-self-end">₹00</p>
                               <p className="justify-self-end ">₹{item.price}</p>
                               <p className="justify-self-end font-bold">
-                                ₹{item.price}
+                                {item.price}
                               </p>
                             </div>
                             <div className="grid gap-1 capitalize"></div>
