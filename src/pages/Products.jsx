@@ -129,6 +129,26 @@ const Products = ({ setProgress }) => {
   const toggleFilterDrawer = () => {
     setIsFilterOpen((prevState) => !prevState);
   };
+
+  // Auto Can Mask (hero) Carousel
+  function alternateEmotions() {
+    let counter = 0;
+    setInterval(() => {
+      if (counter % 4 < 2) {
+        counter++;
+        handleSlide(1);
+        handleFruitSlide(1);
+      } else {
+        counter--;
+        handleSlide(-1);
+        handleFruitSlide(-1);
+      }
+    }, 2000);
+  }
+  useEffect(() => {
+    alternateEmotions();
+  }, []);
+
   return (
     <>
       <motion.div
@@ -444,7 +464,10 @@ const Products = ({ setProgress }) => {
         <div className="p-5">
           <div className="flex justify-between items-center mb-1">
             <strong>Filters</strong>
-            <i onClick={toggleFilterDrawer} className="ri-close-line text-xl"></i>
+            <i
+              onClick={toggleFilterDrawer}
+              className="ri-close-line text-xl"
+            ></i>
           </div>
           <hr className="bg-[#d0d0d0] mb-5" />
           <MenuAccordian data={filterAccordianData} />
