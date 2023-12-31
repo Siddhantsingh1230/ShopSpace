@@ -1,6 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
+import Spinner from "../components/Spinner";
+import MenuAccordian from "../components/MenuAccordian";
+import InfiniteScroll from "react-infinite-scroller";
+
+// Image imports
 import CanMask from "../assets/images/bottle.png";
 import label1 from "../assets/images/label1.png";
 import label2 from "../assets/images/label2.png";
@@ -8,6 +13,7 @@ import label3 from "../assets/images/label3.png";
 import fruit1 from "../assets/images/fruit1.png";
 import fruit2 from "../assets/images/fruit2.png";
 import fruit3 from "../assets/images/fruit3.png";
+import womenmodel from "../assets/images/womenmodel.png";
 
 const Products = ({ setProgress }) => {
   const [current, setCurrent] = useState(0);
@@ -64,6 +70,57 @@ const Products = ({ setProgress }) => {
     }
   };
 
+  // data for filter accordian
+  const filterAccordianData = [
+    {
+      title: "Men's",
+      list: [
+        { title: "Shirt" },
+        { title: "Shorts & Jeans" },
+        { title: "Safety Shoes" },
+        { title: "Wallet" },
+      ],
+    },
+    {
+      title: "Women",
+      list: [
+        { title: "Dress & Frock" },
+        { title: "Earrings" },
+        { title: "Necklace" },
+        { title: "Makeup Kit" },
+      ],
+    },
+    {
+      title: "Jwellery",
+      list: [
+        { title: "Earrings" },
+        { title: "Couple Rings" },
+        { title: "Necklace" },
+      ],
+    },
+    {
+      title: "Clothes",
+      list: [
+        { title: "Shirt" },
+        { title: "Shorts & Jeans" },
+        { title: "Jacket" },
+        { title: "Dress & Frock" },
+      ],
+    },
+  ];
+
+  // Product Data
+
+  let [products, setProducts] = useState(new Array(5).fill(0));
+
+  const fetchMoreData = () => {
+    // a fake async api call like which sends
+    // 20 more records in 1.5 secs
+    setTimeout(() => {
+      const array = new Array(5).fill(1);
+      setProducts((prev) => [...prev, ...array]);
+    }, 1500);
+  };
   return (
     <>
       <motion.div
@@ -192,7 +249,7 @@ const Products = ({ setProgress }) => {
             ></motion.i>
           </div>
           {/* Title */}
-          <div className="absolute max-sm:left-5 top-5 left-10 text-2xl text-black font-bold font-[Montserrat] uppercase">
+          <div className="absolute max-sm:left-5 top-5 left-10 text-2xl md:scale-125 text-black font-bold font-[Montserrat] ">
             <motion.span
               className="absolute select-none"
               initial={{ x: 0 }}
@@ -214,7 +271,7 @@ const Products = ({ setProgress }) => {
             <motion.span
               className="absolute select-none"
               initial={{ x: 0 }}
-              animate={{ x: 37 }}
+              animate={{ x: 35 }}
               whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
               transition={{ duration: 1.15 }}
             >
@@ -232,7 +289,7 @@ const Products = ({ setProgress }) => {
             <motion.span
               className="absolute select-none"
               initial={{ x: 0 }}
-              animate={{ x: 60 }}
+              animate={{ x: 57 }}
               whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
               transition={{ duration: 1.15 }}
             >
@@ -241,7 +298,7 @@ const Products = ({ setProgress }) => {
             <motion.span
               className="absolute select-none"
               initial={{ x: 0 }}
-              animate={{ x: 78 }}
+              animate={{ x: 73 }}
               whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
               transition={{ duration: 1.15 }}
             >
@@ -250,7 +307,7 @@ const Products = ({ setProgress }) => {
             <motion.span
               className="absolute select-none"
               initial={{ x: 0 }}
-              animate={{ x: 92 }}
+              animate={{ x: 83 }}
               whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
               transition={{ duration: 1.15 }}
             >
@@ -260,7 +317,7 @@ const Products = ({ setProgress }) => {
 
           {/* Shop */}
           <motion.div
-          onClick={scrollToProducts}
+            onClick={scrollToProducts}
             whileHover={{ opacity: 0.8 }}
             whileTap={{ opacity: 0.5 }}
             className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 z-20  rounded-3xl flex justify-center items-center"
@@ -269,7 +326,96 @@ const Products = ({ setProgress }) => {
           </motion.div>
         </div>
         {/* Other Product Sections */}
-        <div ref={targetRef} className="w-full h-full"></div>
+        <div ref={targetRef} className="w-full h-full p-5">
+          {/* Nav */}
+          <div className="shopNavbar flex justify-between items-center mb-5">
+            {/* Navlinks */}
+            <div className="flex items-center gap-5 ">
+              <strong className=" font-[Montserrat] text-sm">Shop</strong>
+              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all text-sm">
+                Women
+              </p>
+              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all text-sm">
+                Men
+              </p>
+              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all text-sm">
+                Children
+              </p>
+            </div>
+            {/* Search */}
+            <div className="flex gap-5">
+              <div className="search flex gap-2 rounded-3xl p-2 px-3 w-[20rem] bg-[#f4f4f4]">
+                <i className="ri-search-line  cursor-pointer hover:text-blue-500"></i>
+                <input
+                  type="text"
+                  placeholder="Search.."
+                  className="w-4/5 active:border-none bg-transparent focus:border-none outline-none"
+                />
+              </div>
+              <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
+                <i className="ri-user-line"></i>
+              </div>
+              <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
+                <i className="ri-shopping-cart-2-line"></i>
+              </div>
+            </div>
+          </div>
+          {/* Divider */}
+          <hr className="bg-[#5c5c5c] mb-7" />
+          {/* Products */}
+          <div className="products flex h-full gap-10  mb-10">
+            <div className="shopSidebar w-[20%]  h-full  p-5 ">
+              <div className="flex justify-between items-center mb-1">
+                <strong>Filter</strong>
+                <i className="ri-sound-module-line"></i>
+              </div>
+              <hr className="bg-[#5c5c5c] mb-5" />
+              <MenuAccordian data={filterAccordianData} />
+            </div>
+            <div className="w-[80%] h-full  overflow-y-scroll productList">
+              <InfiniteScroll
+                initialLoad={true}
+                useWindow={false}
+                loadMore={fetchMoreData}
+                hasMore={true}
+                loader={
+                  <div className="w-full my-10">
+                    <Spinner />
+                  </div>
+                }
+              >
+                <div className="flex flex-wrap gap-4 my-10">
+                  {products.map((i, idx) => (
+                    <div
+                      key={idx}
+                      className="flex flex-col gap-2  p-1 cursor-pointer"
+                    >
+                      <div className="h-[15rem] w-[15rem] bg-[#F5F5F7]  rounded-lg relative overflow-hidden">
+                        <img
+                          className="h-full w-full  object-cover rounded-md object-center"
+                          src={womenmodel}
+                          alt="img"
+                        />
+                        <div className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 left-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full">
+                          <i className="p-0 text-lg ri-heart-3-line"></i>
+                        </div>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <div className="flex flex-col">
+                          <strong>Formal Dress </strong>
+                          <p className="text-sm">Clothes</p>
+                        </div>
+                        <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
+                          ₹500.00
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </InfiniteScroll>
+            </div>
+          </div>
+        </div>
       </motion.div>
     </>
   );

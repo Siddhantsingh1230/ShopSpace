@@ -524,10 +524,10 @@ html {
   mask-size: cover;
 }
 
-.maskWrapper:after{
+.maskWrapper:after {
   content: "";
   background-image: url(./assets/images/bottle-shadow.png);
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
   height: 100px;
   scale: 2;
   right: 50px;
@@ -560,7 +560,24 @@ html {
     background-size: cover;
     animation: longfade 10s ease infinite alternate;
   }
-  .maskWrapper:after{
+  .maskWrapper:after {
     bottom: -125px;
   }
+}
+
+/* Products page */
+
+.productList::-webkit-scrollbar {
+  width: 8px;
+  height: 5px;
+}
+.productList::-webkit-scrollbar-thumb:hover {
+  background: #000;
+}
+.productList::-webkit-scrollbar-thumb {
+  background: #a3a3a3;
+  transition: all ease 0.23s;
+  /* Color of the scrollbar thumb */
+  border-radius: 10px;
+  /* Rounded corners for the thumb */
 }
