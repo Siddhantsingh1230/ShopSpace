@@ -456,7 +456,7 @@ const Home = ({ setProgress }) => {
             </div>
           </div>
           <div onClick={() => navigate("/orders")} className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            Orders
+            ORDERS
           </div>
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             HOT OFFERS
