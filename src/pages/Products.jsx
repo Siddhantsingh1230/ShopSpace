@@ -90,39 +90,41 @@ const Products = ({ setProgress }) => {
           </motion.div>
 
           {/* Mask Transitions */}
-          <div className="maskContainer  absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-10 scale-75 max-sm:scale-50">
-            <img
-              className="canmask  object-cover select-none"
-              src={CanMask}
-              alt="bottle mask"
-            />
-            <motion.div
-              initial={{ x: 0 }}
-              animate={containerControls}
-              className="flex w-full absolute inset-0 mix-blend-multiply"
-            >
-              <div className="w-full flex-grow-0 flex-shrink-0 basis-auto">
-                <img
-                  className="label-image w-full"
-                  src={label1}
-                  alt="Label Image"
-                />
-              </div>
-              <div className="w-full flex-grow-0 flex-shrink-0 basis-auto">
-                <img
-                  className="label-image w-full"
-                  src={label2}
-                  alt="Label Image"
-                />
-              </div>
-              <div className="w-full flex-grow-0 flex-shrink-0 basis-auto">
-                <img
-                  className="label-image w-full"
-                  src={label3}
-                  alt="Label Image"
-                />
-              </div>
-            </motion.div>
+          <div className="maskWrapper absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 z-10 scale-75 max-sm:scale-50">
+            <div className="maskContainer  ">
+              <img
+                className="canmask  object-cover select-none"
+                src={CanMask}
+                alt="bottle mask"
+              />
+              <motion.div
+                initial={{ x: 0 }}
+                animate={containerControls}
+                className="flex w-full absolute inset-0 mix-blend-multiply"
+              >
+                <div className="w-full flex-grow-0 flex-shrink-0 basis-auto">
+                  <img
+                    className="label-image w-full"
+                    src={label1}
+                    alt="Label Image"
+                  />
+                </div>
+                <div className="w-full flex-grow-0 flex-shrink-0 basis-auto">
+                  <img
+                    className="label-image w-full"
+                    src={label2}
+                    alt="Label Image"
+                  />
+                </div>
+                <div className="w-full flex-grow-0 flex-shrink-0 basis-auto">
+                  <img
+                    className="label-image w-full"
+                    src={label3}
+                    alt="Label Image"
+                  />
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* Fruit Transitions */}
@@ -181,6 +183,15 @@ const Products = ({ setProgress }) => {
               className="text-5xl  cursor-pointer text-white ri-arrow-right-s-line max-sm:text-gray-400"
             ></motion.i>
           </div>
+
+          {/* Shop */}
+          <motion.div
+            whileHover={{ opacity: 0.8 }}
+            whileTap={{ opacity: 0.5 }}
+            className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 z-20  rounded-3xl flex justify-center items-center"
+          >
+            <p className="text-black font-bold bg-clip-text ">Shop now</p>
+          </motion.div>
         </div>
       </motion.div>
     </>

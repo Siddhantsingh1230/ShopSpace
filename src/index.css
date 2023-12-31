@@ -499,27 +499,6 @@ html {
   transition: height 500ms;
 }
 
-/* Mobile Styles */
-
-@media (max-width: 767px) {
-  .logo:after {
-    display: none;
-  }
-  #root:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 15%;
-    width: 40%;
-    background-image: url(./assets/images/starsfalling.gif);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    animation: longfade 10s ease infinite alternate;
-  }
-}
 @keyframes longfade {
   0% {
     opacity: 1;
@@ -543,4 +522,45 @@ html {
   mask-position: center;
   -webkit-mask-size: cover;
   mask-size: cover;
+}
+
+.maskWrapper:after{
+  content: "";
+  background-image: url(./assets/images/bottle-shadow.png);
+  background-repeat: no-repeat; 
+  height: 100px;
+  scale: 2;
+  right: 50px;
+  bottom: -110px;
+  rotate: -2deg;
+  width: 100%;
+  opacity: 60%;
+  position: absolute;
+  background-size: contain;
+  transform: translateX(50%);
+}
+
+/* Mobile Styles */
+
+@media (max-width: 767px) {
+  .logo:after {
+    display: none;
+  }
+  #root:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 15%;
+    width: 40%;
+    background-image: url(./assets/images/starsfalling.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: longfade 10s ease infinite alternate;
+  }
+  .maskWrapper:after{
+    bottom: -125px;
+  }
 }
