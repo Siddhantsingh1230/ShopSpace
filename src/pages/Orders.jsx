@@ -230,7 +230,7 @@ const Orders = ({ setProgress }) => {
           </ol>
         </nav>
 
-        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900 ">
+        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900 max-sm:mb-10">
           Your Orders<span className="text-blue-600">.</span>
         </h1>
         <div className="flex flex-col max-w-screen-9xl">
