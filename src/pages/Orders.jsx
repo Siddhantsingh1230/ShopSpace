@@ -310,7 +310,7 @@ const Orders = ({ setProgress }) => {
                               <p className="justify-self-end">₹00</p>
                               <p className="justify-self-end ">₹{item.price}</p>
                               <p className="justify-self-end font-bold">
-                                ₹{item.price}x
+                                ₹{item.price}
                               </p>
                             </div>
                             <div className="grid gap-1 capitalize"></div>
