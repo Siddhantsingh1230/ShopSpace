@@ -455,8 +455,8 @@ const Home = ({ setProgress }) => {
               <a href="#">Flower Fragrance</a>
             </div>
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            BLOG
+          <div onClick={() => navigate("/orders")} className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+            Orders
           </div>
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             HOT OFFERS

@@ -209,7 +209,12 @@ const MobileBottonNav = () => {
             Products
           </h1>
           <MenuAccordian data={MenuAccordianData} />
-          <h1 className=" my-3">Blog</h1>
+          <h1 onClick={() => {
+              if (pathname != "/orders") {
+                toggleMenuDrawer();
+                navigate("/orders");
+              }
+            }} className=" my-3">Orders</h1>
           <h1 className=" my-3">Hot Offers</h1>
 
           <select
