@@ -358,7 +358,7 @@ const Products = ({ setProgress }) => {
             </div>
             {/* Search */}
             <div className="flex gap-5">
-              <div className="search flex gap-2 rounded-3xl p-2 px-3 w-[20rem] bg-[#f4f4f4] max-sm:w-[15rem]">
+              <div className="search flex gap-2 rounded-3xl p-2 px-3 w-[20rem] bg-[#f4f4f4] max-sm:w-[14rem]">
                 <i className="ri-search-line  cursor-pointer hover:text-blue-500"></i>
                 <input
                   type="text"
