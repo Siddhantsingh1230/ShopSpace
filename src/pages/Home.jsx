@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -60,6 +60,7 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottonNav from "../components/MobileBottonNav";
+import ResetScroll from "../components/ResetScroll";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -455,7 +456,10 @@ const Home = ({ setProgress }) => {
               <a href="#">Flower Fragrance</a>
             </div>
           </div>
-          <div onClick={() => navigate("/orders")} className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          <div
+            onClick={() => navigate("/orders")}
+            className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
+          >
             ORDERS
           </div>
           <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
@@ -1649,6 +1653,9 @@ const Home = ({ setProgress }) => {
       {/* Mobile Viewport Components */}
       {/* bottom_fixed_toolbar */}
       <MobileBottonNav />
+
+      {/* Reset Scroll On Route Change so that if user has scroll on other page it is  reset on route change */}
+      <ResetScroll />
     </>
   );
 };

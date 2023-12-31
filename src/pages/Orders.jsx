@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import MobileBottonNav from "../components/MobileBottonNav";
+import { motion } from "framer-motion";
+import { pageTransitionVariant } from "../constants/Transition";
 
 const Orders = ({ setProgress }) => {
   useEffect(() => {
@@ -173,7 +176,13 @@ const Orders = ({ setProgress }) => {
   ];
   return (
     <>
-      <section className=" flex flex-col absolute p-5 sm:px-36 sm:py-8 w-full ">
+      <motion.section
+        variants={pageTransitionVariant}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className=" flex flex-col absolute p-5 sm:px-36 sm:py-8 w-full "
+      >
         {/* Bread crumbs */}
 
         <nav className="flex " aria-label="Breadcrumb">
@@ -267,12 +276,14 @@ const Orders = ({ setProgress }) => {
                             Ordered on {order.placedOn}
                           </p>
                         </div>
-                        <i className="ri-close-circle-fill text-2xl sm:text-3xl "
-                        onClick = {() => {
-                          document
-                            .getElementById(`orderDetail-${order.id}-${idx}`)
-                            .classList.add("hidden");
-                        }}></i>
+                        <i
+                          className="ri-close-circle-fill text-2xl sm:text-3xl "
+                          onClick={() => {
+                            document
+                              .getElementById(`orderDetail-${order.id}-${idx}`)
+                              .classList.add("hidden");
+                          }}
+                        ></i>
                       </div>
 
                       <div className="grid sm:grid-cols-3 p-3 mt-3 border-2 border-gray-500 rounded-xl">
@@ -346,13 +357,11 @@ const Orders = ({ setProgress }) => {
                             </p>
                           </div>
                           <div className="flex gap-2">
-                            {
-                              order.status === "pending" ? (
+                            {order.status === "pending" ? (
                               <button className="bg-red-400 hover:bg-red-500 text-sm p-2 rounded-md border-2 border-red-500 max-sm:w-full sm:self-start">
-                              Cancel Order
-                            </button>
-                            ):null
-                            }
+                                Cancel Order
+                              </button>
+                            ) : null}
                             <button className="bg-yellow-400 hover:bg-yellow-500 text-sm p-2 rounded-md border-2 border-yellow-500 max-sm:w-full sm:self-start">
                               Buy again
                             </button>
@@ -432,7 +441,8 @@ const Orders = ({ setProgress }) => {
             <p>No Orders 😢</p>
           )}
         </div>
-      </section>
+      </motion.section>
+      <MobileBottonNav />
     </>
   );
 };
