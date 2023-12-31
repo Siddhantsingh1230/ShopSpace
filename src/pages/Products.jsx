@@ -183,6 +183,72 @@ const Products = ({ setProgress }) => {
               className="text-5xl  cursor-pointer text-white ri-arrow-right-s-line max-sm:text-gray-400"
             ></motion.i>
           </div>
+          {/* Title */}
+          <div className="absolute top-5 left-10 text-2xl text-black font-bold font-[Montserrat] uppercase">
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 10 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              E
+            </motion.span>
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 23 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              x
+            </motion.span>
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 37 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              p
+            </motion.span>
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 51 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              l
+            </motion.span>
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 60 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              o
+            </motion.span>
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 78 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              r
+            </motion.span>
+            <motion.span
+              className="absolute select-none"
+              initial={{ x: 0 }}
+              animate={{ x: 92 }}
+              whileHover={{ scale: 1.1, color: "white", cursor: "pointer" }}
+              transition={{ duration: 1.15 }}
+            >
+              e
+            </motion.span>
+          </div>
 
           {/* Shop */}
           <motion.div
