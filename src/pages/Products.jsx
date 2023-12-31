@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
 import CanMask from "../assets/images/bottle.png";
@@ -53,6 +53,14 @@ const Products = ({ setProgress }) => {
         y: -newCurrent * 100 + "%",
         transition: { duration: 0.55, ease: "circInOut" },
       });
+    }
+  };
+
+  // Scroll To view  for products section
+  const targetRef = useRef(null);
+  const scrollToProducts = () => {
+    if (targetRef.current) {
+      targetRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -184,7 +192,7 @@ const Products = ({ setProgress }) => {
             ></motion.i>
           </div>
           {/* Title */}
-          <div className="absolute top-5 left-10 text-2xl text-black font-bold font-[Montserrat] uppercase">
+          <div className="absolute max-sm:left-5 top-5 left-10 text-2xl text-black font-bold font-[Montserrat] uppercase">
             <motion.span
               className="absolute select-none"
               initial={{ x: 0 }}
@@ -252,6 +260,7 @@ const Products = ({ setProgress }) => {
 
           {/* Shop */}
           <motion.div
+          onClick={scrollToProducts}
             whileHover={{ opacity: 0.8 }}
             whileTap={{ opacity: 0.5 }}
             className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 z-20  rounded-3xl flex justify-center items-center"
@@ -259,6 +268,8 @@ const Products = ({ setProgress }) => {
             <p className="text-black font-bold bg-clip-text ">Shop now</p>
           </motion.div>
         </div>
+        {/* Other Product Sections */}
+        <div ref={targetRef} className="w-full h-full"></div>
       </motion.div>
     </>
   );
