@@ -47,3 +47,7 @@
 # Making HomePage Responsive
 
 # Starting product details page
+# Completed product detail page 30-12-23
+# Completed Orders page 31-12-23
+
+------------------------------------------------------
