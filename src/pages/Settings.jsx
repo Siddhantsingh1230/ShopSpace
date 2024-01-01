@@ -182,7 +182,7 @@ const Settings = ({ setProgress }) => {
                           className="pointer-events-none outline-none border-2 text-lg py-2 rounded-2xl px-5"
                           type="text"
                           id="date"
-                          value={new Date().toLocaleDateString()}
+                          defaultValue={new Date().toLocaleDateString()}
                         />
                       </div>
                       <div className=" flex gap-12  justify-between items-center">
@@ -196,7 +196,7 @@ const Settings = ({ setProgress }) => {
                           className="pointer-events-none outline-none border-2 text-lg py-2 rounded-2xl px-5"
                           type="text"
                           id="location"
-                          value={"India"}
+                          defaultValue={"India"}
                         />
                       </div>
                     </div>
