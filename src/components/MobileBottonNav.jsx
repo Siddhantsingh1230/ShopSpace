@@ -249,7 +249,7 @@ const MobileBottonNav = () => {
             <option value="fr">Français</option>
           </select>
 
-          <div className="flex w-full justify-center gap-5 my-10">
+          <div className="flex w-full justify-center gap-5 my-3">
             <div className="flex-1 py-3 px-3  rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"

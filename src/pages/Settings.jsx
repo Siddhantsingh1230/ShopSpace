@@ -24,7 +24,7 @@ const Settings = ({ setProgress }) => {
   
   return (
     <>
-      <div className="settingsContainer w-full h-full border border-red-500"></div>
+      <div className="settingsContainer w-full"></div>
     </>
   );
 };
