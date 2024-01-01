@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import PageNotFound from "./pages/PageNotFound";
 import ProductDetail from "./pages/ProductDetail";
 import Orders from "./pages/Orders";
+import Settings from "./pages/Settings";
 
 import Products from "./pages/Products";
 // libraries
@@ -49,6 +50,10 @@ const App = () => {
             path="/products"
             exact
             element={<Products setProgress={setProgress} />}
+          /><Route
+            path="/settings"
+            exact
+            element={<Settings setProgress={setProgress} />}
           />
           <Route
             exact

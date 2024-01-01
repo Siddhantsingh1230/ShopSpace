@@ -240,8 +240,11 @@ const Home = ({ setProgress }) => {
             <i className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"></i>
           </div>
           <div className="icons flex justify-center items-center gap-5 max-sm:hidden">
-            <div className="cursor-pointer flex justify-center items-center relative">
-              <i className="text-4xl ri-user-line"></i>
+            <div
+              onClick={() => navigate("/settings")}
+              className="cursor-pointer flex justify-center items-center relative"
+            >
+              <i className="text-4xl ri-settings-4-line"></i>
             </div>
             <div className="cursor-pointer flex justify-center items-center relative ">
               <i className="text-4xl ri-heart-3-line "></i>

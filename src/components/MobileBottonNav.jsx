@@ -209,13 +209,28 @@ const MobileBottonNav = () => {
             Products
           </h1>
           <MenuAccordian data={MenuAccordianData} />
-          <h1 onClick={() => {
+          <h1
+            onClick={() => {
               if (pathname != "/orders") {
                 toggleMenuDrawer();
                 navigate("/orders");
               }
-            }} className=" my-3">Orders</h1>
-          <h1 className=" my-3">Hot Offers</h1>
+            }}
+            className=" my-3"
+          >
+            Orders
+          </h1>
+          <h1
+            onClick={() => {
+              if (pathname != "/settings") {
+                toggleMenuDrawer();
+                navigate("/settings");
+              }
+            }}
+            className=" my-3"
+          >
+            Settings
+          </h1>
 
           <select
             className="border focus:outline-black rounded-md py-2 bg-transparent cursor-pointer my-3"
