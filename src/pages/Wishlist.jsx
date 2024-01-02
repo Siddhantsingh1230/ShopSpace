@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
-import MobileBottonNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 import heart from "../assets/images/heart.gif";
 import heartSearch from "../assets/images/heart-search.gif";
 import womenmodel from "../assets/images/womenmodel.png";
@@ -168,7 +168,7 @@ const Wishlist = ({ setProgress }) => {
               </div>
             </div>
           </motion.div>
-          <MobileBottonNav />
+          <MobileBottomNav />
         </>
       ) : (
         navigate("/")
