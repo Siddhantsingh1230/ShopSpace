@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import coin from "../assets/images/coin.gif";
 import truck from "../assets/images/truck.gif";
 import india from "../assets/images/india.png";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CRD, COD } from "../constants/constants";
 import { useForm } from "react-hook-form";
 import Spinner from "../components/Spinner";
 import checkout from "../assets/images/checkout.gif";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+// Page Transition variant import
+import { pageTransitionVariant } from "../constants/Transition";
 
 const Checkout = ({ setProgress }) => {
   useEffect(() => {
@@ -101,18 +105,11 @@ const Checkout = ({ setProgress }) => {
     },
   ];
   const user = true;
-  // const states = useSelector((state) => state.orderState.orderState);
-  // const currentOrder = useSelector((state) => state.orders.currentOrder);
+  const navigate = useNavigate();
   const totalAmount = cart.reduce(
     (amount, item) => item.price * item.quantity + amount,
     0
   );
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(getCartAsync(user.id));
-  //     dispatch(getOrderStateAsync());
-  //   }
-  // }, [dispatch]);
   useEffect(() => {
     if (COD) {
       unregister("cardholder");
@@ -122,12 +119,14 @@ const Checkout = ({ setProgress }) => {
     }
   }, [paymentMethod]);
   return (
-    <div className="absolute w-full  h-full">
-      {user 
-      // && (
-      //   <Navigate replace={true} to={`/ordersuccess/${currentOrder.id}`} />
-      // )
-      }
+    <motion.div
+      variants={pageTransitionVariant}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      className="absolute w-full  h-full"
+    >
+      {!user && navigate("/")}
       {loading ? (
         <Spinner />
       ) : (
@@ -157,26 +156,27 @@ const Checkout = ({ setProgress }) => {
                 </li>
                 <li>
                   <Link to="/cart">
-                  <div className="flex items-center">
-                    <svg
-                      className="rtl:rotate-180 w-3 h-3 text-gray-800 mx-1"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 6 10"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m1 9 4-4-4-4"
-                      />
-                    </svg>
-                    <span className="ms-1 font-bold text-gray-800 md:ms-2 hover:text-blue-600 hover:underline">
-                      Cart
-                    </span>
-                  </div></Link>
+                    <div className="flex items-center">
+                      <svg
+                        className="rtl:rotate-180 w-3 h-3 text-gray-800 mx-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 6 10"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="m1 9 4-4-4-4"
+                        />
+                      </svg>
+                      <span className="ms-1 font-bold text-gray-800 md:ms-2 hover:text-blue-600 hover:underline">
+                        Cart
+                      </span>
+                    </div>
+                  </Link>
                 </li>
                 <li>
                   <div className="flex items-center">
@@ -687,7 +687,7 @@ const Checkout = ({ setProgress }) => {
           </div>
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
 
