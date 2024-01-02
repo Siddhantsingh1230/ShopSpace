@@ -10,6 +10,7 @@ import Orders from "./pages/Orders";
 import Settings from "./pages/Settings";
 import Cart from "./pages/Cart";
 import Products from "./pages/Products";
+import ResetScroll from "./components/ResetScroll";
 // libraries
 import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
 import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
@@ -105,6 +106,8 @@ const App = () => {
         progress={progress} // used to controll the bar
         onLoaderFinished={() => setProgress(0)}
       />
+      {/* Reset Scroll On Route Change so that if user has scroll on other page it is  reset on route change */}
+      <ResetScroll />
     </>
   );
 };

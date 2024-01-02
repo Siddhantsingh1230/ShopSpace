@@ -133,7 +133,7 @@ const Products = ({ setProgress }) => {
   // Auto Can Mask (hero) Carousel
   function alternateEmotions() {
     let counter = 0;
-    setInterval(() => {
+    let intervalId = setInterval(() => {
       if (counter % 4 < 2) {
         counter++;
         handleSlide(1);
@@ -144,9 +144,11 @@ const Products = ({ setProgress }) => {
         handleFruitSlide(-1);
       }
     }, 2000);
+    return intervalId;
   }
   useEffect(() => {
-    alternateEmotions();
+    let intervalId = alternateEmotions();
+    return clearInterval(intervalId);
   }, []);
 
   return (

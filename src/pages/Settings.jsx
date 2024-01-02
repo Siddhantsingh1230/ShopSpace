@@ -268,7 +268,7 @@ const Settings = ({ setProgress }) => {
                   Are you sure you want to delete your account permanently?
                 </h1>
                 <p className="text-xs text-gray-400">
-                  Press "Delete account" to remove it permanently or "Cancel" if
+                  Press "Delete" to remove it permanently or "Cancel" if
                   you want to keep your benefits.
                 </p>
                 <div className="flex w-full mt-5 justify-between">
