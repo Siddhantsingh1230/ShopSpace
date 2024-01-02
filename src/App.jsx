@@ -8,7 +8,7 @@ import PageNotFound from "./pages/PageNotFound";
 import ProductDetail from "./pages/ProductDetail";
 import Orders from "./pages/Orders";
 import Settings from "./pages/Settings";
-
+import Cart from "./pages/Cart";
 import Products from "./pages/Products";
 // libraries
 import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
@@ -54,6 +54,11 @@ const App = () => {
             path="/settings"
             exact
             element={<Settings setProgress={setProgress} />}
+          />
+          <Route
+            path="/cart"
+            exact
+            element={<Cart setProgress={setProgress} />}
           />
           <Route
             exact
