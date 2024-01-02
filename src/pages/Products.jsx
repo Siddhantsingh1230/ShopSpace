@@ -148,7 +148,7 @@ const Products = ({ setProgress }) => {
   }
   useEffect(() => {
     let intervalId = alternateEmotions();
-    return clearInterval(intervalId);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (

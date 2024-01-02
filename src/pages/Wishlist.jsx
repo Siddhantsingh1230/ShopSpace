@@ -44,7 +44,7 @@ const Wishlist = ({ setProgress }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="w-full h-full absolute"
+            className="w-full h-full absolute overflow-x-hidden"
           >
             <div className="flex flex-col w-full sm:p-8 ">
               <div>
@@ -100,7 +100,6 @@ const Wishlist = ({ setProgress }) => {
                   </ol>
                 </nav>
               </div>
-
               <div className="flex flex-col ">
                 <div className="flex flex-col max-sm:gap-2 h-24 w-full justify-center items-center max-sm:m-2 sm:mb-10 text-2xl sm:text-6xl bold">
                   <img
@@ -137,7 +136,7 @@ const Wishlist = ({ setProgress }) => {
                 <hr className="border w-full bg-gray-100"></hr>
               </div>
               <div className="flex justify-center ">
-                <div className="flex flex-wrap  mb-10 justify-center overflow-y-scroll">
+                <div className="flex flex-wrap  mb-10 justify-center overflow-y-scroll ">
                   <div className="grid md:grid-cols-5 gap-10 p-10 ">
                     {wishlist.map((i, idx) => (
                       <div
@@ -170,11 +169,11 @@ const Wishlist = ({ setProgress }) => {
               </div>
             </div>
           </motion.div>
-          <MobileBottomNav />
         </>
       ) : (
         navigate("/")
       )}
+      <MobileBottomNav />
     </>
   );
 };
