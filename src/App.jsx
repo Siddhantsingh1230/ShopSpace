@@ -16,6 +16,7 @@ import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
 import LoadingBar from "react-top-loading-bar"; // For Top Loading Bar
 import { ToastContainer } from "react-toastify"; // For Toasts
 import { AnimatePresence } from "framer-motion";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
@@ -59,6 +60,11 @@ const App = () => {
             path="/cart"
             exact
             element={<Cart setProgress={setProgress} />}
+          />
+          <Route
+            path="/checkout"
+            exact
+            element={<Checkout setProgress={setProgress} />}
           />
           <Route
             exact
