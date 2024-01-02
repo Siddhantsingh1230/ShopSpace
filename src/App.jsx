@@ -17,6 +17,7 @@ import LoadingBar from "react-top-loading-bar"; // For Top Loading Bar
 import { ToastContainer } from "react-toastify"; // For Toasts
 import { AnimatePresence } from "framer-motion";
 import Checkout from "./pages/Checkout";
+import Wishlist from "./pages/Wishlist";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
@@ -65,6 +66,11 @@ const App = () => {
             path="/checkout"
             exact
             element={<Checkout setProgress={setProgress} />}
+          />
+          <Route
+            path="/wishlist"
+            exact
+            element={<Wishlist setProgress={setProgress} />}
           />
           <Route
             exact
