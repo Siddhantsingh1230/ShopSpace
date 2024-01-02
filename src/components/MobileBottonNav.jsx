@@ -194,6 +194,7 @@ const MobileBottonNav = () => {
         direction="left"
         size="85vw"
         className="md:hidden"
+        lockBackgroundScroll={true}
       >
         <div className="w-full flex flex-col p-5 overflow-y-scroll h-full">
           <div className="flex justify-between">
@@ -299,6 +300,7 @@ const MobileBottonNav = () => {
         direction="left"
         size="85vw"
         className="md:hidden"
+        lockBackgroundScroll={true}
       >
         <div className="w-full flex flex-col p-5 overflow-y-scroll h-full relative">
           <i
