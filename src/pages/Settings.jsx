@@ -105,7 +105,7 @@ const Settings = ({ setProgress }) => {
               </div>
               <div className="w-[75%] h-[35%] rounded-xl   bg-[#2352FE] mb-5 flex items-center justify-center relative overflow-hidden">
                 <div className="flex flex-col items-center justify-center relative z-20">
-                  <h1 className=" text-lg text-white font-bold ">Go Premium</h1>
+                  <h1 className=" text-lg text-white font-bold ">Go Freemium</h1>
                   <p className=" text-gray-50 text-xs">Best Quality</p>
                   <h1 className="cursor-pointer border-2 border-white py-2 px-4 rounded-xl text-white text-xs  mt-2">
                     Enter Beta
