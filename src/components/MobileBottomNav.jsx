@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Drawer from "react-modern-drawer";
-import Accordian from "../components/Accordian";
-import Stars from "../components/Stars";
-import MenuAccordian from "../components/MenuAccordian";
+import Accordian from "./Accordian";
+import Stars from "./Stars";
+import MenuAccordian from "./MenuAccordian";
 
 //Images
 import hatcaps from "../assets/images/hatcaps.svg";
@@ -15,7 +15,7 @@ import watch from "../assets/images/watch.svg";
 import shorts from "../assets/images/shorts.svg";
 import glasses from "../assets/images/glasses.svg";
 
-const MobileBottonNav = () => {
+const MobileBottomNav = () => {
   const { pathname } = useLocation();
 
   //navigation
@@ -387,4 +387,4 @@ const MobileBottonNav = () => {
   );
 };
 
-export default MobileBottonNav;
+export default MobileBottomNav;

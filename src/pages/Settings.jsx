@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Drawer from "react-modern-drawer";
+import MobileBottomNav from "../components/MobileBottomNav";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -48,15 +49,15 @@ const Settings = ({ setProgress }) => {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="settingsContainer w-full flex flex-col h-full"
+            className="settingsContainer w-full flex flex-col h-full "
           >
             {/* Navlink */}
-            <div className="settingNav w-full flex justify-between items-center py-5 px-10">
+            <div className="settingNav w-full flex  justify-between items-center py-5 px-10 max-sm:flex-col max-sm:gap-5 max-sm:justify-center">
               <h1 className="text-xl font-bold font-[Montserrat] text-blue-600">
                 Settings
               </h1>
-              <div className="flex gap-10">
-                <div className="flex gap-5 justify-center items-center">
+              <div className="flex gap-10 max-sm:w-full">
+                <div className="flex gap-5 justify-center items-center max-sm:hidden">
                   <p className="font-bold text-sm  text-gray-500 hover:text-gray-600 cursor-pointer  transition-all">
                     Blog
                   </p>
@@ -64,16 +65,16 @@ const Settings = ({ setProgress }) => {
                     Community
                   </p>
                 </div>
-                <div className="flex gap-5 justify-center items-center">
-                  <i className="ri-chat-4-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"></i>
+                <div className="flex gap-5 justify-center items-center max-sm:w-full max-sm:justify-between max-sm:flex-row-reverse">
+                  <i className="max-sm:hidden ri-chat-4-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"></i>
                   <i
                     onClick={() => navigate("/")}
-                    className="ri-home-5-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"
+                    className="max-sm:hidden ri-home-5-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"
                   ></i>
-                  <span className="text-gray-200 text-2xl">|</span>
-                  <i className="ri-question-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"></i>
+                  <span className="max-sm:hidden text-gray-200 text-2xl">|</span>
+                  <i className="max-sm:hidden ri-question-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"></i>
                   <i className="ri-logout-box-r-line text-2xl  text-gray-500  hover:text-red-400 cursor-pointer hover:scale-110 transition-all"></i>
-                  <div className="bg-blue-300 rounded-full h-9 w-9 overflow-hidden ml-5">
+                  <div className="bg-blue-300 rounded-full h-9 w-9 overflow-hidden ml-5 max-sm:ml-0">
                     <img
                       className="w-full h-full object-cover"
                       src={userImage}
@@ -85,13 +86,13 @@ const Settings = ({ setProgress }) => {
             </div>
             <hr className="bg-gray-400" />
             {/* Setting body */}
-            <div className="settingbody  w-full flex h-full ">
+            <div className="settingbody  w-full flex h-full max-sm:flex-col">
               {/* Sidebar */}
-              <div className="sidebar w-[15%] border-r-2 h-full flex flex-col items-center justify-between">
-                <div className="w-full flex  flex-col items-center">
+              <div className="sidebar w-[15%] max-sm:w-full border-r-2 md:h-full flex flex-col items-center justify-between">
+                <div className="w-full flex  flex-col items-center max-sm:flex-row max-sm:justify-center">
                   <div
                     onClick={() => setAccountActive(true)}
-                    className="settingMenu  mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl flex w-[75%]   gap-5"
+                    className="settingMenu   mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl flex w-[75%]    gap-5"
                   >
                     <i className="pl-5 ri-user-star-line text-xl font-bold"></i>
                     <h1 className="text-xl font-bold font-[Montserrat]">
@@ -100,7 +101,7 @@ const Settings = ({ setProgress }) => {
                   </div>
                   <div
                     onClick={() => setAccountActive(false)}
-                    className="settingMenu  mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl  flex w-[75%]  gap-5"
+                    className="settingMenu   mt-5 hover:bg-gray-100 transition-all cursor-pointer    py-2 rounded-xl  flex w-[75%]  gap-5"
                   >
                     <i className="pl-5 ri-shield-flash-line text-xl font-bold"></i>
                     <h1 className="text-xl font-bold font-[Montserrat]">
@@ -108,7 +109,8 @@ const Settings = ({ setProgress }) => {
                     </h1>
                   </div>
                 </div>
-                <div className="w-[75%] h-[35%] rounded-xl   bg-[#2352FE] mb-5 flex items-center justify-center relative overflow-hidden">
+                <hr className="md:hidden max-sm:visible max-sm:border w-full my-5" />
+                <div className="w-[75%] h-[35%] rounded-xl max-sm:hidden   bg-[#2352FE] mb-5 flex items-center justify-center relative overflow-hidden">
                   <div className="flex flex-col items-center justify-center relative z-20">
                     <h1 className=" text-lg text-white font-bold ">
                       Go Freemium
@@ -122,13 +124,13 @@ const Settings = ({ setProgress }) => {
                 </div>
               </div>
               {/* Content */}
-              <div className="w-[85%] border-l  h-full">
+              <div className="w-[85%] max-sm:w-full border-l max-sm:border-0 h-full">
                 {accountActive ? (
                   <div className="account w-full h-full p-5">
                     <h1 className="text-3xl font-bold">Account</h1>
-                    <div className="w-full flex gap-16 items-start">
+                    <div className="w-full flex gap-16 items-start max-sm:flex-col max-sm:gap-5">
                       <div className="flex gap-5 flex-col mt-10 justify-center">
-                        <div className=" flex gap-12  justify-between items-center">
+                        <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                           <label
                             className="font-[Montserrat] text-gray-500"
                             htmlFor="email"
@@ -136,13 +138,13 @@ const Settings = ({ setProgress }) => {
                             Email Address
                           </label>
                           <input
-                            className="outline-none border-2 text-lg py-2 rounded-2xl px-5"
+                            className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="email"
                             placeholder="Enter email"
                           />
                         </div>
-                        <div className=" flex gap-12  justify-between items-center">
+                        <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                           <label
                             className="font-[Montserrat] text-gray-500"
                             htmlFor="username"
@@ -150,13 +152,13 @@ const Settings = ({ setProgress }) => {
                             Username
                           </label>
                           <input
-                            className="outline-none border-2 text-lg py-2 rounded-2xl px-5"
+                            className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="username"
                             placeholder="Enter  username"
                           />
                         </div>
-                        <div className=" flex gap-12 justify-between items-center">
+                        <div className=" flex gap-12 justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                           <label
                             className="font-[Montserrat] text-gray-500"
                             htmlFor="pass"
@@ -164,13 +166,13 @@ const Settings = ({ setProgress }) => {
                             Password
                           </label>
                           <input
-                            className="outline-none border-2 text-lg py-2 rounded-2xl px-5"
+                            className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="pass"
                             placeholder="Enter password"
                           />
                         </div>
-                        <div className=" flex gap-12  justify-between items-center">
+                        <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                           <label
                             className="font-[Montserrat] text-gray-500"
                             htmlFor="confPass"
@@ -178,15 +180,15 @@ const Settings = ({ setProgress }) => {
                             Confirm Password
                           </label>
                           <input
-                            className="outline-none border-2 text-lg py-2 rounded-2xl px-5"
+                            className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="confPass"
                             placeholder="Confirm password"
                           />
                         </div>
                       </div>
-                      <div className="flex gap-5 flex-col mt-10 justify-center">
-                        <div className=" flex gap-12  justify-between items-center">
+                      <div className="flex gap-5 flex-col mt-10 justify-center max-sm:mt-0">
+                        <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                           <label
                             className="font-[Montserrat] text-gray-500"
                             htmlFor="date"
@@ -194,13 +196,13 @@ const Settings = ({ setProgress }) => {
                             Date
                           </label>
                           <input
-                            className="pointer-events-none outline-none border-2 text-lg py-2 rounded-2xl px-5"
+                            className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="date"
                             defaultValue={new Date().toLocaleDateString()}
                           />
                         </div>
-                        <div className=" flex gap-12  justify-between items-center">
+                        <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                           <label
                             className="font-[Montserrat] text-gray-500"
                             htmlFor="location"
@@ -208,7 +210,7 @@ const Settings = ({ setProgress }) => {
                             Location
                           </label>
                           <input
-                            className="pointer-events-none outline-none border-2 text-lg py-2 rounded-2xl px-5"
+                            className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="location"
                             defaultValue={"India"}
@@ -220,27 +222,27 @@ const Settings = ({ setProgress }) => {
                       <motion.div
                         whileHover={{ scale: 1.015 }}
                         whileTap={{ scale: 0.99 }}
-                        className="px-5 text-white font-bold font-[Montserrat] text-sm py-4 bg-green-400 cursor-pointer rounded-xl"
+                        className="px-5 text-white font-bold font-[Montserrat] text-sm py-4 bg-green-400 cursor-pointer rounded-xl max-sm:rounded-md max-sm:text-xs max-sm:py-3 max-sm:px-3"
                       >
                         <p>Save Changes</p>
                       </motion.div>
                     </div>
                     <hr className="bg-gray-500 my-6" />
                     <h1 className="text-xl font-bold my-3">Danger Zone</h1>
-                    <p className="w-[40%] mb-4 text-sm text-gray-500">
+                    <p className="w-[40%] max-sm:w-full mb-4 text-sm text-gray-500">
                       Once you delete your account, there is no going back. You
                       will lose all golden opportunities, Please be certain.
                     </p>
                     <button
                       onClick={() => toggleDeleteDrawer()}
-                      className="bg-red-300 cursor-pointer hover:bg-red-400 hover:text-red-800 font-bold text-red-500 px-5 py-4 text-center rounded-xl text-sm"
+                      className="bg-red-300 cursor-pointer hover:bg-red-400 hover:text-red-800 font-bold text-red-500 px-5 py-4 text-center rounded-xl text-sm max-sm:rounded-md max-sm:text-xs max-sm:py-3 max-sm:px-3 max-sm:mb-20"
                     >
                       Delete Account
                     </button>
                   </div>
                 ) : (
-                  <div className="profile w-full h-full flex justify-center items-center">
-                    <div className=" stripes bg-gray-100 rounded-md w-2/4 h-3/5 border flex justify-center items-center">
+                  <div className="profileSetting w-full h-full flex justify-center md:items-center px-2">
+                    <div className=" stripes bg-gray-100 rounded-md max-sm:w-full w-2/4 h-3/5 border flex justify-center items-center ">
                       <p className="text-sm  bg-blue-300 text-blue-700 rounded-lg px-3 py-3">
                         The Feature is currently in Beta
                       </p>
@@ -259,7 +261,7 @@ const Settings = ({ setProgress }) => {
             size={"50vh"}
             className="rounded-t-3xl"
           >
-            <div className="flex  w-full h-full justify-center items-center">
+            <div className="flex  w-full h-full justify-center items-center max-sm:px-10 ">
               <div className="flex md:border-2 md:rounded-lg md:shadow-xl md:py-7  md:px-5 flex-col md:w-[400px]  w-full justify-center items-center">
                 <i className="text-4xl text-red-500 ri-triangle-fill mb-5"></i>
                 <h1 className="font-bold mb-2">
@@ -286,6 +288,7 @@ const Settings = ({ setProgress }) => {
               </div>
             </div>
           </Drawer>
+          <MobileBottomNav/>
         </>
       ) : (
         navigate("/")

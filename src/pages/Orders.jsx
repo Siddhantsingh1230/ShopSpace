@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import MobileBottonNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 import { motion } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
 
@@ -443,7 +443,7 @@ const Orders = ({ setProgress }) => {
           )}
         </div>
       </motion.section>
-      <MobileBottonNav />
+      <MobileBottomNav />
     </>
   );
 };

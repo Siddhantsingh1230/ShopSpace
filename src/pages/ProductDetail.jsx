@@ -3,7 +3,7 @@ import { RadioGroup } from "@headlessui/react";
 import Spinner from "../components/Spinner";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import MobileBottonNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 import Stars from "../components/Stars";
 
 // Page Transition variant import
@@ -515,7 +515,7 @@ const ProductDetails = ({ setProgress }) => {
       </motion.div>
 
       {/*  Mobile Navbar */}
-      <MobileBottonNav />
+      <MobileBottomNav />
     </>
   );
 };

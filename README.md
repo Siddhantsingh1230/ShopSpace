@@ -53,3 +53,4 @@
 ------------------------------------------------------
 
 # Added Settings Page 01-01-24
+# Making Settings Page Responsive 02-01-24

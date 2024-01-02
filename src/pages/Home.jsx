@@ -59,7 +59,7 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
-import MobileBottonNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 import ResetScroll from "../components/ResetScroll";
 
 const Home = ({ setProgress }) => {
@@ -1656,7 +1656,7 @@ const Home = ({ setProgress }) => {
 
       {/* Mobile Viewport Components */}
       {/* bottom_fixed_toolbar */}
-      <MobileBottonNav />
+      <MobileBottomNav />
 
       {/* Reset Scroll On Route Change so that if user has scroll on other page it is  reset on route change */}
       <ResetScroll />

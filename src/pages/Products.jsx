@@ -4,7 +4,7 @@ import { pageTransitionVariant } from "../constants/Transition";
 import Spinner from "../components/Spinner";
 import MenuAccordian from "../components/MenuAccordian";
 import InfiniteScroll from "react-infinite-scroller";
-import MobileBottomNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 import Drawer from "react-modern-drawer";
 
 // Image imports

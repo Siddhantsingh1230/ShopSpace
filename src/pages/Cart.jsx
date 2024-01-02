@@ -7,7 +7,7 @@ import { INC, DEC } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
-import MobileBottonNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 
 const Cart = ({ setProgress }) => {
   useEffect(() => {
@@ -341,7 +341,7 @@ const Cart = ({ setProgress }) => {
               </Link>
             </div>
           </motion.div>
-          <MobileBottonNav />
+          <MobileBottomNav />
         </>
       ) : (
         navigate("/")

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
-import MobileBottonNav from "../components/MobileBottonNav";
+import MobileBottomNav from "../components/MobileBottomNav";
 
 const Checkout = ({ setProgress }) => {
   useEffect(() => {
@@ -692,7 +692,7 @@ const Checkout = ({ setProgress }) => {
           </>
         )}
       </motion.div>
-      <MobileBottonNav />
+      <MobileBottomNav />
     </>
   );
 };
