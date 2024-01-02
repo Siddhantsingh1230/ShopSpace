@@ -8,7 +8,7 @@ import PageNotFound from "./pages/PageNotFound";
 import ProductDetail from "./pages/ProductDetail";
 import Orders from "./pages/Orders";
 import Settings from "./pages/Settings";
-
+import Cart from "./pages/Cart";
 import Products from "./pages/Products";
 // libraries
 import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
@@ -16,6 +16,7 @@ import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
 import LoadingBar from "react-top-loading-bar"; // For Top Loading Bar
 import { ToastContainer } from "react-toastify"; // For Toasts
 import { AnimatePresence } from "framer-motion";
+import Checkout from "./pages/Checkout";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
@@ -54,6 +55,16 @@ const App = () => {
             path="/settings"
             exact
             element={<Settings setProgress={setProgress} />}
+          />
+          <Route
+            path="/cart"
+            exact
+            element={<Cart setProgress={setProgress} />}
+          />
+          <Route
+            path="/checkout"
+            exact
+            element={<Checkout setProgress={setProgress} />}
           />
           <Route
             exact

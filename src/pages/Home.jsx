@@ -252,7 +252,8 @@ const Home = ({ setProgress }) => {
                 <b>2</b>
               </span>
             </div>
-            <div className="cursor-pointer flex justify-center items-center relative">
+            <div
+            onClick={() => navigate("/cart")} className="cursor-pointer flex justify-center items-center relative">
               <i className="text-4xl ri-shopping-bag-line"></i>
               <span className="badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
                 <b>2</b>
