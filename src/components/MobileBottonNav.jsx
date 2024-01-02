@@ -150,7 +150,14 @@ const MobileBottonNav = () => {
         >
           <i className=" ri-menu-line"></i>
         </button>
-        <button className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+        <button
+          onClick={() => {
+            if (pathname != "/cart") {
+              navigate("/cart");
+            }
+          }}
+          className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
+        >
           <i className=" ri-shopping-bag-line"></i>
           <span className="bg-red-400 absolute -top-0 right-0 text-white text-xs px-[5px] py-[1px] rounded-xl">
             2
