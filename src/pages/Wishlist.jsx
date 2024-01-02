@@ -32,7 +32,7 @@ const Wishlist = ({ setProgress }) => {
 
   // Product Data
 
-  let [wishlist, setWishlist] = useState(new Array(10).fill(0));
+  let [wishlist, setWishlist] = useState(new Array(11).fill(0));
   const user = true;
   const navigate = useNavigate();
   return (
@@ -137,33 +137,35 @@ const Wishlist = ({ setProgress }) => {
                 <hr className="border w-full bg-gray-100"></hr>
               </div>
               <div className="flex justify-center ">
-                <div className="flex flex-wrap gap-10 p-10 mb-10  overflow-y-scroll">
-                  {wishlist.map((i, idx) => (
-                    <div
-                      key={idx}
-                      className="flex flex-col gap-2 p-1 cursor-pointer"
-                    >
-                      <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
-                        <img
-                          className="h-full w-full  object-cover rounded-md object-center"
-                          src={womenmodel}
-                          alt="img"
-                        />
-                        <div className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full">
-                          <i className="p-0 text-lg ri-heart-3-line"></i>
+                <div className="flex flex-wrap  mb-10 justify-center overflow-y-scroll">
+                  <div className="grid md:grid-cols-5 gap-10 p-10 ">
+                    {wishlist.map((i, idx) => (
+                      <div
+                        key={idx}
+                        className="flex flex-col gap-2 p-1 cursor-pointer"
+                      >
+                        <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
+                          <img
+                            className="h-full w-full  object-cover rounded-md object-center"
+                            src={womenmodel}
+                            alt="img"
+                          />
+                          <div className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full">
+                            <i className="p-0 text-lg ri-heart-3-line"></i>
+                          </div>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <div className="flex flex-col">
+                            <strong>Formal Dress </strong>
+                            <p className="text-sm">Clothes</p>
+                          </div>
+                          <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
+                            ₹500.00
+                          </p>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                          <strong>Formal Dress </strong>
-                          <p className="text-sm">Clothes</p>
-                        </div>
-                        <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
-                          ₹500.00
-                        </p>
-                      </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
