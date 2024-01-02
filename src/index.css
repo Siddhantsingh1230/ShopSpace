@@ -584,3 +584,13 @@ html {
     margin-bottom: 7rem;
   }
 }
+
+.stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #606dbc,
+    #606dbc 10px,
+    #465298 10px,
+    #465298 20px
+  );
+}

@@ -81,18 +81,25 @@ const Settings = ({ setProgress }) => {
           <hr className="bg-gray-400" />
           {/* Setting body */}
           <div className="settingbody  w-full flex h-full ">
+            {/* Sidebar */}
             <div className="sidebar w-[15%] border-r-2 h-full flex flex-col items-center justify-between">
               <div className="w-full flex  flex-col items-center">
-                <div className="settingMenu  mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl flex w-[75%]   gap-5">
+                <div
+                  onClick={() => setAccountActive(true)}
+                  className="settingMenu  mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl flex w-[75%]   gap-5"
+                >
                   <i className="pl-5 ri-user-star-line text-xl font-bold"></i>
                   <h1 className="text-xl font-bold font-[Montserrat]">
                     Account
                   </h1>
                 </div>
-                <div className="settingMenu  mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl  flex w-[75%]  gap-5">
-                  <i className="pl-5 ri-user-star-line text-xl font-bold"></i>
+                <div
+                  onClick={() => setAccountActive(false)}
+                  className="settingMenu  mt-5 hover:bg-gray-100 transition-all cursor-pointer   py-2 rounded-xl  flex w-[75%]  gap-5"
+                >
+                  <i className="pl-5 ri-shield-flash-line text-xl font-bold"></i>
                   <h1 className="text-xl font-bold font-[Montserrat]">
-                    Profile
+                    Security
                   </h1>
                 </div>
               </div>
@@ -107,6 +114,7 @@ const Settings = ({ setProgress }) => {
                 <i className="absolute -rotate-45 -right-10 z-10 -top-14 text-9xl text-gray-200 opacity-45 ri-emphasis"></i>
               </div>
             </div>
+            {/* Content */}
             <div className="w-[85%] border-l  h-full">
               {accountActive ? (
                 <div className="account w-full h-full p-5">
@@ -221,7 +229,11 @@ const Settings = ({ setProgress }) => {
                   </button>
                 </div>
               ) : (
-                <div className="profile w-full h-full"></div>
+                <div className="profile w-full h-full flex justify-center items-center">
+                  <div className=" stripes bg-gray-100 rounded-md w-2/4 h-3/5 border flex justify-center items-center">
+                    <p className="text-sm  bg-blue-300 text-blue-700 rounded-lg px-3 py-3">The Feature is currently in Beta</p>
+                  </div>
+                </div>
               )}
             </div>
           </div>
