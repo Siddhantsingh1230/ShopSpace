@@ -136,7 +136,7 @@ const Checkout = ({ setProgress }) => {
             {/* Bread crumbs */}
 
             <nav className="flex " aria-label="Breadcrumb">
-              <ol className="inline-flex md:space-x-1  rtl:space-x-reverse text-sm md:text-xl">
+              <ol className="flex items-center md:space-x-1   rtl:space-x-reverse text-sm md:text-xl">
                 <li className="inline-flex ">
                   <Link
                     to="/"
@@ -154,6 +154,29 @@ const Checkout = ({ setProgress }) => {
                     </svg>
                     Home
                   </Link>
+                </li>
+                <li>
+                  <Link to="/cart">
+                  <div className="flex items-center">
+                    <svg
+                      className="rtl:rotate-180 w-3 h-3 text-gray-800 mx-1"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 6 10"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 9 4-4-4-4"
+                      />
+                    </svg>
+                    <span className="ms-1 font-bold text-gray-800 md:ms-2 hover:text-blue-600 hover:underline">
+                      Cart
+                    </span>
+                  </div></Link>
                 </li>
                 <li>
                   <div className="flex items-center">
