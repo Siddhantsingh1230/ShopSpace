@@ -128,6 +128,7 @@ const Settings = ({ setProgress }) => {
                 {accountActive ? (
                   <div className="account w-full h-full p-5">
                     <h1 className="text-3xl font-bold">Account</h1>
+                    {/* All Account Setting goes here */}
                     <div className="w-full flex gap-16 items-start max-sm:flex-col max-sm:gap-5">
                       <div className="flex gap-5 flex-col mt-10 justify-center">
                         <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
@@ -218,6 +219,7 @@ const Settings = ({ setProgress }) => {
                         </div>
                       </div>
                     </div>
+                    {/* Buttons */}
                     <div className="w-full flex mt-5 justify-between">
                       <motion.div
                         whileHover={{ scale: 1.015 }}
