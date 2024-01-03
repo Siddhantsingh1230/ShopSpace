@@ -1,12 +1,10 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import ImageLogin from "../assets/images/loginImg.jpg";
 import Bg from "../assets/images/loginBg.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
-
-const Login = ({setProgress}) => {
-  
+const Login = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
     // callback function to call when event triggers
@@ -25,7 +23,6 @@ const Login = ({setProgress}) => {
       };
     }
   }, []);
-  const handleRegistration = (data) => console.log(data);
   const [eyeClass, setEyeClass] = useState("ri-eye-off-line");
   const [passType, setPassType] = useState("password");
   const [email, setEmail] = useState();
@@ -42,6 +39,14 @@ const Login = ({setProgress}) => {
       setEyeClass("ri-eye-line");
       setPassType("text");
     }
+  };
+  const handleRegistration = (data) => {
+    const { email, password } = data;
+    const sanitizedObject = {
+      email: email.trim(),
+      password,
+    };
+    console.log(sanitizedObject);
   };
   const {
     register,
@@ -65,7 +70,7 @@ const Login = ({setProgress}) => {
 
         {/* content div  */}
         <div className="flex w-full p-8 sm:w-1/2 items-center justify-center sm:p-32">
-          <form onSubmit={handleSubmit(handleRegistration)} >
+          <form onSubmit={handleSubmit(handleRegistration)}>
             <h1 className="text-2xl xl:text-5xl font-bold text-purple-600 text-center">
               Space Shop
             </h1>
@@ -92,7 +97,7 @@ const Login = ({setProgress}) => {
                 Email
               </label>
               <input
-              autoComplete="email"
+                autoComplete="email"
                 type="email"
                 id="UserEmail"
                 placeholder="Email"
@@ -124,7 +129,7 @@ const Login = ({setProgress}) => {
                 Password{" "}
               </label>
               <input
-              autoComplete="password"
+                autoComplete="password"
                 type={passType}
                 id="password"
                 placeholder="Password"
@@ -145,11 +150,12 @@ const Login = ({setProgress}) => {
                 className="w-full pr-9 rounded-md bg-transparent border-2 border-purple-800 p-2 shadow-sm  sm:text-sm"
               />
               <span className=" absolute inset-y-0 end-0 grid w-10 place-content-center text-gray-300">
-              <i
+                <i
                   className={eyeClass}
                   onClick={() => {
                     togglePass();
-                  }}></i>
+                  }}
+                ></i>
               </span>
             </div>
             {errors.password && (
@@ -162,22 +168,29 @@ const Login = ({setProgress}) => {
             </button>
 
             <p className="mt-6 text-xs text-gray-600 text-center">
-                    I agree to abide by SpaceShop's{" "}
-                    <a href="/" className="text-purple-800 hover:text-white font-bold">
-                      Terms of Service{" "}
-                    </a>
-                    and its{" "}
-                    <a href="/" className="text-purple-800 hover:text-white font-bold">
-                      Privacy Policy
-                    </a>
-                  </p>
-                  <p className="mt-6 text-xs text-gray-600 text-center">
-                   
-                    <a href="/" className="w-full text-black-500 rounded-md p-2 text-purple-800 hover:text-white font-bold">
-                      Forgot Password ?
-                    </a>
-                    
-                  </p>
+              I agree to abide by SpaceShop's{" "}
+              <a
+                href="/"
+                className="text-purple-800 hover:text-white font-bold"
+              >
+                Terms of Service{" "}
+              </a>
+              and its{" "}
+              <a
+                href="/"
+                className="text-purple-800 hover:text-white font-bold"
+              >
+                Privacy Policy
+              </a>
+            </p>
+            <p className="mt-6 text-xs text-gray-600 text-center">
+              <a
+                href="/"
+                className="w-full text-black-500 rounded-md p-2 text-purple-800 hover:text-white font-bold"
+              >
+                Forgot Password ?
+              </a>
+            </p>
           </form>
         </div>
       </div>

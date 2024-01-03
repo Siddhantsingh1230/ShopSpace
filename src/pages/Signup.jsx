@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import ImageLogin from "../assets/images/signuppage.jpg";
 import Bg from "../assets/images/loginBg.jpg";
 import { useForm } from "react-hook-form";
+import { signup } from "../api/auth.js";
+import Toasts from "../app/Toasts.js";
 
-const Signup = ({setProgress}) => {
-
+const Signup = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
     // callback function to call when event triggers
@@ -24,11 +25,10 @@ const Signup = ({setProgress}) => {
     }
   }, []);
 
-  const [name, setName] = useState();
-  const [phoneno, setPhoneno] = useState();
+  const [userName, setUserName] = useState();
+  const [mobileNo, setMobileNo] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const handleRegistration = (data) => console.log(data);
   const [eyeClass, setEyeClass] = useState("ri-eye-off-line");
   const [passType, setPassType] = useState("password");
   const togglePass = () => {
@@ -39,6 +39,17 @@ const Signup = ({setProgress}) => {
       setEyeClass("ri-eye-line");
       setPassType("text");
     }
+  };
+  // Send Data to Server (Backend)
+  const handleRegistration = async (formData) => {
+    const { name, mobileno, email, password, username } = formData;
+    const sanitizedObject = {
+      username: name.trim(),
+      mobileNo: parseInt(mobileno),
+      email: email.trim(),
+      password,
+    };
+    console.log(sanitizedObject);
   };
 
   const {
@@ -76,9 +87,9 @@ const Signup = ({setProgress}) => {
                 type="text"
                 id="name"
                 placeholder="username"
-                value={name}
+                value={userName}
                 onChange={(e) => {
-                  setName(e.target.value);
+                  setUserName(e.target.value.trim());
                 }}
                 {...register("name", {
                   required: "Enter Username",
@@ -106,9 +117,9 @@ const Signup = ({setProgress}) => {
                 type="tel"
                 id="mobileno"
                 placeholder="Mobile no."
-                value={phoneno}
+                value={mobileNo}
                 onChange={(e) => {
-                  setPhoneno(e.target.value);
+                  setMobileNo(e.target.value.trim());
                 }}
                 {...register("mobileno", {
                   required: "Enter Phone No.",
@@ -139,7 +150,7 @@ const Signup = ({setProgress}) => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value);
+                  setEmail(e.target.value.trim());
                 }}
                 {...register("email", {
                   required: "Enter email",

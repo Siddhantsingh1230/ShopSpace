@@ -16,6 +16,7 @@ import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
 import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
 import LoadingBar from "react-top-loading-bar"; // For Top Loading Bar
 import { ToastContainer } from "react-toastify"; // For Toasts
+import 'react-toastify/dist/ReactToastify.css';
 import { AnimatePresence } from "framer-motion";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
@@ -53,7 +54,8 @@ const App = () => {
             path="/products"
             exact
             element={<Products setProgress={setProgress} />}
-          /><Route
+          />
+          <Route
             path="/settings"
             exact
             element={<Settings setProgress={setProgress} />}
@@ -97,7 +99,18 @@ const App = () => {
         component={<ScrollUpBtn />}
       />
       {/* Toast container to manage all toasts it act as parent container for toast calls */}
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
 
       {/* Top Loading bar component */}
       <LoadingBar
