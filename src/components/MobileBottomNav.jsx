@@ -141,6 +141,8 @@ const MobileBottomNav = () => {
       ],
     },
   ];
+
+  const user = false;
   return (
     <>
       <div className="z-10 bg-white fixed bottom-0 w-full flex flex-1 left-2/4 -translate-x-2/4  justify-around items-center md:hidden bottom_mobile_nav">
@@ -174,11 +176,13 @@ const MobileBottomNav = () => {
           <i className=" ri-home-5-line"></i>
         </button>
         <button
-        onClick={() => {
-          if (pathname != "/wishlist") {
-            navigate("/wishlist");
-          }
-        }} className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md">
+          onClick={() => {
+            if (pathname != "/wishlist") {
+              navigate("/wishlist");
+            }
+          }}
+          className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
+        >
           <i className=" ri-heart-3-line"></i>
           <span className="bg-red-400 absolute -top-0 right-0 text-white text-xs px-[5px] py-[2px] rounded-xl">
             5
@@ -210,6 +214,17 @@ const MobileBottomNav = () => {
             ></i>
           </div>
           <hr className="bg=[#787878] my-3" />
+          <div
+            onClick={() => {
+              if (!user) {
+                navigate("/login");
+              }
+              toggleMenuDrawer();
+            }}
+            className="flex items-center my-3 "
+          >
+            <p className="">{user ? "Astro" : "Login"}</p>
+          </div>
           <h1
             onClick={() => {
               if (pathname != "/products") {

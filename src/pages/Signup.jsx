@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import ImageLogin from "../assets/images/signuppage.jpg";
 import Bg from "../assets/images/loginBg.jpg";
 import { useForm } from "react-hook-form";
-import { signup } from "../api/auth.js";
-import Toasts from "../app/Toasts.js";
+import { motion } from "framer-motion";
+// Page Transition variant import
+import { pageTransitionVariant } from "../constants/Transition";
+import { Link } from "react-router-dom";
 
 const Signup = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -59,7 +61,11 @@ const Signup = ({ setProgress }) => {
   } = useForm();
 
   return (
-    <div
+    <motion.div
+    variants={pageTransitionVariant}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className="w-full h-full p-4 sm:p-16 lg:px-52  relative "
       style={{ backgroundImage: `url(${Bg})` }}
     >
@@ -216,12 +222,12 @@ const Signup = ({ setProgress }) => {
 
             <p className="mt-6 text-xs text-gray-600 text-center">
               Already have an acoount ?
-              <a
-                href="/login"
+              <Link
+                to="/login"
                 className="w-full text-black-500 rounded-md p-2 text-purple-800 hover:text-white font-bold"
               >
                 LogIn
-              </a>
+              </Link>
             </p>
             <p className="mt-4 text-xs text-gray-600 text-center">
               I agree to abide by SpaceShop's{" "}
@@ -251,7 +257,7 @@ const Signup = ({ setProgress }) => {
           border: "1px solid transparent",
         }}
       /> */}
-    </div>
+    </motion.div>
   );
 };
 

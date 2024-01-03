@@ -61,7 +61,6 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
 
-
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
@@ -156,6 +155,8 @@ const Home = ({ setProgress }) => {
       ],
     },
   ];
+
+  const user = false;
 
   return (
     <>
@@ -263,6 +264,24 @@ const Home = ({ setProgress }) => {
               <span className="badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
                 <b>2</b>
               </span>
+            </div>
+            <div
+              onClick={() => {
+                if (!user) {
+                  navigate("/login");
+                }
+              }}
+              className="cursor-pointer flex justify-center items-center rounded-full h-9 w-9 bg-gray-200 overflow-hidden"
+            >
+              {user ? (
+                <img
+                  className="h-full ww-full object-cover"
+                  src={winterwear}
+                  alt=""
+                />
+              ) : (
+                <i className="ri-user-line"></i>
+              )}
             </div>
           </div>
         </div>
@@ -1662,8 +1681,6 @@ const Home = ({ setProgress }) => {
       {/* Mobile Viewport Components */}
       {/* bottom_fixed_toolbar */}
       <MobileBottomNav />
-
-      
     </>
   );
 };

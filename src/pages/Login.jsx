@@ -3,6 +3,9 @@ import ImageLogin from "../assets/images/loginImg.jpg";
 import Bg from "../assets/images/loginBg.jpg";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+// Page Transition variant import
+import { pageTransitionVariant } from "../constants/Transition";
 
 const Login = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -54,7 +57,11 @@ const Login = ({ setProgress }) => {
     formState: { errors },
   } = useForm();
   return (
-    <div
+    <motion.div
+      variants={pageTransitionVariant}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
       className="w-full h-full p-4 sm:p-16 lg:px-52  relative "
       style={{ backgroundImage: `url(${Bg})` }}
     >
@@ -203,7 +210,7 @@ const Login = ({ setProgress }) => {
           border: "1px solid transparent",
         }}
       /> */}
-    </div>
+    </motion.div>
   );
 };
 
