@@ -60,6 +60,7 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
+import { useSelector } from "react-redux";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -156,7 +157,7 @@ const Home = ({ setProgress }) => {
     },
   ];
 
-  const user = false;
+  const user = useSelector((state) => state.auth.user);
 
   return (
     <>
@@ -276,7 +277,7 @@ const Home = ({ setProgress }) => {
               {user ? (
                 <img
                   className="h-full ww-full object-cover"
-                  src={winterwear}
+                  src={user.profileImageURL}
                   alt=""
                 />
               ) : (

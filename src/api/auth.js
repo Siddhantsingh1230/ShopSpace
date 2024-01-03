@@ -7,7 +7,9 @@ export const signup = async (userData) => {
       ...userData,
     }
   );
-  return data;
+  if (data) {
+    return data;
+  }
 };
 
 export const login = async (userData) => {

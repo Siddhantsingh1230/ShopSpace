@@ -5,6 +5,7 @@ import Drawer from "react-modern-drawer";
 import Accordian from "./Accordian";
 import Stars from "./Stars";
 import MenuAccordian from "./MenuAccordian";
+import { useSelector } from "react-redux";
 
 //Images
 import hatcaps from "../assets/images/hatcaps.svg";
@@ -142,7 +143,7 @@ const MobileBottomNav = () => {
     },
   ];
 
-  const user = false;
+  const user = useSelector((state) => state.auth.user);
   return (
     <>
       <div className="z-10 bg-white fixed bottom-0 w-full flex flex-1 left-2/4 -translate-x-2/4  justify-around items-center md:hidden bottom_mobile_nav">
@@ -223,7 +224,7 @@ const MobileBottomNav = () => {
             }}
             className="flex items-center my-3 "
           >
-            <p className="">{user ? "Astro" : "Login"}</p>
+            <p className="">{user ? (user.username).toUpperCase() : "Login"}</p>
           </div>
           <h1
             onClick={() => {
