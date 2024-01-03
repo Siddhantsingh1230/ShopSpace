@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Drawer from "react-modern-drawer";
 import MobileBottomNav from "../components/MobileBottomNav";
+import { useSelector } from "react-redux";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -33,7 +34,7 @@ const Settings = ({ setProgress }) => {
   }, []);
 
   // settings requires user to login to access this page
-  const user = true;
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const [accountActive, setAccountActive] = useState(true);
   const [openDeleteDrawer, setOpenDeleteDrawer] = useState(false);
@@ -71,13 +72,15 @@ const Settings = ({ setProgress }) => {
                     onClick={() => navigate("/")}
                     className="max-sm:hidden ri-home-5-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"
                   ></i>
-                  <span className="max-sm:hidden text-gray-200 text-2xl">|</span>
+                  <span className="max-sm:hidden text-gray-200 text-2xl">
+                    |
+                  </span>
                   <i className="max-sm:hidden ri-question-line text-2xl text-gray-500  hover:text-gray-600 cursor-pointer hover:scale-110 transition-all"></i>
                   <i className="ri-logout-box-r-line text-2xl  text-gray-500  hover:text-red-400 cursor-pointer hover:scale-110 transition-all"></i>
                   <div className="bg-blue-300 rounded-full h-9 w-9 overflow-hidden ml-5 max-sm:ml-0">
                     <img
                       className="w-full h-full object-cover"
-                      src={userImage}
+                      src={user.profileImageURL}
                       alt="user"
                     />
                   </div>
@@ -139,9 +142,10 @@ const Settings = ({ setProgress }) => {
                             Email Address
                           </label>
                           <input
-                            className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                            className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="email"
+                            defaultValue={user.email}
                             placeholder="Enter email"
                           />
                         </div>
@@ -153,9 +157,10 @@ const Settings = ({ setProgress }) => {
                             Username
                           </label>
                           <input
-                            className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                            className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
                             type="text"
                             id="username"
+                            defaultValue={user.username}
                             placeholder="Enter  username"
                           />
                         </div>
@@ -270,8 +275,8 @@ const Settings = ({ setProgress }) => {
                   Are you sure you want to delete your account permanently?
                 </h1>
                 <p className="text-xs text-gray-400">
-                  Press "Delete" to remove it permanently or "Cancel" if
-                  you want to keep your benefits.
+                  Press "Delete" to remove it permanently or "Cancel" if you
+                  want to keep your benefits.
                 </p>
                 <div className="flex w-full mt-5 justify-between">
                   <button
@@ -290,7 +295,7 @@ const Settings = ({ setProgress }) => {
               </div>
             </div>
           </Drawer>
-          <MobileBottomNav/>
+          <MobileBottomNav />
         </>
       ) : (
         navigate("/")
