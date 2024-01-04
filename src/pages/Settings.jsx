@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { useSelector, useDispatch } from "react-redux";
 import DeleteModal from "../components/DeleteModal";
-import { logoutAsync } from "../slices/authSlice.js";
+import { deleteUserAsync, logoutAsync } from "../slices/authSlice.js";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -40,7 +40,8 @@ const Settings = ({ setProgress }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const deleteUser = () => {
-    console.log("user deleted"); // dummy fx to delete user
+    // console.log("user deleted"); // dummy fx to delete user
+    dispatch(deleteUserAsync(user._id));
   };
   const dispatch = useDispatch();
 

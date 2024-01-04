@@ -43,3 +43,19 @@ export const getUser = async () => {
   );
   return data;
 };
+
+export const updateUser = async (userid) => {
+  const { data } = await axios.put(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/update/"+userid,
+    options
+  );
+  return data;
+};
+
+export const deleteUser = async (userid) => {
+  const { data } = await axios.delete(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/delete/"+userid,
+    options
+  );
+  return data;
+};

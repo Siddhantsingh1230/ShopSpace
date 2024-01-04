@@ -4,7 +4,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Toasts from "../app/Toasts.js";
 
 // Adding All Auth related APIs
-import { signup, login, logout, getUser } from "../api/auth.js";
+import {
+  signup,
+  login,
+  logout,
+  getUser,
+  deleteUser,
+  updateUser,
+} from "../api/auth.js";
 
 const initialState = {
   user: null,
@@ -49,6 +56,20 @@ export const logoutAsync = createAsyncThunk("auth/logout", async () => {
   const data = await logout();
   return data;
 });
+export const updateUserAsync = createAsyncThunk(
+  "auth/update",
+  async (userid) => {
+    const data = await updateUser(userid);
+    return data;
+  }
+);
+export const deleteUserAsync = createAsyncThunk(
+  "auth/delete",
+  async (userid) => {
+    const data = await deleteUser(userid);
+    return data;
+  }
+);
 
 export const authSlice = createSlice({
   name: "auth",
@@ -72,7 +93,7 @@ export const authSlice = createSlice({
         state.status = "idle";
         if (action.payload.response) {
           Toasts("error", action.payload.response.data.message);
-        }else{
+        } else {
           // Toasts("error","Network Error");// no need to show toast here
         }
       })
@@ -89,7 +110,7 @@ export const authSlice = createSlice({
         state.user = null;
         if (action.payload.response) {
           Toasts("error", action.payload.response.data.message);
-        }else{
+        } else {
           // Toasts("error","Network Error");// no need to show toast here
         }
       })
@@ -107,7 +128,7 @@ export const authSlice = createSlice({
         // Toasts("error", action.payload.response.data.message);
         if (action.payload.response) {
           console.log(action.payload.response.data.message);
-        }else{
+        } else {
           // Toasts("error","Network Error");// no need to show toast here
         }
       })
@@ -118,6 +139,40 @@ export const authSlice = createSlice({
         state.status = "idle";
         state.user = null;
         Toasts("success", action.payload.message);
+      })
+      .addCase(updateUserAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateUserAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.user = action.payload.user;
+        Toasts("success", action.payload.message);
+      })
+      .addCase(updateUserAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response) {
+          Toasts("error", action.payload.response.data.message);
+          // console.log(action.payload.response.data.message);
+        } else {
+          Toasts("error", "Network Error"); // no need to show toast here
+        }
+      })
+      .addCase(deleteUserAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(deleteUserAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.user = null;
+        Toasts("success", action.payload.message);
+      })
+      .addCase(deleteUserAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response) {
+          Toasts("error", action.payload.response.data.message);
+          // console.log(action.payload.response.data.message);
+        } else {
+          Toasts("error", "Network Error"); // no need to show toast here
+        }
       });
   },
 });
