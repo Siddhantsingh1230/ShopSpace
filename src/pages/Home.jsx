@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 // Images
@@ -54,13 +54,17 @@ import CountDownTimer from "../components/CountDownTimer";
 import Ribbon from "../components/Ribbon";
 import Footer from "../components/Footer";
 import Accordian from "../components/Accordian";
+import Modal from "../components/Model";
 
 import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+//actions
+import { getUserAsync } from "../slices/authSlice";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -158,6 +162,15 @@ const Home = ({ setProgress }) => {
   ];
 
   const user = useSelector((state) => state.auth.user);
+  // dispatching getuser to get if user is already signed in or not
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAsync());
+  }, []);
+
+  // opening a modal if user is not logged in
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <>
@@ -243,13 +256,25 @@ const Home = ({ setProgress }) => {
           </div>
           <div className="icons flex justify-center items-center gap-5 max-sm:hidden">
             <div
-              onClick={() => navigate("/settings")}
+              onClick={() => {
+                if (user) {
+                  navigate("/settings");
+                } else {
+                  setOpenModal(true);
+                }
+              }}
               className="cursor-pointer flex justify-center items-center relative"
             >
               <i className="text-4xl ri-settings-4-line"></i>
             </div>
             <div
-              onClick={() => navigate("/wishlist")}
+              onClick={() => {
+                if (user) {
+                  navigate("/wishlist");
+                } else {
+                  setOpenModal(true);
+                }
+              }}
               className="cursor-pointer flex justify-center items-center relative "
             >
               <i className="text-4xl ri-heart-3-line "></i>
@@ -258,7 +283,13 @@ const Home = ({ setProgress }) => {
               </span>
             </div>
             <div
-              onClick={() => navigate("/cart")}
+              onClick={() => {
+                if (user) {
+                  navigate("/cart");
+                } else {
+                  setOpenModal(true);
+                }
+              }}
               className="cursor-pointer flex justify-center items-center relative"
             >
               <i className="text-4xl ri-shopping-bag-line"></i>
@@ -1682,6 +1713,8 @@ const Home = ({ setProgress }) => {
       {/* Mobile Viewport Components */}
       {/* bottom_fixed_toolbar */}
       <MobileBottomNav />
+      {/* Modal control if user is not logged in */}
+      <Modal open={openModal} setOpen={setOpenModal} />
     </>
   );
 };

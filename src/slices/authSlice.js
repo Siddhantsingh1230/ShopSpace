@@ -4,7 +4,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Toasts from "../app/Toasts.js";
 
 // Adding All Auth related APIs
-import { signup, login, logout } from "../api/auth.js";
+import { signup, login, logout, getUser } from "../api/auth.js";
 
 const initialState = {
   user: null,
@@ -34,7 +34,18 @@ export const loginAsync = createAsyncThunk(
     }
   }
 );
-export const logoutAsync = createAsyncThunk("auth/logout", async (userId) => {
+export const getUserAsync = createAsyncThunk(
+  "auth/getUser",
+  async (_, thunkAPI) => {
+    try {
+      const data = await getUser();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const logoutAsync = createAsyncThunk("auth/logout", async () => {
   const data = await logout();
   return data;
 });
@@ -74,12 +85,27 @@ export const authSlice = createSlice({
         state.user = null;
         Toasts("error", action.payload.response.data.message);
       })
+      .addCase(getUserAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getUserAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.user = action.payload.user;
+        // Toasts("success", action.payload.message);
+      })
+      .addCase(getUserAsync.rejected, (state, action) => {
+        state.status = "idle";
+        state.user = null;
+        // Toasts("error", action.payload.response.data.message);
+        console.log(action.payload.response.data.message);
+      })
       .addCase(logoutAsync.pending, (state) => {
         state.status = "loading";
       })
       .addCase(logoutAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.user = null;
+        Toasts("success", action.payload.message);
       });
   },
 });

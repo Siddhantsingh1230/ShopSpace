@@ -6,6 +6,7 @@ import Accordian from "./Accordian";
 import Stars from "./Stars";
 import MenuAccordian from "./MenuAccordian";
 import { useSelector } from "react-redux";
+import Modal from "../components/Model";
 
 //Images
 import hatcaps from "../assets/images/hatcaps.svg";
@@ -144,6 +145,10 @@ const MobileBottomNav = () => {
   ];
 
   const user = useSelector((state) => state.auth.user);
+
+  // opening a modal id user is not logged in
+  const [openModal, setOpenModal] = useState(false);
+
   return (
     <>
       <div className="z-10 bg-white fixed bottom-0 w-full flex flex-1 left-2/4 -translate-x-2/4  justify-around items-center md:hidden bottom_mobile_nav">
@@ -155,8 +160,10 @@ const MobileBottomNav = () => {
         </button>
         <button
           onClick={() => {
-            if (pathname != "/cart") {
+            if (pathname != "/cart" && user) {
               navigate("/cart");
+            }else{
+              setOpenModal(true);
             }
           }}
           className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
@@ -178,8 +185,10 @@ const MobileBottomNav = () => {
         </button>
         <button
           onClick={() => {
-            if (pathname != "/wishlist") {
+            if (pathname != "/wishlist" && user) {
               navigate("/wishlist");
+            }else{
+              setOpenModal(true);
             }
           }}
           className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
@@ -240,10 +249,12 @@ const MobileBottomNav = () => {
           <MenuAccordian data={MenuAccordianData} />
           <h1
             onClick={() => {
-              if (pathname != "/orders") {
-                toggleMenuDrawer();
+              if (pathname != "/orders" && user) {
                 navigate("/orders");
+              }else{
+                setOpenModal(true);
               }
+              toggleMenuDrawer();
             }}
             className=" my-3"
           >
@@ -251,10 +262,12 @@ const MobileBottomNav = () => {
           </h1>
           <h1
             onClick={() => {
-              if (pathname != "/settings") {
-                toggleMenuDrawer();
+              if (pathname != "/settings" && user) {
                 navigate("/settings");
+              }else{
+                setOpenModal(true);
               }
+              toggleMenuDrawer();
             }}
             className=" my-3"
           >
@@ -404,6 +417,8 @@ const MobileBottomNav = () => {
           </div>
         </div>
       </Drawer>
+      {/* Modal control if user is not logged in */}
+      <Modal open={openModal} setOpen={setOpenModal} />
     </>
   );
 };
