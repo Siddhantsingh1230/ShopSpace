@@ -73,22 +73,23 @@ const ProductDetails = ({ setProgress }) => {
   const [openModal, setOpenModal] = useState(false);
 
   const product = {
-    id: 1,
-    title: "iPhone 9",
-    description: "An apple mobile which is nothing like apple",
-    price: 549,
-    discountPercentage: 12.96,
-    rating: 4.69,
-    stock: 94,
-    brand: "Apple",
-    category: "smartphones",
-    thumbnail: "https://i.dummyjson.com/data/products/89/thumbnail.jpg",
+    id: 96,
+    title: "lighting ceiling kitchen",
+    description:
+      "Wholesale slim hanging decorative kid room lighting ceiling kitchen chandeliers pendant light modern",
+    price: 30,
+    discountPercentage: 14.89,
+    rating: 4.83,
+    stock: 96,
+    brand: "lightingbrilliance",
+    category: "lighting",
+    thumbnail: "https://i.dummyjson.com/data/products/96/thumbnail.jpg",
     images: [
-      "https://i.dummyjson.com/data/products/76/1.jpg",
-      "https://i.dummyjson.com/data/products/76/2.jpg",
-      "https://i.dummyjson.com/data/products/76/3.jpg",
-      "https://i.dummyjson.com/data/products/76/4.jpg",
-      "https://i.dummyjson.com/data/products/76/thumbnail.jpg",
+      "https://i.dummyjson.com/data/products/96/1.jpg",
+      "https://i.dummyjson.com/data/products/96/2.jpg",
+      "https://i.dummyjson.com/data/products/96/3.jpg",
+      "https://i.dummyjson.com/data/products/96/4.jpg",
+      "https://i.dummyjson.com/data/products/96/thumbnail.jpg",
     ],
   };
   const createReview = (e) => {
@@ -193,7 +194,7 @@ const ProductDetails = ({ setProgress }) => {
                         />
                       </svg>
                       <span className="ms-1 font-bold hover:text-blue-600 md:ms-2 dark:text-gray-800">
-                        {product.title}
+                        {product.title.split(' ')[0]}
                       </span>
                     </div>
                   </li>
@@ -201,23 +202,23 @@ const ProductDetails = ({ setProgress }) => {
               </nav>
               {/* new image display design */}
 
-              <div className="flex flex-col w-full md:flex-row-reverse pt-8 xl:px-40 md:h-[550px] gap-4 pb-6 ">
-                <div className="flex w-full p-6 rounded-md items-center max-sm:h-[275px]">
+              <div className="flex flex-col w-full md:flex-row-reverse pt-8 xl:px-40 md:h-[550px] gap-4 pb-6 justify-center ">
+                <div className="flex w-full h-[485px] max-sm:p-1 rounded-md items-center justify-center max-sm:h-full">
                   <img
                     id="displayImage"
                     src={images[0]}
                     alt={product.title}
-                    className=" w-full rounded-md object-scale-down md:max-h-[500px]"
+                    className=" w-full max-sm:h-64 rounded-md object-cover md:max-h-full"
                   />
                 </div>
 
-                <div className="flex md:flex-col justify-between w-full max-sm:h-[72px] mt-3 sm:mt-0 md:w-64 overflow-scroll">
+                <div className="grid grid-cols-5 sm:flex sm:flex-col  md:grid-cols-5 md:max-h-full justify-between w-full  max-sm:h-[72px] md:w-64 sm:overflow-scroll">
                   {images.map((image) => (
                     <img
                       key={image}
                       src={image}
                       alt="image"
-                      className=" w-full sm:h-32 object-scale-down object-center rounded-md hover:border-2 hover:border-gray-600 p-1 cursor-pointer"
+                      className=" w-full h-20 sm:h-32 object-cover object-center rounded-lg hover:border-2 hover:border-gray-600 p-1 cursor-pointer"
                       onClick={() => {
                         document.getElementById("displayImage").src = image;
                       }}
