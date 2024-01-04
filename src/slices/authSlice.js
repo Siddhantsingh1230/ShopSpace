@@ -70,7 +70,11 @@ export const authSlice = createSlice({
       })
       .addCase(signupAsync.rejected, (state, action) => {
         state.status = "idle";
-        Toasts("error", action.payload.response.data.message);
+        if (action.payload.response) {
+          Toasts("error", action.payload.response.data.message);
+        }else{
+          // Toasts("error","Network Error");// no need to show toast here
+        }
       })
       .addCase(loginAsync.pending, (state) => {
         state.status = "loading";
@@ -83,7 +87,11 @@ export const authSlice = createSlice({
       .addCase(loginAsync.rejected, (state, action) => {
         state.status = "idle";
         state.user = null;
-        Toasts("error", action.payload.response.data.message);
+        if (action.payload.response) {
+          Toasts("error", action.payload.response.data.message);
+        }else{
+          // Toasts("error","Network Error");// no need to show toast here
+        }
       })
       .addCase(getUserAsync.pending, (state) => {
         state.status = "loading";
@@ -97,7 +105,11 @@ export const authSlice = createSlice({
         state.status = "idle";
         state.user = null;
         // Toasts("error", action.payload.response.data.message);
-        console.log(action.payload.response.data.message);
+        if (action.payload.response) {
+          console.log(action.payload.response.data.message);
+        }else{
+          // Toasts("error","Network Error");// no need to show toast here
+        }
       })
       .addCase(logoutAsync.pending, (state) => {
         state.status = "loading";
