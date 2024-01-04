@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import MobileBottomNav from "../components/MobileBottomNav";
 import Stars from "../components/Stars";
+import { useSelector } from "react-redux";
+import Modal from "../components/Model";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -66,7 +68,10 @@ const ProductDetails = ({ setProgress }) => {
 
   const [reviewText, setReviewText] = useState("");
 
-  const user = true;
+  const user = useSelector((state) => state.auth.user);
+  // opening a modal if user is not logged in
+  const [openModal, setOpenModal] = useState(false);
+
   const product = {
     id: 1,
     title: "iPhone 9",
@@ -85,7 +90,6 @@ const ProductDetails = ({ setProgress }) => {
       "https://i.dummyjson.com/data/products/76/4.jpg",
       "https://i.dummyjson.com/data/products/76/thumbnail.jpg",
     ],
-    
   };
   const createReview = (e) => {
     if (user) {
@@ -109,7 +113,8 @@ const ProductDetails = ({ setProgress }) => {
         // Give toast here  on successfull review add
       }
     } else {
-      //  opne modals here if no user is logged in
+      //  open modals here if no user is logged in
+      setOpenModal(true);
     }
   };
 
@@ -207,22 +212,17 @@ const ProductDetails = ({ setProgress }) => {
                 </div>
 
                 <div className="flex md:flex-col justify-between w-full max-sm:h-[72px] mt-3 sm:mt-0 md:w-64 overflow-scroll">
-                  
-                  {
-                     images.map((image )=> (
-                      <img
+                  {images.map((image) => (
+                    <img
                       key={image}
                       src={image}
                       alt="image"
                       className=" w-full sm:h-32 object-scale-down object-center rounded-md hover:border-2 hover:border-gray-600 p-1 cursor-pointer"
-                      onClick={()=> {
-                        document.getElementById("displayImage").src = image
+                      onClick={() => {
+                        document.getElementById("displayImage").src = image;
                       }}
-                      />
-                     )
-                     )
-                  }
-                  
+                    />
+                  ))}
                 </div>
               </div>
 
@@ -372,9 +372,11 @@ const ProductDetails = ({ setProgress }) => {
 
                     <button
                       type="submit"
-                      //   onClick={(e) => {
-                      //     addToCart(e);
-                      //   }}
+                      onClick={(e) => {
+                        if (!user) {
+                          setOpenModal(true);
+                        }
+                      }}
                       className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                     >
                       Add to Cart
@@ -516,6 +518,8 @@ const ProductDetails = ({ setProgress }) => {
 
       {/*  Mobile Navbar */}
       <MobileBottomNav />
+      {/* Open modal if user is not logged in */}
+      <Modal open={openModal} setOpen={setOpenModal} />
     </>
   );
 };
