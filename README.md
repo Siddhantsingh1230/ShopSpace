@@ -60,3 +60,5 @@
 # Added Basic User APIs
 
 # Adding State Management
+
+## Added AuthSlices , States and APIs

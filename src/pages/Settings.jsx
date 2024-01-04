@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { useSelector, useDispatch } from "react-redux";
 import DeleteModal from "../components/DeleteModal";
-import { deleteUserAsync, logoutAsync } from "../slices/authSlice.js";
+import {
+  deleteUserAsync,
+  logoutAsync,
+  updateUserAsync,
+} from "../slices/authSlice.js";
+import { useForm } from "react-hook-form";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -51,14 +56,32 @@ const Settings = ({ setProgress }) => {
     }
   }, [user]);
 
+  const [passError, setPassError] = useState(false); //show error if password is not matched
+
+  // handling forminputs here
+  const handleUpdate = (data) => {
+    if (data.password === data.conf_password) {
+      setPassError(false);
+      let { password, mobileNo } = data;
+      dispatch(updateUserAsync({ id: user._id, data: { password, mobileNo } }));
+    } else {
+      setPassError(true);
+    }
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   return (
     <>
       <>
-        <motion.div
+        <motion.form
           variants={pageTransitionVariant}
           initial="hidden"
           animate="visible"
           exit="exit"
+          onSubmit={handleSubmit(handleUpdate)}
           className="settingsContainer w-full flex flex-col h-full "
         >
           {/* Navlink */}
@@ -185,11 +208,22 @@ const Settings = ({ setProgress }) => {
                         </label>
                         <input
                           className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
-                          type="text"
+                          type="password"
                           id="pass"
                           placeholder="Enter password"
+                          {...register("password", {
+                            required: "Enter password",
+                            pattern: {
+                              value:
+                                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                              message: `at least 8 characters
+                            - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
+                            - Can contain special characters`,
+                            },
+                          })}
                         />
                       </div>
+
                       <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                         <label
                           className="font-[Montserrat] text-gray-500"
@@ -199,9 +233,19 @@ const Settings = ({ setProgress }) => {
                         </label>
                         <input
                           className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
-                          type="text"
+                          type="password"
                           id="confPass"
                           placeholder="Confirm password"
+                          {...register("conf_password", {
+                            required: "Confirm password",
+                            pattern: {
+                              value:
+                                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                              message: `- at least 8 characters
+                            - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number
+                            - Can contain special characters`,
+                            },
+                          })}
                         />
                       </div>
                     </div>
@@ -215,12 +259,25 @@ const Settings = ({ setProgress }) => {
                         </label>
                         <input
                           className=" outline-none border-2 text-sm py-2 rounded-lg  px-5"
-                          type="text"
+                          type="number"
                           id="mobileNo"
                           defaultValue={user?.mobileNo}
                           placeholder="Enter  Mobile"
+                          {...register("mobileNo", {
+                            required: "Enter Phone No.",
+                            pattern: {
+                              value: /^\d{10}$/,
+                              message: "Enter valid Phone No.",
+                            },
+                          })}
                         />
                       </div>
+                      {errors.mobileNo && (
+                        <p className="inline-flex  items-center rounded-md  py-0 text-xs font-medium text-red-700 ">
+                          {errors.mobileNo.message}
+                        </p>
+                      )}
+
                       <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                         <label
                           className="font-[Montserrat] text-gray-500"
@@ -251,6 +308,25 @@ const Settings = ({ setProgress }) => {
                       </div>
                     </div>
                   </div>
+                  {/* Form Errros */}
+                  {(errors.password || errors.conf_password || passError) && (
+                    <p className="max-sm:mt-5 text-red-400">Errors</p>
+                  )}
+                  {errors.password && (
+                    <p className="flex  items-center rounded-md py-0 text-xs font-medium text-red-700 ">
+                      Password:{errors.password.message}
+                    </p>
+                  )}
+                  {errors.conf_password && (
+                    <p className="flex  items-center rounded-md py-0 text-xs font-medium text-red-700 ">
+                      Confirm Password:{errors.conf_password.message}
+                    </p>
+                  )}
+                  {passError && (
+                    <p className="flex  items-center rounded-md py-0 text-xs font-medium text-red-700 ">
+                      Password does not match
+                    </p>
+                  )}
                   {/* Buttons */}
                   <div className="w-full flex mt-5 justify-between">
                     <motion.div
@@ -258,7 +334,7 @@ const Settings = ({ setProgress }) => {
                       whileTap={{ scale: 0.99 }}
                       className="px-5 text-white font-bold font-[Montserrat] text-sm py-4 bg-green-400 cursor-pointer rounded-xl max-sm:rounded-md max-sm:text-xs max-sm:py-3 max-sm:px-3"
                     >
-                      <p>Save Changes</p>
+                      <button type="submit">Save Changes</button>
                     </motion.div>
                   </div>
                   <hr className="bg-gray-500 my-6" />
@@ -287,7 +363,7 @@ const Settings = ({ setProgress }) => {
               )}
             </div>
           </div>
-        </motion.div>
+        </motion.form>
         <MobileBottomNav />
       </>
 

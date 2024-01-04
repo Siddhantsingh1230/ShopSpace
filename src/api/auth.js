@@ -44,9 +44,11 @@ export const getUser = async () => {
   return data;
 };
 
-export const updateUser = async (userid) => {
+export const updateUser = async (updateObj) => {//this updateObj contains updated info and id too
   const { data } = await axios.put(
-    process.env.REACT_APP_SERVER_BASE_URL + "/v1/update/"+userid,
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/update/"+updateObj.id,{
+      ...updateObj.data
+    },
     options
   );
   return data;

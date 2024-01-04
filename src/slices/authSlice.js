@@ -58,8 +58,8 @@ export const logoutAsync = createAsyncThunk("auth/logout", async () => {
 });
 export const updateUserAsync = createAsyncThunk(
   "auth/update",
-  async (userid) => {
-    const data = await updateUser(userid);
+  async (updateObj) => {
+    const data = await updateUser(updateObj);
     return data;
   }
 );
@@ -111,7 +111,7 @@ export const authSlice = createSlice({
         if (action.payload.response) {
           Toasts("error", action.payload.response.data.message);
         } else {
-          // Toasts("error","Network Error");// no need to show toast here
+          Toasts("error","Network Error");// no need to show toast here
         }
       })
       .addCase(getUserAsync.pending, (state) => {
