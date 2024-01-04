@@ -448,13 +448,13 @@ html {
   background-size: cover;
 }
 .offer1 {
-  background-image: url("./assets/images/sale2.jpg");
+  background-image: url("./assets/images/sale2.png");
 }
 .offer2 {
   background-image: url("./assets/images/sale1.png");
 }
 .offer3 {
-  background-image: url("./assets/images/sale3.jpg");
+  background-image: url("./assets/images/sale3.png");
 }
 
 .newProductCard:hover .newProductCardOptions {
