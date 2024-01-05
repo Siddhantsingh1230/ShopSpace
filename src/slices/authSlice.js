@@ -92,7 +92,7 @@ export const authSlice = createSlice({
       .addCase(signupAsync.rejected, (state, action) => {
         state.status = "idle";
         if (action.payload.response && action.payload.code!="ERR_NETWORK") {
-          Toasts("error", action.payload.response.data.message);
+          Toasts("error", action.payload.response.data.message || "Error Occurred");
         } else {
           Toasts("error","Network Error");// no need to show toast here
         }
