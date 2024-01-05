@@ -94,7 +94,7 @@ export const authSlice = createSlice({
         if (action.payload.response) {
           Toasts("error", action.payload.response.data.message);
         } else {
-          // Toasts("error","Network Error");// no need to show toast here
+          Toasts("error","Network Error");// no need to show toast here
         }
       })
       .addCase(loginAsync.pending, (state) => {

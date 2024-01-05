@@ -99,12 +99,12 @@ const Login = ({ setProgress }) => {
               </h1>
               <div className="w-full flex-1 mt-8">
                 <div className="flex flex-col items-center">
-                  <button
+                  <p
                     className="w-full  font-bold shadow-sm rounded-md py-2  text-purple-800 flex items-center justify-center transition-all duration-300 ease-in-out  hover:bg-slate-700  hover:text-purple-400  focus:shadow-sm focus:shadow-outline"
                     onClick={navigateTosignup}
                   >
                     <span className="ml-4">Create Account</span>
-                  </button>
+                  </p>
                 </div>
 
                 <div className="flex items-center justify-center space-x-4 my-4">
