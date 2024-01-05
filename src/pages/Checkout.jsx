@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
+import { useSelector } from "react-redux";
 
 const Checkout = ({ setProgress }) => {
   useEffect(() => {
@@ -105,7 +106,7 @@ const Checkout = ({ setProgress }) => {
       userId: "2023-10-01T05:28:37.235Z",
     },
   ];
-  const user = true;
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
   const totalAmount = cart.reduce(
     (amount, item) => item.price * item.quantity + amount,
@@ -119,6 +120,12 @@ const Checkout = ({ setProgress }) => {
       unregister("cardno");
     }
   }, [paymentMethod]);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
   return (
     <>
       <motion.div

@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { motion } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
+import { useSelector } from "react-redux";
 
 const Orders = ({ setProgress }) => {
   useEffect(() => {
@@ -23,7 +24,7 @@ const Orders = ({ setProgress }) => {
       };
     }
   }, []);
-  const user = true;
+  const user = useSelector((state) => state.auth.user);
   const orders = [
     {
       id: 1,
@@ -176,6 +177,12 @@ const Orders = ({ setProgress }) => {
       status: "shipped",
     },
   ];
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
   return (
     <>
       <motion.section

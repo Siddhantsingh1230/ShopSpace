@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
+import { useSelector } from "react-redux";
 
 const Cart = ({ setProgress }) => {
   useEffect(() => {
@@ -97,7 +98,7 @@ const Cart = ({ setProgress }) => {
   useEffect(() => {
     setProducts(products);
   }, [products]);
-  const user = true;
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
 
   const totalAmount = products.reduce(
@@ -138,6 +139,11 @@ const Cart = ({ setProgress }) => {
       filteredProducts.filter((product) => product.id !== productId)
     );
   };
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
   return (
     <>
       {user ? (

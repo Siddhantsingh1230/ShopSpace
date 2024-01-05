@@ -7,6 +7,7 @@ import heart from "../assets/images/heart.gif";
 import heartSearch from "../assets/images/heart-search.gif";
 import womenmodel from "../assets/images/womenmodel.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Wishlist = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -33,8 +34,14 @@ const Wishlist = ({ setProgress }) => {
   // Product Data
 
   let [wishlist, setWishlist] = useState(new Array(11).fill(0));
-  const user = true;
+  const user = useSelector((state) => state.auth.user);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/");
+    }
+  }, [user]);
   return (
     <>
       {user ? (
