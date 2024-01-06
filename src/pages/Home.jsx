@@ -65,6 +65,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 //actions
 import { getUserAsync } from "../slices/authSlice";
+import { getAllCategoriesAsync } from "../slices/categorySlice";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -90,83 +91,86 @@ const Home = ({ setProgress }) => {
   const navigate = useNavigate();
 
   //  Sidebar Accordian Data of category
-  const AccrodianData = [
-    {
-      title: "Clothes",
-      src: DressFrock,
-      list: [
-        { title: "Shirt", price: 300 },
-        { title: "Shorts & Jeans", price: 60 },
-        { title: "Jacket", price: 50 },
-        { title: "Dress & Frock", price: 87 },
-      ],
-    },
-    {
-      title: "Footwear",
-      src: winterwear,
-      list: [
-        { title: "Sports", price: 300 },
-        { title: "Formal", price: 60 },
-        { title: "Casual", price: 50 },
-        { title: "Safety Shoes", price: 87 },
-      ],
-    },
-    {
-      title: "Jwellery",
-      src: watch,
-      list: [
-        { title: "Earrings", price: 300 },
-        { title: "Couple Rings", price: 60 },
-        { title: "Necklace", price: 50 },
-      ],
-    },
-    {
-      title: "Clothes",
-      src: glasses,
-      list: [
-        { title: "Shirt", price: 300 },
-        { title: "Shorts & Jeans", price: 60 },
-        { title: "Jacket", price: 50 },
-        { title: "Dress & Frock", price: 87 },
-      ],
-    },
-    {
-      title: "Footwear",
-      src: hatcaps,
-      list: [
-        { title: "Sports", price: 300 },
-        { title: "Formal", price: 60 },
-        { title: "Casual", price: 50 },
-        { title: "Safety Shoes", price: 87 },
-      ],
-    },
-    {
-      title: "Jwellery",
-      src: shorts,
-      list: [
-        { title: "Earrings", price: 300 },
-        { title: "Couple Rings", price: 60 },
-        { title: "Necklace", price: 50 },
-      ],
-    },
-    {
-      title: "Footwear",
-      src: tshirts,
-      list: [
-        { title: "Sports", price: 300 },
-        { title: "Formal", price: 60 },
-        { title: "Casual", price: 50 },
-        { title: "Safety Shoes", price: 87 },
-      ],
-    },
-  ];
+  // const AccrodianData = [
+  //   {
+  //     title: "Clothes",
+  //     src: DressFrock,
+  //     list: [
+  //       { title: "Shirt", price: 300 },
+  //       { title: "Shorts & Jeans", price: 60 },
+  //       { title: "Jacket", price: 50 },
+  //       { title: "Dress & Frock", price: 87 },
+  //     ],
+  //   },
+  //   {
+  //     title: "Footwear",
+  //     src: winterwear,
+  //     list: [
+  //       { title: "Sports", price: 300 },
+  //       { title: "Formal", price: 60 },
+  //       { title: "Casual", price: 50 },
+  //       { title: "Safety Shoes", price: 87 },
+  //     ],
+  //   },
+  //   {
+  //     title: "Jwellery",
+  //     src: watch,
+  //     list: [
+  //       { title: "Earrings", price: 300 },
+  //       { title: "Couple Rings", price: 60 },
+  //       { title: "Necklace", price: 50 },
+  //     ],
+  //   },
+  //   {
+  //     title: "Clothes",
+  //     src: glasses,
+  //     list: [
+  //       { title: "Shirt", price: 300 },
+  //       { title: "Shorts & Jeans", price: 60 },
+  //       { title: "Jacket", price: 50 },
+  //       { title: "Dress & Frock", price: 87 },
+  //     ],
+  //   },
+  //   {
+  //     title: "Footwear",
+  //     src: hatcaps,
+  //     list: [
+  //       { title: "Sports", price: 300 },
+  //       { title: "Formal", price: 60 },
+  //       { title: "Casual", price: 50 },
+  //       { title: "Safety Shoes", price: 87 },
+  //     ],
+  //   },
+  //   {
+  //     title: "Jwellery",
+  //     src: shorts,
+  //     list: [
+  //       { title: "Earrings", price: 300 },
+  //       { title: "Couple Rings", price: 60 },
+  //       { title: "Necklace", price: 50 },
+  //     ],
+  //   },
+  //   {
+  //     title: "Footwear",
+  //     src: tshirts,
+  //     list: [
+  //       { title: "Sports", price: 300 },
+  //       { title: "Formal", price: 60 },
+  //       { title: "Casual", price: 50 },
+  //       { title: "Safety Shoes", price: 87 },
+  //     ],
+  //   },
+  // ];
 
   const user = useSelector((state) => state.auth.user);
+  const category = useSelector((state) => state.category.categories);
+
   // dispatching getuser to get if user is already signed in or not
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getUserAsync());
+    dispatch(getAllCategoriesAsync());
   }, []);
 
   // opening a modal if user is not logged in
@@ -330,12 +334,34 @@ const Home = ({ setProgress }) => {
           <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
             <div className="categorybox grid gap-[30px] p-[30px] grid-cols-4 ">
-              <ul className="dropdown-list list-none ">
-                <li className="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
-                  <a href="#">Electronics</a>
-                </li>
+              {category.map((item, idx) => {
+                if(item.label !== "clothes"){
+                  return <ul className="dropdown-list list-none" key={idx}>
+                  <li className="menu-title text-lg font-semibold  pb-2 border-b border-cultured mb-2">
+                    <a href="#">{item.label.toUpperCase()}</a>
+                  </li>
+                  {item.subcategories.map((data, key) => (
+                    <li className="panel-list-item  capitalize " key={key}>
+                      <a href="#">{data.name}</a>
+                    </li>
+                  ))}
+                  <li className="panel-list-item">
+                    <a href="#">
+                      <img
+                        src={item.src}
+                        alt="headphone collection"
+                        width="250"
+                        height="119"
+                      />
+                    </a>
+                  </li>
+                </ul>
+                }
+                
+                // </div>
+                  })}
 
-                <li className="panel-list-item">
+              {/* <li className="panel-list-item">
                   <a href="#">Desktop</a>
                 </li>
 
@@ -364,10 +390,10 @@ const Home = ({ setProgress }) => {
                       height="119"
                     />
                   </a>
-                </li>
-              </ul>
+                </li> */}
+              {/* </ul> */}
 
-              <ul className="dropdown-list list-none ">
+              {/* <ul className="dropdown-list list-none ">
                 <li className="menu-title text-lg font-semibold pb-2 border-b border-cultured mb-2">
                   <a href="#">Men's</a>
                 </li>
@@ -476,11 +502,31 @@ const Home = ({ setProgress }) => {
                     />
                   </a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
           {/* Other navLinks are styled differently */}
-          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          {category.map((item, key) => {
+            if (item.label !== "clothes") {
+                return (
+                  <div
+                    key={key}
+                    className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
+                  >
+                    {item.label.toUpperCase()}
+                    <div className="navlinkDropDown overflow-hidden">
+                      {item.subcategories.map((data, idx) => (
+                        <a className="capitalize" href="#" key={idx}>
+                          {data.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                );
+            }
+            return null;
+          })}
+          {/* <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             MEN'S
             <div className="navlinkDropDown">
               <a href="#">Shirt</a>
@@ -515,7 +561,7 @@ const Home = ({ setProgress }) => {
               <a href="#">Air Freshner</a>
               <a href="#">Flower Fragrance</a>
             </div>
-          </div>
+          </div> */}
           <div
             onClick={() => navigate("/orders")}
             className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
@@ -534,7 +580,32 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap categories Carousel */}
         <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
+          {category.map((item, idx) => {
+            if (item.label === "clothes") {
+              return item.subcategories.map((data, key) => (
+                <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20" key={key}>
+                  <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+                    <img
+                      src={data.src}
+                      className="w-8 h-8"
+                      alt="dress and frock"
+                    />
+                  </div>
+                  <div className="flex justify-center  flex-col w-4/5">
+                    <div className="flex items-center justify-between text-sm font-bold">
+                      <p>{data.name.toUpperCase()}</p>
+                      <span className="pr-2">({data.itemCount})</span>
+                    </div>
+                    <div className="mt-3 text-blue-500 cursor-pointer text-sm">
+                      Show All
+                    </div>
+                  </div>
+                </div>
+              ));
+            }
+            return null;
+          })}
+          {/* <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={DressFrock} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -547,8 +618,8 @@ const Home = ({ setProgress }) => {
                 Show All
               </div>
             </div>
-          </div>
-          <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
+          </div> */}
+          {/* <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={winterwear} className="w-8 h-8" alt="dress and frock" />
             </div>
@@ -645,7 +716,7 @@ const Home = ({ setProgress }) => {
                 Show All
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
         {/* Shoes 3DCarousel */}
         <div className="flex justify-center items-center m-16 mb-36 flex-col max-sm:m-0">
@@ -660,7 +731,7 @@ const Home = ({ setProgress }) => {
           <div className="sidebar w-[30%] max-sm:hidden">
             <div className=" w-full sticky top-8">
               <div className="w-full border rounded-xl p-5">
-                <Accordian title={"CATEGORY"} data={AccrodianData} />
+                <Accordian title={"CATEGORY"} data={category} />
               </div>
               <div className="mt-6">
                 <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>

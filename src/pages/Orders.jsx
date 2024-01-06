@@ -244,8 +244,8 @@ const Orders = ({ setProgress }) => {
         </h1>
         <div className="flex flex-col gap-9 max-w-screen-9xl max-sm:mb-20 rounded-lg">
           {user && orders.length > 0 ? (
-            orders.map((order) => (
-              <div className="flex flex-col border border-gray-300 rounded-md">
+            orders.map((order,key) => (
+              <div className="flex flex-col border border-gray-300 rounded-md" key={key}>
                 <div className="flex  justify-between bg-gray-100 rounded-t-md p-3 border-b border-gray-200">
                   <div className="flex gap-3 sm:gap-8 sm:text-sm text-xs">
                     <div className="flex flex-col">
