@@ -59,7 +59,7 @@ const Accordian = ({ title, data }) => {
     <>
       <div className="flex flex-col">
         <h1 className="text-lg font-bold mb-1">{title}</h1>
-        {data.length > 0 ? (
+        {data?.length > 0 ? (
           data.map((item, index) => (
             <AccrodianItem
               open={index === open}

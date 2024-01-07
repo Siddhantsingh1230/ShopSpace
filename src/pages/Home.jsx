@@ -341,7 +341,7 @@ const Home = ({ setProgress }) => {
                 categories?.length > 0 ? "grid-cols-4" : "grid-cols-1"
               }  `}
             >
-              {categories.length > 0 ? (
+              {categories?.length > 0 ? (
                 categories.map((item, idx) => {
                   if (item.label !== "clothes") {
                     return (
@@ -522,7 +522,7 @@ const Home = ({ setProgress }) => {
             </div>
           </div>
           {/* Other navLinks are styled differently */}
-          {categories.map((item, key) => {
+          {categories?.map((item, key) => {
             if (item.label !== "clothes") {
               return (
                 <div
@@ -596,7 +596,7 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap categories Carousel */}
         <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
-          {categories.length > 0
+          {categories?.length > 0
             ? categories.map((item, idx) => {
                 if (item.label === "clothes") {
                   // can be changed based on top category
