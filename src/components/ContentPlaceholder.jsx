@@ -3,7 +3,7 @@ import React from "react";
 const ContentPlaceholder = () => {
   return (
     <>
-      <div class="image-skeleton"></div>
+      <div className="image-skeleton"></div>
     </>
   );
 };

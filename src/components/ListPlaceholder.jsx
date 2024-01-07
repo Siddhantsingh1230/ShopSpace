@@ -3,14 +3,14 @@ import React from "react";
 const ListPlaceholder = () => {
   return (
     <>
-      <div class="text-input__loading">
-        <div class="text-input__loading--line"></div>
-        <div class="text-input__loading--line"></div>
-        <div class="text-input__loading--line"></div>
-        <div class="text-input__loading--line"></div>
-        <div class="text-input__loading--line"></div>
-        <div class="text-input__loading--line"></div>
-        <div class="text-input__loading--line"></div>
+      <div className="text-input__loading">
+        <div className="text-input__loading--line"></div>
+        <div className="text-input__loading--line"></div>
+        <div className="text-input__loading--line"></div>
+        <div className="text-input__loading--line"></div>
+        <div className="text-input__loading--line"></div>
+        <div className="text-input__loading--line"></div>
+        <div className="text-input__loading--line"></div>
       </div>
     </>
   );
