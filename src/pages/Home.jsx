@@ -338,10 +338,10 @@ const Home = ({ setProgress }) => {
             CATEGORIES
             <div
               className={`categorybox grid gap-[30px] p-[30px] ${
-                categories.lenght > 0 ? "grid-cols-4" : "grid-cols-1"
+                categories.length > 0 ? "grid-cols-4" : "grid-cols-1"
               }  `}
             >
-              {categories.lenght > 0 ? (
+              {categories.length > 0 ? (
                 categories.map((item, idx) => {
                   if (item.label !== "clothes") {
                     return (

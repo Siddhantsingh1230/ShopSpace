@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ImageLogin from "../assets/images/loginImg.jpg";
 import Bg from "../assets/images/loginBg.jpg";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Loader from "../components/Loader.jsx";
 // Page Transition variant import
@@ -207,12 +207,12 @@ const Login = ({ setProgress }) => {
                 </a>
               </p>
               <p className="mt-6 text-xs text-gray-600 text-center">
-                <a
-                  href="/"
+                <Link
+                  to="/forgotpassword"
                   className="w-full text-black-500 rounded-md p-2 text-purple-800 hover:text-white font-bold"
                 >
                   Forgot Password ?
-                </a>
+                </Link>
               </p>
             </form>
           </div>
