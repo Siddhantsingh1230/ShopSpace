@@ -338,7 +338,7 @@ const Home = ({ setProgress }) => {
             CATEGORIES
             <div
               className={`categorybox grid gap-[30px] p-[30px] ${
-                categories.length > 0 ? "grid-cols-4" : "grid-cols-1"
+                categories?.length > 0 ? "grid-cols-4" : "grid-cols-1"
               }  `}
             >
               {categories.length > 0 ? (
