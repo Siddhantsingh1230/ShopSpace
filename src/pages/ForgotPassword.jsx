@@ -44,7 +44,7 @@ const ForgotPassword = ({ setProgress }) => {
       }
     } catch (error) {
       console.log(error);
-      Toasts("error", error.response.data.message || "Network Error");
+      Toasts("error", error.response?.data.message || "Network Error");
       setLoading(false);
     }
   };

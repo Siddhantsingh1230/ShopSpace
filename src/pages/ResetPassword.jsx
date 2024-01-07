@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "../components/Spinner.jsx";
 import Toasts from "../app/Toasts.js";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
+import { resetPassword } from "../api/auth.js";
 
 const ResetPassword = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -26,6 +27,32 @@ const ResetPassword = ({ setProgress }) => {
     }
   }, []);
   const navigate = useNavigate();
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { id, token } = useParams();
+  const handleClick = async () => {
+    setLoading(true);
+    if (password.trim() === "" || confPassword.trim() === "") {
+      setLoading(false);
+      return Toasts("error", "Fields can't be empty");
+    }
+    if (password === confPassword) {
+      try {
+        const data = await resetPassword(id, password, token);
+        Toasts("success", data?.message);
+        setLoading(false);
+        navigate("/login");
+      } catch (error) {
+        console.log(error);
+        Toasts("error", error.response?.data.message);
+        setLoading(false);
+      }
+    } else {
+      Toasts("error", "Passwords are not matching");
+      setLoading(false);
+    }
+  };
   return (
     <>
       <motion.div
@@ -36,12 +63,17 @@ const ResetPassword = ({ setProgress }) => {
         className="relative w-full flex justify-center items-center h-full bg-gradient-to-r from-gray-700 via-gray-900 to-black background-animate"
       >
         <div className="rounded-lg p-10 ">
-          <h1 className="text-5xl max-sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black  font-bold mb-10">Reset Password</h1>
+          <h1 className="text-5xl max-sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black  font-bold mb-10">
+            Reset Password
+          </h1>
           <div className="relative my-5">
             <input
-              type="email"
-              id="UserEmail"
+              type="password"
               placeholder="New Password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
               className="h-9 bg-transparent text-white pl-3 border border-gray-500 w-full rounded-md pe-10 shadow-sm sm:text-sm"
             />
 
@@ -51,8 +83,11 @@ const ResetPassword = ({ setProgress }) => {
           </div>
           <div className="relative my-5">
             <input
-              type="email"
-              id="UserEmail"
+              type="password"
+              value={confPassword}
+              onChange={(e) => {
+                setConfPassword(e.target.value);
+              }}
               placeholder="Confirm Password"
               className="h-9 bg-transparent text-white pl-3  border border-gray-500  w-full rounded-md pe-10 shadow-sm sm:text-sm"
             />
@@ -61,8 +96,21 @@ const ResetPassword = ({ setProgress }) => {
               <i className="ri-git-repository-private-fill"></i>
             </span>
           </div>
-          <div className="cursor-pointer hover:bg-transparent active:opacity-55 border hover:text-white transition-all p-2 rounded-lg bg-white flex justify-center items-center ">
-            <p className="font-[Montserrat]">Change password</p>
+          <div
+            onClick={() => {
+              if (!loading) {
+                handleClick();
+              }
+            }}
+            className="select-none cursor-pointer hover:bg-transparent active:opacity-55 border hover:text-white transition-all p-2 rounded-lg bg-white flex justify-center items-center "
+          >
+            {!loading ? (
+              <p className="font-[Montserrat]">Change password</p>
+            ) : (
+              <div className="p-1">
+                <Spinner />
+              </div>
+            )}
           </div>
         </div>
         <i
