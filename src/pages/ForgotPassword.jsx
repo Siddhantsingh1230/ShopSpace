@@ -118,7 +118,7 @@ const ForgotPassword = ({ setProgress }) => {
                   </p>
                 </div>
               ) : (
-                <div className="w-full scale-[200%] my-6">
+                <div className="w-full scale-[200%] max-sm:scale-105 my-6">
                   <Spinner />
                 </div>
               )}
