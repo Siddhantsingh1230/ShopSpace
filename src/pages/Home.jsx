@@ -66,6 +66,7 @@ import { useSelector, useDispatch } from "react-redux";
 //actions
 import { getUserAsync } from "../slices/authSlice";
 import { getAllCategoriesAsync } from "../slices/categorySlice";
+import ContentPlaceholder from "../components/ContentPlaceholder";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -163,7 +164,7 @@ const Home = ({ setProgress }) => {
   // ];
 
   const user = useSelector((state) => state.auth.user);
-  const category = useSelector((state) => state.category.categories);
+  const categories = useSelector((state) => state.category.categories);
 
   // dispatching getuser to get if user is already signed in or not
   const dispatch = useDispatch();
@@ -176,6 +177,8 @@ const Home = ({ setProgress }) => {
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
 
+  // placeholder dummy array
+  const dummy = new Array(5).fill(0);
   return (
     <>
       <motion.div
@@ -333,33 +336,46 @@ const Home = ({ setProgress }) => {
           </div>
           <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
-            <div className="categorybox grid gap-[30px] p-[30px] grid-cols-4 ">
-              {category.map((item, idx) => {
-                if(item.label !== "clothes"){
-                  return <ul className="dropdown-list list-none" key={idx}>
-                  <li className="menu-title text-lg font-semibold  pb-2 border-b border-cultured mb-2">
-                    <a href="#">{item.label.toUpperCase()}</a>
-                  </li>
-                  {item.subcategories.map((data, key) => (
-                    <li className="panel-list-item  capitalize " key={key}>
-                      <a href="#">{data.name}</a>
-                    </li>
-                  ))}
-                  <li className="panel-list-item">
-                    <a href="#">
-                      <img
-                        src={item.src}
-                        alt="headphone collection"
-                        width="250"
-                        height="119"
-                      />
-                    </a>
-                  </li>
-                </ul>
-                }
-                
-                // </div>
-                  })}
+            <div
+              className={`categorybox grid gap-[30px] p-[30px] ${
+                categories.lenght > 0 ? "grid-cols-4" : "grid-cols-1"
+              }  `}
+            >
+              {categories.lenght > 0 ? (
+                categories.map((item, idx) => {
+                  if (item.label !== "clothes") {
+                    return (
+                      <ul className="dropdown-list list-none" key={idx}>
+                        <li className="menu-title text-lg font-semibold  pb-2 border-b border-cultured mb-2">
+                          <a href="#">{item.label.toUpperCase()}</a>
+                        </li>
+                        {item.subcategories.map((data, key) => (
+                          <li
+                            className="panel-list-item  capitalize "
+                            key={key}
+                          >
+                            <a href="#">{data.name}</a>
+                          </li>
+                        ))}
+                        <li className="panel-list-item">
+                          <a href="#">
+                            <img
+                              src={item.src}
+                              alt="headphone collection"
+                              width="250"
+                              height="119"
+                            />
+                          </a>
+                        </li>
+                      </ul>
+                    );
+                  }
+
+                  // </div>
+                })
+              ) : (
+                <ContentPlaceholder />
+              )}
 
               {/* <li className="panel-list-item">
                   <a href="#">Desktop</a>
@@ -506,23 +522,23 @@ const Home = ({ setProgress }) => {
             </div>
           </div>
           {/* Other navLinks are styled differently */}
-          {category.map((item, key) => {
+          {categories.map((item, key) => {
             if (item.label !== "clothes") {
-                return (
-                  <div
-                    key={key}
-                    className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
-                  >
-                    {item.label.toUpperCase()}
-                    <div className="navlinkDropDown overflow-hidden">
-                      {item.subcategories.map((data, idx) => (
-                        <a className="capitalize" href="#" key={idx}>
-                          {data.name}
-                        </a>
-                      ))}
-                    </div>
+              return (
+                <div
+                  key={key}
+                  className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
+                >
+                  {item.label.toUpperCase()}
+                  <div className="navlinkDropDown overflow-hidden">
+                    {item.subcategories.map((data, idx) => (
+                      <a className="capitalize" href="#" key={idx}>
+                        {data.name}
+                      </a>
+                    ))}
                   </div>
-                );
+                </div>
+              );
             }
             return null;
           })}
@@ -580,31 +596,46 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap categories Carousel */}
         <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
-          {category.map((item, idx) => {
-            if (item.label === "clothes") {
-              return item.subcategories.map((data, key) => (
-                <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20" key={key}>
-                  <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
-                    <img
-                      src={data.src}
-                      className="w-8 h-8"
-                      alt="dress and frock"
-                    />
-                  </div>
-                  <div className="flex justify-center  flex-col w-4/5">
-                    <div className="flex items-center justify-between text-sm font-bold">
-                      <p>{data.name.toUpperCase()}</p>
-                      <span className="pr-2">({data.itemCount})</span>
+          {categories.length > 0
+            ? categories.map((item, idx) => {
+                if (item.label === "clothes") {
+                  // can be changed based on top category
+                  return item.subcategories.map((data, key) => (
+                    <div
+                      className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20"
+                      key={key}
+                    >
+                      <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
+                        <img
+                          src={data.src}
+                          className="w-8 h-8"
+                          alt="dress and frock"
+                        />
+                      </div>
+                      <div className="flex justify-center  flex-col w-4/5">
+                        <div className="flex items-center justify-between text-sm font-bold">
+                          <p>{data.name.toUpperCase()}</p>
+                          <span className="pr-2">({data.itemCount})</span>
+                        </div>
+                        <div className="mt-3 text-blue-500 cursor-pointer text-sm">
+                          Show All
+                        </div>
+                      </div>
                     </div>
-                    <div className="mt-3 text-blue-500 cursor-pointer text-sm">
-                      Show All
-                    </div>
+                  ));
+                }
+                return null;
+              })
+            : dummy.map((_, key) => {
+                return (
+                  <div
+                    className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20"
+                    key={key}
+                  >
+                    <ContentPlaceholder />
                   </div>
-                </div>
-              ));
-            }
-            return null;
-          })}
+                );
+              })}
           {/* <div className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20">
             <div className="flex flex-col justify-center bg-[#EDEDED] border-solid border-slate-400 border overflow-hidden rounded-md p-3 items-center mx-3">
               <img src={DressFrock} className="w-8 h-8" alt="dress and frock" />
@@ -731,7 +762,7 @@ const Home = ({ setProgress }) => {
           <div className="sidebar w-[30%] max-sm:hidden">
             <div className=" w-full sticky top-8">
               <div className="w-full border rounded-xl p-5">
-                <Accordian title={"CATEGORY"} data={category} />
+                <Accordian title={"CATEGORY"} data={categories} />
               </div>
               <div className="mt-6">
                 <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>

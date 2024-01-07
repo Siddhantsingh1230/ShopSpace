@@ -3,8 +3,7 @@ import { getAllCategories } from "../api/category";
 
 const initialState = {
   categories: [],
-  status: "idle",
-  error: null,
+  status: "idle"
 };
 
 export const getAllCategoriesAsync = createAsyncThunk(
@@ -18,10 +17,11 @@ export const getAllCategoriesAsync = createAsyncThunk(
 export const categorySlice = createSlice({
   name: "category",
   initialState,
+  // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
+    //   increment: (state) => {
+    //     state.value += 1;
+    //   },
   },
   extraReducers: (builder) => {
     builder
@@ -37,5 +37,5 @@ export const categorySlice = createSlice({
       });
   },
 });
-export const { increment } = categorySlice.actions;
+// export const { increment } = categorySlice.actions;
 export default categorySlice.reducer;

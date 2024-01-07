@@ -1,5 +1,6 @@
 import { Collapse } from "react-collapse";
 import { useState } from "react";
+import ListPlaceholder from "./ListPlaceholder";
 
 const AccrodianItem = ({ open, toggle, item }) => {
   return (
@@ -7,7 +8,9 @@ const AccrodianItem = ({ open, toggle, item }) => {
       <div className="flex cursor-pointer justify-between" onClick={toggle}>
         <div className="flex gap-2">
           <img className="h-5 w-5" src={item.src} alt="img" />
-          <p className={`text-[#787878]  select-none uppercase`}>{item.label}</p>
+          <p className={`text-[#787878]  select-none uppercase`}>
+            {item.label}
+          </p>
         </div>
         {open ? (
           <i className="text-[#787878] transition hover:text-black ri-subtract-fill"></i>
@@ -22,16 +25,17 @@ const AccrodianItem = ({ open, toggle, item }) => {
       />
       <Collapse isOpened={open}>
         <div className="flex flex-col">
-          {item.subcategories  && item.subcategories.map((data, idx) => (
-            <div className="flex justify-between cursor-pointer " key={idx}>
-              <p className="text-[#787878] hover:text-black select-none capitalize">
-                {data.name}
-              </p>
-              <p className="text-[#787878] hover:text-black select-none">
-                {data.itemCount}
-              </p>
-            </div>
-          ))}
+          {item.subcategories &&
+            item.subcategories.map((data, idx) => (
+              <div className="flex justify-between cursor-pointer " key={idx}>
+                <p className="text-[#787878] hover:text-black select-none capitalize">
+                  {data.name}
+                </p>
+                <p className="text-[#787878] hover:text-black select-none">
+                  {data.itemCount}
+                </p>
+              </div>
+            ))}
         </div>
       </Collapse>
     </div>
@@ -45,7 +49,6 @@ const Accordian = ({ title, data }) => {
     return null; // or handle the error in a way that makes sense for your application
   }
 
-  
   const toggle = (index) => {
     if (open === index) {
       return setOpen(null);
@@ -56,14 +59,18 @@ const Accordian = ({ title, data }) => {
     <>
       <div className="flex flex-col">
         <h1 className="text-lg font-bold mb-1">{title}</h1>
-        {data.map((item, index) => (
-          <AccrodianItem
-            open={index === open}
-            key={index}
-            toggle={() => toggle(index)}
-            item={item}
-          />
-        ))}
+        {data.length > 0 ? (
+          data.map((item, index) => (
+            <AccrodianItem
+              open={index === open}
+              key={index}
+              toggle={() => toggle(index)}
+              item={item}
+            />
+          ))
+        ) : (
+          <ListPlaceholder />
+        )}
       </div>
     </>
   );
