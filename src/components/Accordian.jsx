@@ -46,7 +46,7 @@ const Accordian = ({ title, data }) => {
   const [open, setOpen] = useState(false);
   if (!Array.isArray(data)) {
     console.error("Invalid data format. Expected an array.");
-    return null; // or handle the error in a way that makes sense for your application
+   // or handle the error in a way that makes sense in application
   }
 
   const toggle = (index) => {
