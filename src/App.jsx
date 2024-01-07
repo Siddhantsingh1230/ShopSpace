@@ -21,6 +21,7 @@ import { AnimatePresence } from "framer-motion";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
 import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
@@ -80,6 +81,10 @@ const App = () => {
             path="/forgotpassword"
             exact
             element={<ForgotPassword setProgress={setProgress} />}
+          /><Route
+            path="/resetpassword/:id/:token"
+            exact
+            element={<ResetPassword setProgress={setProgress} />}
           />
           <Route
             exact

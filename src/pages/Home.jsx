@@ -90,7 +90,6 @@ const Home = ({ setProgress }) => {
 
   //navigation
   const navigate = useNavigate();
-
   //  Sidebar Accordian Data of category
   // const AccrodianData = [
   //   {
@@ -753,7 +752,7 @@ const Home = ({ setProgress }) => {
         <div className="flex justify-center items-center m-16 mb-36 flex-col max-sm:m-0">
           <h1 className="shoesCarouseltitle font-[Rastano] text-5xl relative max-sm:text-3xl">
             Flex in Style
-            <img src={Sparkle} className="absolute top-0 left-0" alt="Wear" />
+            <img src={Sparkle} className="absolute top-0 left-0 " alt="Wear" />
           </h1>
           <Shoes3DCarousel />
         </div>
