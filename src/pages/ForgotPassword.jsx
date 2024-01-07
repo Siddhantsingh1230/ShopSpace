@@ -65,7 +65,7 @@ const ForgotPassword = ({ setProgress }) => {
             <h1 className=" text-5xl font-bold  leading-loose text-transparent  bg-clip-text bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 max-sm:text-4xl max-sm:w-4/5 max-sm:mb-5">
               Forgot Password ?
             </h1>
-            <p className="text-gray-200 w-1/2 text-sm mb-10 max-sm:w-full max-sm:text-xs max-sm:mb-5  ">
+            <p className="text-gray-400 w-1/2 text-sm mb-10 max-sm:w-full max-sm:text-xs max-sm:mb-5  ">
               Don't worry it happens.Please enter the registered email address
               associated with your account
             </p>
@@ -99,7 +99,7 @@ const ForgotPassword = ({ setProgress }) => {
               </div>
             </div>
             <div
-              className="button w-2/4 my-10 active:opacity-80 max-sm:w-full"
+              className="button-send w-2/4 my-10 active:opacity-80 max-sm:w-full"
               onClick={() => {
                 if (!loading) {
                   handleClick();
@@ -109,14 +109,13 @@ const ForgotPassword = ({ setProgress }) => {
               {!loading ? (
                 <div className="relative flex  group w-2/4 max-sm:w-full">
                   <div className="absolute  transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt w-full"></div>
-                  <a
-                    href="#"
-                    title="Get quote now"
+                  <p
+                   
                     className="relative w-full inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none  focus:ring-gray-900"
                     role="button"
                   >
                     Send Mail
-                  </a>
+                  </p>
                 </div>
               ) : (
                 <div className="w-full scale-[200%] my-6">

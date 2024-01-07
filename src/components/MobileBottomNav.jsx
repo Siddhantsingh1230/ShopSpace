@@ -145,6 +145,7 @@ const MobileBottomNav = () => {
   ];
 
   const user = useSelector((state) => state.auth.user);
+  const categories = useSelector((state) => state.category.categories);
 
   // opening a modal id user is not logged in
   const [openModal, setOpenModal] = useState(false);
@@ -341,7 +342,7 @@ const MobileBottomNav = () => {
             onClick={toggleCategoryDrawer}
             className="ri-close-line text-2xl font-bold absolute right-5"
           ></i>
-          <Accordian title={"CATEGORY"} data={AccrodianData} />
+          <Accordian title={"CATEGORY"} data={categories} />
           <div className="my-6">
             <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
             <div className="flex flex-col gap-3">

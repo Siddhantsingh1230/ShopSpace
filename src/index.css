@@ -690,4 +690,12 @@ html {
   }
 }
 
-
+.overlay:before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 32%;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #00020e 0%, rgba(0, 0, 0, 0) 10%);
+}
