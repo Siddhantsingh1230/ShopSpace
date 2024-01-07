@@ -44,10 +44,12 @@ export const getUser = async () => {
   return data;
 };
 
-export const updateUser = async (updateObj) => {//this updateObj contains updated info and id too
+export const updateUser = async (updateObj) => {
+  //this updateObj contains updated info and id too
   const { data } = await axios.put(
-    process.env.REACT_APP_SERVER_BASE_URL + "/v1/update/"+updateObj.id,{
-      ...updateObj.data
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/update/" + updateObj.id,
+    {
+      ...updateObj.data,
     },
     options
   );
@@ -56,7 +58,16 @@ export const updateUser = async (updateObj) => {//this updateObj contains update
 
 export const deleteUser = async (userid) => {
   const { data } = await axios.delete(
-    process.env.REACT_APP_SERVER_BASE_URL + "/v1/delete/"+userid,
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/delete/" + userid,
+    options
+  );
+  return data;
+};
+
+export const forgotPassword = async (email) => {
+  const { data } = await axios.post(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/forgotpassword/",
+    { email },
     options
   );
   return data;

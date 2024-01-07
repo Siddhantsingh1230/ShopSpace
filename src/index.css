@@ -583,6 +583,15 @@ html {
   .cartItems:last-child {
     margin-bottom: 7rem;
   }
+  .forgotPassImg:before {
+    content: "";
+    position: absolute;
+    bottom: -19px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+  }
 }
 
 .stripes {
@@ -594,7 +603,6 @@ html {
     #465298 20px
   );
 }
-
 
 /* Content Placeholder content CSS */
 .image-skeleton {
@@ -634,7 +642,7 @@ html {
   height: 15px;
   margin: 15px;
   -webkit-animation: pulse 1s infinite ease-in-out;
-          animation: pulse 1s infinite ease-in-out;
+  animation: pulse 1s infinite ease-in-out;
 }
 .text-input__loading div:nth-child(3) {
   width: 150px;
@@ -681,3 +689,5 @@ html {
     background-color: rgba(165, 165, 165, 0.1);
   }
 }
+
+
