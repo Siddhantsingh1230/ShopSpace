@@ -6,8 +6,9 @@ import MenuAccordian from "../components/MenuAccordian";
 import InfiniteScroll from "react-infinite-scroller";
 import MobileBottomNav from "../components/MobileBottomNav";
 import Drawer from "react-modern-drawer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Toasts from "../app/Toasts";
 
 // Image imports
 import CanMask from "../assets/images/bottle.png";
@@ -18,6 +19,10 @@ import fruit1 from "../assets/images/fruit1.png";
 import fruit2 from "../assets/images/fruit2.png";
 import fruit3 from "../assets/images/fruit3.png";
 import womenmodel from "../assets/images/womenmodel.png";
+import Ribbon from "../components/Ribbon";
+import SkeletonCard from "../components/SkeletonCard";
+import { getAllProductsAsync, removeDuplicates } from "../slices/productSlice";
+import Stars from "../components/Stars";
 
 const Products = ({ setProgress }) => {
   const [current, setCurrent] = useState(0);
@@ -70,6 +75,8 @@ const Products = ({ setProgress }) => {
   const user = useSelector((state) => state.auth.user);
   // navigate
   const navigate = useNavigate();
+  // For dispatching actions
+  const dispatch = useDispatch();
 
   // Scroll To view  for products section
   const targetRef = useRef(null);
@@ -120,16 +127,8 @@ const Products = ({ setProgress }) => {
 
   // Product Data
 
-  let [products, setProducts] = useState(new Array(5).fill(0));
-
-  const fetchMoreData = () => {
-    // a fake async api call like which sends
-    // 20 more records in 1.5 secs
-    setTimeout(() => {
-      const array = new Array(5).fill(1);
-      setProducts((prev) => [...prev, ...array]);
-    }, 1500);
-  };
+  const products = useSelector((state) => state.product.products);
+  const productCount = useSelector((state) => state.product.count);
 
   // Filter Drawer
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -153,8 +152,25 @@ const Products = ({ setProgress }) => {
     }, 2000);
     return intervalId;
   }
+
+  const pagesReturned = useSelector((state) => state.product.pagesReturned);
+
+  const fetchMoreProducts = () => {
+    // FETCH PRODUCTS ON COMPONENT RENDER and state Change
+    dispatch(getAllProductsAsync({ page: pagesReturned, quantum: 10 }));
+  };
+
+  const [pageTemp, setPageTemp] = useState(0);
+
   useEffect(() => {
     let intervalId = alternateRotate();
+
+    if (pageTemp == 0) {
+      setPageTemp((prev) => prev + 1);
+      // FETCH PRODUCTS ON COMPONENT RENDER and state Change
+      dispatch(getAllProductsAsync({ page: 0, quantum: 10 }));
+    }
+    // Cleaning up all listeners to avoid possible errors
     return () => clearInterval(intervalId);
   }, []);
 
@@ -424,6 +440,8 @@ const Products = ({ setProgress }) => {
                   onClick={() => {
                     if (user) {
                       navigate("/cart");
+                    } else {
+                      navigate("/login");
                     }
                   }}
                   title="cart"
@@ -449,8 +467,8 @@ const Products = ({ setProgress }) => {
               <InfiniteScroll
                 initialLoad={true}
                 useWindow={false}
-                loadMore={fetchMoreData}
-                hasMore={true}
+                loadMore={fetchMoreProducts}
+                hasMore={productCount != products.length}
                 loader={
                   <div className="w-full mb-20">
                     <Spinner />
@@ -458,35 +476,61 @@ const Products = ({ setProgress }) => {
                 }
               >
                 <div className="flex flex-wrap gap-4 ">
-                  {products.map((i, idx) => (
-                    <div
-                      key={idx}
-                      className="flex flex-col gap-2  p-1 cursor-pointer"
-                    >
-                      <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
-                        <img
-                          className="h-full w-full  object-cover rounded-md object-center"
-                          src={womenmodel}
-                          alt="img"
-                        />
-                        <div
-                          title="add to wishlist"
-                          className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 left-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
-                        >
-                          <i className="p-0 text-lg ri-heart-3-line"></i>
+                  {products?.length > 0 ? (
+                    products.map((item, idx) => (
+                      <div
+                        key={idx}
+                        onClick={() => navigate("/productdetail")}
+                        className="flex flex-col gap-3 mx-3  cursor-pointer relative overflow-hidden"
+                      >
+                        <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
+                          <img
+                            className="h-full w-full  object-cover rounded-md object-center"
+                            src={item.thumbnail}
+                            alt="img"
+                          />
+                          <div
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!user) {
+                                return navigate("/login");
+                              }
+                              Toasts("info", "🌸 Added to wishlist");
+                            }}
+                            title="add to wishlist"
+                            className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 right-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
+                          >
+                            <i className="p-0 text-lg ri-heart-3-line"></i>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                          <strong>Formal Dress </strong>
-                          <p className="text-sm">Clothes</p>
+                        <div className="flex justify-between items-center">
+                          <div className="flex flex-col">
+                            <strong>{item.title?.slice(0, 20)}..</strong>
+                            <p className="text-sm">{item.subCategory}</p>
+                            <Stars star={Math.round(parseInt(item.rating))} />
+                          </div>
+                          <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
+                            ₹
+                            {Math.ceil(
+                              item.price -
+                                (item.price * item.discountPercentage) / 100
+                            )}
+                          </p>
                         </div>
-                        <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
-                          ₹500.00
-                        </p>
+
+                        {/* We can use created at to now if the product is new and show ribbon */}
+                        {item.sale && (
+                          <Ribbon type={`${item.sale ? "SALE" : "NEW"}`} />
+                        )}
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    <>
+                      {new Array(6).fill(0).map((_, key) => (
+                        <SkeletonCard />
+                      ))}
+                    </>
+                  )}
                 </div>
               </InfiniteScroll>
             </div>
