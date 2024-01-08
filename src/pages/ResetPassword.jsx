@@ -64,7 +64,7 @@ const ResetPassword = ({ setProgress }) => {
         className="flex flex-col relative overflow-hidden w-full justify-center items-center h-full bg-gradient-to-r from-gray-700 via-gray-900 to-black background-animate"
       >
         <div className="rounded-lg p-10 ">
-          <h1 className="text-5xl max-sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black  font-bold mb-10">
+          <h1 className="text-5xl text-center max-sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black  font-bold mb-10">
             Reset Password
           </h1>
           <div className="relative my-5">
@@ -113,7 +113,7 @@ const ResetPassword = ({ setProgress }) => {
           {/* send button */}
           <button
             type="submit"
-            className="select-none cursor-pointer w-full hover:bg-transparent active:opacity-55 border hover:text-white transition-all p-2 rounded-lg bg-white flex justify-center items-center "
+            className="select-none cursor-pointer w-full hover:bg-transparent active:opacity-55 border hover:text-white transition-all p-2 max-sm:p-1 rounded-lg bg-white flex justify-center items-center "
           >
             {!loading ? (
               <p className="font-[Montserrat]">Change password</p>
