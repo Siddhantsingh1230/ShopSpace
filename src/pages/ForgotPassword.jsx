@@ -44,7 +44,7 @@ const ForgotPassword = ({ setProgress }) => {
       }
     } catch (error) {
       console.log(error);
-      Toasts("error", error.response.data.message || "Network Error");
+      Toasts("error", error.response?.data.message || "Network Error");
       setLoading(false);
     }
   };
@@ -118,7 +118,7 @@ const ForgotPassword = ({ setProgress }) => {
                   </p>
                 </div>
               ) : (
-                <div className="w-full scale-[200%] my-6">
+                <div className="w-full scale-[200%] max-sm:scale-105 my-6">
                   <Spinner />
                 </div>
               )}

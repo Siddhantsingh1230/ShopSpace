@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 // Components
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -22,10 +22,21 @@ import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
 import ForgotPassword from "./pages/ForgotPassword";
 import OrderSuccess from "./pages/OrderSuccess";
+import ResetPassword from "./pages/ResetPassword";
+import { getUserAsync } from "./slices/authSlice";
+import { getAllCategoriesAsync } from "./slices/categorySlice";
+import {  useDispatch } from "react-redux";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
   const location = useLocation(); // used for page transitions
+  // dispatching getuser to get if user is already signed in or not
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAsync());
+    dispatch(getAllCategoriesAsync());
+  }, []);
   return (
     <>
       <AnimatePresence mode="wait">
@@ -81,6 +92,10 @@ const App = () => {
             path="/forgotpassword"
             exact
             element={<ForgotPassword setProgress={setProgress} />}
+          /><Route
+            path="/resetpassword/:id/:token"
+            exact
+            element={<ResetPassword setProgress={setProgress} />}
           />
           <Route
             path="/ordersuccess"

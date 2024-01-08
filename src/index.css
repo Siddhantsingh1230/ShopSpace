@@ -702,3 +702,22 @@ html {
   height: 100vh;
   background: linear-gradient(90deg, #00020e 0%, rgba(0, 0, 0, 0) 10%);
 }
+
+/* Animated gradient bg */
+.background-animate {
+  background-size: 400%;
+
+  -webkit-animation: bgAnim 10s ease infinite;
+  -moz-animation: bgAnim 10s ease infinite;
+  animation: bgAnim 10s ease infinite;
+}
+
+@keyframes bgAnim {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}

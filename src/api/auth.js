@@ -72,3 +72,12 @@ export const forgotPassword = async (email) => {
   );
   return data;
 };
+
+export const resetPassword = async (id, password, token) => {
+  const { data } = await axios.post(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/resetpassword/",
+    { id, password, token },
+    options
+  );
+  return data;
+};
