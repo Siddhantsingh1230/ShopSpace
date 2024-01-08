@@ -343,7 +343,7 @@ const Home = ({ setProgress }) => {
               }  `}
             >
               {categories?.length > 0 ? (
-                categories.slice(0, 5).map((item, idx) => {
+                categories.slice(1, 5).map((item, idx) => {
                   // only showing atmost 5 categories and 5 subcategories
                   if (item.label != "clothes") {
                     // to control which labels should not be shown
@@ -443,7 +443,7 @@ const Home = ({ setProgress }) => {
         <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
           {categories?.length > 0
             ? categories.map((item, idx) => {
-                if (item.label === "clothes") {
+                if (item.label === "Sunglasses" || item.label === "Vehicles" || item.label === "Beauty & Care" || item.label === "Home Essentials") {
                   // can be changed based on top category
                   return item.subcategories.map((data, key) => (
                     <div
