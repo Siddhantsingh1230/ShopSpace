@@ -164,8 +164,6 @@ const Home = ({ setProgress }) => {
   const user = useSelector((state) => state.auth.user);
   const categories = useSelector((state) => state.category.categories);
 
-  
-
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
 
@@ -251,7 +249,10 @@ const Home = ({ setProgress }) => {
               placeholder="Enter your space product..."
               type="text"
             />
-            <i title="search" className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"></i>
+            <i
+              title="search"
+              className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"
+            ></i>
           </div>
           <div className="icons flex justify-center items-center gap-5 max-sm:hidden">
             {/* Settings */}
@@ -336,31 +337,52 @@ const Home = ({ setProgress }) => {
           <div className="categoryLink cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             CATEGORIES
             <div
-              className={`categorybox grid gap-[30px] p-[30px] ${
+              className={`categorybox overflow-hidden grid gap-[30px] p-[30px] ${
                 categories?.length > 0 ? "grid-cols-4" : "grid-cols-1"
               }  `}
             >
               {categories?.length > 0 ? (
-                categories.map((item, idx) => {
-                  if (item.label !== "clothes") {
+                categories.slice(0, 5).map((item, idx) => {
+                  // only showing atmost 5 categories and 5 subcategories
+                  if (item.label != "clothes") {
+                    // to control which labels should not be shown
                     return (
                       <ul className="dropdown-list list-none" key={idx}>
                         <li className="menu-title text-lg font-semibold  pb-2 border-b border-cultured mb-2">
                           <a href="#">{item.label.toUpperCase()}</a>
                         </li>
-                        {item.subcategories.map((data, key) => (
-                          <li
-                            className="panel-list-item  capitalize "
-                            key={key}
-                          >
-                            <a href="#">{data.name}</a>
-                          </li>
-                        ))}
+                        {item.subcategories.length < 5
+                          ? [
+                              ...item.subcategories,
+                              ...new Array(
+                                Math.max(5 - item.subcategories.length, 0)
+                              ).fill(0),
+                            ].map((data, key) => {
+                              return (
+                                <li
+                                  className={`panel-list-item  capitalize ${!data?"invisible":" "}`}
+                                  key={key}
+                                >
+                                  <a href="#">{data?.name || 0}</a>
+                                </li>
+                              );
+                            })
+                          : item.subcategories.slice(0,5).map((data, key) => {
+                              return (
+                                <li
+                                  className="panel-list-item  capitalize "
+                                  key={key}
+                                >
+                                  <a href="#">{data?.name}</a>
+                                </li>
+                              );
+                            })}
                         <li className="panel-list-item">
                           <a href="#">
                             <img
                               src={item.src}
-                              alt="headphone collection"
+                              className="w-[250px] h-[119px] object-cover"
+                              alt="category"
                               width="250"
                               height="119"
                             />
@@ -369,8 +391,6 @@ const Home = ({ setProgress }) => {
                       </ul>
                     );
                   }
-
-                  // </div>
                 })
               ) : (
                 <div className="w-full h-full rounded-md overflow-hidden">
@@ -523,7 +543,8 @@ const Home = ({ setProgress }) => {
             </div>
           </div>
           {/* Other navLinks are styled differently */}
-          {categories?.map((item, key) => {
+          {categories?.slice(0, 5).map((item, key) => {
+            //limited categories are showed due to ui disbalance
             if (item.label !== "clothes") {
               return (
                 <div
@@ -543,42 +564,6 @@ const Home = ({ setProgress }) => {
             }
             return null;
           })}
-          {/* <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            MEN'S
-            <div className="navlinkDropDown">
-              <a href="#">Shirt</a>
-              <a href="#">Shorts & Jeans</a>
-              <a href="#">Sport Shoes</a>
-              <a href="#">Wallet</a>
-            </div>
-          </div>
-          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            WOMEN'S
-            <div className="navlinkDropDown">
-              <a href="#">Dress & Frock</a>
-              <a href="#">Earrings</a>
-              <a href="#">Necklace</a>
-              <a href="#">Makeup Kit</a>
-            </div>
-          </div>
-          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            JEWELRY
-            <div className="navlinkDropDown">
-              <a href="#">Couple Rings</a>
-              <a href="#">Earrings</a>
-              <a href="#">Necklace</a>
-              <a href="#">Bracelets</a>
-            </div>
-          </div>
-          <div className="navlinkHoverGrp relative cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            PERFUME
-            <div className="navlinkDropDown">
-              <a href="#">Clothes Perfume</a>
-              <a href="#">Deodorant</a>
-              <a href="#">Air Freshner</a>
-              <a href="#">Flower Fragrance</a>
-            </div>
-          </div> */}
           <div
             onClick={() => navigate("/orders")}
             className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
