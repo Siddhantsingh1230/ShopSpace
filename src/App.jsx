@@ -21,6 +21,7 @@ import { AnimatePresence } from "framer-motion";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
 import ForgotPassword from "./pages/ForgotPassword";
+import OrderSuccess from "./pages/OrderSuccess";
 import ResetPassword from "./pages/ResetPassword";
 import { getUserAsync } from "./slices/authSlice";
 import { getAllCategoriesAsync } from "./slices/categorySlice";
@@ -95,6 +96,11 @@ const App = () => {
             path="/resetpassword/:id/:token"
             exact
             element={<ResetPassword setProgress={setProgress} />}
+          />
+          <Route
+            path="/ordersuccess"
+            exact
+            element={<OrderSuccess setProgress={setProgress} />}
           />
           <Route
             exact
