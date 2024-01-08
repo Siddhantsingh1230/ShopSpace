@@ -45,7 +45,7 @@ const ResetPassword = ({ setProgress }) => {
         navigate("/login");
       } catch (error) {
         console.log(error);
-        Toasts("error", error.response?.data.message);
+        Toasts("error", error.response?.data.message || "Network Error");
         setLoading(false);
       }
     } else {
@@ -64,7 +64,7 @@ const ResetPassword = ({ setProgress }) => {
         className="flex flex-col relative overflow-hidden w-full justify-center items-center h-full bg-gradient-to-r from-gray-700 via-gray-900 to-black background-animate"
       >
         <div className="rounded-lg p-10 ">
-          <h1 className="text-5xl max-sm:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black  font-bold mb-10">
+          <h1 className="text-5xl max-sm:text-3xl text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black  font-bold mb-10">
             Reset Password
           </h1>
           <div className="relative my-5">
@@ -118,7 +118,7 @@ const ResetPassword = ({ setProgress }) => {
             {!loading ? (
               <p className="font-[Montserrat]">Change password</p>
             ) : (
-              <div className="p-1 max-sm:scale-95 ">
+              <div className="p-1 max-sm:p-0 ">
                 <Spinner />
               </div>
             )}

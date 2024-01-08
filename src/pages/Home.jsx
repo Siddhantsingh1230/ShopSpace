@@ -373,7 +373,9 @@ const Home = ({ setProgress }) => {
                   // </div>
                 })
               ) : (
-                <ContentPlaceholder />
+                <div className="w-full h-full rounded-md overflow-hidden">
+                  <ContentPlaceholder />
+                </div>
               )}
 
               {/* <li className="panel-list-item">
@@ -628,7 +630,7 @@ const Home = ({ setProgress }) => {
             : dummy.map((_, key) => {
                 return (
                   <div
-                    className=" flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20"
+                    className="overflow-hidden flex-none  h-24 w-[22.5%] flex  items-center snap-center rounded-xl border-2 max-sm:min-w-full max-sm:h-20"
                     key={key}
                   >
                     <ContentPlaceholder />
