@@ -329,6 +329,7 @@ const Home = ({ setProgress }) => {
         {/* NavLink */}
         <div className="navlink mt-5 flex justify-center items-center gap-11 relative max-sm:hidden">
           <div
+          title="products"
             onClick={() => navigate("/products")}
             className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks "
           >
@@ -423,6 +424,7 @@ const Home = ({ setProgress }) => {
           })}
           <div
             onClick={() => navigate("/orders")}
+            title="orders"
             className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  "
           >
             ORDERS
