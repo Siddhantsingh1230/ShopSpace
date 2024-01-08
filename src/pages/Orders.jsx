@@ -239,7 +239,7 @@ const Orders = ({ setProgress }) => {
           </ol>
         </nav>
 
-        <h1 className="my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900">
+        <h1 className="select-none my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900">
           Your Orders<span className="text-blue-600">.</span>
         </h1>
         <div className="flex flex-col gap-9 max-w-screen-9xl max-sm:mb-20 rounded-lg">
@@ -334,7 +334,7 @@ const Orders = ({ setProgress }) => {
                 <div className="p-2">
                 {order.cart.map((item, idx) => (
                   <div className=" bg-white cursor-pointer" key={idx}>
-                    <div className="flex flex-col border  border-gray-200 p-4 rounded-md">
+                    <div className="flex flex-col border my-4 border-gray-200 p-4 rounded-md">
                       <div className="flex max-sm:flex-col-reverse gap-2 justify-between">
                         <div className="flex max-sm:flex-col gap-4 ">
                           <div className="flex gap-2">
