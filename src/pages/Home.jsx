@@ -61,11 +61,10 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 //actions
-import { getUserAsync } from "../slices/authSlice";
-import { getAllCategoriesAsync } from "../slices/categorySlice";
+
 import ContentPlaceholder from "../components/ContentPlaceholder";
 
 const Home = ({ setProgress }) => {
@@ -165,13 +164,7 @@ const Home = ({ setProgress }) => {
   const user = useSelector((state) => state.auth.user);
   const categories = useSelector((state) => state.category.categories);
 
-  // dispatching getuser to get if user is already signed in or not
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getUserAsync());
-    dispatch(getAllCategoriesAsync());
-  }, []);
+  
 
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
@@ -258,10 +251,12 @@ const Home = ({ setProgress }) => {
               placeholder="Enter your space product..."
               type="text"
             />
-            <i className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"></i>
+            <i title="search" className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"></i>
           </div>
           <div className="icons flex justify-center items-center gap-5 max-sm:hidden">
+            {/* Settings */}
             <div
+              title="Settings"
               onClick={() => {
                 if (user) {
                   navigate("/settings");
@@ -273,7 +268,9 @@ const Home = ({ setProgress }) => {
             >
               <i className="text-4xl ri-settings-4-line"></i>
             </div>
+            {/* Wishlist */}
             <div
+              title="Wishlist"
               onClick={() => {
                 if (user) {
                   navigate("/wishlist");
@@ -288,7 +285,9 @@ const Home = ({ setProgress }) => {
                 <b>2</b>
               </span>
             </div>
+            {/* Cart */}
             <div
+              title="cart"
               onClick={() => {
                 if (user) {
                   navigate("/cart");
@@ -303,6 +302,7 @@ const Home = ({ setProgress }) => {
                 <b>2</b>
               </span>
             </div>
+            {/* User/login */}
             <div
               onClick={() => {
                 if (!user) {
@@ -318,7 +318,7 @@ const Home = ({ setProgress }) => {
                   alt=""
                 />
               ) : (
-                <i className="ri-user-line"></i>
+                <i title="Login" className="ri-user-line"></i>
               )}
             </div>
           </div>

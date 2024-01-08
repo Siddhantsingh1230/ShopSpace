@@ -6,6 +6,8 @@ import MenuAccordian from "../components/MenuAccordian";
 import InfiniteScroll from "react-infinite-scroller";
 import MobileBottomNav from "../components/MobileBottomNav";
 import Drawer from "react-modern-drawer";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // Image imports
 import CanMask from "../assets/images/bottle.png";
@@ -63,6 +65,11 @@ const Products = ({ setProgress }) => {
       });
     }
   };
+
+  // user
+  const user = useSelector((state) => state.auth.user);
+  // navigate
+  const navigate = useNavigate();
 
   // Scroll To view  for products section
   const targetRef = useRef(null);
@@ -130,8 +137,8 @@ const Products = ({ setProgress }) => {
     setIsFilterOpen((prevState) => !prevState);
   };
 
-  // Auto Can Mask (hero) Carousel
-  function alternateEmotions() {
+  // Auto moving to center Can-Mask (hero) Carousel
+  function alternateRotate() {
     let counter = 0;
     let intervalId = setInterval(() => {
       if (counter % 4 < 2) {
@@ -147,7 +154,7 @@ const Products = ({ setProgress }) => {
     return intervalId;
   }
   useEffect(() => {
-    let intervalId = alternateEmotions();
+    let intervalId = alternateRotate();
     return () => clearInterval(intervalId);
   }, []);
 
@@ -253,9 +260,10 @@ const Products = ({ setProgress }) => {
 
           {/* Controll buttons */}
           <div
+            title="move left"
             onClick={() => {
-              handleSlide(1);
-              handleFruitSlide(1);
+              handleSlide(-1);
+              handleFruitSlide(-1);
             }}
             className="absolute  flex justify-center items-center top-2/4 left-10 -translate-y-2/4  max-sm:left-0"
           >
@@ -266,9 +274,10 @@ const Products = ({ setProgress }) => {
             ></motion.i>
           </div>
           <div
+            title="move right"
             onClick={() => {
-              handleSlide(-1);
-              handleFruitSlide(-1);
+              handleSlide(1);
+              handleFruitSlide(1);
             }}
             className="absolute  flex justify-center items-center top-2/4 right-10 -translate-y-2/4 max-sm:right-0"
           >
@@ -347,10 +356,11 @@ const Products = ({ setProgress }) => {
 
           {/* Shop */}
           <motion.div
+            title="Shop Now"
             onClick={scrollToProducts}
             whileHover={{ opacity: 0.8 }}
             whileTap={{ opacity: 0.5 }}
-            className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 max-sm:bottom-20  rounded-3xl flex justify-center items-center max-sm:scale-75"
+            className="bg-white absolute py-3 px-8 cursor-pointer shadow-lg left-2/4 bottom-10  -translate-x-2/4 max-sm:bottom-20 z-10 rounded-3xl flex justify-center items-center max-sm:scale-75"
           >
             <p className="text-black font-bold ">Shop now</p>
           </motion.div>
@@ -381,18 +391,44 @@ const Products = ({ setProgress }) => {
             {/* Search */}
             <div className="flex gap-5 max-sm:gap-2">
               <div className="search flex gap-2 rounded-3xl p-2 px-3 w-[20rem] bg-[#f4f4f4] max-sm:w-[14rem]">
-                <i className="ri-search-line  cursor-pointer hover:text-blue-500"></i>
+                <i
+                  title="search"
+                  className="ri-search-line  cursor-pointer hover:text-blue-500"
+                ></i>
                 <input
                   type="text"
                   placeholder="Search.."
                   className="w-4/5 active:border-none bg-transparent focus:border-none outline-none"
                 />
               </div>
+              {!user ? (
+                <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
+                  <i
+                    title="login"
+                    onClick={() => navigate("/login")}
+                    className="ri-user-line"
+                  ></i>
+                </div>
+              ) : (
+                <div className="cursor-pointer flex justify-center items-center rounded-full h-9 w-9 bg-gray-200 overflow-hidden">
+                  <img
+                    className="h-full w-full object-cover"
+                    src={user.profileImageURL}
+                    alt=""
+                  />
+                </div>
+              )}
+
               <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
-                <i className="ri-user-line"></i>
-              </div>
-              <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
-                <i className="ri-shopping-cart-2-line"></i>
+                <i
+                  onClick={() => {
+                    if (user) {
+                      navigate("/cart");
+                    }
+                  }}
+                  title="cart"
+                  className="ri-shopping-cart-2-line"
+                ></i>
               </div>
             </div>
           </div>
@@ -433,7 +469,10 @@ const Products = ({ setProgress }) => {
                           src={womenmodel}
                           alt="img"
                         />
-                        <div className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 left-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full">
+                        <div
+                          title="add to wishlist"
+                          className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 left-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
+                        >
                           <i className="p-0 text-lg ri-heart-3-line"></i>
                         </div>
                       </div>
