@@ -163,7 +163,6 @@ const Home = ({ setProgress }) => {
 
   const user = useSelector((state) => state.auth.user);
   const categories = useSelector((state) => state.category.categories);
-  console.log(categories)
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
 
