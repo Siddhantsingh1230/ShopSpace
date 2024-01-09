@@ -15,9 +15,9 @@ const initialState = {
 export const getAllProductsAsync = createAsyncThunk(
   //actually this api is not fetching all products at once but in packets or quantized manner
   "products/get",
-  async ({ page, quantum }, thunkAPI) => {
+  async ({ page, quantum, searchKeyword }, thunkAPI) => {
     try {
-      const data = await getAllProducts(page, quantum);
+      const data = await getAllProducts(page, quantum, searchKeyword);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -30,9 +30,10 @@ export const productSlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-      removeDuplicates: (state) => {
-        state.products = state.products.slice(0,10);
-      },
+    removeProducts: (state) => {
+      state.products = [];
+      state.pagesReturned = 0;  
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,6 +58,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const {} = productSlice.actions;
+export const { removeProducts } = productSlice.actions;
 
 export default productSlice.reducer;
