@@ -17,3 +17,14 @@ export const removeProductFromWishlist = async (id,productId) => {
   
   return data.wishlist;
 };
+
+export const addProductToWishlist = async (id,productId) => {
+  let data  = await axios.patch(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/wishlist/add/" +id,
+    {
+      "productId" : productId
+    }
+  );
+  
+  return data.wishlist;
+};

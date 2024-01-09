@@ -23,8 +23,9 @@ import fruit3 from "../assets/images/fruit3.png";
 import womenmodel from "../assets/images/womenmodel.png";
 import Ribbon from "../components/Ribbon";
 import SkeletonCard from "../components/SkeletonCard";
-import { getAllProductsAsync, removeDuplicates } from "../slices/productSlice";
+import { getAllProductsAsync } from "../slices/productSlice";
 import Stars from "../components/Stars";
+import { addProductToWishlist } from "../api/wishlist.js";
 
 const Products = ({ setProgress }) => {
   const [current, setCurrent] = useState(0);
@@ -426,12 +427,11 @@ const Products = ({ setProgress }) => {
                 />
               </div>
               {!user ? (
-                <div onClick={() => navigate("/login")} className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
-                  <i
-                    title="login"
-                    
-                    className="ri-user-line"
-                  ></i>
+                <div
+                  onClick={() => navigate("/login")}
+                  className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all"
+                >
+                  <i title="login" className="ri-user-line"></i>
                 </div>
               ) : (
                 <div className="cursor-pointer flex justify-center items-center rounded-full h-9 w-9 bg-gray-200 overflow-hidden">
@@ -498,11 +498,13 @@ const Products = ({ setProgress }) => {
                               alt="img"
                             />
                             <div
-                              onClick={(e) => {
+                              onClick={async (e) => {
                                 e.stopPropagation();
                                 if (!user) {
                                   return setOpenModal(true);
                                 }
+                                //add to wishlist
+                                await addProductToWishlist(user._id, item._id);
                                 Toasts("info", "🌸 Added to wishlist");
                               }}
                               title="add to wishlist"

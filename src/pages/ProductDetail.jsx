@@ -511,7 +511,7 @@ const ProductDetails = ({ setProgress }) => {
                                     {review.content}
                                   </p>
                                   <p className="mt-1 truncate text-xs leading-5 text-gray-5 00">
-                                    {review.userId}
+                                    User: {review.userId}
                                   </p>
                                 </div>
                               </div>
