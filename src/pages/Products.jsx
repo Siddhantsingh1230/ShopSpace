@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Toasts from "../app/Toasts";
 import { removeProducts } from "../slices/productSlice";
+import Modal from "../components/Model";
 
 // Image imports
 import CanMask from "../assets/images/bottle.png";
@@ -71,7 +72,8 @@ const Products = ({ setProgress }) => {
       });
     }
   };
-
+  // opening a modal if user is not logged in
+  const [openModal, setOpenModal] = useState(false);
   // user
   const user = useSelector((state) => state.auth.user);
   // navigate
@@ -88,43 +90,7 @@ const Products = ({ setProgress }) => {
   };
 
   // data for filter accordian
-  const filterAccordianData = [
-    {
-      title: "Men's",
-      list: [
-        { title: "Shirt" },
-        { title: "Shorts & Jeans" },
-        { title: "Safety Shoes" },
-        { title: "Wallet" },
-      ],
-    },
-    {
-      title: "Women",
-      list: [
-        { title: "Dress & Frock" },
-        { title: "Earrings" },
-        { title: "Necklace" },
-        { title: "Makeup Kit" },
-      ],
-    },
-    {
-      title: "Jwellery",
-      list: [
-        { title: "Earrings" },
-        { title: "Couple Rings" },
-        { title: "Necklace" },
-      ],
-    },
-    {
-      title: "Clothes",
-      list: [
-        { title: "Shirt" },
-        { title: "Shorts & Jeans" },
-        { title: "Jacket" },
-        { title: "Dress & Frock" },
-      ],
-    },
-  ];
+  const filterAccordianData = useSelector((state) => state.category.categories);
 
   // Product Data
 
@@ -460,10 +426,10 @@ const Products = ({ setProgress }) => {
                 />
               </div>
               {!user ? (
-                <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
+                <div onClick={() => navigate("/login")} className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
                   <i
                     title="login"
-                    onClick={() => navigate("/login")}
+                    
                     className="ri-user-line"
                   ></i>
                 </div>
@@ -483,7 +449,7 @@ const Products = ({ setProgress }) => {
                     if (user) {
                       navigate("/cart");
                     } else {
-                      navigate("/login");
+                      setOpenModal(true);
                     }
                   }}
                   title="cart"
@@ -503,21 +469,7 @@ const Products = ({ setProgress }) => {
                 <i className="ri-sound-module-line"></i>
               </div>
               <hr className="bg-[#5c5c5c] mb-5" />
-              <SelectAccordian
-                data={filterAccordianData}
-                fun={filter}
-                reset={() => {
-                  setSearchKeyword("");
-                  dispatch(removeProducts());
-                  dispatch(
-                    getAllProductsAsync({
-                      page: 0,
-                      quantum: 10,
-                      searchKeyword: "",
-                    })
-                  );
-                }}
-              />
+              <SelectAccordian data={filterAccordianData} fun={filter} />
             </div>
             <div className="w-[80%] h-full  overflow-y-scroll productList max-sm:w-full max-sm:items-center">
               <InfiniteScroll
@@ -549,7 +501,7 @@ const Products = ({ setProgress }) => {
                               onClick={(e) => {
                                 e.stopPropagation();
                                 if (!user) {
-                                  return navigate("/login");
+                                  return setOpenModal(true);
                                 }
                                 Toasts("info", "🌸 Added to wishlist");
                               }}
@@ -611,23 +563,10 @@ const Products = ({ setProgress }) => {
             ></i>
           </div>
           <hr className="bg-[#d0d0d0] mb-5" />
-          <SelectAccordian
-            data={filterAccordianData}
-            fun={filter}
-            reset={() => {
-              setSearchKeyword("");
-              dispatch(removeProducts());
-              dispatch(
-                getAllProductsAsync({
-                  page: 0,
-                  quantum: 10,
-                  searchKeyword: "",
-                })
-              );
-            }}
-          />
+          <SelectAccordian data={filterAccordianData} fun={filter} />
         </div>
       </Drawer>
+      <Modal open={openModal} setOpen={setOpenModal} />
     </>
   );
 };
