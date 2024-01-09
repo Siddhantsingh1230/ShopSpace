@@ -5,13 +5,13 @@ import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
 import heart from "../assets/images/heart.gif";
 import heartSearch from "../assets/images/heart-search.gif";
-import womenmodel from "../assets/images/womenmodel.png";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getWishlistAsync,
   removeProductFromWishlistAsync,
 } from "../slices/wishlistSlice";
+import Toasts from "../app/Toasts";
 
 const Wishlist = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -43,6 +43,8 @@ const Wishlist = ({ setProgress }) => {
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [filteredList,setFilteredList] = useState(wishlist);
+  const [searchKeyword,setSearchKeyword] = useState("");
 
   useEffect(() => {
     if (!user) {
@@ -134,10 +136,29 @@ const Wishlist = ({ setProgress }) => {
                   <i
                     title="search"
                     className="ri-search-line  cursor-pointer hover:text-blue-500"
+                    onClick={()=>{
+                      if(searchKeyword.trim() != ""){
+                        let filtered = wishlist.filter((item) =>
+                        item.title.toLowerCase().includes(searchKeyword.toLowerCase())
+                      );
+                      setFilteredList(filtered);
+                      }else{
+                        setFilteredList(wishlist)
+                      }
+                    }}
                   ></i>
                   <input
                     type="text"
                     placeholder="Search.."
+                    value={searchKeyword}
+                    onChange={(e)=>{
+                      if(e.target.value.trim() !== ""){
+                        setSearchKeyword(e.target.value);
+                      }else{
+                        setSearchKeyword("");
+                        setFilteredList(wishlist)
+                      }
+                    }}
                     className="w-4/5 active:border-none bg-transparent focus:border-none outline-none"
                   />
                 </div>
@@ -176,7 +197,7 @@ const Wishlist = ({ setProgress }) => {
           <div className="flex justify-center ">
             <div className="flex flex-wrap  mb-10 justify-center overflow-y-scroll ">
               <div className="grid md:grid-cols-5 gap-10 p-10 ">
-                {wishlist && wishlist.map((item, idx) => (
+                {filteredList?( filteredList.map((item, idx) => (
                   <div
                     key={idx}
                     className="flex flex-col gap-2 p-1 cursor-pointer"
@@ -196,6 +217,9 @@ const Wishlist = ({ setProgress }) => {
                               productId: item._id.toString(),
                             })
                           );
+                          Toasts("info", "👻 Removed successfully");
+                          let filtered = filteredList.filter((item,i)=>i!=idx);
+                          setFilteredList(filtered)
                         }}
                       >
                         <i className="p-0 text-lg ri-heart-3-line"></i>
@@ -211,7 +235,7 @@ const Wishlist = ({ setProgress }) => {
                       </p>
                     </div>
                   </div>
-                ))}
+                ))):<p1>No items</p1>}
               </div>
             </div>
           </div>
