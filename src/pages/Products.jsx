@@ -488,7 +488,7 @@ const Products = ({ setProgress }) => {
                     ? products.map((item, idx) => (
                         <div
                           key={idx}
-                          onClick={() => navigate("/productdetail")}
+                          onClick={() => navigate(`/productdetail/${item._id}`)}
                           className="flex flex-col gap-3 mx-3  cursor-pointer relative overflow-hidden"
                         >
                           <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">

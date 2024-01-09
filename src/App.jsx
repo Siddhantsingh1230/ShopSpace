@@ -54,7 +54,7 @@ const App = () => {
             element={<Signup setProgress={setProgress} />}
           />
           <Route
-            path="/productdetail"
+            path="/productdetail/:id"
             exact
             element={<ProductDetail setProgress={setProgress} />}
           />
