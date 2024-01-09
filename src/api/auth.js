@@ -81,3 +81,10 @@ export const resetPassword = async (id, password, token) => {
   );
   return data;
 };
+
+export const getUserByUserId = async (id) => {
+  const { data } = await axios.get(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/user/:"+id
+  );
+  return data.username;
+};

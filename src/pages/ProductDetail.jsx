@@ -12,6 +12,8 @@ import ContentPlaceholder from "../components/ContentPlaceholder";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import { getProductById } from "../api/products";
+import { addReview, getReviewOfProductByid } from "../api/review";
+import Toasts from "../app/Toasts";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
@@ -63,7 +65,6 @@ const ProductDetails = ({ setProgress }) => {
   const [showError, setShowError] = useState(false);
   const [imgLoad, setImgLoad] = useState(true);
   const handleImageLoad = () => {
-    console.log("load");
     setImgLoad(false);
   };
   const handleImageError = () => {
@@ -80,6 +81,15 @@ const ProductDetails = ({ setProgress }) => {
       setShowError(true);
     }
   };
+  // Fx to fetch reviews from server
+  const fetchReviews = async (id) => {
+    try {
+      const data = await getReviewOfProductByid(id);
+      setReviews(data?.reviews);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // useEffect to check if perfect product id is provide or not if not then show error message
   useEffect(() => {
@@ -87,19 +97,12 @@ const ProductDetails = ({ setProgress }) => {
       return setShowError(true); // no need still used to ensure security
     }
     fetchProduct(id);
+    fetchReviews(id);
   }, []);
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
-  let [reviews, setReviews] = useState([
-    {
-      userId: "2023-10-01T05:28:37.235Z",
-      productId: 1,
-      content: "First Rating ⭐⭐⭐⭐⭐",
-      createdAt: "03/10/2023",
-      id: 4,
-    },
-  ]);
+  let [reviews, setReviews] = useState([]);
 
   const [reviewText, setReviewText] = useState("");
   //navigate obj
@@ -109,46 +112,22 @@ const ProductDetails = ({ setProgress }) => {
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
 
-  // const product = {
-  //   id: 96,
-  //   title: "lighting ceiling kitchen",
-  //   description:
-  //     "Wholesale slim hanging decorative kid room lighting ceiling kitchen chandeliers pendant light modern",
-  //   price: 30,
-  //   discountPercentage: 14.89,
-  //   rating: 4.83,
-  //   stock: 96,
-  //   brand: "lightingbrilliance",
-  //   category: "lighting",
-  //   thumbnail: "https://i.dummyjson.com/data/products/96/thumbnail.jpg",
-  //   images: [
-  //     "https://i.dummyjson.com/data/products/96/1.jpg",
-  //     "https://i.dummyjson.com/data/products/96/2.jpg",
-  //     "https://i.dummyjson.com/data/products/96/3.jpg",
-  //     "https://i.dummyjson.com/data/products/96/4.jpg",
-  //     "https://i.dummyjson.com/data/products/96/thumbnail.jpg",
-  //   ],
-  // };
-  const createReview = (e) => {
+  const createReview = async (e) => {
     if (user) {
-      if (reviewText.trim().length !== 0) {
-        const date = new Date();
-        let currentDate = String(
-          `${String(date.getDate()).padStart(2, "0")}/${String(
-            date.getMonth() + 1
-          ).padStart(2, "0")}/${date.getFullYear()}`
-        );
-        setReviews([
-          ...reviews,
-          {
-            userId: user.id,
-            productId: product.id,
+      try {
+        if (reviewText.trim().length !== 0) {
+          const reviewObj = {
+            productId: product._id,
+            userId: user._id,
             content: reviewText.trim(),
-            createdAt: currentDate,
-            id: reviews.length,
-          },
-        ]);
-        // Give toast here  on successfull review add
+          };
+          await addReview(reviewObj);
+          await fetchReviews(id);
+          // Give toast here  on successfull review add
+          Toasts("info", "Review Added");
+        }
+      } catch (error) {
+        Toasts("error", error.response?.data.message || "NET_ERROR");
       }
     } else {
       //  open modals here if no user is logged in
@@ -250,7 +229,7 @@ const ProductDetails = ({ setProgress }) => {
                       className=" w-full max-sm:h-64 rounded-md object-cover md:max-h-full"
                     />
                   </div>
-                   {imgLoad && <ContentPlaceholder />}
+                  {imgLoad && <ContentPlaceholder />}
                   <div className="grid grid-cols-5 sm:flex sm:flex-col  md:grid-cols-5 md:max-h-full justify-between w-full  max-sm:h-[72px] md:w-64 sm:overflow-scroll">
                     {images?.map((image) => (
                       <img
@@ -498,7 +477,9 @@ const ProductDetails = ({ setProgress }) => {
                         <h3 className="sr-only">Reviews</h3>
                         <div className="flex items-center">
                           <div className="flex items-center">
-                            <Stars star={5} />
+                            <Stars
+                              star={Math.round(parseInt(product.rating))}
+                            />
                           </div>
                           <p className="sr-only">
                             {product.rating} out of 5 stars
@@ -513,37 +494,50 @@ const ProductDetails = ({ setProgress }) => {
                       </div>
 
                       <ul role="list" className="divide-y divide-gray-100">
-                        {reviews.map((review, idx) => (
-                          <li
-                            key={idx} // after creating backend use review id here
-                            className="flex justify-between gap-x-6 py-5"
-                          >
-                            <div className="flex min-w-0 gap-x-4">
-                              {/* <img
+                        {reviews.length > 0 ? (
+                          reviews.map((review, idx) => (
+                            <li
+                              key={idx} // after creating backend use review id here
+                              className="flex justify-between gap-x-6 py-5"
+                            >
+                              <div className="flex min-w-0 gap-x-4">
+                                {/* <img
                               className="h-12 w-12 object-cover flex-none rounded-full bg-gray-50"
                               src={shopping}
                               alt=""
                             /> */}
-                              <div className="min-w-0 flex-auto">
-                                <p className="text-sm font-semibold  leading-6 text-gray-900">
-                                  {review.content}
-                                </p>
-                                <p className="mt-1 truncate text-xs leading-5 text-gray-5 00">
-                                  {review.userId}
-                                </p>
+                                <div className="min-w-0 flex-auto">
+                                  <p className="text-sm font-semibold  leading-6 text-gray-900">
+                                    {review.content}
+                                  </p>
+                                  <p className="mt-1 truncate text-xs leading-5 text-gray-5 00">
+                                    {review.userId}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                            <div className="flex ">
-                              <div className=" flex items-end flex-col  ">
-                                <p className="mt-1 text-xs leading-5 text-gray-500">
-                                  {review.createdAt}
-                                </p>
+                              <div className="flex ">
+                                <div className=" flex items-end flex-col  ">
+                                  <p className="mt-1 text-xs leading-5 text-gray-500">
+                                    {String(
+                                      `${String(
+                                        new Date(review.createdAt).getDate()
+                                      ).padStart(2, "0")}/${String(
+                                        new Date(review.createdAt).getMonth() +
+                                          1
+                                      ).padStart(2, "0")}/${new Date(
+                                        review.createdAt
+                                      ).getFullYear()}`
+                                    )}
+                                  </p>
 
-                                <i className="ri-checkbox-circle-fill h-4 w-4 text-blue-500"></i>
+                                  <i className="ri-checkbox-circle-fill h-4 w-4 text-blue-500"></i>
+                                </div>
                               </div>
-                            </div>
-                          </li>
-                        ))}
+                            </li>
+                          ))
+                        ) : (
+                          <p>Be the first to review</p>
+                        )}
                       </ul>
                       <div className="mt-4 space-y-6">
                         <p className="text-sm text-gray-600">
@@ -587,9 +581,9 @@ const ProductDetails = ({ setProgress }) => {
                       aria-hidden="true"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M6 18L18 6M6 6l12 12"
                       />
                     </svg>
