@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { pageTransitionVariant } from "../constants/Transition";
 import { PRODUCTSURL } from "../constants/constants";
 import { useSelector } from "react-redux";
+import ListPlaceholder from "../components/ListPlaceholder";
 
 const Footer = () => {
   const categories = useSelector((state) => state.category.categories);
@@ -19,7 +20,7 @@ const Footer = () => {
       <div className="p-12 max-sm:p-5 ">
         <p className="text-blue-500 font-bold">BRAND DIRECTORY</p>
 
-        {categories.length > 0 ? (
+        {categories?.length > 0 ? (
           categories.slice(2, 6).map((category, idx) => (
             <div
               key={category._id}
@@ -52,7 +53,7 @@ const Footer = () => {
             </div>
           ))
         ) : (
-          <p>Nothing</p>
+          <ListPlaceholder />
         )}
       </div>
 
