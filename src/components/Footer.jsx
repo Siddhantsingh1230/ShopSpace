@@ -66,7 +66,7 @@ const Footer = () => {
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">POPULAR CATEGORIES</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
-          {topViewed.length > 0 ? (
+          {topViewed?.length > 0 ? (
             topViewed.map((item, idx) => (
               <Link
                 key={idx}
