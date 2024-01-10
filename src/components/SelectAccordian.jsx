@@ -49,7 +49,7 @@ const SelectAccordian = ({ data, fun }) => {
   return (
     <>
       <div className="flex flex-col">
-        {data.length > 0 ? (
+        {data?.length > 0 ? (
           data.map((item, index) => (
             <AccrodianItem
               open={index === open}
