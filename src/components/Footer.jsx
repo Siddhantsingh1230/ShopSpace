@@ -1,11 +1,12 @@
-import React from "react";
 import Payment from "../assets/images/payment.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { pageTransitionVariant } from "../constants/Transition";
 import { PRODUCTSURL } from "../constants/constants";
+import { useSelector } from "react-redux";
 
 const Footer = () => {
+  const categories = useSelector((state) => state.category.categories);
   return (
     <motion.div
       variants={pageTransitionVariant}
@@ -18,235 +19,41 @@ const Footer = () => {
       <div className="p-12 max-sm:p-5 ">
         <p className="text-blue-500 font-bold">BRAND DIRECTORY</p>
 
-        <div className="flex  my-2 py-2 max-sm:flex-wrap max-sm:items-center">
-          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
-            FASHION :
-          </h1>
-          <Link
-            to={`${PRODUCTSURL}?s=mens-shirt`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            mens-shirt
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=shirts`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            shirts
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=shorts & jeans`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            shorts & jeans
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=jacket`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            jacket
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=dress & frock`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            dress & frock
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=innerwear`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            innerwear
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=hosiery`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            hosiery
-          </Link>
-        </div>
-
-        <div className="flex my-2 max-sm:flex-wrap max-sm:items-center">
-          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
-            FOOTWEAR :
-          </h1>
-          <Link
-            to={`${PRODUCTSURL}?s=sport`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            sport
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=formal`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            formal
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s= boots`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            boots
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=casual`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            casual
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=cowboy shoes`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            cowboy shoes
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=safety shoes`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            safety shoes
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=party wear shoes`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            party wear shoes
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=branded`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            branded
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=first copy`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            first copy
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=long shoes`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            long shoes
-          </Link>
-        </div>
-
-        <div className="flex my-2 py-2 max-sm:flex-wrap max-sm:items-center">
-          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
-            JEWELLERY :{" "}
-          </h1>
-          <Link
-            to={`${PRODUCTSURL}?s=necklace`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            necklace
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=earrings`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            earrings
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=couple rings`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            couple rings
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=pendants`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            pendants
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=crystal`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            crystal
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            bangles
-          </Link>
-        </div>
-
-        <div className="flex my-2  max-sm:flex-wrap max-sm:items-center">
-          <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
-            COSMETICS :{" "}
-          </h1>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            shampoo
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            bodywash
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            facewash
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            makeupkit
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            perfume
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            skin loson
-          </Link>
-          <span className="text-[#696969] max-sm:mr-2 ">|</span>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2   capitalize hover:text-[#999995] max-sm:text-xs"
-          >
-            sunscreen
-          </Link>
-        </div>
+        {categories.length > 0 ? (
+          categories.slice(2, 6).map((category, idx) => (
+            <div
+              key={category._id}
+              className="flex  my-2 py-2 max-sm:flex-wrap max-sm:items-center"
+            >
+              <h1 className="text-[#999995] max-sm:text-xs font-bold mr-4 text-sm">
+                {category.label.toUpperCase()} :
+              </h1>
+              {category.subcategories
+                .slice(0, category.subcategories.length - 1)
+                .map((item) => (
+                  <>
+                    <Link
+                      to={`${PRODUCTSURL}?s=${encodeURIComponent(item.name)}`}
+                      className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
+                    >
+                      {item.name}
+                    </Link>
+                    <span className="text-[#696969] max-sm:mr-2 ">|</span>
+                  </>
+                ))}
+              <Link
+                to={`${PRODUCTSURL}?s=${encodeURIComponent(
+                  category.subcategories[category.subcategories.length - 1].name
+                )}`}
+                className="text-[#696969] mx-2 max-sm:mx-0 max-sm:mr-2    capitalize hover:text-[#999995] max-sm:text-xs"
+              >
+                {category.subcategories[category.subcategories.length - 1].name}
+              </Link>
+            </div>
+          ))
+        ) : (
+          <p>Nothing</p>
+        )}
       </div>
 
       <hr className="w-full border-[#656565]"></hr>
