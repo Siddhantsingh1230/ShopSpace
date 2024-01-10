@@ -67,6 +67,7 @@ import { useSelector } from "react-redux";
 //actions
 
 import ContentPlaceholder from "../components/ContentPlaceholder";
+import SkeletonCard from "../components/SkeletonCard";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -744,109 +745,127 @@ const Home = ({ setProgress }) => {
                 <p className="font-bold border-b py-2 tracking-wider">
                   New Arrivals
                 </p>
-                {latestProducts.map((item, idx) => (
-                  <div key={idx} className="flex flex-col w-full">
-                    <Link
-                      to={`${PRODUCTDETAILURL}/${item._id}`}
-                      className="flex    border-solid border overflow-hidden rounded-md py-3 items-center "
-                    >
-                      <img
-                        className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
-                        src={item.thumbnail}
-                        alt="product"
-                      />
-                      <div>
-                        <a href="#" className="text-sm font-bold">
-                          {item.title.slice(0, 20)}...
-                        </a>
-                        <p className="text-sm hover:text-blue-500 cursor-pointer">
-                          {item.category}
-                        </p>
-                        <p className="text-blue-500 font-bold">
-                          {Math.round(
-                            item.price -
-                              (item.discountPercentage * item.price) / 100
-                          )}
-                          <span className="ml-3 font-normal text-[#787878] line-through">
-                            {item.price}
-                          </span>
-                        </p>
-                      </div>
-                    </Link>
+                {latestProducts.length > 0 ? (
+                  latestProducts.map((item, idx) => (
+                    <div key={idx} className="flex flex-col w-full">
+                      <Link
+                        to={`${PRODUCTDETAILURL}/${item._id}`}
+                        className="flex  border-solid border overflow-hidden rounded-md py-3 items-center "
+                      >
+                        <img
+                          className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
+                          src={item.thumbnail}
+                          alt="product"
+                        />
+                        <div>
+                          <a href="#" className="text-sm font-bold">
+                            {item.title.slice(0, 20)}...
+                          </a>
+                          <p className="text-sm hover:text-blue-500 cursor-pointer">
+                            {item.category}
+                          </p>
+                          <p className="text-blue-500 font-bold">
+                            {Math.round(
+                              item.price -
+                                (item.discountPercentage * item.price) / 100
+                            )}
+                            <span className="ml-3 font-normal text-[#787878] line-through">
+                              {item.price}
+                            </span>
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  ))
+                ) : (
+                  <div className="w-full h-full overflow-hidden">
+                    <SkeletonCard />
                   </div>
-                ))}
+                )}
               </div>
               <div className="flex flex-col gap-5">
                 <p className="font-bold border-b py-2 tracking-wider">
                   Trending
                 </p>
-                {topViewed.slice(0, 4).map((item, idx) => (
-                  <Link
-                    to={`${PRODUCTDETAILURL}/${item._id}`}
-                    className="flex flex-col w-full"
-                  >
-                    <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                      <img
-                        className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
-                        src={item.thumbnail}
-                        alt="product"
-                      />
-                      <div>
-                        <p href="#" className="text-sm font-bold">
-                          {item.title.slice(0, 20)}...
-                        </p>
-                        <p className="text-sm hover:text-blue-500 cursor-pointer">
-                          {item.category}
-                        </p>
-                        <p className="text-blue-500 font-bold">
-                          {Math.round(
-                            item.price -
-                              (item.discountPercentage * item.price) / 100
-                          )}
-                          <span className="ml-3 font-normal text-[#787878] line-through">
-                            {item.price}
-                          </span>
-                        </p>
+                {topViewed.length > 0 ? (
+                  topViewed.slice(0, 4).map((item, idx) => (
+                    <Link
+                      to={`${PRODUCTDETAILURL}/${item._id}`}
+                      className="flex flex-col w-full"
+                    >
+                      <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                        <img
+                          className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
+                          src={item.thumbnail}
+                          alt="product"
+                        />
+                        <div>
+                          <p href="#" className="text-sm font-bold">
+                            {item.title.slice(0, 20)}...
+                          </p>
+                          <p className="text-sm hover:text-blue-500 cursor-pointer">
+                            {item.category}
+                          </p>
+                          <p className="text-blue-500 font-bold">
+                            {Math.round(
+                              item.price -
+                                (item.discountPercentage * item.price) / 100
+                            )}
+                            <span className="ml-3 font-normal text-[#787878] line-through">
+                              {item.price}
+                            </span>
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </Link>
-                ))}
+                    </Link>
+                  ))
+                ) : (
+                  <div className="w-full h-full overflow-hidden">
+                    <SkeletonCard />
+                  </div>
+                )}
               </div>
               <div className="flex flex-col gap-5">
                 <p className="font-bold border-b py-2 tracking-wider">
                   Top Rated
                 </p>
-                {topRated.map((item, idx) => (
-                  <div key={idx} className="flex flex-col w-full">
-                    <Link
-                      to={`${PRODUCTDETAILURL}/${item._id}`}
-                      className="flex    border-solid border overflow-hidden rounded-md py-3 items-center "
-                    >
-                      <img
-                        className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
-                        src={item.thumbnail}
-                        alt="product"
-                      />
-                      <div>
-                        <p className="text-sm font-bold">
-                          {item.title.slice(0, 20)}...
-                        </p>
-                        <p className="text-sm hover:text-blue-500 cursor-pointer">
-                          {item.category}
-                        </p>
-                        <p className="text-blue-500 font-bold">
-                          {Math.round(
-                            item.price -
-                              (item.discountPercentage * item.price) / 100
-                          )}
-                          <span className="ml-3 font-normal text-[#787878] line-through">
-                            {item.price}
-                          </span>
-                        </p>
-                      </div>
-                    </Link>
+                {topRated.length > 0 ? (
+                  topRated.map((item, idx) => (
+                    <div key={idx} className="flex flex-col w-full">
+                      <Link
+                        to={`${PRODUCTDETAILURL}/${item._id}`}
+                        className="flex    border-solid border overflow-hidden rounded-md py-3 items-center "
+                      >
+                        <img
+                          className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
+                          src={item.thumbnail}
+                          alt="product"
+                        />
+                        <div>
+                          <p className="text-sm font-bold">
+                            {item.title.slice(0, 20)}...
+                          </p>
+                          <p className="text-sm hover:text-blue-500 cursor-pointer">
+                            {item.category}
+                          </p>
+                          <p className="text-blue-500 font-bold">
+                            {Math.round(
+                              item.price -
+                                (item.discountPercentage * item.price) / 100
+                            )}
+                            <span className="ml-3 font-normal text-[#787878] line-through">
+                              {item.price}
+                            </span>
+                          </p>
+                        </div>
+                      </Link>
+                    </div>
+                  ))
+                ) : (
+                  <div className="w-full h-full overflow-hidden">
+                    <SkeletonCard />
                   </div>
-                ))}
+                )}
               </div>
             </div>
             {/* Deal of the Day */}
