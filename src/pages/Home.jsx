@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
-import { PRODUCTSURL } from "../constants/constants";
+import { PRODUCTDETAILURL, PRODUCTSURL } from "../constants/constants";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -164,8 +164,15 @@ const Home = ({ setProgress }) => {
 
   const user = useSelector((state) => state.auth.user);
   const categories = useSelector((state) => state.category.categories);
+  const topRated = useSelector((state) => state.product.topRated);
+  const topViewed = useSelector((state) => state.product.topViewed);
+  const latestProducts = useSelector((state) => state.product.latestProducts);
+
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
+
+  // Search
+  const [search, setSearch] = useState("");
 
   // placeholder dummy array
   const dummy = new Array(5).fill(0);
@@ -216,7 +223,8 @@ const Home = ({ setProgress }) => {
           </div>
           <p className="text-sm flex justify-center items-center opacity-70">
             <span>
-            <i className="ri-planet-line"></i> <b>FREE SHIPPING</b> THIS WEEK ORDER OVER - ₹100
+              <i className="ri-planet-line"></i> <b>FREE SHIPPING</b> THIS WEEK
+              ORDER OVER - ₹100
             </span>
           </p>
           <div className="dropdown flex gap-2 opacity-70">
@@ -248,9 +256,16 @@ const Home = ({ setProgress }) => {
               className="w-full h-full rounded-xl px-4 pr-14 max-sm:text-sm"
               placeholder="Enter your space product..."
               type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
             <i
               title="search"
+              onClick={() => {
+                if (search.trim() !== "") {
+                  navigate(`/products?s=${decodeURIComponent(search)}`);
+                }
+              }}
               className="cursor-pointer ri-search-line absolute right-6 top-2/4 -translate-y-2/4  hover:text-blue-400"
             ></i>
           </div>
@@ -329,7 +344,7 @@ const Home = ({ setProgress }) => {
         {/* NavLink */}
         <div className="navlink mt-5 flex justify-center items-center gap-11 relative max-sm:hidden">
           <div
-          title="products"
+            title="products"
             onClick={() => navigate("/products")}
             className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks "
           >
@@ -350,7 +365,13 @@ const Home = ({ setProgress }) => {
                     return (
                       <ul className="dropdown-list list-none" key={idx}>
                         <li className="menu-title text-lg font-semibold  pb-2 border-b border-cultured mb-2">
-                          <Link to={`${PRODUCTSURL}?s=${encodeURIComponent(item.label)}`}>{item.label.toUpperCase()}</Link>
+                          <Link
+                            to={`${PRODUCTSURL}?s=${encodeURIComponent(
+                              item.label
+                            )}`}
+                          >
+                            {item.label.toUpperCase()}
+                          </Link>
                         </li>
                         {item.subcategories.length < 5
                           ? [
@@ -361,20 +382,38 @@ const Home = ({ setProgress }) => {
                             ].map((data, key) => {
                               return (
                                 <li
-                                  className={`panel-list-item  capitalize ${!data?"invisible":" "}`}
+                                  className={`panel-list-item  capitalize ${
+                                    !data ? "invisible" : " "
+                                  }`}
                                   key={key}
                                 >
-                                  <Link to={data?`${PRODUCTSURL}?s=${encodeURIComponent(data?.name)}`:"#"}>{data?.name || 0}</Link>
+                                  <Link
+                                    to={
+                                      data
+                                        ? `${PRODUCTSURL}?s=${encodeURIComponent(
+                                            data?.name
+                                          )}`
+                                        : "#"
+                                    }
+                                  >
+                                    {data?.name || 0}
+                                  </Link>
                                 </li>
                               );
                             })
-                          : item.subcategories.slice(0,5).map((data, key) => {
+                          : item.subcategories.slice(0, 5).map((data, key) => {
                               return (
                                 <li
                                   className="panel-list-item  capitalize "
                                   key={key}
                                 >
-                                  <Link to={`${PRODUCTSURL}?s=${encodeURIComponent(data?.name)}`}>{data?.name}</Link>
+                                  <Link
+                                    to={`${PRODUCTSURL}?s=${encodeURIComponent(
+                                      data?.name
+                                    )}`}
+                                  >
+                                    {data?.name}
+                                  </Link>
                                 </li>
                               );
                             })}
@@ -411,8 +450,14 @@ const Home = ({ setProgress }) => {
                 >
                   {item.label.toUpperCase()}
                   <div className="navlinkDropDown overflow-hidden">
-                    {item.subcategories.slice(0,5).map((data, idx) => (
-                      <Link className="capitalize text-sm font-bold" to={`${PRODUCTSURL}?s=${encodeURIComponent(data?.name)}`} key={idx}>
+                    {item.subcategories.slice(0, 5).map((data, idx) => (
+                      <Link
+                        className="capitalize text-sm font-bold"
+                        to={`${PRODUCTSURL}?s=${encodeURIComponent(
+                          data?.name
+                        )}`}
+                        key={idx}
+                      >
                         {data.name}
                       </Link>
                     ))}
@@ -699,292 +744,109 @@ const Home = ({ setProgress }) => {
                 <p className="font-bold border-b py-2 tracking-wider">
                   New Arrivals
                 </p>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={cloth1}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Relaxed Short Full Sleeve{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
+                {latestProducts.map((item, idx) => (
+                  <div key={idx} className="flex flex-col w-full">
+                    <Link
+                      to={`${PRODUCTDETAILURL}/${item._id}`}
+                      className="flex    border-solid border overflow-hidden rounded-md py-3 items-center "
+                    >
+                      <img
+                        className="mx-2 w-20 h-15 cursor-pointer"
+                        src={item.thumbnail}
+                        alt="product"
+                      />
+                      <div>
+                        <a href="#" className="text-sm font-bold">
+                          {item.title.slice(0, 20)}...
+                        </a>
+                        <p className="text-sm hover:text-blue-500 cursor-pointer">
+                          {item.category}
+                        </p>
+                        <p className="text-blue-500 font-bold">
+                          {Math.round(
+                            item.price -
+                              (item.discountPercentage * item.price) / 100
+                          )}
+                          <span className="ml-3 font-normal text-[#787878] line-through">
+                            {item.price}
+                          </span>
+                        </p>
+                      </div>
+                    </Link>
                   </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={cloth2}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Girls Pnk Embro Design{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={cloth3}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Black Floral Wrap Midi Skir{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={cloth4}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Pure Garment Dyed C{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Men's Fashion
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
               <div className="flex flex-col gap-5">
                 <p className="font-bold border-b py-2 tracking-wider">
                   Trending
                 </p>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={shoes1}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Relaxed Short Full Sleeve{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
+                {topViewed.slice(0, 4).map((item, idx) => (
+                  <Link
+                    to={`${PRODUCTDETAILURL}/${item._id}`}
+                    className="flex flex-col w-full"
+                  >
+                    <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
+                      <img
+                        className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
+                        src={item.thumbnail}
+                        alt="product"
+                      />
+                      <div>
+                        <p href="#" className="text-sm font-bold">
+                          {item.title.slice(0, 20)}...
+                        </p>
+                        <p className="text-sm hover:text-blue-500 cursor-pointer">
+                          {item.category}
+                        </p>
+                        <p className="text-blue-500 font-bold">
+                          {Math.round(
+                            item.price -
+                              (item.discountPercentage * item.price) / 100
+                          )}
+                          <span className="ml-3 font-normal text-[#787878] line-through">
+                            {item.price}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={shoes2}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Girls Pnk Embro Design{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={shoes3}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Black Floral Wrap Midi Skir{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 h-15 cursor-pointer"
-                      src={shoes4}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Pure Garment Dyed C{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Men's Fashion
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  </Link>
+                ))}
               </div>
               <div className="flex flex-col gap-5">
                 <p className="font-bold border-b py-2 tracking-wider">
                   Top Rated
                 </p>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 cursor-pointer"
-                      src={watch2}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Relaxed Short Full Sleeve{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
+                {topRated.map((item, idx) => (
+                  <div key={idx} className="flex flex-col w-full">
+                    <Link
+                      to={`${PRODUCTDETAILURL}/${item._id}`}
+                      className="flex    border-solid border overflow-hidden rounded-md py-3 items-center "
+                    >
+                      <img
+                        className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
+                        src={item.thumbnail}
+                        alt="product"
+                      />
+                      <div>
+                        <p className="text-sm font-bold">
+                          {item.title.slice(0, 20)}...
+                        </p>
+                        <p className="text-sm hover:text-blue-500 cursor-pointer">
+                          {item.category}
+                        </p>
+                        <p className="text-blue-500 font-bold">
+                          {Math.round(
+                            item.price -
+                              (item.discountPercentage * item.price) / 100
+                          )}
+                          <span className="ml-3 font-normal text-[#787878] line-through">
+                            {item.price}
+                          </span>
+                        </p>
+                      </div>
+                    </Link>
                   </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 cursor-pointer"
-                      src={necklace}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Girls Pnk Embro Design{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 cursor-pointer"
-                      src={perfume}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Black Floral Wrap Midi Skir{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Clothes
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col w-full">
-                  <div className="flex    border-solid border overflow-hidden rounded-md py-3 items-center ">
-                    <img
-                      className="mx-2 w-20 cursor-pointer"
-                      src={belt}
-                      alt="product"
-                    />
-                    <div>
-                      <a href="#" className="text-sm font-bold">
-                        Pure Garment Dyed C{" "}
-                      </a>
-                      <p className="text-sm hover:text-blue-500 cursor-pointer">
-                        Men's Fashion
-                      </p>
-                      <p className="text-blue-500 font-bold">
-                        ₹45.00
-                        <span className="ml-3 font-normal text-[#787878] line-through">
-                          ₹12.00
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
             {/* Deal of the Day */}

@@ -8,6 +8,7 @@ import Stars from "../components/Stars";
 import { useSelector } from "react-redux";
 import Modal from "../components/Model";
 import ContentPlaceholder from "../components/ContentPlaceholder";
+import { incViewCount } from "../api/products";
 
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
@@ -98,6 +99,7 @@ const ProductDetails = ({ setProgress }) => {
     }
     fetchProduct(id);
     fetchReviews(id);
+    incViewCount(id);
   }, []);
 
   const [selectedColor, setSelectedColor] = useState(colors[0]);

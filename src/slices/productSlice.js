@@ -1,11 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // Adding All Products related APIs
-import { getAllProducts } from "../api/products.js";
+import { getAllProducts, getLatestProducts, getTopRated, getTopViewed } from "../api/products.js";
 
 const initialState = {
   products: [],
-  allFetched: false,
+  topViewed: [],
+  topRated: [],
+  latestProducts:[],
   pagesReturned: 0,
   count: 0,
   status: "idle",
@@ -24,6 +26,42 @@ export const getAllProductsAsync = createAsyncThunk(
     }
   }
 );
+export const getTopProductsAsync = createAsyncThunk(
+  //actually this api is not fetching all products at once but in packets or quantized manner
+  "products/topProducts",
+  async (_, thunkAPI) => {
+    try {
+      const data = await getTopViewed();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const getTopRatedProductsAsync = createAsyncThunk(
+  //actually this api is not fetching all products at once but in packets or quantized manner
+  "products/topRatedProducts",
+  async (_, thunkAPI) => {
+    try {
+      const data = await getTopRated();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const getLatestProductsAsync = createAsyncThunk(
+  //actually this api is not fetching all products at once but in packets or quantized manner
+  "products/topLatestProducts",
+  async (_, thunkAPI) => {
+    try {
+      const data = await getLatestProducts();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const productSlice = createSlice({
   name: "products",
@@ -32,7 +70,7 @@ export const productSlice = createSlice({
   reducers: {
     removeProducts: (state) => {
       state.products = [];
-      state.pagesReturned = 0;  
+      state.pagesReturned = 0;
     },
   },
   extraReducers: (builder) => {
@@ -45,9 +83,53 @@ export const productSlice = createSlice({
         state.products.push(...action.payload.products);
         state.pagesReturned = parseInt(action.payload.pagesReturned);
         state.count = parseInt(action.payload.count);
-        // state.allFetched = action.allFetched;
       })
       .addCase(getAllProductsAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
+          console.log(action.payload.response.data.message || "Error Occurred");
+        } else {
+          console.log("Network Error");
+        }
+      })
+      .addCase(getTopProductsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getTopProductsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.topViewed = action.payload.products;
+      })
+      .addCase(getTopProductsAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
+          console.log(action.payload.response.data.message || "Error Occurred");
+        } else {
+          console.log("Network Error");
+        }
+      })
+      .addCase(getTopRatedProductsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getTopRatedProductsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.topRated = action.payload.products;
+      })
+      .addCase(getTopRatedProductsAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
+          console.log(action.payload.response.data.message || "Error Occurred");
+        } else {
+          console.log("Network Error");
+        }
+      })
+      .addCase(getLatestProductsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getLatestProductsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.latestProducts = action.payload.products;
+      })
+      .addCase(getLatestProductsAsync.rejected, (state, action) => {
         state.status = "idle";
         if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
           console.log(action.payload.response.data.message || "Error Occurred");

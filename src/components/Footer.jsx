@@ -2,12 +2,13 @@ import Payment from "../assets/images/payment.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { pageTransitionVariant } from "../constants/Transition";
-import { PRODUCTSURL } from "../constants/constants";
+import { BASEURL, PRODUCTSURL } from "../constants/constants";
 import { useSelector } from "react-redux";
 import ListPlaceholder from "../components/ListPlaceholder";
 
 const Footer = () => {
   const categories = useSelector((state) => state.category.categories);
+  const topViewed = useSelector((state) => state.product.topViewed);
   return (
     <motion.div
       variants={pageTransitionVariant}
@@ -65,70 +66,51 @@ const Footer = () => {
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">POPULAR CATEGORIES</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
-
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
-            fashion
-          </Link>
-
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
-            electronic
-          </Link>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
-            cosmetic
-          </Link>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
-            health
-          </Link>
-          <Link
-            to={`${PRODUCTSURL}?s=`}
-            className="text-[#696969] capitalize hover:text-blue-500"
-          >
-            watches
-          </Link>
+          {topViewed.length > 0 ? (
+            topViewed.map((item, idx) => (
+              <Link
+                key={idx}
+                to={`${PRODUCTSURL}?s=${encodeURIComponent(item.category)}`}
+                className="text-[#696969] capitalize hover:text-blue-500"
+              >
+                {item.category}
+              </Link>
+            ))
+          ) : (
+            <ListPlaceholder />
+          )}
         </div>
         <div className="grid gap-1">
           <p className="text-white font-bold text-sm">PRODUCTS</p>
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             prices drop
           </Link>
 
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             new products
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             best sales
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             contact us
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             sitemap
@@ -139,32 +121,32 @@ const Footer = () => {
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             delivery
           </Link>
 
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             legal notice
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             terms and conditions
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             about us
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             secure payment
@@ -175,32 +157,32 @@ const Footer = () => {
           <hr className="border-b-1 w-1/3 max-sm:w-12 max-sm:border-b-2  border-blue-500 mb-4 "></hr>
 
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             world wide delivery
           </Link>
 
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             best day delivery
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             best online support
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             return policy
           </Link>
           <Link
-            to={`${PRODUCTSURL}?s=`}
+             to={``}
             className="text-[#696969] capitalize hover:text-blue-500"
           >
             30% money back
@@ -213,7 +195,7 @@ const Footer = () => {
           <div className="flex gap-2 items-center">
             <i className="ri-map-pin-line text-[#696969] text-3xl"></i>
             <Link
-              to={`${PRODUCTSURL}?s=`}
+               to={``}
               className="text-[#696969] capitalize hover:text-blue-500"
             >
               404, Dreamland, Gujarat, India
@@ -222,7 +204,7 @@ const Footer = () => {
           <div className="flex gap-2 items-center">
             <i className="ri-phone-line text-[#696969] text-2xl"></i>
             <Link
-              to={`${PRODUCTSURL}?s=`}
+               to={``}
               className="text-[#696969] capitalize hover:text-blue-500"
             >
               (+91) 9023134084
@@ -231,7 +213,7 @@ const Footer = () => {
           <div className="flex gap-2 items-center">
             <i className="ri-mail-line text-[#696969] text-2xl"></i>
             <Link
-              to={`${PRODUCTSURL}?s=`}
+               to={``}
               className="text-[#696969] capitalize hover:text-blue-500"
             >
               spaceshop@gmail.com
@@ -247,7 +229,7 @@ const Footer = () => {
       <div className="p-12 flex flex-col gap-4 items-center text-center max-sm:mb-12">
         <img className="" src={Payment} alt="payment methods"></img>
         <p className="text-[#696969] capitalize">
-          Copyright &copy; <Link to={`${PRODUCTSURL}?s=`}>Shop Space </Link> all
+          Copyright &copy; <Link  to={`${BASEURL}`}>Shop Space </Link> all
           rights reserved.
         </p>
       </div>

@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 // Components
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -16,7 +16,7 @@ import ScrollUpBtn from "./components/ScrollUpBtn"; // UI for ScrollToTop
 import ScrollToTop from "react-scroll-to-top"; // For ScrollToTop feature
 import LoadingBar from "react-top-loading-bar"; // For Top Loading Bar
 import { ToastContainer } from "react-toastify"; // For Toasts
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { AnimatePresence } from "framer-motion";
 import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
@@ -25,7 +25,12 @@ import OrderSuccess from "./pages/OrderSuccess";
 import ResetPassword from "./pages/ResetPassword";
 import { getUserAsync } from "./slices/authSlice";
 import { getAllCategoriesAsync } from "./slices/categorySlice";
-import {  useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getLatestProductsAsync,
+  getTopProductsAsync,
+  getTopRatedProductsAsync,
+} from "./slices/productSlice";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
@@ -36,6 +41,9 @@ const App = () => {
   useEffect(() => {
     dispatch(getUserAsync());
     dispatch(getAllCategoriesAsync());
+    dispatch(getTopProductsAsync());
+    dispatch(getTopRatedProductsAsync());
+    dispatch(getLatestProductsAsync());
   }, []);
   return (
     <>
@@ -92,7 +100,8 @@ const App = () => {
             path="/forgotpassword"
             exact
             element={<ForgotPassword setProgress={setProgress} />}
-          /><Route
+          />
+          <Route
             path="/resetpassword/:id/:token"
             exact
             element={<ResetPassword setProgress={setProgress} />}

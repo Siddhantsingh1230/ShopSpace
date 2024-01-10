@@ -1,5 +1,6 @@
 import { Collapse } from "react-collapse";
 import { useState } from "react";
+import ListPlaceholder from "./ListPlaceholder.jsx";
 
 const AccrodianItem = ({ open, toggle, item, fun }) => {
   return (
@@ -9,9 +10,7 @@ const AccrodianItem = ({ open, toggle, item, fun }) => {
           <p className={` select-none`}>{item.label}</p>
         </div>
         {open ? (
-          <i
-            className="text-[#787878] transition hover:text-black ri-subtract-line"
-          ></i>
+          <i className="text-[#787878] transition hover:text-black ri-subtract-line"></i>
         ) : (
           <i className="text-[#787878] transition hover:text-black ri-add-line"></i>
         )}
@@ -50,15 +49,19 @@ const SelectAccordian = ({ data, fun }) => {
   return (
     <>
       <div className="flex flex-col">
-        {data?.map((item, index) => (
-          <AccrodianItem
-            open={index === open}
-            key={index}
-            toggle={() => toggle(index)}
-            item={item}
-            fun={fun}
-          />
-        ))}
+        {data.length > 0 ? (
+          data.map((item, index) => (
+            <AccrodianItem
+              open={index === open}
+              key={index}
+              toggle={() => toggle(index)}
+              item={item}
+              fun={fun}
+            />
+          ))
+        ) : (
+          <ListPlaceholder />
+        )}
       </div>
     </>
   );
