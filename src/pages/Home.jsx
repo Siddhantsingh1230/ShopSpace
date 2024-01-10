@@ -745,7 +745,7 @@ const Home = ({ setProgress }) => {
                 <p className="font-bold border-b py-2 tracking-wider">
                   New Arrivals
                 </p>
-                {latestProducts.length > 0 ? (
+                {latestProducts?.length > 0 ? (
                   latestProducts.map((item, idx) => (
                     <div key={idx} className="flex flex-col w-full">
                       <Link
@@ -787,7 +787,7 @@ const Home = ({ setProgress }) => {
                 <p className="font-bold border-b py-2 tracking-wider">
                   Trending
                 </p>
-                {topViewed.length > 0 ? (
+                {topViewed?.length > 0 ? (
                   topViewed.slice(0, 4).map((item, idx) => (
                     <Link
                       to={`${PRODUCTDETAILURL}/${item._id}`}
@@ -829,7 +829,7 @@ const Home = ({ setProgress }) => {
                 <p className="font-bold border-b py-2 tracking-wider">
                   Top Rated
                 </p>
-                {topRated.length > 0 ? (
+                {topRated?.length > 0 ? (
                   topRated.map((item, idx) => (
                     <div key={idx} className="flex flex-col w-full">
                       <Link
