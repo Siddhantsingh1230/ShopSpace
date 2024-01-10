@@ -12,6 +12,7 @@ import {
   removeProductFromWishlistAsync,
 } from "../slices/wishlistSlice";
 import Toasts from "../app/Toasts";
+import SkeletonCard from "../components/SkeletonCard";
 
 const Wishlist = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -35,25 +36,29 @@ const Wishlist = ({ setProgress }) => {
     }
   }, []);
 
-  // Product Data
-
-  // let [wishlist, setWishlist] = useState(new Array(11).fill(0));
-
   const user = useSelector((state) => state.auth.user);
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [filteredList, setFilteredList] = useState(wishlist);
+  const [filteredList, setFilteredList] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
+  const status = useSelector((state) => state.wishlist.status);
+  let [localStatus, setLocalStatus] = useState("loading");
 
   useEffect(() => {
     if (!user) {
       navigate("/");
     } else {
-      dispatch(getWishlistAsync(user._id));
-      setFilteredList(wishlist);
+      if (status === "idle") {
+        dispatch(getWishlistAsync(user._id)).then(() => {
+          setLocalStatus("idle");
+          setFilteredList(wishlist);
+        });
+      }
     }
-  }, [user, wishlist]);
+    
+  }, [user,wishlist]);
+
 
   return (
     <>
@@ -138,15 +143,12 @@ const Wishlist = ({ setProgress }) => {
                     title="search"
                     className="ri-search-line  cursor-pointer hover:text-blue-500"
                     onClick={() => {
-                      if (searchKeyword.trim() != "") {
+                      if (searchKeyword.trim() !== "") {
                         let filtered = wishlist.filter((item) =>
-                          item.title
-                            .toLowerCase()
+                          item.title.toLowerCase()
                             .includes(searchKeyword.toLowerCase())
                         );
                         setFilteredList(filtered);
-                      } else {
-                        setFilteredList(wishlist);
                       }
                     }}
                   ></i>
@@ -159,7 +161,6 @@ const Wishlist = ({ setProgress }) => {
                         setSearchKeyword(e.target.value);
                       } else {
                         setSearchKeyword("");
-                        setFilteredList(wishlist);
                       }
                     }}
                     className="w-4/5 active:border-none bg-transparent focus:border-none outline-none"
@@ -197,56 +198,54 @@ const Wishlist = ({ setProgress }) => {
             </div>
             <hr className="border w-full bg-gray-100"></hr>
           </div>
-          <div className="flex justify-center ">
-            <div className="flex flex-wrap  mb-10 justify-center overflow-y-scroll ">
-              <div className="grid md:grid-cols-5 gap-10 p-10 ">
-                {filteredList ? (
-                  filteredList.map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex flex-col gap-2 p-1 cursor-pointer"
-                    >
-                      <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
-                        <img
-                          className="h-full w-full  object-cover rounded-md object-center"
-                          src={item.images[0]}
-                          alt="img"
-                        />
-                        <div
-                          className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
-                          onClick={() => {
-                            dispatch(
-                              removeProductFromWishlistAsync({
-                                id: user._id,
-                                productId: item._id.toString(),
-                              })
-                            );
+
+          <div className="grid md:grid-cols-5 gap-10 p-10 ">
+            {localStatus === "loading" &&
+              new Array(5).fill(0).map((_, key) => <SkeletonCard />)}
+            {filteredList
+              ? filteredList.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex flex-col gap-2 p-1 cursor-pointer"
+                  >
+                    <div className="h-[15rem] w-[15rem] max-sm:h-full max-sm:w-full  bg-[#F5F5F7]  rounded-lg relative overflow-hidden max-sm:justify-center">
+                      <img
+                        className="h-full w-full  object-cover rounded-md object-center"
+                        src={item.images[0]}
+                        alt="img"
+                      />
+                      <div
+                        className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
+                        onClick={() => {
+                          dispatch(
+                            removeProductFromWishlistAsync({
+                              id: user._id,
+                              productId: item._id.toString(),
+                            })
+                          ).then(() => {
                             Toasts("info", "👻 Removed successfully");
-                            let filtered = filteredList.filter(
-                              (item, i) => i != idx
-                            );
-                            setFilteredList(filtered);
-                          }}
-                        >
-                          <i className="p-0 text-lg ri-heart-3-line"></i>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center">
-                        <div className="flex flex-col">
-                          <strong>{item.title} </strong>
-                          <p className="text-sm">{item.subCategory}</p>
-                        </div>
-                        <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
-                          {item.price}
-                        </p>
+                          });
+                        }}
+                      >
+                        <i className="p-0 text-lg ri-heart-3-line"></i>
                       </div>
                     </div>
-                  ))
-                ) : (
-                  <p1>No items</p1>
+                    <div className="flex justify-between items-center">
+                      <div className="flex flex-col">
+                        <strong>{item.title} </strong>
+                        <p className="text-sm">{item.subCategory}</p>
+                      </div>
+                      <p className="bg-[#F5F5F7] px-2 py-1 rounded-lg">
+                        {item.price}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              : status !== "loading" && (
+                  <div className="col-span-full mt-28">
+                    <p className="text-center">No Results found</p>
+                  </div>
                 )}
-              </div>
-            </div>
           </div>
         </div>
       </motion.div>
