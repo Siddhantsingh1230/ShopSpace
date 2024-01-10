@@ -751,7 +751,7 @@ const Home = ({ setProgress }) => {
                       className="flex    border-solid border overflow-hidden rounded-md py-3 items-center "
                     >
                       <img
-                        className="mx-2 w-20 h-15 cursor-pointer"
+                        className="mx-2 w-20 h-[70px] rounded-md cursor-pointer"
                         src={item.thumbnail}
                         alt="product"
                       />
