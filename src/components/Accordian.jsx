@@ -1,6 +1,8 @@
 import { Collapse } from "react-collapse";
 import { useState } from "react";
 import ListPlaceholder from "./ListPlaceholder";
+import { Link } from "react-router-dom";
+import { PRODUCTSURL } from "../constants/constants";
 
 const AccrodianItem = ({ open, toggle, item }) => {
   return (
@@ -28,9 +30,9 @@ const AccrodianItem = ({ open, toggle, item }) => {
           {item.subcategories &&
             item.subcategories.map((data, idx) => (
               <div className="flex justify-between cursor-pointer " key={idx}>
-                <p className="text-[#787878] hover:text-black select-none capitalize">
+                <Link to={`${PRODUCTSURL}?s=${encodeURIComponent(data.name)}`} className="text-[#787878] hover:text-black select-none capitalize">
                   {data.name}
-                </p>
+                </Link>
                 <p className="text-[#787878] hover:text-black select-none">
                   {data.itemCount}
                 </p>

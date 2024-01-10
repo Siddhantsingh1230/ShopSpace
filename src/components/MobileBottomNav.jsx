@@ -33,117 +33,6 @@ const MobileBottomNav = () => {
     setIsCategoryOpen((prevState) => !prevState);
   };
 
-  // Menu Accordian Data
-  const MenuAccordianData = [
-    {
-      title: "Men's",
-      list: [
-        { title: "Shirt" },
-        { title: "Shorts & Jeans" },
-        { title: "Safety Shoes" },
-        { title: "Wallet" },
-      ],
-    },
-    {
-      title: "Women",
-      list: [
-        { title: "Dress & Frock" },
-        { title: "Earrings" },
-        { title: "Necklace" },
-        { title: "Makeup Kit" },
-      ],
-    },
-    {
-      title: "Jwellery",
-      list: [
-        { title: "Earrings" },
-        { title: "Couple Rings" },
-        { title: "Necklace" },
-      ],
-    },
-    {
-      title: "Clothes",
-      list: [
-        { title: "Shirt" },
-        { title: "Shorts & Jeans" },
-        { title: "Jacket" },
-        { title: "Dress & Frock" },
-      ],
-    },
-  ];
-
-  // Category  Accrodian data
-  const AccrodianData = [
-    {
-      title: "Clothes",
-      src: DressFrock,
-      list: [
-        { title: "Shirt", price: 300 },
-        { title: "Shorts & Jeans", price: 60 },
-        { title: "Jacket", price: 50 },
-        { title: "Dress & Frock", price: 87 },
-      ],
-    },
-    {
-      title: "Footwear",
-      src: winterwear,
-      list: [
-        { title: "Sports", price: 300 },
-        { title: "Formal", price: 60 },
-        { title: "Casual", price: 50 },
-        { title: "Safety Shoes", price: 87 },
-      ],
-    },
-    {
-      title: "Jwellery",
-      src: watch,
-      list: [
-        { title: "Earrings", price: 300 },
-        { title: "Couple Rings", price: 60 },
-        { title: "Necklace", price: 50 },
-      ],
-    },
-    {
-      title: "Clothes",
-      src: glasses,
-      list: [
-        { title: "Shirt", price: 300 },
-        { title: "Shorts & Jeans", price: 60 },
-        { title: "Jacket", price: 50 },
-        { title: "Dress & Frock", price: 87 },
-      ],
-    },
-    {
-      title: "Footwear",
-      src: hatcaps,
-      list: [
-        { title: "Sports", price: 300 },
-        { title: "Formal", price: 60 },
-        { title: "Casual", price: 50 },
-        { title: "Safety Shoes", price: 87 },
-      ],
-    },
-    {
-      title: "Jwellery",
-      src: shorts,
-      list: [
-        { title: "Earrings", price: 300 },
-        { title: "Couple Rings", price: 60 },
-        { title: "Necklace", price: 50 },
-      ],
-    },
-    {
-      title: "Footwear",
-      src: tshirts,
-      list: [
-        { title: "Sports", price: 300 },
-        { title: "Formal", price: 60 },
-        { title: "Casual", price: 50 },
-        { title: "Safety Shoes", price: 87 },
-      ],
-    },
-  ];
-
   const user = useSelector((state) => state.auth.user);
   const categories = useSelector((state) => state.category.categories);
 
@@ -163,7 +52,7 @@ const MobileBottomNav = () => {
           onClick={() => {
             if (pathname != "/cart" && user) {
               navigate("/cart");
-            }else{
+            } else {
               setOpenModal(true);
             }
           }}
@@ -188,7 +77,7 @@ const MobileBottomNav = () => {
           onClick={() => {
             if (pathname != "/wishlist" && user) {
               navigate("/wishlist");
-            }else{
+            } else {
               setOpenModal(true);
             }
           }}
@@ -234,7 +123,9 @@ const MobileBottomNav = () => {
             }}
             className="flex items-center my-3 "
           >
-            <p className="">{user ? (user.username).toUpperCase() : "Login"}</p>
+            <p className="">
+              {!user && <i className="ri-fingerprint-line"></i>} {user ? user.username.toUpperCase() : "Login"}
+            </p>
           </div>
           <h1
             onClick={() => {
@@ -245,34 +136,33 @@ const MobileBottomNav = () => {
             }}
             className="my-3"
           >
-            Products
+            <i className="ri-t-shirt-2-line"></i> Products
           </h1>
-          <MenuAccordian data={MenuAccordianData} />
           <h1
             onClick={() => {
               if (pathname != "/orders" && user) {
                 navigate("/orders");
-              }else{
+              } else {
                 setOpenModal(true);
               }
               toggleMenuDrawer();
             }}
             className=" my-3"
           >
-            Orders
+            <i className="ri-receipt-fill"></i> Orders
           </h1>
           <h1
             onClick={() => {
               if (pathname != "/settings" && user) {
                 navigate("/settings");
-              }else{
+              } else {
                 setOpenModal(true);
               }
               toggleMenuDrawer();
             }}
             className=" my-3"
           >
-            Settings
+            <i className="ri-settings-3-line"></i> Settings
           </h1>
 
           <select
@@ -292,8 +182,8 @@ const MobileBottomNav = () => {
             <option value="fr">Français</option>
           </select>
 
-          <div className="flex w-full justify-center gap-5 my-3">
-            <div className="flex-1 py-3 px-3  rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+          <div className="flex w-full justify-center gap-6 my-3">
+            <div className="flex-1 w-5 h-11   rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
@@ -301,7 +191,7 @@ const MobileBottomNav = () => {
                 <i className="text-xl  transition-all   ri-github-fill"></i>
               </a>
             </div>
-            <div className="flex-1 py-3 px-3 rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+            <div className="flex-1 w-5 h-11   rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
@@ -309,7 +199,7 @@ const MobileBottomNav = () => {
                 <i className="text-xl transition-all ri-linkedin-box-fill"></i>
               </a>
             </div>
-            <div className="flex-1 py-3 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+            <div className="flex-1 w-5 h-11    rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"
@@ -317,7 +207,7 @@ const MobileBottomNav = () => {
                 <i className="text-xl  transition-all   ri-instagram-line"></i>
               </a>
             </div>
-            <div className="flex-1 py-3 px-3  rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
+            <div className="flex-1 w-5 h-11    rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
                 href="#"
                 className="hover:text-white h-full w-full flex justify-center items-center"

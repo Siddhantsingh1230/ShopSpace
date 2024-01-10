@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroller";
 import MobileBottomNav from "../components/MobileBottomNav";
 import Drawer from "react-modern-drawer";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Toasts from "../app/Toasts";
 import { removeProducts } from "../slices/productSlice";
 import Modal from "../components/Model";
@@ -79,6 +79,7 @@ const Products = ({ setProgress }) => {
   const user = useSelector((state) => state.auth.user);
   // navigate
   const navigate = useNavigate();
+  const location = useLocation();
   // For dispatching actions
   const dispatch = useDispatch();
 
@@ -136,7 +137,21 @@ const Products = ({ setProgress }) => {
 
   useEffect(() => {
     let intervalId = alternateRotate();
-    if (status === "idle") {
+    // Extract the query parameters from the location
+    const s = decodeURIComponent(new URLSearchParams(location.search).get("s"));
+    if (s?.trim() !== "" && s !== null && s != "null") {
+      scrollToProducts();
+      setSearchKeyword(s);
+      dispatch(removeProducts());
+      dispatch(
+        getAllProductsAsync({
+          page: 0,
+          quantum: 10,
+          searchKeyword: s,
+        })
+      );
+    }
+    if (status === "idle" && (s?.trim() == "" || s == "null" || s==null)) {
       dispatch(getAllProductsAsync({ page: 0, quantum: 10, searchKeyword }));
     }
     // Cleaning up all listeners to avoid possible errors
@@ -471,7 +486,8 @@ const Products = ({ setProgress }) => {
               <hr className="bg-[#5c5c5c] mb-5" />
               <SelectAccordian data={filterAccordianData} fun={filter} />
             </div>
-            <div className="w-[80%] h-full  overflow-y-scroll productList max-sm:w-full max-sm:items-center">
+            {/* Main */}
+            <div className="w-[80%] h-full overflow-y-scroll productList max-sm:w-full max-sm:items-center">
               <InfiniteScroll
                 initialLoad={true}
                 useWindow={false}
@@ -483,7 +499,7 @@ const Products = ({ setProgress }) => {
                   </div>
                 }
               >
-                <div className="flex flex-wrap gap-4 ">
+                <div className="flex flex-wrap gap-4 mb-16">
                   {products?.length > 0
                     ? products.map((item, idx) => (
                         <div

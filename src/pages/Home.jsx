@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { PRODUCTSURL } from "../constants/constants";
 // Images
 import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
@@ -215,7 +216,7 @@ const Home = ({ setProgress }) => {
           </div>
           <p className="text-sm flex justify-center items-center opacity-70">
             <span>
-              <b>FREE SHIPPING</b> THIS WEEK ORDER OVER - ₹100
+            <i className="ri-planet-line"></i> <b>FREE SHIPPING</b> THIS WEEK ORDER OVER - ₹100
             </span>
           </p>
           <div className="dropdown flex gap-2 opacity-70">
@@ -349,7 +350,7 @@ const Home = ({ setProgress }) => {
                     return (
                       <ul className="dropdown-list list-none" key={idx}>
                         <li className="menu-title text-lg font-semibold  pb-2 border-b border-cultured mb-2">
-                          <a href="#">{item.label.toUpperCase()}</a>
+                          <Link to={`${PRODUCTSURL}?s=${encodeURIComponent(item.label)}`}>{item.label.toUpperCase()}</Link>
                         </li>
                         {item.subcategories.length < 5
                           ? [
@@ -363,7 +364,7 @@ const Home = ({ setProgress }) => {
                                   className={`panel-list-item  capitalize ${!data?"invisible":" "}`}
                                   key={key}
                                 >
-                                  <a href="#">{data?.name || 0}</a>
+                                  <Link to={data?`${PRODUCTSURL}?s=${encodeURIComponent(data?.name)}`:"#"}>{data?.name || 0}</Link>
                                 </li>
                               );
                             })
@@ -373,7 +374,7 @@ const Home = ({ setProgress }) => {
                                   className="panel-list-item  capitalize "
                                   key={key}
                                 >
-                                  <a href="#">{data?.name}</a>
+                                  <Link to={`${PRODUCTSURL}?s=${encodeURIComponent(data?.name)}`}>{data?.name}</Link>
                                 </li>
                               );
                             })}
@@ -411,9 +412,9 @@ const Home = ({ setProgress }) => {
                   {item.label.toUpperCase()}
                   <div className="navlinkDropDown overflow-hidden">
                     {item.subcategories.slice(0,5).map((data, idx) => (
-                      <a className="capitalize text-sm font-bold" href="#" key={idx}>
+                      <Link className="capitalize text-sm font-bold" to={`${PRODUCTSURL}?s=${encodeURIComponent(data?.name)}`} key={idx}>
                         {data.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
