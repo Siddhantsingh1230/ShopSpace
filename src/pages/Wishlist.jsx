@@ -13,6 +13,7 @@ import {
 } from "../slices/wishlistSlice";
 import Toasts from "../app/Toasts";
 import SkeletonCard from "../components/SkeletonCard";
+import emptygif from "../assets/images/empty.gif";
 
 const Wishlist = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -43,7 +44,6 @@ const Wishlist = ({ setProgress }) => {
   const [filteredList, setFilteredList] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState("");
   const status = useSelector((state) => state.wishlist.status);
-  let [localStatus, setLocalStatus] = useState("loading");
 
   useEffect(() => {
     if (!user) {
@@ -51,14 +51,11 @@ const Wishlist = ({ setProgress }) => {
     } else {
       if (status === "idle") {
         dispatch(getWishlistAsync(user._id)).then(() => {
-          setLocalStatus("idle");
           setFilteredList(wishlist);
         });
       }
     }
-    
-  }, [user,wishlist]);
-
+  }, [user]);
 
   return (
     <>
@@ -144,10 +141,16 @@ const Wishlist = ({ setProgress }) => {
                     className="ri-search-line  cursor-pointer hover:text-blue-500"
                     onClick={() => {
                       if (searchKeyword.trim() !== "") {
-                        let filtered = wishlist.filter((item) =>
-                          item.title.toLowerCase()
-                            .includes(searchKeyword.toLowerCase())
-                        );
+                        let filtered = wishlist.filter((item) => {
+                          return (
+                            item.title
+                              .toLowerCase()
+                              .includes(searchKeyword.toLowerCase()) ||
+                            item.subCategory
+                              .toLowerCase()
+                              .includes(searchKeyword.toLowerCase())
+                          );
+                        });
                         setFilteredList(filtered);
                       }
                     }}
@@ -161,6 +164,7 @@ const Wishlist = ({ setProgress }) => {
                         setSearchKeyword(e.target.value);
                       } else {
                         setSearchKeyword("");
+                        setFilteredList(wishlist);
                       }
                     }}
                     className="w-4/5 active:border-none bg-transparent focus:border-none outline-none"
@@ -186,9 +190,7 @@ const Wishlist = ({ setProgress }) => {
                 <div
                   title="cart"
                   onClick={() => {
-                    if (user) {
-                      navigate("/cart");
-                    }
+                    navigate("/cart");
                   }}
                   className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all"
                 >
@@ -200,9 +202,9 @@ const Wishlist = ({ setProgress }) => {
           </div>
 
           <div className="grid md:grid-cols-5 gap-10 p-10 ">
-            {localStatus === "loading" &&
-              new Array(5).fill(0).map((_, key) => <SkeletonCard />)}
-            {filteredList
+            {status === "loading"
+              ? new Array(5).fill(0).map((_, key) => <SkeletonCard key={key} />)
+              : filteredList.length > 0
               ? filteredList.map((item, idx) => (
                   <div
                     key={idx}
@@ -216,15 +218,26 @@ const Wishlist = ({ setProgress }) => {
                       />
                       <div
                         className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
-                        onClick={() => {
-                          dispatch(
-                            removeProductFromWishlistAsync({
-                              id: user._id,
-                              productId: item._id.toString(),
-                            })
-                          ).then(() => {
+                        onClick={async () => {
+                          try {
+                            setFilteredList((prevList) =>
+                              prevList.filter(
+                                (wishlistItem) => wishlistItem._id !== item._id
+                              )
+                            );
+                            await dispatch(
+                              removeProductFromWishlistAsync({
+                                id: user._id,
+                                productId: item._id.toString(),
+                              })
+                            );
+                            await dispatch(getWishlistAsync(user._id));
                             Toasts("info", "👻 Removed successfully");
-                          });
+                          } catch (error) {
+                            setFilteredList(wishlist);
+                            console.error("Error removing product:", error);
+                            Toasts("error", "Error removing product");
+                          }
                         }}
                       >
                         <i className="p-0 text-lg ri-heart-3-line"></i>
@@ -242,8 +255,11 @@ const Wishlist = ({ setProgress }) => {
                   </div>
                 ))
               : status !== "loading" && (
-                  <div className="col-span-full mt-28">
-                    <p className="text-center">No Results found</p>
+                  <div className="col-span-full flex flex-col items-center gap-8">
+                    <img src={emptygif} alt="nothing"></img>
+                    <p className="ml-16 sm:text-xl text-rose-950">
+                      Nothing to show{" "}
+                    </p>
                   </div>
                 )}
           </div>
