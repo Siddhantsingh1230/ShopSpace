@@ -520,8 +520,8 @@ const Products = ({ setProgress }) => {
                                   return setOpenModal(true);
                                 }
                                 //add to wishlist
-                                await addProductToWishlist(user._id, item._id);
                                 Toasts("info", "🌸 Added to wishlist");
+                                await addProductToWishlist(user._id, item._id);
                               }}
                               title="add to wishlist"
                               className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 right-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full"

@@ -50,9 +50,8 @@ const Wishlist = ({ setProgress }) => {
       navigate("/");
     } else {
       if (status === "idle") {
-        dispatch(getWishlistAsync(user._id)).then(() => {
-          setFilteredList(wishlist);
-        });
+        dispatch(getWishlistAsync(user._id));
+        setFilteredList(wishlist);
       }
     }
   }, [user]);
