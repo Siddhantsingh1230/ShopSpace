@@ -49,12 +49,14 @@ const Wishlist = ({ setProgress }) => {
     if (!user) {
       navigate("/");
     } else {
-      if (status === "idle") {
-        dispatch(getWishlistAsync(user._id));
-        setFilteredList(wishlist);
-      }
+      dispatch(getWishlistAsync(user._id));
     }
-  }, [user]);
+  }, []);
+  useEffect(() => {
+    if (wishlist?.length > 0) {
+      setFilteredList([...wishlist]);
+    }
+  }, [wishlist]);
 
   return (
     <>
@@ -203,7 +205,7 @@ const Wishlist = ({ setProgress }) => {
           <div className="grid md:grid-cols-5 gap-10 p-10 ">
             {status === "loading"
               ? new Array(5).fill(0).map((_, key) => <SkeletonCard key={key} />)
-              : filteredList.length > 0
+              : filteredList?.length > 0
               ? filteredList.map((item, idx) => (
                   <div
                     key={idx}
@@ -217,21 +219,21 @@ const Wishlist = ({ setProgress }) => {
                       />
                       <div
                         className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
-                        onClick={async () => {
+                        onClick={() => {
                           try {
                             setFilteredList((prevList) =>
                               prevList.filter(
                                 (wishlistItem) => wishlistItem._id !== item._id
                               )
                             );
-                            await dispatch(
+                            dispatch(
                               removeProductFromWishlistAsync({
                                 id: user._id,
                                 productId: item._id.toString(),
                               })
                             );
-                            await dispatch(getWishlistAsync(user._id));
                             Toasts("info", "👻 Removed successfully");
+                            // dispatch(getWishlistAsync(user._id)); no need
                           } catch (error) {
                             setFilteredList(wishlist);
                             console.error("Error removing product:", error);
