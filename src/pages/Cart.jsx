@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import cart from "../assets/images/cart.gif";
+import cartimg from "../assets/images/cart.gif";
 import arrow from "../assets/images/arrow.gif";
 import { INC, DEC } from "../constants/constants";
 import { useNavigate } from "react-router-dom";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getCartAsync, removeCartAsync, updateCartAsync } from "../slices/cartSlice";
 
 const Cart = ({ setProgress }) => {
   useEffect(() => {
@@ -29,121 +30,61 @@ const Cart = ({ setProgress }) => {
       };
     }
   }, []);
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      title: "iPhone 9",
-      description: "An apple mobile which is nothing like apple",
-      price: 549,
-      discountPercentage: 12.96,
-      rating: 4.69,
-      stock: 94,
-      brand: "Apple",
-      category: "smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/1/1.jpg",
-        "https://i.dummyjson.com/data/products/1/2.jpg",
-        "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/4.jpg",
-        "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      ],
-      quantity: 1,
-      userId: "2023-10-01T05:28:37.235Z",
-    },
-    {
-      id: 2,
-      title: "OPPOF19",
-      description: "OPPO F19 is officially announced on April 2021.",
-      price: 280,
-      discountPercentage: 17.91,
-      rating: 4.3,
-      stock: 123,
-      brand: "OPPO",
-      category: "smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/4/1.jpg",
-        "https://i.dummyjson.com/data/products/4/2.jpg",
-        "https://i.dummyjson.com/data/products/4/3.jpg",
-        "https://i.dummyjson.com/data/products/4/4.jpg",
-        "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      ],
-      quantity: 1,
-      userId: "2023-10-01T05:28:37.235Z",
-    },
-    {
-      id: 3,
-      title: "OPPOF19",
-      description: "OPPO F19 is officially announced on April 2021.",
-      price: 280,
-      discountPercentage: 17.91,
-      rating: 4.3,
-      stock: 123,
-      brand: "OPPO",
-      category: "smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/4/1.jpg",
-        "https://i.dummyjson.com/data/products/4/2.jpg",
-        "https://i.dummyjson.com/data/products/4/3.jpg",
-        "https://i.dummyjson.com/data/products/4/4.jpg",
-        "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      ],
-      quantity: 1,
-      userId: "2023-10-01T05:28:37.235Z",
-    },
-  ]);
+  
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart);
+  const navigate = useNavigate();
+  const status = useSelector((state) => state.cart.status);
+  const [products,setProducts]=useState([]);
 
   useEffect(() => {
-    setProducts(products);
-  }, [products]);
-  const user = useSelector((state) => state.auth.user);
-  const navigate = useNavigate();
+    if (!user) {
+      navigate("/");
+    }else{
+      dispatch(getCartAsync(user._id));
+    }
+  }, []);
+
+  useEffect(()=>{
+    setProducts(cart)
+  },[cart])
 
   const totalAmount = products.reduce(
-    (amount, item) => item.price * item.quantity + amount,
+    (amount, item) => item.productId.price * item.quantity + amount,
     0
   );
   const totalItems = products.reduce((count, item) => item.quantity + count, 0);
   const changeQuantity = (item, type) => {
     if (type === INC) {
       if (item.quantity < 5) {
-        setProducts((prevProducts) => {
-          return prevProducts.map((product) => {
-            if (item.id === product.id) {
-              return { ...product, quantity: product.quantity + 1 };
-            }
-            return product;
-          });
-        });
+        dispatch(
+          updateCartAsync({
+            userId: user._id,
+            productId: item.productId._id,
+            quantity: item.quantity + 1,
+          })
+        );
+        
       }
     }
 
     if (type === DEC) {
       if (item.quantity !== 1) {
-        setProducts((prevProducts) => {
-          return prevProducts.map((product) => {
-            if (item.id === product.id) {
-              return { ...product, quantity: product.quantity - 1 };
-            }
-            return product;
-          });
-        });
+        dispatch(
+          updateCartAsync({
+            userId: user._id,
+            productId: item.productId._id,
+            quantity: item.quantity - 1,
+          })
+        );
       }
     }
   };
-  const removeProduct = (productId) => {
-    // dispatch(removeFromCartAsync(productId));
-    setProducts((filteredProducts) =>
-      filteredProducts.filter((product) => product.id !== productId)
-    );
+  const removeProduct = (id,userId) => {
+    dispatch(removeCartAsync({id,userId}));
   };
-  useEffect(() => {
-    if (!user) {
-      navigate("/");
-    }
-  }, [user]);
+  
   return (
     <>
       <motion.div
@@ -208,7 +149,7 @@ const Cart = ({ setProgress }) => {
                     <span className="ms-1 font-bold text-gray-800 md:ms-2 ">
                       Cart
                     </span>
-                    <img className="h-10 w-10" src={cart} alt="" />
+                    <img className="h-12 w-12" src={cartimg} alt="" />
                   </div>
                 </li>
               </ol>
@@ -229,7 +170,7 @@ const Cart = ({ setProgress }) => {
               </div>
               <div className="mb-2 flex justify-between">
                 <p className="text-gray-700">Total Items</p>
-                <p className="text-gray-700">X {totalItems}</p>
+                <p className="text-gray-700">{totalItems}</p>
               </div>
               <div className="flex justify-between">
                 <p className="text-gray-700">Shipping</p>
@@ -256,83 +197,89 @@ const Cart = ({ setProgress }) => {
                 </button>
               </Link>
             </div>
-            {products.length > 0 ? (
-              <div className="rounded-lg md:w-2/3 max-sm:flex max-sm:flex-col ">
-                {products.map((item) => (
-                  <div
-                    key={item.id}
-                    className="cartItems justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
-                  >
-                    <Link to={`/product/${item.id}`}>
-                      <img
-                        src={item.thumbnail}
-                        alt={item.title}
-                        className="w-full rounded-lg sm:w-40 cursor-pointer"
-                      />
-                    </Link>
-                    <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                      <div className="mt-5 sm:mt-0">
-                        <h2 className="text-lg sm:text-2xl  font-bold text-gray-900">
-                          {item.title}
-                        </h2>
-                        <p className="mt-1 text-xs text-gray-700">
-                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                            {item.category}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                        <div className="flex items-center border-gray-100">
-                          <span
-                            onClick={(e) => {
-                              changeQuantity(item, DEC);
-                            }}
-                            className="select-none cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                          >
-                            {" "}
-                            -{" "}
-                          </span>
-                          <span className="flex justify-center items-center pointer-events-none font-medium  h-8 w-8 border bg-white text-center text-xs outline-none">
-                            <p>{item.quantity}</p>
-                          </span>
-                          <span
-                            onClick={(e) => {
-                              changeQuantity(item, INC);
-                            }}
-                            className="select-none cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                          >
-                            {" "}
-                            +{" "}
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-4 ">
-                          <p className="text-sm">
-                            <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
-                              ₹ {item.price}
+            {status === "loading"?(<p>Loading</p>):
+            (
+              products.length > 0 ? (
+                <div className="rounded-lg md:w-2/3 max-sm:flex max-sm:flex-col ">
+                  {products.map((item) => (
+                    <div
+                      key={item._id}
+                      className="cartItems justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+                    >
+                      <Link to={`/product/${item.productId._id}`}>
+                        <img
+                          src={item.productId.thumbnail}
+                          alt={item.productId.title}
+                          className="w-full h-48 sm:h-24 rounded-lg  sm:w-40 cursor-pointer"
+                        />
+                      </Link>
+                      <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                        <div className="mt-5 sm:mt-0">
+                          <h2 className="text-lg sm:text-2xl  font-bold text-gray-900">
+                            {item.productId.title}
+                          </h2>
+                          <p className="mt-1 text-xs text-gray-700">
+                            <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                              {item.productId.category}
                             </span>
                           </p>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            onClick={() => removeProduct(item.id)}
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="currentColor"
-                            className="h-5 w-5 cursor-pointer  duration-150 hover:text-red-500"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
+                        </div>
+                        <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                          <div className="flex items-center border-gray-100">
+                            <span
+                              onClick={(e) => {
+                                changeQuantity(item, DEC);
+                              }}
+                              className="select-none cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                            >
+                              {" "}
+                              -{" "}
+                            </span>
+                            <span className="flex justify-center items-center pointer-events-none font-medium  h-8 w-8 border bg-white text-center text-xs outline-none">
+                              <p>{item.quantity}</p>
+                            </span>
+                            <span
+                              onClick={(e) => {
+                                changeQuantity(item, INC);
+                              }}
+                              className="select-none cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                            >
+                              {" "}
+                              +{" "}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-4 ">
+                            <p className="text-sm">
+                              <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
+                                ₹ {item.productId.price}
+                              </span>
+                            </p>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              onClick={() =>removeProduct(item._id,user._id)}
+                              viewBox="0 0 24 24"
+                              strokeWidth="1.5"
+                              stroke="currentColor"
+                              className="h-5 w-5 cursor-pointer  duration-150 hover:text-red-500"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-            ) : null}
+                  ))}
+                </div>
+              ) : (
+                <p>empty</p>
+              )
+            )}
+            
           </div>
           <Link
             to="/"

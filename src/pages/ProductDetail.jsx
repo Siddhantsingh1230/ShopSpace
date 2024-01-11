@@ -15,7 +15,7 @@ import { pageTransitionVariant } from "../constants/Transition";
 import { getProductById } from "../api/products";
 import { addReview, getReviewOfProductByid } from "../api/review";
 import Toasts from "../app/Toasts";
-import { addTocart } from "../api/cart";
+import { addTocart } from "../api/cart.js";
 
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
