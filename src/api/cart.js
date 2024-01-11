@@ -20,15 +20,12 @@ export const getCart = async (userId) => {
 };
 
 export const removeCart = async ({id, userId}) => {
-  console.log({userId,
-  })
   const {data} = await axios.delete(
     process.env.REACT_APP_SERVER_BASE_URL + "/v1/cart/delete/" + id,
     {
       data: { userId: userId },
     }
   );
-  console.log(data)
   return data.cart;
 };
 
