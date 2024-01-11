@@ -48,14 +48,14 @@ const Wishlist = ({ setProgress }) => {
   useEffect(() => {
     if (!user) {
       navigate("/");
-    } 
-    else {
+    } else {
       dispatch(getWishlistAsync(user._id));
     }
   }, []);
   useEffect(() => {
     if (wishlist?.length > 0) {
       setFilteredList([...wishlist]);
+      console.log(filteredList);
     }
   }, [wishlist]);
 
@@ -209,6 +209,7 @@ const Wishlist = ({ setProgress }) => {
               : filteredList?.length > 0
               ? filteredList.map((item, idx) => (
                   <div
+                    onClick={() => navigate(`/productdetail/${item._id}`)}
                     key={idx}
                     className="flex flex-col gap-2 p-1 cursor-pointer"
                   >
