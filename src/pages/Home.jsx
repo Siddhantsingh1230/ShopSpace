@@ -62,12 +62,13 @@ import "react-modern-drawer/dist/index.css"; // Dependency Styles for drawer
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 //actions
 
 import ContentPlaceholder from "../components/ContentPlaceholder";
 import SkeletonCard from "../components/SkeletonCard";
+import { getWishlistAsync } from "../slices/wishlistSlice";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -163,11 +164,18 @@ const Home = ({ setProgress }) => {
   //   },
   // ];
 
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
   const categories = useSelector((state) => state.category.categories);
   const topRated = useSelector((state) => state.product.topRated);
   const topViewed = useSelector((state) => state.product.topViewed);
   const latestProducts = useSelector((state) => state.product.latestProducts);
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  useEffect(() => {
+    if (user) {
+      dispatch(getWishlistAsync(user?._id));
+    }
+  }, [user]);
 
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
@@ -299,7 +307,7 @@ const Home = ({ setProgress }) => {
             >
               <i className="text-4xl ri-heart-3-line "></i>
               <span className="badge absolute  -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
-                <b>2</b>
+                <b>{wishlist?.length}</b>
               </span>
             </div>
             {/* Cart */}

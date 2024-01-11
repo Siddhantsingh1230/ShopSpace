@@ -48,7 +48,8 @@ const Wishlist = ({ setProgress }) => {
   useEffect(() => {
     if (!user) {
       navigate("/");
-    } else {
+    } 
+    else {
       dispatch(getWishlistAsync(user._id));
     }
   }, []);

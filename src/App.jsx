@@ -25,7 +25,7 @@ import OrderSuccess from "./pages/OrderSuccess";
 import ResetPassword from "./pages/ResetPassword";
 import { getUserAsync } from "./slices/authSlice";
 import { getAllCategoriesAsync } from "./slices/categorySlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   getLatestProductsAsync,
   getTopProductsAsync,
