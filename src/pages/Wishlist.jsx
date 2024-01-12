@@ -221,7 +221,8 @@ const Wishlist = ({ setProgress }) => {
                       />
                       <div
                         className="hover:bg-white transition-all cursor-pointer absolute top-5 left-5 bg-red-300 w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           try {
                             setFilteredList((prevList) =>
                               prevList.filter(
