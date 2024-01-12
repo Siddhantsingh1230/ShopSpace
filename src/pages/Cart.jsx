@@ -10,6 +10,8 @@ import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartAsync, removeCartAsync, updateCartAsync } from "../slices/cartSlice";
+import ListPlaceholder from "../components/ListPlaceholder";
+import CartSkeleton from "../components/CartSkeleton";
 
 const Cart = ({ setProgress }) => {
   useEffect(() => {
@@ -163,41 +165,48 @@ const Cart = ({ setProgress }) => {
           </div>
           <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 my-10 xl:px-0">
             {/* Sub total */}
+            {status === "loading"?(
             <div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-              <div className="mb-2 flex justify-between">
-                <p className="text-gray-700">Subtotal</p>
-                <p className="text-gray-700">₹ {totalAmount}</p>
-              </div>
-              <div className="mb-2 flex justify-between">
-                <p className="text-gray-700">Total Items</p>
-                <p className="text-gray-700">{totalItems}</p>
-              </div>
-              <div className="flex justify-between">
-                <p className="text-gray-700">Shipping</p>
-                <p className="text-gray-700">₹ 9.99</p>
-              </div>
-              <hr className="my-4" />
-              <div className="flex justify-between">
-                <p className="text-lg font-bold">Total</p>
-                <div className="">
-                  <p className="mb-1 text-lg font-bold text-right">
-                    ₹ {totalAmount > 0 ? totalAmount + 9.99 : 0}
-                  </p>
-                  <p className="text-sm text-gray-700">including VAT</p>
-                </div>
-              </div>
-              <Link
-                to="/checkout"
-                className={`${totalAmount == 0 ? "pointer-events-none" : ""}`}
-              >
-                <button
-                  className={`select-none mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600`}
-                >
-                  Check out
-                </button>
-              </Link>
+              <ListPlaceholder/>
+              </div>):
+            (<div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+            <div className="mb-2 flex justify-between">
+              <p className="text-gray-700">Subtotal</p>
+              <p className="text-gray-700">₹ {totalAmount}</p>
             </div>
-            {status === "loading"?(<p>Loading</p>):
+            <div className="mb-2 flex justify-between">
+              <p className="text-gray-700">Total Items</p>
+              <p className="text-gray-700">{totalItems}</p>
+            </div>
+            <div className="flex justify-between">
+              <p className="text-gray-700">Shipping</p>
+              <p className="text-gray-700">₹ 9.99</p>
+            </div>
+            <hr className="my-4" />
+            <div className="flex justify-between">
+              <p className="text-lg font-bold">Total</p>
+              <div className="">
+                <p className="mb-1 text-lg font-bold text-right">
+                  ₹ {totalAmount > 0 ? totalAmount + 9.99 : 0}
+                </p>
+                <p className="text-sm text-gray-700">including VAT</p>
+              </div>
+            </div>
+            <Link
+              to="/checkout"
+              className={`${totalAmount == 0 ? "pointer-events-none" : ""}`}
+            >
+              <button
+                className={`select-none mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600`}
+              >
+                Check out
+              </button>
+            </Link>
+          </div>)}
+            
+            {status === "loading"?(<div className="flex flex-col w-full">
+              {new Array(4).fill(0).map((_, key) => <CartSkeleton key={key} />)}
+              </div>):
             (
               products.length > 0 ? (
                 <div className="rounded-lg md:w-2/3 max-sm:flex max-sm:flex-col ">
