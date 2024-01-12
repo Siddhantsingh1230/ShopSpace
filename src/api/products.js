@@ -1,4 +1,5 @@
 import axios from "axios";
+import { RECOMMENDATIONS } from "../constants/constants";
 const options = {
   headers: {
     "Content-Type": "application/json",
@@ -54,6 +55,14 @@ export const getTopRated = async ()=>{
 export const getLatestProducts = async ()=>{
   const { data } = await axios.get(
     process.env.REACT_APP_SERVER_BASE_URL + `/v1/products/latestproducts`
+  );
+  return data;
+}
+// used in productsSlice
+export const getRecommendations = async ()=>{
+  //takes count as query params and returns the count X products
+  const { data } = await axios.get(
+    process.env.REACT_APP_SERVER_BASE_URL + `/v1/products/getrecommendations?count=12`
   );
   return data;
 }

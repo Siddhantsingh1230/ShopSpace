@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 // Adding All Products related APIs
-import { getAllProducts, getLatestProducts, getTopRated, getTopViewed } from "../api/products.js";
+import {
+  getAllProducts,
+  getLatestProducts,
+  getRecommendations,
+  getTopRated,
+  getTopViewed,
+} from "../api/products.js";
 
 const initialState = {
   products: [],
   topViewed: [],
   topRated: [],
-  latestProducts:[],
+  latestProducts: [],
+  recommended: [],
   pagesReturned: 0,
   count: 0,
   status: "idle",
@@ -56,6 +63,18 @@ export const getLatestProductsAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const data = await getLatestProducts();
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const getRecommendationsAsync = createAsyncThunk(
+  //actually this api is not fetching all products at once but in packets or quantized manner
+  "products/getRecommendedProducts",
+  async (_, thunkAPI) => {
+    try {
+      const data = await getRecommendations();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -130,6 +149,21 @@ export const productSlice = createSlice({
         state.latestProducts = action.payload.products;
       })
       .addCase(getLatestProductsAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
+          console.log(action.payload.response.data.message || "Error Occurred");
+        } else {
+          console.log("Network Error");
+        }
+      })
+      .addCase(getRecommendationsAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getRecommendationsAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.recommended = action.payload.products;
+      })
+      .addCase(getRecommendationsAsync.rejected, (state, action) => {
         state.status = "idle";
         if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
           console.log(action.payload.response.data.message || "Error Occurred");

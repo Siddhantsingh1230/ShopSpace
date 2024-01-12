@@ -28,6 +28,7 @@ import { getAllCategoriesAsync } from "./slices/categorySlice";
 import { useDispatch } from "react-redux";
 import {
   getLatestProductsAsync,
+  getRecommendationsAsync,
   getTopProductsAsync,
   getTopRatedProductsAsync,
 } from "./slices/productSlice";
@@ -44,6 +45,7 @@ const App = () => {
     dispatch(getTopProductsAsync());
     dispatch(getTopRatedProductsAsync());
     dispatch(getLatestProductsAsync());
+    dispatch(getRecommendationsAsync());
   }, []);
   return (
     <>

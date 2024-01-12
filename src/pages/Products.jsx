@@ -151,7 +151,7 @@ const Products = ({ setProgress }) => {
         })
       );
     }
-    if (status === "idle" && (s?.trim() == "" || s == "null" || s==null)) {
+    if (status === "idle" && (s?.trim() == "" || s == "null" || s == null)) {
       dispatch(getAllProductsAsync({ page: 0, quantum: 10, searchKeyword }));
     }
     // Cleaning up all listeners to avoid possible errors
@@ -514,14 +514,14 @@ const Products = ({ setProgress }) => {
                               alt="img"
                             />
                             <div
-                              onClick={async (e) => {
+                              onClick={(e) => {
                                 e.stopPropagation();
                                 if (!user) {
                                   return setOpenModal(true);
                                 }
                                 //add to wishlist
                                 Toasts("info", "🌸 Added to wishlist");
-                                await addProductToWishlist(user._id, item._id);
+                                addProductToWishlist(user._id, item._id);
                               }}
                               title="add to wishlist"
                               className="hover:bg-red-300 transition-all cursor-pointer absolute top-5 right-5 bg-white w-[2rem] h-[2rem] flex justify-center items-center rounded-full"
