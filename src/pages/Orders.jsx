@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { motion } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import CartSkeleton from "../components/CartSkeleton";
+import { getOrderAsync, deleteOrderAsync } from "../slices/orderSlice";
+import Toasts from "../app/Toasts";
 
 const Orders = ({ setProgress }) => {
   useEffect(() => {
@@ -25,164 +28,31 @@ const Orders = ({ setProgress }) => {
     }
   }, []);
   const user = useSelector((state) => state.auth.user);
-  const orders = [
-    {
-      id: 1,
-      checkoutEmail: "ss@mail.com",
-      billingaddress: "dd",
-      billingstate: "gujarat",
-      billingzip: "34",
-      userId: "2023-10-01T05:28:37.235Z",
-      paymentMethod: "CashOnDelivery",
-      placedOn: "03/10/2023",
-      deliveredOn: "07/10/2023",
-      cart: [
-        {
-          id: 1,
-          title: "iPhone 9",
-          description: "An apple mobile which is nothing like apple",
-          price: 549,
-          discountPercentage: 12.96,
-          rating: 4.69,
-          stock: 94,
-          brand: "Apple",
-          category: "smartphones",
-          thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-          images: [
-            "https://i.dummyjson.com/data/products/1/1.jpg",
-            "https://i.dummyjson.com/data/products/1/2.jpg",
-            "https://i.dummyjson.com/data/products/1/3.jpg",
-            "https://i.dummyjson.com/data/products/1/4.jpg",
-            "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-          ],
-          quantity: 1,
-          userId: "2023-10-01T05:28:37.235Z",
-        },
-        {
-          id: 4,
-          title: "OPPOF19",
-          description: "OPPO F19 is officially announced on April 2021.",
-          price: 280,
-          discountPercentage: 17.91,
-          rating: 4.3,
-          stock: 123,
-          brand: "OPPO",
-          category: "smartphones",
-          thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-          images: [
-            "https://i.dummyjson.com/data/products/4/1.jpg",
-            "https://i.dummyjson.com/data/products/4/2.jpg",
-            "https://i.dummyjson.com/data/products/4/3.jpg",
-            "https://i.dummyjson.com/data/products/4/4.jpg",
-            "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-          ],
-          quantity: 1,
-          userId: "2023-10-01T05:28:37.235Z",
-        },
-      ],
-      totalAmount: 829,
-      status: "shipped",
-    },
-    {
-      id: 2,
-      checkoutEmail: "ss@mail.com",
-      billingaddress: "ss",
-      billingstate: "gujarat",
-      billingzip: "343421",
-      userId: "2023-10-01T05:28:37.235Z",
-      paymentMethod: "CashOnDelivery",
-      placedOn: "05/08/2023",
-      deliveredOn: "17/08/2023",
-      cart: [
-        {
-          id: 4,
-          title: "OPPOF19",
-          description: "OPPO F19 is officially announced on April 2021.",
-          price: 280,
-          discountPercentage: 17.91,
-          rating: 4.3,
-          stock: 123,
-          brand: "OPPO",
-          category: "smartphones",
-          thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-          images: [
-            "https://i.dummyjson.com/data/products/4/1.jpg",
-            "https://i.dummyjson.com/data/products/4/2.jpg",
-            "https://i.dummyjson.com/data/products/4/3.jpg",
-            "https://i.dummyjson.com/data/products/4/4.jpg",
-            "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-          ],
-          quantity: 1,
-          userId: "2023-10-01T05:28:37.235Z",
-        },
-      ],
-      totalAmount: 280,
-      status: "pending",
-    },
-    {
-      id: 3,
-      checkoutEmail: "ss@mail.com",
-      billingaddress: "dd",
-      billingstate: "gujarat",
-      billingzip: "34",
-      userId: "2023-10-01T05:28:37.235Z",
-      paymentMethod: "CashOnDelivery",
-      placedOn: "07/04/2022",
-      deliveredOn: "17/04/2023",
-      cart: [
-        {
-          id: 1,
-          title: "iPhone 9",
-          description: "An apple mobile which is nothing like apple",
-          price: 549,
-          discountPercentage: 12.96,
-          rating: 4.69,
-          stock: 94,
-          brand: "Apple",
-          category: "smartphones",
-          thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-          images: [
-            "https://i.dummyjson.com/data/products/1/1.jpg",
-            "https://i.dummyjson.com/data/products/1/2.jpg",
-            "https://i.dummyjson.com/data/products/1/3.jpg",
-            "https://i.dummyjson.com/data/products/1/4.jpg",
-            "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-          ],
-          quantity: 1,
-          userId: "2023-10-01T05:28:37.235Z",
-        },
-        {
-          id: 4,
-          title: "OPPOF19",
-          description: "OPPO F19 is officially announced on April 2021.",
-          price: 280,
-          discountPercentage: 17.91,
-          rating: 4.3,
-          stock: 123,
-          brand: "OPPO",
-          category: "smartphones",
-          thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-          images: [
-            "https://i.dummyjson.com/data/products/4/1.jpg",
-            "https://i.dummyjson.com/data/products/4/2.jpg",
-            "https://i.dummyjson.com/data/products/4/3.jpg",
-            "https://i.dummyjson.com/data/products/4/4.jpg",
-            "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-          ],
-          quantity: 1,
-          userId: "2023-10-01T05:28:37.235Z",
-        },
-      ],
-      totalAmount: 829,
-      status: "shipped",
-    },
-  ];
+  const status = useSelector((state) => state.order.status);
+  const userOrder = useSelector((state) => state.order.orders);
+  const [orders, setOrders] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!user) {
       navigate("/");
+    } else {
+      dispatch(getOrderAsync(user._id));
     }
-  }, [user]);
+  }, []);
+
+  useEffect(() => {
+    if (userOrder?.length > 0) {
+      setOrders([...userOrder]);
+    }
+  }, [userOrder]);
+
+  const cancelOrder = (id, userId) => {
+    dispatch(deleteOrderAsync({ id, userId }));
+    Toasts("info", "👻 Removed successfully");
+  };
+
   return (
     <>
       <motion.section
@@ -243,9 +113,14 @@ const Orders = ({ setProgress }) => {
           Your Orders<span className="text-blue-600">.</span>
         </h1>
         <div className="flex flex-col gap-9 max-w-screen-9xl max-sm:mb-20 rounded-lg">
-          {user && orders.length > 0 ? (
-            orders.map((order,key) => (
-              <div className="flex flex-col border border-gray-300 rounded-md" key={key}>
+          {status === "loading" ? (
+            new Array(5).fill(0).map((_, key) => <CartSkeleton key={key} />)
+          ) : orders?.length > 0 ? (
+            orders.map((order, key) => (
+              <div
+                className="flex flex-col border border-gray-300 rounded-md"
+                key={key}
+              >
                 <div className="flex  justify-between bg-gray-100 rounded-t-md p-3 border-b border-gray-200">
                   <div className="flex gap-3 sm:gap-8 sm:text-sm text-xs">
                     <div className="flex flex-col">
@@ -257,7 +132,7 @@ const Orders = ({ setProgress }) => {
                     <button
                       onClick={() => {
                         document
-                          .getElementById(`orderDetail-${order.id}`)
+                          .getElementById(`orderDetail-${order._id}`)
                           .classList.remove("hidden");
                       }}
                       className="text-blue-600 hover:underline max-sm:text-xs"
@@ -268,21 +143,32 @@ const Orders = ({ setProgress }) => {
                 </div>
                 {/* order details */}
                 <div
-                  id={`orderDetail-${order.id}`}
+                  id={`orderDetail-${order._id}`}
                   className="hidden p-3  m-2"
                 >
                   <div className="flex justify-between ">
                     <div className="flex flex-col">
-                      <p className="text-2xl max-sm:text-lg font-bold">Order Details</p>
-                      <p className="mt-1 text-sm ">
-                        Delivered on {order.deliveredOn}
+                      <p className="text-2xl max-sm:text-lg font-bold">
+                        Order Details
                       </p>
+                      {order.status == "pending" ? (
+                        <p className="mt-1 text-sm ">
+                          Arriving on : {order.deliveredOn}
+                        </p>
+                      ) : order.status === "cancelled" ? (
+                        <p className="mt-1 text-sm "></p>
+                      ) : (
+                        <p className="mt-1 text-sm ">
+                          Delivered on
+                          {order.deliveredOn}
+                        </p>
+                      )}
                     </div>
                     <i
                       className="ri-close-circle-fill text-2xl sm:text-3xl  "
                       onClick={() => {
                         document
-                          .getElementById(`orderDetail-${order.id}`)
+                          .getElementById(`orderDetail-${order._id}`)
                           .classList.add("hidden");
                       }}
                     ></i>
@@ -295,10 +181,10 @@ const Orders = ({ setProgress }) => {
                       <p className="align-start text-sm mt-1">Adam</p>
                       <p className="align-start text-sm">
                         {" "}
-                        {order.billingaddress}
+                        {order.billingAddress}
                       </p>
                       <p className="align-start text-sm">
-                        {order.billingstate}
+                        {order.billingState}
                       </p>
                     </div>
                     <hr className="sm:hidden  my-3"></hr>
@@ -321,9 +207,10 @@ const Orders = ({ setProgress }) => {
                           <p className="justify-self-end ">
                             ₹{order.totalAmount}
                           </p>
-                          <p className="justify-self-end">₹00</p>
-                          <p className="justify-self-end ">
-                            ₹{order.totalAmount}
+                          <p className="justify-self-end"> + ₹ 9.99</p>
+                          <hr className="justify-self-end mt-2 w-1/3 border border-gray-300"></hr>
+                          <p className="justify-self-end pt-2">
+                            ₹{order.totalAmount + 9.99}
                           </p>
                         </div>
                         <div className="grid gap-1 capitalize"></div>
@@ -332,121 +219,142 @@ const Orders = ({ setProgress }) => {
                   </div>
                 </div>
                 <div className="p-2">
-                {order.cart.map((item, idx) => (
-                  <div className=" bg-white cursor-pointer" key={idx}>
-                    <div className="flex flex-col border my-4 border-gray-200 p-4 rounded-md">
-                      <div className="flex max-sm:flex-col-reverse gap-2 justify-between">
-                        <div className="flex max-sm:flex-col gap-4 ">
-                          <div className="flex gap-2">
-                            <img
-                              src={item.thumbnail}
-                              alt=""
-                              className=" object-fill sm:h-[100px] w-[100px] sm:w-[150px] rounded-md"
-                            />
-                            <div className="flex flex-col gap-1 sm:hidden">
-                              <h2 className="text-slate-700 capitalize ">
-                                ₹{item.title}
-                              </h2>
-                              <p className="text-slate-400 text-sm sm:hidden">
-                                {item.description}
-                              </p>
+                  {order.cart.map((item, idx) => (
+                    <div className=" bg-white cursor-pointer" key={idx}>
+                      <div className="flex flex-col border my-2 border-gray-200 p-4 rounded-md">
+                        <div className="flex max-sm:flex-col-reverse gap-2 justify-between">
+                          <div className="flex max-sm:flex-col gap-4 ">
+                            <div className="flex gap-2 my-2">
+                              <img
+                                src={item.productId.thumbnail}
+                                alt="img"
+                                className=" object-fill  sm:h-[100px] h-[75px] w-[100px] sm:w-[150px] rounded-md"
+                              />
+                              <div className="flex flex-col gap-1 sm:hidden">
+                                <h2 className="text-slate-700 capitalize ">
+                                  {item.productId.title}
+                                </h2>
+                                <p className="text-slate-400 text-sm sm:hidden">
+                                  {item.productId.description.slice(0, 45)}
+                                  {item.productId.description.length > 45 &&
+                                    " ..."}
+                                </p>
+                              </div>
                             </div>
-                          </div>
 
-                          <div className=" flex flex-col sm:px-2 justify-between">
-                            <div>
-                              <h2 className="text-slate-700 capitalize max-sm:hidden">
-                                {item.title}
-                              </h2>
-                              <p className="text-slate-400 text-sm max-sm:hidden">
-                                {item.description}
-                              </p>
-                            </div>
-                            <div className="flex gap-2">
-                              {order.status === "pending" ? (
-                                <button className="bg-red-400 hover:bg-red-500 text-sm p-2 rounded-md border-2 border-red-500 max-sm:w-full sm:self-start">
-                                  Cancel Order
-                                </button>
-                              ) : null}
-                              <button className="bg-yellow-400 hover:bg-yellow-500 text-sm p-2 rounded-md border-2 border-yellow-500 max-sm:w-full sm:self-start">
-                                Buy again
-                              </button>
-                              <div className=" max-sm:hidden inline-flex items-center rounded-lg bg-white p-2 shadow-md self-end">
-                                <svg
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  className="h-3 w-3 text-yellow-400"
-                                  viewBox="0 0 20 20"
-                                  fill="currentColor"
+                            <div className=" flex flex-col sm:px-2 justify-between">
+                              <div>
+                                <h2 className="text-slate-700 capitalize max-sm:hidden">
+                                  {item.productId.title}
+                                </h2>
+                                <p className="text-slate-400 text-sm max-sm:hidden">
+                                  {item.productId.description.slice(0, 120)}
+                                  {item.productId.description.length > 120 &&
+                                    " ..."}
+                                </p>
+                              </div>
+                              <div className="flex gap-2">
+                                <div
+                                  onClick={() =>
+                                    navigate(
+                                      `/productdetail/${item.productId._id}`
+                                    )
+                                  }
+                                  className="bg-yellow-400 hover:bg-yellow-500 text-sm text-center p-2 rounded-md border-2 border-yellow-500 max-sm:w-full sm:self-start"
                                 >
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                                <span className="text-slate-400 ml-1 text-sm">
-                                  {item.rating}
-                                </span>
+                                  Buy again
+                                </div>
+                                <div className=" max-sm:hidden inline-flex items-center rounded-lg bg-white p-2 shadow-md self-end">
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-3 w-3 text-yellow-400"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                  >
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                  </svg>
+                                  <span className="text-slate-400 ml-1 text-sm">
+                                    {item.productId.rating}
+                                  </span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="flex flex-col justify-end">
-                          {order.status === "pending" ? (
-                            <div>
-                              <span
-                                className={` max-sm:hidden capitalize flex w-24 text-md font-bold text-yellow-800 bg-yellow-300 p-2 mt-4 items-center justify-center rounded-3xl`}
-                              >
-                                {order.status}
-                              </span>
-                              <div
-                                className={`sm:hidden flex capitalize items-center gap-1 text-xs`}
-                              >
+                          <div className="flex flex-col justify-end">
+                            {order.status === "pending" ? (
+                              <div>
+                                <span
+                                  className={` max-sm:hidden capitalize flex w-24 text-md font-bold text-yellow-800 bg-yellow-300 p-2 mt-4 items-center justify-center rounded-3xl`}
+                                >
+                                  {order.status}
+                                </span>
                                 <div
-                                  className={`bg-yellow-300 rounded-full h-2 w-2 border-2 border-yellow-600`}
-                                ></div>
-                                {order.status}
+                                  className={`sm:hidden flex capitalize items-center gap-1 text-xs`}
+                                >
+                                  <div
+                                    className={`bg-yellow-300 rounded-full h-2 w-2 border-2 border-yellow-600`}
+                                  ></div>
+                                  {order.status}
+                                </div>
                               </div>
-                            </div>
-                          ) : order.status === "cancelled" ? (
-                            <div>
-                              <span
-                                className={` max-sm:hidden flex capitalize w-24 text-md font-bold text-red-800 bg-red-300 p-2 mt-4 items-center justify-center rounded-3xl`}
-                              >
-                                {order.status}
-                              </span>
-                              <div
-                                className={`sm:hidden flex  items-center gap-1 capitalize text-xs`}
-                              >
+                            ) : order.status === "cancelled" ? (
+                              <div>
+                                <span
+                                  className={` max-sm:hidden flex capitalize w-24 text-md font-bold text-red-800 bg-red-300 p-2 mt-4 items-center justify-center rounded-3xl`}
+                                >
+                                  {order.status}
+                                </span>
                                 <div
-                                  className={`bg-red-300 rounded-full h-2 w-2 border-2 border-red-600`}
-                                ></div>
-                                {order.status}
+                                  className={`sm:hidden flex  items-center gap-1 capitalize text-xs`}
+                                >
+                                  <div
+                                    className={`bg-red-300 rounded-full h-2 w-2 border-2 border-red-600`}
+                                  ></div>
+                                  {order.status}
+                                </div>
                               </div>
-                            </div>
-                          ) : (
-                            <div>
-                              <span
-                                className={` max-sm:hidden flex w-24 capitalize text-md font-bold text-green-800 bg-green-300 p-2 mt-4 items-center justify-center rounded-3xl`}
-                              >
-                                {order.status}
-                              </span>
-                              <div
-                                className={`sm:hidden flex  items-center gap-1 capitalize text-xs `}
-                              >
+                            ) : (
+                              <div>
+                                <span
+                                  className={` max-sm:hidden flex w-24 capitalize text-md font-bold text-green-800 bg-green-300 p-2 mt-4 items-center justify-center rounded-3xl`}
+                                >
+                                  {order.status}
+                                </span>
                                 <div
-                                  className={`bg-green-300 rounded-full h-2 w-2 border-2 border-green-600 `}
-                                ></div>
-                                {order.status}
+                                  className={`sm:hidden flex  items-center gap-1 capitalize text-xs `}
+                                >
+                                  <div
+                                    className={`bg-green-300 rounded-full h-2 w-2 border-2 border-green-600 `}
+                                  ></div>
+                                  {order.status}
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
                 </div>
+                {order.status === "pending" ? (
+                  <button
+                    onClick={() => {
+                      setOrders((prev) =>
+                        prev.filter(
+                          (item) => item._id !== order._id
+                        )
+                      );
+                      cancelOrder(order._id, user._id);
+                    }}
+                    className="bg-red-400 hover:bg-red-500 text-sm p-2 rounded-md border-2 border-red-500 w-[150px] self-end mb-3 sm:mr-4 mr-6 "
+                  >
+                    Cancel Order
+                  </button>
+                ) : null}
               </div>
             ))
           ) : (
-            <p>No Orders 😢</p>
+            <p className="w-full text-center">No Orders 😢</p>
           )}
         </div>
       </motion.section>

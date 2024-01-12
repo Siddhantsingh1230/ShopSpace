@@ -40,3 +40,10 @@ export const updateCart = async ({ userId, productId, quantity }) => {
   );
   return data.cart;
 };
+
+export const emptyCart = async (userId) => {
+    const cart = await getCart(userId);
+    cart.forEach(async (element) => {
+      await removeCart({id:element._id , userId:userId});
+    });
+};

@@ -9,9 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { useSelector, useDispatch } from "react-redux";
-import { getCartAsync, removeCartAsync, updateCartAsync } from "../slices/cartSlice";
+import {
+  getCartAsync,
+  removeCartAsync,
+  updateCartAsync,
+} from "../slices/cartSlice";
 import ListPlaceholder from "../components/ListPlaceholder";
 import CartSkeleton from "../components/CartSkeleton";
+import emptygif from "../assets/images/empty.gif";
 
 const Cart = ({ setProgress }) => {
   useEffect(() => {
@@ -32,25 +37,25 @@ const Cart = ({ setProgress }) => {
       };
     }
   }, []);
-  
+
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.cart);
   const navigate = useNavigate();
   const status = useSelector((state) => state.cart.status);
-  const [products,setProducts]=useState([]);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
     if (!user) {
       navigate("/");
-    }else{
+    } else {
       dispatch(getCartAsync(user._id));
     }
   }, []);
 
-  useEffect(()=>{
-    setProducts(cart)
-  },[cart])
+  useEffect(() => {
+    setProducts(cart);
+  }, [cart]);
 
   const totalAmount = products.reduce(
     (amount, item) => item.productId.price * item.quantity + amount,
@@ -67,7 +72,6 @@ const Cart = ({ setProgress }) => {
             quantity: item.quantity + 1,
           })
         );
-        
       }
     }
 
@@ -83,10 +87,10 @@ const Cart = ({ setProgress }) => {
       }
     }
   };
-  const removeProduct = (id,userId) => {
-    dispatch(removeCartAsync({id,userId}));
+  const removeProduct = (id, userId) => {
+    dispatch(removeCartAsync({ id, userId }));
   };
-  
+
   return (
     <>
       <motion.div
@@ -165,130 +169,139 @@ const Cart = ({ setProgress }) => {
           </div>
           <div className="mx-auto max-w-5xl justify-center px-6 md:flex md:space-x-6 my-10 xl:px-0">
             {/* Sub total */}
-            {status === "loading"?(
-            <div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-              <ListPlaceholder/>
-              </div>):
-            (<div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
-            <div className="mb-2 flex justify-between">
-              <p className="text-gray-700">Subtotal</p>
-              <p className="text-gray-700">₹ {totalAmount}</p>
-            </div>
-            <div className="mb-2 flex justify-between">
-              <p className="text-gray-700">Total Items</p>
-              <p className="text-gray-700">{totalItems}</p>
-            </div>
-            <div className="flex justify-between">
-              <p className="text-gray-700">Shipping</p>
-              <p className="text-gray-700">₹ 9.99</p>
-            </div>
-            <hr className="my-4" />
-            <div className="flex justify-between">
-              <p className="text-lg font-bold">Total</p>
-              <div className="">
-                <p className="mb-1 text-lg font-bold text-right">
-                  ₹ {totalAmount > 0 ? totalAmount + 9.99 : 0}
-                </p>
-                <p className="text-sm text-gray-700">including VAT</p>
+            {status === "loading" ? (
+              <div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+                <ListPlaceholder />
               </div>
-            </div>
-            <Link
-              to="/checkout"
-              className={`${totalAmount == 0 ? "pointer-events-none" : ""}`}
-            >
-              <button
-                className={`select-none mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600`}
-              >
-                Check out
-              </button>
-            </Link>
-          </div>)}
-            
-            {status === "loading"?(<div className="flex flex-col w-full">
-              {new Array(4).fill(0).map((_, key) => <CartSkeleton key={key} />)}
-              </div>):
-            (
-              products.length > 0 ? (
-                <div className="rounded-lg md:w-2/3 max-sm:flex max-sm:flex-col ">
-                  {products.map((item) => (
-                    <div
-                      key={item._id}
-                      className="cartItems justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
-                    >
-                      <Link to={`/product/${item.productId._id}`}>
-                        <img
-                          src={item.productId.thumbnail}
-                          alt={item.productId.title}
-                          className="w-full h-48 sm:h-24 rounded-lg  sm:w-40 cursor-pointer"
-                        />
-                      </Link>
-                      <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
-                        <div className="mt-5 sm:mt-0">
-                          <h2 className="text-lg sm:text-2xl  font-bold text-gray-900">
-                            {item.productId.title}
-                          </h2>
-                          <p className="mt-1 text-xs text-gray-700">
-                            <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
-                              {item.productId.category}
+            ) : products.length>0?(
+              <div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
+                <div className="mb-2 flex justify-between">
+                  <p className="text-gray-700">Subtotal</p>
+                  <p className="text-gray-700">₹ {totalAmount}</p>
+                </div>
+                <div className="mb-2 flex justify-between">
+                  <p className="text-gray-700">Total Items</p>
+                  <p className="text-gray-700">{totalItems}</p>
+                </div>
+                <div className="flex justify-between">
+                  <p className="text-gray-700">Shipping</p>
+                  <p className="text-gray-700">₹ 9.99</p>
+                </div>
+                <hr className="my-4" />
+                <div className="flex justify-between">
+                  <p className="text-lg font-bold">Total</p>
+                  <div className="">
+                    <p className="mb-1 text-lg font-bold text-right">
+                      ₹ {totalAmount > 0 ? parseFloat(totalAmount + 9.99).toFixed(2) : 0}
+                    </p>
+                    <p className="text-sm text-gray-700">including VAT</p>
+                  </div>
+                </div>
+                <Link
+                  to="/checkout"
+                  className={`${totalAmount == 0 ? "pointer-events-none" : ""}`}
+                >
+                  <button
+                    className={`select-none mt-6 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600`}
+                  >
+                    Check out
+                  </button>
+                </Link>
+              </div>
+            ): (null)
+              
+            }
+
+            {status === "loading" ? (
+              <div className="flex flex-col w-full">
+                {new Array(4).fill(0).map((_, key) => (
+                  <CartSkeleton key={key} />
+                ))}
+              </div>
+            ) : products.length > 0 ? (
+              <div className="rounded-lg md:w-2/3 max-sm:flex max-sm:flex-col ">
+                {products.map((item) => (
+                  <div
+                    key={item._id}
+                    className="cartItems justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
+                  >
+                    <Link to={`/product/${item.productId._id}`}>
+                      <img
+                        src={item.productId.thumbnail}
+                        alt={item.productId.title}
+                        className="w-full h-48 sm:h-24 rounded-lg  sm:w-40 cursor-pointer"
+                      />
+                    </Link>
+                    <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+                      <div className="mt-5 sm:mt-0">
+                        <h2 className="text-lg sm:text-2xl  font-bold text-gray-900">
+                          {item.productId.title}
+                        </h2>
+                        <p className="mt-1 text-xs text-gray-700">
+                          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
+                            {item.productId.category}
+                          </span>
+                        </p>
+                      </div>
+                      <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
+                        <div className="flex items-center border-gray-100">
+                          <span
+                            onClick={(e) => {
+                              changeQuantity(item, DEC);
+                            }}
+                            className="select-none cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                          >
+                            {" "}
+                            -{" "}
+                          </span>
+                          <span className="flex justify-center items-center pointer-events-none font-medium  h-8 w-8 border bg-white text-center text-xs outline-none">
+                            <p>{item.quantity}</p>
+                          </span>
+                          <span
+                            onClick={(e) => {
+                              changeQuantity(item, INC);
+                            }}
+                            className="select-none cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                          >
+                            {" "}
+                            +{" "}
+                          </span>
+                        </div>
+                        <div className="flex items-center space-x-4 ">
+                          <p className="text-sm">
+                            <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
+                              ₹ {item.productId.price}
                             </span>
                           </p>
-                        </div>
-                        <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
-                          <div className="flex items-center border-gray-100">
-                            <span
-                              onClick={(e) => {
-                                changeQuantity(item, DEC);
-                              }}
-                              className="select-none cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                            >
-                              {" "}
-                              -{" "}
-                            </span>
-                            <span className="flex justify-center items-center pointer-events-none font-medium  h-8 w-8 border bg-white text-center text-xs outline-none">
-                              <p>{item.quantity}</p>
-                            </span>
-                            <span
-                              onClick={(e) => {
-                                changeQuantity(item, INC);
-                              }}
-                              className="select-none cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                            >
-                              {" "}
-                              +{" "}
-                            </span>
-                          </div>
-                          <div className="flex items-center space-x-4 ">
-                            <p className="text-sm">
-                              <span className="inline-flex items-center rounded-md bg-purple-50 px-2 py-1 text-xs font-medium text-purple-700 ring-1 ring-inset ring-purple-700/10">
-                                ₹ {item.productId.price}
-                              </span>
-                            </p>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              onClick={() =>removeProduct(item._id,user._id)}
-                              viewBox="0 0 24 24"
-                              strokeWidth="1.5"
-                              stroke="currentColor"
-                              className="h-5 w-5 cursor-pointer  duration-150 hover:text-red-500"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                d="M6 18L18 6M6 6l12 12"
-                              />
-                            </svg>
-                          </div>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            onClick={() => removeProduct(item._id, user._id)}
+                            viewBox="0 0 24 24"
+                            strokeWidth="1.5"
+                            stroke="currentColor"
+                            className="h-5 w-5 cursor-pointer  duration-150 hover:text-red-500"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
                         </div>
                       </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p>empty</p>
-              )
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col gap-4 items-center">
+                <img className=" -ml-12" src={emptygif} alt="nothing"></img>
+                <p className="sm:ml-16 ml-8 sm:text-xl text-rose-950">
+                  Your cart is Empty{" "}
+                </p>
+              </div>
             )}
-            
           </div>
           <Link
             to="/"

@@ -55,7 +55,6 @@ const Wishlist = ({ setProgress }) => {
   useEffect(() => {
     if (wishlist?.length > 0) {
       setFilteredList([...wishlist]);
-      console.log(filteredList);
     }
   }, [wishlist]);
 
