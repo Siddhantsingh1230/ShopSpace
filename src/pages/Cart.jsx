@@ -50,13 +50,13 @@ const Cart = ({ setProgress }) => {
       navigate("/");
     } else {
       dispatch(getCartAsync(user._id));
-      console.log(cart)
+      // console.log(cart)
     }
   }, []);
 
   useEffect(() => {
     setProducts(cart);
-    console.log(products)
+    // console.log(products)
   }, [cart]);
 
   const totalAmount = products.reduce(

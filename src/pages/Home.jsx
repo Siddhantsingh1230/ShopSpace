@@ -72,6 +72,7 @@ import { getWishlistAsync } from "../slices/wishlistSlice";
 import Toasts from "../app/Toasts";
 import { addProductToWishlist } from "../api/wishlist";
 import { addTocart } from "../api/cart";
+import { getCartAsync } from "../slices/cartSlice";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -176,9 +177,12 @@ const Home = ({ setProgress }) => {
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const recommended = useSelector((state) => state.product.recommended);
   const deal = useSelector((state) => state.dod.deal); // deal of the day product
+  const cart = useSelector((state) => state.cart.carts);
+
   useEffect(() => {
     if (user) {
       dispatch(getWishlistAsync(user?._id));
+      dispatch(getCartAsync(user._id));
     }
   }, [user, wishlist]);
 
@@ -332,8 +336,10 @@ const Home = ({ setProgress }) => {
               className="cursor-pointer flex justify-center items-center relative"
             >
               <i className="text-4xl ri-shopping-bag-line"></i>
-              <span className="badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
-                <b>2</b>
+              <span className={`badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
+                  (cart?.length == 0 || !user) && "invisible"
+                }`}>
+                <b>{cart?.length}</b>
               </span>
             </div>
             {/* User/login */}

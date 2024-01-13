@@ -31,6 +31,7 @@ const Products = ({ setProgress }) => {
   const [current, setCurrent] = useState(0);
   const containerControls = useAnimation();
   const fruitsControls = useAnimation();
+  const cart = useSelector((state) => state.cart.carts);
 
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
   useEffect(() => {
@@ -458,7 +459,7 @@ const Products = ({ setProgress }) => {
                 </div>
               )}
 
-              <div className="flex justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
+              <div className="flex relative justify-center items-center bg-[#f4f4f4] px-3 rounded-full cursor-pointer hover:bg-gray-300 transition-all">
                 <i
                   onClick={() => {
                     if (user) {
@@ -470,6 +471,13 @@ const Products = ({ setProgress }) => {
                   title="cart"
                   className="ri-shopping-cart-2-line"
                 ></i>
+                <span
+                  className={`badge absolute -top-2 right-0 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
+                    (cart?.length == 0 || !user) && "invisible"
+                  }`}
+                >
+                  <b>{cart?.length}</b>
+                </span>
               </div>
             </div>
           </div>
