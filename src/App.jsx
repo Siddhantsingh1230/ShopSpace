@@ -32,6 +32,7 @@ import {
   getTopProductsAsync,
   getTopRatedProductsAsync,
 } from "./slices/productSlice";
+import { getDealAsync } from "./slices/dealOfTheDaySlice";
 
 const App = () => {
   const [progress, setProgress] = useState(0); // for controlling the top loaading bar
@@ -46,6 +47,7 @@ const App = () => {
     dispatch(getTopRatedProductsAsync());
     dispatch(getLatestProductsAsync());
     dispatch(getRecommendationsAsync());
+    dispatch(getDealAsync());
   }, []);
   return (
     <>

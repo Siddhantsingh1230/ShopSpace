@@ -13,7 +13,7 @@ const CountDownTimer = ({ seconds }) => {
       const days = Math.floor(seconds / (3600 * 24));
       const hours = Math.floor((seconds % (3600 * 24)) / 3600);
       const minutes = Math.floor((seconds % 3600) / 60);
-      const remainingSeconds = seconds % 60;
+      const remainingSeconds = seconds.toFixed(2) % 60;
 
       setTime({
         days,

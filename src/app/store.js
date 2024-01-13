@@ -7,14 +7,16 @@ import productReducer from "../slices/productSlice";
 import wishlistReducer from "../slices/wishlistSlice";
 import cartreducer from "../slices/cartSlice";
 import orderSlice from "../slices/orderSlice";
+import dealOfTheDaySlice from "../slices/dealOfTheDaySlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     category: categoryReducer,
     product: productReducer,
-    wishlist:wishlistReducer,
-    cart:cartreducer,
-    order:orderSlice,
+    wishlist: wishlistReducer,
+    cart: cartreducer,
+    order: orderSlice,
+    dod: dealOfTheDaySlice, //dod => deal of the day
   },
 });

@@ -174,6 +174,7 @@ const Home = ({ setProgress }) => {
   const latestProducts = useSelector((state) => state.product.latestProducts);
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const recommended = useSelector((state) => state.product.recommended);
+  const deal = useSelector((state) => state.dod.deal); // deal of the day product
   useEffect(() => {
     if (user) {
       dispatch(getWishlistAsync(user?._id));
@@ -311,7 +312,7 @@ const Home = ({ setProgress }) => {
               <i className="text-4xl ri-heart-3-line "></i>
               <span
                 className={`badge absolute  -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
-                  (wishlist?.length == 0 || !user)&& "invisible"
+                  (wishlist?.length == 0 || !user) && "invisible"
                 }`}
               >
                 <b>{wishlist?.length}</b>
@@ -886,45 +887,53 @@ const Home = ({ setProgress }) => {
             {/* Deal of the Day */}
             <div className="flex flex-col mb-10">
               <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
-              <div className="flex border rounded-md p-10 max-sm:flex-col max-sm:p-0 max-sm:items-center max-sm:px-6">
-                <img
-                  src={jwellery}
-                  alt="offer"
-                  className="w-2/4 h-2/4 max-sm:m-10 max-sm:w-4/5 "
-                ></img>
-                <div className="w-2/4 max-sm:w-full">
-                  <Stars star={5} />
-                  <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
-                    ROSE GOLD DIAMONDS EARRING
-                  </h1>
-                  <p className="my-2 text-[#787878] text-md max-sm:text-sm">
-                    Lorem ipsum dolor sit amet consectetur Lorem ipsum dolor
-                    dolor sit amet consectetur Lorem ipsum dolor
-                  </p>
-                  <p className="text-blue-500 text-2xl font-bold max-sm:text-xl max-sm:mt-3">
-                    ₹1990.00
-                    <span className="ml-5 text-black font-normal line-through">
-                      ₹2000.00
-                    </span>
-                  </p>
-                  <button className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5 max-sm:text-lg">
-                    ADD TO CART
-                  </button>
-                  <div className="flex justify-between items-center mb-3">
-                    <p>
-                      ALREADY SOLD: <span className="font-bold">15</span>{" "}
+              {deal !== null ? (
+                <div className="flex border gap-5 rounded-md p-10 max-sm:flex-col max-sm:p-0 max-sm:items-center max-sm:px-6 ">
+                  <img
+                    src={deal.productId.thumbnail}
+                    alt="offer"
+                    className="w-2/4 max-sm:m-10 rounded-lg max-sm:w-full object-cover"
+                  ></img>
+                  <div className="w-2/4 max-sm:w-full">
+                    <Stars
+                      star={Math.round(parseInt(deal.productId.rating))}
+                    />
+                    <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
+                      {deal.productId.title}
+                    </h1>
+                    <p className="my-2 text-[#787878] text-md max-sm:text-sm">
+                      {deal.productId.description}
                     </p>
-                    <p>
-                      AVAILABLE: <span className="font-bold">40</span>
+                    <p className="text-blue-500 text-2xl font-bold max-sm:text-xl max-sm:mt-3">
+                      ₹{Math.round(
+                              deal.productId.price -
+                                (deal.productId.discountPercentage * deal.productId.price) / 100
+                            )}
+                      <span className="ml-5 text-black font-normal line-through">
+                        ₹{deal.productId.price}
+                      </span>
                     </p>
+                    <button className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5 max-sm:text-lg">
+                      ADD TO CART
+                    </button>
+                    <div className="flex justify-between items-center mb-3">
+                      <p>
+                        ALREADY SOLD: <span className="font-bold">15</span>{" "}
+                      </p>
+                      <p>
+                        AVAILABLE: <span className="font-bold">{deal.productId.stock}</span>
+                      </p>
+                    </div>
+                    <ProgressBar value={(parseInt(deal.productId.stock) / (parseInt(deal.productId.stock) + 15)) * 100} />
+                    <p className="font-bold text-sm my-5">
+                      HURRY UP! OFFER ENDS IN:
+                    </p>
+                    <CountDownTimer seconds={(new Date(deal.offerDuration)- new Date())/1000} />
                   </div>
-                  <ProgressBar value={(40 / (40 + 15)) * 100} />
-                  <p className="font-bold text-sm my-5">
-                    HURRY UP! OFFER ENDS IN:
-                  </p>
-                  <CountDownTimer seconds={4000} />
                 </div>
-              </div>
+              ) : (
+                <SkeletonCard />
+              )}
             </div>
             {/* New Products */}
             <div className="flex flex-col gap-5">

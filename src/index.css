@@ -72,6 +72,10 @@ html {
     background: #666;
     /* Color of the thumb on hover */
   }
+  .offers{
+    /* low css comaptibility in modern browsers  */
+    scrollbar-gutter: stable; 
+  }
   .offers::-webkit-scrollbar {
     width: 10px;
     height: 8px;
