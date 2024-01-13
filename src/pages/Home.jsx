@@ -178,7 +178,7 @@ const Home = ({ setProgress }) => {
     if (user) {
       dispatch(getWishlistAsync(user?._id));
     }
-  }, [user,wishlist]);
+  }, [user, wishlist]);
 
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
@@ -309,7 +309,11 @@ const Home = ({ setProgress }) => {
               className="cursor-pointer flex justify-center items-center relative "
             >
               <i className="text-4xl ri-heart-3-line "></i>
-              <span className="badge absolute  -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center">
+              <span
+                className={`badge absolute  -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
+                  (wishlist?.length == 0 || !user)&& "invisible"
+                }`}
+              >
                 <b>{wishlist?.length}</b>
               </span>
             </div>
