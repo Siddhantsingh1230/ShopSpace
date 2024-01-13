@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getCart, removeCart, updateCart,emptyCart } from "../api/cart.js";
 
 const initialState = {
-  cart: [],
+  carts: [],
   status: "idle",
 };
 
@@ -46,27 +46,27 @@ export const cartSlice = createSlice({
       })
       .addCase(getCartAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.cart = action.payload;
+        state.carts = action.payload;
       })
       .addCase(getCartAsync.rejected, (state) => {
         state.status = "idle";
       })
       .addCase(removeCartAsync.pending, (state) => {
-        state.status = "loading";
+        state.status = "idle";
       })
       .addCase(removeCartAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.cart = action.payload;
+        state.carts = action.payload;
       })
       .addCase(removeCartAsync.rejected, (state) => {
         state.status = "idle";
       })
       .addCase(updateCartAsync.pending, (state) => {
-        state.status = "loading";
+        state.status = "idle";
       })
       .addCase(updateCartAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.cart = action.payload;
+        state.carts = action.payload;
       })
       .addCase(updateCartAsync.rejected, (state) => {
         state.status = "idle";
@@ -76,7 +76,7 @@ export const cartSlice = createSlice({
       })
       .addCase(emptyCartAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        state.cart = action.payload;
+        state.carts = action.payload;
       })
       .addCase(emptyCartAsync.rejected, (state) => {
         state.status = "idle";
