@@ -40,7 +40,7 @@ const Cart = ({ setProgress }) => {
 
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart.cart);
+  const cart = useSelector((state) => state.cart.carts);
   const navigate = useNavigate();
   const status = useSelector((state) => state.cart.status);
   const [products, setProducts] = useState([]);
@@ -50,11 +50,13 @@ const Cart = ({ setProgress }) => {
       navigate("/");
     } else {
       dispatch(getCartAsync(user._id));
+      console.log(cart)
     }
   }, []);
 
   useEffect(() => {
     setProducts(cart);
+    console.log(products)
   }, [cart]);
 
   const totalAmount = products.reduce(
@@ -72,11 +74,26 @@ const Cart = ({ setProgress }) => {
             quantity: item.quantity + 1,
           })
         );
+        setProducts((prevProducts) =>
+          prevProducts.map((prevItem) =>
+            prevItem._id === item._id
+              ? { ...prevItem, quantity: prevItem.quantity + 1 }
+              : prevItem
+          )
+        );
+       
       }
     }
 
     if (type === DEC) {
       if (item.quantity !== 1) {
+        setProducts((prevProducts) =>
+          prevProducts.map((prevItem) =>
+            prevItem._id === item._id
+              ? { ...prevItem, quantity: prevItem.quantity - 1 }
+              : prevItem
+          )
+        );
         dispatch(
           updateCartAsync({
             userId: user._id,
@@ -173,7 +190,7 @@ const Cart = ({ setProgress }) => {
               <div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
                 <ListPlaceholder />
               </div>
-            ) : products.length>0?(
+            ) : products.length > 0 ? (
               <div className="mt-6 h-full sm:sticky sm:top-16 rounded-lg border z-10 mb-4 bg-white p-6 shadow-md md:mt-0 md:w-1/3">
                 <div className="mb-2 flex justify-between">
                   <p className="text-gray-700">Subtotal</p>
@@ -192,7 +209,10 @@ const Cart = ({ setProgress }) => {
                   <p className="text-lg font-bold">Total</p>
                   <div className="">
                     <p className="mb-1 text-lg font-bold text-right">
-                      ₹ {totalAmount > 0 ? parseFloat(totalAmount + 9.99).toFixed(2) : 0}
+                      ₹{" "}
+                      {totalAmount > 0
+                        ? parseFloat(totalAmount + 9.99).toFixed(2)
+                        : 0}
                     </p>
                     <p className="text-sm text-gray-700">including VAT</p>
                   </div>
@@ -208,9 +228,7 @@ const Cart = ({ setProgress }) => {
                   </button>
                 </Link>
               </div>
-            ): (null)
-              
-            }
+            ) : null}
 
             {status === "loading" ? (
               <div className="flex flex-col w-full">
@@ -276,7 +294,14 @@ const Cart = ({ setProgress }) => {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
-                            onClick={() => removeProduct(item._id, user._id)}
+                            onClick={() => {
+                              setProducts((prevProducts) =>
+                                prevProducts.filter(
+                                  (prevItem) => prevItem._id !== item._id
+                                )
+                              );
+                              removeProduct(item._id, user._id);
+                            }}
                             viewBox="0 0 24 24"
                             strokeWidth="1.5"
                             stroke="currentColor"

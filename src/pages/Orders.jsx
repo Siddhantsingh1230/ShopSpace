@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { pageTransitionVariant } from "../constants/Transition";
 import { useSelector, useDispatch } from "react-redux";
 import CartSkeleton from "../components/CartSkeleton";
-import { getOrderAsync, deleteOrderAsync } from "../slices/orderSlice";
+import { getOrderAsync, updateOrderAsync } from "../slices/orderSlice";
 import Toasts from "../app/Toasts";
 
 const Orders = ({ setProgress }) => {
@@ -48,19 +48,27 @@ const Orders = ({ setProgress }) => {
     }
   }, [userOrder]);
 
-  const cancelOrder = (id, userId) => {
-    dispatch(deleteOrderAsync({ id, userId }));
-    Toasts("info", "👻 Removed successfully");
+  const cancelOrder = (item,id, userId) => {
+    
+    dispatch(updateOrderAsync({ id, userId }));
+    setOrders((prevProducts) =>
+    prevProducts.map((prevItem) =>
+      prevItem._id === item._id
+        ? { ...prevItem, status: "cancelled" }
+        : prevItem
+    )
+  );
+    Toasts("info", "👻 Cancelled order successfully");
   };
 
   return (
-    <>
+    <div className="flex flex-col absolute p-5 sm:px-24 sm:py-8 w-full bg-gray-50">
       <motion.section
         variants={pageTransitionVariant}
         initial="hidden"
         animate="visible"
         exit="exit"
-        className=" flex flex-col absolute p-5 sm:px-24 sm:py-8 w-full sm:h-full bg-gray-50"
+        // className=" flex flex-col absolute p-5 sm:px-24 sm:py-8 w-full "
       >
         {/* Bread crumbs */}
 
@@ -112,7 +120,7 @@ const Orders = ({ setProgress }) => {
         <h1 className="select-none my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900">
           Your Orders<span className="text-purple-600">.</span>
         </h1>
-        <div className="flex flex-col gap-9 max-w-screen-9xl max-sm:mb-20 rounded-lg">
+        <div className="flex flex-col gap-9 max-w-screen-9xl mb-20 rounded-lg">
           {status === "loading" ? (
             new Array(5).fill(0).map((_, key) => <CartSkeleton key={key} />)
           ) : orders?.length > 0 ? (
@@ -292,7 +300,7 @@ const Orders = ({ setProgress }) => {
                             ) : order.status === "cancelled" ? (
                               <div>
                                 <div
-                                  className={`sm:hidden flex  items-center gap-1 capitalize text-xs`}
+                                  className={` flex  items-center gap-1 capitalize sm:text-lg`}
                                 >
                                   <div
                                     className={`bg-red-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-red-600`}
@@ -303,7 +311,7 @@ const Orders = ({ setProgress }) => {
                             ) : (
                               <div>
                                 <div
-                                  className={`sm:hidden flex  items-center gap-1 capitalize text-xs `}
+                                  className={`flex  items-center gap-1 capitalize text-xs `}
                                 >
                                   <div
                                     className={`bg-green-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-green-600 `}
@@ -319,28 +327,27 @@ const Orders = ({ setProgress }) => {
                   ))}
                 </div>
                 <hr></hr>
-                {order.status === "pending" ? (
+                
                   <div className="flex justify-between">
+                  {order.status === "pending" ? (
                     <button
                       onClick={() => {
-                        setOrders((prev) =>
-                          prev.filter((item) => item._id !== order._id)
-                        );
-                        cancelOrder(order._id, user._id);
+                        cancelOrder(order,order._id, user._id);
                       }}
                       className=" hover:bg-red-500 hover:text-white font-bold text-sm sm:text-md p-4 sm:px-12 border-r border-gray-200  self-start sm:mr-4 flex items-center"
                     >
                       <i className="ri-close-fill px-1 text-lg  sm:text-xl"></i>
                       CANCEL ORDER
-                    </button>
-                    <p className="font-bold sm:text-xl p-4 px-12">
+                    </button>) : null}
+                    <p className="font-bold sm:text-xl text-sm p-4 sm:px-12 max-sm:text-center max-sm:w-1/2">
                       {" "}
-                      Rs. {order.totalAmount > 0
+                      Rs.{" "}
+                      {order.totalAmount > 0
                         ? parseFloat(order.totalAmount + 9.99).toFixed(2)
                         : 0}
                     </p>
                   </div>
-                ) : null}
+                
               </div>
             ))
           ) : (
@@ -349,7 +356,7 @@ const Orders = ({ setProgress }) => {
         </div>
       </motion.section>
       <MobileBottomNav />
-    </>
+    </div>
   );
 };
 

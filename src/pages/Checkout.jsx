@@ -44,7 +44,7 @@ const Checkout = ({ setProgress }) => {
     formState: { errors },
   } = useForm();
   const [paymentMethod, setPaymentMethod] = useState(COD);
-  const userCart = useSelector((state) => state.cart.cart);
+  const userCart = useSelector((state) => state.cart.carts);
   const user = useSelector((state) => state.auth.user);
   const [cart, setCart] = useState([]);
   const navigate = useNavigate();
@@ -277,9 +277,17 @@ const Checkout = ({ setProgress }) => {
                             <span className="float-right text-gray-400">
                               {item.productId.category}
                             </span>
-                            <p className="text-lg font-bold">
-                              {item.productId.price}
-                            </p>
+                            <div className="flex justify-between">
+                              <p className="text-sm mt-2 ">
+                                Qty :{ " " + item.quantity}
+                              </p>
+                              <p className="text-sm mt-2 ">
+                                Total Amount : ₹ { " " + item.productId.price * item.quantity }
+                              </p>
+                            </div>
+                           
+                              
+                            
                           </div>
                         </div>
                       ))
@@ -382,7 +390,7 @@ const Checkout = ({ setProgress }) => {
               <form
                 noValidate
                 onSubmit={handleSubmit((data) => {
-                  if(cart.length>0){
+                  if (cart.length > 0) {
                     if (paymentMethod === COD) {
                       setLoading(true);
                       dispatch(
@@ -398,8 +406,7 @@ const Checkout = ({ setProgress }) => {
                       dispatch(emptyCartAsync(user._id));
                       navigate(`/ordersuccess`);
                     }
-                  }else(Toasts("error", "Empty cart"))
-                  
+                  } else Toasts("error", "Empty cart");
                 })}
                 className="mt-10 bg-gray-50 px-4 pt-6 lg:mt-0"
               >

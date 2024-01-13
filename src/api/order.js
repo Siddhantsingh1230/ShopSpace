@@ -17,11 +17,15 @@ export const getOrders = async (userId) => {
   return data.orders;
 };
 
-export const deleteOrder = async ({id,userId}) => {
-  const { data } = await axios.delete(
-    process.env.REACT_APP_SERVER_BASE_URL + "/v1/orders/delete/" + id
+export const updateOrder = async ({id,userId}) => {
+  const { data } = await axios.patch(
+    process.env.REACT_APP_SERVER_BASE_URL + "/v1/orders/update/" + id,
+    {
+      status : "cancelled",
+      userId,
+    }
   );
-  const result = await getOrders(userId)
-  return result.data.orders;
+  console.log(data.orders)
+  return data.orders;
 };
 
