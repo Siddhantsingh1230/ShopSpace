@@ -72,9 +72,9 @@ html {
     background: #666;
     /* Color of the thumb on hover */
   }
-  .offers{
+  .offers {
     /* low css comaptibility in modern browsers  */
-    scrollbar-gutter: stable; 
+    scrollbar-gutter: stable;
   }
   .offers::-webkit-scrollbar {
     width: 10px;
@@ -847,5 +847,30 @@ html {
 @keyframes shine {
   to {
     background-position: right -40px top 0;
+  }
+}
+
+/* Blob in cart */
+.blobpulse {
+  animation: blob-pulse 5s ease-in-out infinite alternate-reverse;
+}
+@keyframes blob-pulse {
+  0% {
+    scale: 0.93;
+    opacity: 0.93;
+    filter:blur(1);
+    transform:translateY(0);
+  }
+  60% {
+    scale: 1;
+    opacity: 1;
+    filter:blur(0.5);
+    transform:translate(7%,7%);
+  }
+  100% {
+    scale: 0.93;
+    opacity: 0.93;
+    filter:blur(1);
+    transform:translateY(0);
   }
 }

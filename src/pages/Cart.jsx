@@ -118,7 +118,7 @@ const Cart = ({ setProgress }) => {
         className="absolute w-full h-full"
       >
         <svg
-          className="hidden sm:block fixed z-10 rotate-90 blur-[5px]   top-20  w-1/6 h-w-1/6 left-10 "
+          className="hidden sm:block fixed z-10 rotate-90 blur-[5px]  top-20  w-1/6 h-w-1/6 left-36 blobpulse "
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -330,7 +330,7 @@ const Cart = ({ setProgress }) => {
           </div>
           <Link
             to="/"
-            className="hidden   sm:sticky sm:bottom-6 ml-5 sm:ml-32 my-8 font-medium sm:flex items-center "
+            className="hidden fixed bottom-0 ml-5 sm:ml-32 my-8 font-medium sm:flex items-center "
           >
             <img src={arrow} alt="" className="w-8 h-8 rotate-180" />
             &nbsp; <p>Continue shopping</p>

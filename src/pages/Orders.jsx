@@ -48,16 +48,15 @@ const Orders = ({ setProgress }) => {
     }
   }, [userOrder]);
 
-  const cancelOrder = (item,id, userId) => {
-    
+  const cancelOrder = (item, id, userId) => {
     dispatch(updateOrderAsync({ id, userId }));
     setOrders((prevProducts) =>
-    prevProducts.map((prevItem) =>
-      prevItem._id === item._id
-        ? { ...prevItem, status: "cancelled" }
-        : prevItem
-    )
-  );
+      prevProducts.map((prevItem) =>
+        prevItem._id === item._id
+          ? { ...prevItem, status: "cancelled" }
+          : prevItem
+      )
+    );
     Toasts("info", "👻 Cancelled order successfully");
   };
 
@@ -133,7 +132,17 @@ const Orders = ({ setProgress }) => {
                   <div className="flex gap-3 sm:gap-8 sm:text-sm text-xs">
                     <div className="flex flex-col">
                       <p> ORDER PLACED</p>
-                      <p>{order.placedOn}</p>
+                      <p>
+                        {String(
+                          `${String(
+                            new Date(order.placedOn).getDate()
+                          ).padStart(2, "0")}/${String(
+                            new Date(order.placedOn).getMonth() + 1
+                          ).padStart(2, "0")}/${new Date(
+                            order.placedOn
+                          ).getFullYear()}`
+                        )}
+                      </p>
                     </div>
                   </div>
                   <div>
@@ -327,27 +336,27 @@ const Orders = ({ setProgress }) => {
                   ))}
                 </div>
                 <hr></hr>
-                
-                  <div className="flex justify-between">
+
+                <div className="flex justify-between">
                   {order.status === "pending" ? (
                     <button
                       onClick={() => {
-                        cancelOrder(order,order._id, user._id);
+                        cancelOrder(order, order._id, user._id);
                       }}
                       className=" hover:bg-red-500 hover:text-white font-bold text-sm sm:text-md p-4 sm:px-12 border-r border-gray-200  self-start sm:mr-4 flex items-center"
                     >
                       <i className="ri-close-fill px-1 text-lg  sm:text-xl"></i>
                       CANCEL ORDER
-                    </button>) : null}
-                    <p className="font-bold sm:text-xl text-sm p-4 sm:px-12 max-sm:text-center max-sm:w-1/2">
-                      {" "}
-                      Rs.{" "}
-                      {order.totalAmount > 0
-                        ? parseFloat(order.totalAmount + 9.99).toFixed(2)
-                        : 0}
-                    </p>
-                  </div>
-                
+                    </button>
+                  ) : null}
+                  <p className="font-bold sm:text-xl text-sm p-4 sm:px-12 max-sm:text-center max-sm:w-1/2">
+                    {" "}
+                    Rs.{" "}
+                    {order.totalAmount > 0
+                      ? parseFloat(order.totalAmount + 9.99).toFixed(2)
+                      : 0}
+                  </p>
+                </div>
               </div>
             ))
           ) : (
