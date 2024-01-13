@@ -12,7 +12,11 @@ import { motion } from "framer-motion";
 // Page Transition variant import
 import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getCartAsync, emptyCartAsync } from "../slices/cartSlice";
+import { getOrderLocations } from "../api/orderLocation";
+import { createOrderAsync } from "../slices/orderSlice";
+import Toasts from "../app/Toasts";
 
 const Checkout = ({ setProgress }) => {
   useEffect(() => {
@@ -40,78 +44,18 @@ const Checkout = ({ setProgress }) => {
     formState: { errors },
   } = useForm();
   const [paymentMethod, setPaymentMethod] = useState(COD);
-  const [loading, setLoading] = useState(false);
-  const cart = [
-    {
-      id: 1,
-      title: "iPhone 9",
-      description: "An apple mobile which is nothing like apple",
-      price: 549,
-      discountPercentage: 12.96,
-      rating: 4.69,
-      stock: 94,
-      brand: "Apple",
-      category: "smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/1/1.jpg",
-        "https://i.dummyjson.com/data/products/1/2.jpg",
-        "https://i.dummyjson.com/data/products/1/3.jpg",
-        "https://i.dummyjson.com/data/products/1/4.jpg",
-        "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
-      ],
-      quantity: 1,
-      userId: "2023-10-01T05:28:37.235Z",
-    },
-    {
-      id: 2,
-      title: "OPPOF19",
-      description: "OPPO F19 is officially announced on April 2021.",
-      price: 280,
-      discountPercentage: 17.91,
-      rating: 4.3,
-      stock: 123,
-      brand: "OPPO",
-      category: "smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/4/1.jpg",
-        "https://i.dummyjson.com/data/products/4/2.jpg",
-        "https://i.dummyjson.com/data/products/4/3.jpg",
-        "https://i.dummyjson.com/data/products/4/4.jpg",
-        "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      ],
-      quantity: 1,
-      userId: "2023-10-01T05:28:37.235Z",
-    },
-    {
-      id: 3,
-      title: "OPPOF19",
-      description: "OPPO F19 is officially announced on April 2021.",
-      price: 280,
-      discountPercentage: 17.91,
-      rating: 4.3,
-      stock: 123,
-      brand: "OPPO",
-      category: "smartphones",
-      thumbnail: "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      images: [
-        "https://i.dummyjson.com/data/products/4/1.jpg",
-        "https://i.dummyjson.com/data/products/4/2.jpg",
-        "https://i.dummyjson.com/data/products/4/3.jpg",
-        "https://i.dummyjson.com/data/products/4/4.jpg",
-        "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      ],
-      quantity: 1,
-      userId: "2023-10-01T05:28:37.235Z",
-    },
-  ];
+  const userCart = useSelector((state) => state.cart.cart);
   const user = useSelector((state) => state.auth.user);
+  const [cart, setCart] = useState([]);
   const navigate = useNavigate();
-  const totalAmount = cart.reduce(
-    (amount, item) => item.price * item.quantity + amount,
-    0
-  );
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [states, setStates] = useState([]);
+
+  const fetchStates = async () => {
+    let data = await getOrderLocations();
+    setStates(data);
+  };
   useEffect(() => {
     if (COD) {
       unregister("cardholder");
@@ -122,10 +66,25 @@ const Checkout = ({ setProgress }) => {
   }, [paymentMethod]);
 
   useEffect(() => {
-    if (!user) {
+    if (!user && cart.length <= 0) {
       navigate("/");
+    } else {
+      dispatch(getCartAsync(user._id));
+      fetchStates();
     }
-  }, [user]);
+  }, []);
+
+  useEffect(() => {
+    setCart(userCart);
+  }, [userCart]);
+
+  const totalAmount = cart
+    ? cart.reduce(
+        (amount, item) => item.productId.price * item.quantity + amount,
+        0
+      )
+    : 0;
+
   return (
     <>
       <motion.div
@@ -298,25 +257,29 @@ const Checkout = ({ setProgress }) => {
                   Check your items. And select a suitable shipping method.
                 </p>
                 <div className="mt-6 space-y-3 rounded-lg border bg-white px-2 py-3 sm:px-6">
-                  {cart.length > 0 ? (
+                  {cart?.length > 0 ? (
                     cart
                       .filter((item, index) => index < 2)
                       .map((item) => (
                         <div
-                          key={item.id}
+                          key={item._id}
                           className="flex overflow-hidden rounded-lg bg-white sm:flex-row"
                         >
                           <img
                             className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-                            src={item.thumbnail}
+                            src={item.productId.thumbnail}
                             alt=""
                           />
                           <div className="flex w-full  overflow-hidden flex-col px-4 py-4">
-                            <span className="font-semibold">{item.title}</span>
-                            <span className="float-right text-gray-400">
-                              {item.category}
+                            <span className="font-semibold">
+                              {item.productId.title}
                             </span>
-                            <p className="text-lg font-bold">{item.price}</p>
+                            <span className="float-right text-gray-400">
+                              {item.productId.category}
+                            </span>
+                            <p className="text-lg font-bold">
+                              {item.productId.price}
+                            </p>
                           </div>
                         </div>
                       ))
@@ -341,7 +304,7 @@ const Checkout = ({ setProgress }) => {
                         />
                       </svg>
 
-                      {cart.length > 2 ? (
+                      {cart?.length > 2 ? (
                         <p className="whitespace-nowrap text-sm">
                           +{cart.length - 2} more{" "}
                         </p>
@@ -419,18 +382,24 @@ const Checkout = ({ setProgress }) => {
               <form
                 noValidate
                 onSubmit={handleSubmit((data) => {
-                  setLoading(true);
-                  // dispatch(
-                  //   createOrderAsync({
-                  //     ...data,
-                  //     userId: user.id,
-                  //     paymentMethod: paymentMethod,
-                  //     cart,
-                  //     totalAmount,
-                  //     status: "pending",
-                  //   })
-                  // );
-                  // dispatch(emptyCartAsync(user.id));
+                  if(cart.length>0){
+                    if (paymentMethod === COD) {
+                      setLoading(true);
+                      dispatch(
+                        createOrderAsync({
+                          ...data,
+                          userId: user._id,
+                          paymentMethod: paymentMethod,
+                          cart,
+                          totalAmount,
+                          status: "pending",
+                        })
+                      );
+                      dispatch(emptyCartAsync(user._id));
+                      navigate(`/ordersuccess`);
+                    }
+                  }else(Toasts("error", "Empty cart"))
+                  
                 })}
                 className="mt-10 bg-gray-50 px-4 pt-6 lg:mt-0"
               >
@@ -603,7 +572,7 @@ const Checkout = ({ setProgress }) => {
                       <input
                         type="text"
                         id="billing-address"
-                        {...register("billingaddress", {
+                        {...register("billingAddress", {
                           required: "Enter billingaddress",
                           pattern: {
                             value: /[\S\s]+[\S]+/,
@@ -625,23 +594,23 @@ const Checkout = ({ setProgress }) => {
                     <select
                       type="text"
                       name="billingstate"
-                      {...register("billingstate", {
+                      {...register("billingState", {
                         required: "Select billingstate",
                       })}
                       className="w-full rounded-md  max-sm:mt-2 border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
                     >
                       <option value="">State</option>
-                      {/* {states.length > 0
-                      ? states.map((elem, idx) => (
-                          <option key={idx} value={elem.value}>
-                            {elem.title}
-                          </option>
-                        ))
-                      : null} */}
+                      {states.length > 0
+                        ? states.map((elem, idx) => (
+                            <option key={idx} value={elem.value}>
+                              {elem.title}
+                            </option>
+                          ))
+                        : null}
                     </select>
                     <input
                       type="number"
-                      {...register("billingzip", {
+                      {...register("billingZip", {
                         required: "Enter billingzip",
                       })}
                       className="flex-shrink-0 max-sm:mt-2 rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none sm:w-1/6 focus:z-10 focus:border-blue-500 focus:ring-blue-500"
@@ -684,7 +653,10 @@ const Checkout = ({ setProgress }) => {
                   <div className="mt-6 flex items-center justify-between">
                     <p className="text-sm font-medium text-gray-900">Total</p>
                     <p className="text-2xl font-semibold text-gray-900">
-                      ₹ {totalAmount > 0 ? totalAmount + 9.99 : 0}
+                      ₹{" "}
+                      {totalAmount > 0
+                        ? parseFloat(totalAmount + 9.99).toFixed(2)
+                        : 0}
                     </p>
                   </div>
                 </div>
