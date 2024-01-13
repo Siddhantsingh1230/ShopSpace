@@ -13,7 +13,7 @@ const CountDownTimer = ({ seconds }) => {
       const days = Math.floor(seconds / (3600 * 24));
       const hours = Math.floor((seconds % (3600 * 24)) / 3600);
       const minutes = Math.floor((seconds % 3600) / 60);
-      const remainingSeconds = seconds.toFixed(2) % 60;
+      const remainingSeconds = seconds % 60;
 
       setTime({
         days,
@@ -47,7 +47,7 @@ const CountDownTimer = ({ seconds }) => {
         <div className="text-sm max-sm:text-xs">Min</div>
       </div>
       <div className="countdown-item bg-gray-200 py-2  flex justify-center items-center flex-col rounded-lg max-sm:px-4 flex-1">
-        <div className="text-md font-bold max-sm:text-sm">{time.seconds}</div>
+        <div className="text-md font-bold max-sm:text-sm">{parseInt(time.seconds)}</div>
         <div className="text-sm max-sm:text-xs">Sec</div>
       </div>
     </div>

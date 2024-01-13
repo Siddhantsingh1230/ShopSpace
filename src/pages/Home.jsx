@@ -71,6 +71,7 @@ import SkeletonCard from "../components/SkeletonCard";
 import { getWishlistAsync } from "../slices/wishlistSlice";
 import Toasts from "../app/Toasts";
 import { addProductToWishlist } from "../api/wishlist";
+import { addTocart } from "../api/cart";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -895,9 +896,7 @@ const Home = ({ setProgress }) => {
                     className="w-2/4 max-sm:m-10 rounded-lg max-sm:w-full object-cover"
                   ></img>
                   <div className="w-2/4 max-sm:w-full">
-                    <Stars
-                      star={Math.round(parseInt(deal.productId.rating))}
-                    />
+                    <Stars star={Math.round(parseInt(deal.productId.rating))} />
                     <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
                       {deal.productId.title}
                     </h1>
@@ -905,15 +904,27 @@ const Home = ({ setProgress }) => {
                       {deal.productId.description}
                     </p>
                     <p className="text-blue-500 text-2xl font-bold max-sm:text-xl max-sm:mt-3">
-                      ₹{Math.round(
-                              deal.productId.price -
-                                (deal.productId.discountPercentage * deal.productId.price) / 100
-                            )}
+                      ₹
+                      {Math.round(
+                        deal.productId.price -
+                          (deal.productId.discountPercentage *
+                            deal.productId.price) /
+                            100
+                      )}
                       <span className="ml-5 text-black font-normal line-through">
                         ₹{deal.productId.price}
                       </span>
                     </p>
-                    <button className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5 max-sm:text-lg">
+                    <button
+                      onClick={() => {
+                        if (!user) {
+                          return setOpenModal(true);
+                        }
+                        Toasts("info", "🛒 Added to cart");
+                        addTocart(user._id, deal.productId._id, 1);
+                      }}
+                      className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5 max-sm:text-lg"
+                    >
                       ADD TO CART
                     </button>
                     <div className="flex justify-between items-center mb-3">
@@ -921,14 +932,27 @@ const Home = ({ setProgress }) => {
                         ALREADY SOLD: <span className="font-bold">15</span>{" "}
                       </p>
                       <p>
-                        AVAILABLE: <span className="font-bold">{deal.productId.stock}</span>
+                        AVAILABLE:{" "}
+                        <span className="font-bold">
+                          {deal.productId.stock}
+                        </span>
                       </p>
                     </div>
-                    <ProgressBar value={(parseInt(deal.productId.stock) / (parseInt(deal.productId.stock) + 15)) * 100} />
+                    <ProgressBar
+                      value={
+                        (parseInt(deal.productId.stock) /
+                          (parseInt(deal.productId.stock) + 15)) *
+                        100
+                      }
+                    />
                     <p className="font-bold text-sm my-5">
                       HURRY UP! OFFER ENDS IN:
                     </p>
-                    <CountDownTimer seconds={(new Date(deal.offerDuration)- new Date())/1000} />
+                    <CountDownTimer
+                      seconds={
+                        (new Date(deal.offerDuration) - new Date()) / 1000
+                      }
+                    />
                   </div>
                 </div>
               ) : (
