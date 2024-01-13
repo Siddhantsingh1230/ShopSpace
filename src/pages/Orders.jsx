@@ -60,7 +60,7 @@ const Orders = ({ setProgress }) => {
         initial="hidden"
         animate="visible"
         exit="exit"
-        className=" flex flex-col absolute p-5 sm:px-36 sm:py-8 w-full "
+        className=" flex flex-col absolute p-5 sm:px-24 sm:py-8 w-full sm:h-full bg-gray-50"
       >
         {/* Bread crumbs */}
 
@@ -110,7 +110,7 @@ const Orders = ({ setProgress }) => {
         </nav>
 
         <h1 className="select-none my-6 font-sans text-start text-2xl sm:text-4xl font-bold text-gray-900">
-          Your Orders<span className="text-blue-600">.</span>
+          Your Orders<span className="text-purple-600">.</span>
         </h1>
         <div className="flex flex-col gap-9 max-w-screen-9xl max-sm:mb-20 rounded-lg">
           {status === "loading" ? (
@@ -118,10 +118,10 @@ const Orders = ({ setProgress }) => {
           ) : orders?.length > 0 ? (
             orders.map((order, key) => (
               <div
-                className="flex flex-col border border-gray-300 rounded-md"
+                className="flex flex-col border rounded-sm shadow-xl bg-white"
                 key={key}
               >
-                <div className="flex  justify-between bg-gray-100 rounded-t-md p-3 border-b border-gray-200">
+                <div className="flex  justify-between rounded-t-sm p-4 sm:p-6 sm:mx-8">
                   <div className="flex gap-3 sm:gap-8 sm:text-sm text-xs">
                     <div className="flex flex-col">
                       <p> ORDER PLACED</p>
@@ -135,7 +135,7 @@ const Orders = ({ setProgress }) => {
                           .getElementById(`orderDetail-${order._id}`)
                           .classList.remove("hidden");
                       }}
-                      className="text-blue-600 hover:underline max-sm:text-xs"
+                      className="text-purple-600 hover:underline max-sm:text-xs"
                     >
                       View order detail
                     </button>
@@ -144,7 +144,7 @@ const Orders = ({ setProgress }) => {
                 {/* order details */}
                 <div
                   id={`orderDetail-${order._id}`}
-                  className="hidden p-3  m-2"
+                  className="hidden p-3 sm:p-6 mx-2 sm:mx-8 mb-6 border-2 rounded-sm border-gray-200"
                 >
                   <div className="flex justify-between ">
                     <div className="flex flex-col">
@@ -218,13 +218,14 @@ const Orders = ({ setProgress }) => {
                     </div>
                   </div>
                 </div>
-                <div className="p-2">
+
+                <div>
                   {order.cart.map((item, idx) => (
                     <div className=" bg-white cursor-pointer" key={idx}>
-                      <div className="flex flex-col border my-2 border-gray-200 p-4 rounded-md">
+                      <div className="flex flex-col border-t  border-gray-200 p-4 sm:p-8 sm:mx-8">
                         <div className="flex max-sm:flex-col-reverse gap-2 justify-between">
                           <div className="flex max-sm:flex-col gap-4 ">
-                            <div className="flex gap-2 my-2">
+                            <div className="flex gap-2">
                               <img
                                 src={item.productId.thumbnail}
                                 alt="img"
@@ -234,10 +235,8 @@ const Orders = ({ setProgress }) => {
                                 <h2 className="text-slate-700 capitalize ">
                                   {item.productId.title}
                                 </h2>
-                                <p className="text-slate-400 text-sm sm:hidden">
-                                  {item.productId.description.slice(0, 45)}
-                                  {item.productId.description.length > 45 &&
-                                    " ..."}
+                                <p className="text-slate-400 text-sm sm:hidden capitalize">
+                                  {item.productId.subCategory}
                                 </p>
                               </div>
                             </div>
@@ -247,10 +246,8 @@ const Orders = ({ setProgress }) => {
                                 <h2 className="text-slate-700 capitalize max-sm:hidden">
                                   {item.productId.title}
                                 </h2>
-                                <p className="text-slate-400 text-sm max-sm:hidden">
-                                  {item.productId.description.slice(0, 120)}
-                                  {item.productId.description.length > 120 &&
-                                    " ..."}
+                                <p className="text-slate-400 text-sm max-sm:hidden capitalize">
+                                  {item.productId.subCategory}
                                 </p>
                               </div>
                               <div className="flex gap-2">
@@ -260,7 +257,7 @@ const Orders = ({ setProgress }) => {
                                       `/productdetail/${item.productId._id}`
                                     )
                                   }
-                                  className="bg-yellow-400 hover:bg-yellow-500 text-sm text-center p-2 rounded-md border-2 border-yellow-500 max-sm:w-full sm:self-start"
+                                  className=" bg-purple-600 hover:bg-purple-700 text-sm text-center text-white p-2 px-4 rounded-md border-2 border-purple-600 max-sm:w-full sm:self-start"
                                 >
                                   Buy again
                                 </div>
@@ -283,48 +280,33 @@ const Orders = ({ setProgress }) => {
                           <div className="flex flex-col justify-end">
                             {order.status === "pending" ? (
                               <div>
-                                <span
-                                  className={` max-sm:hidden capitalize flex w-24 text-md font-bold text-yellow-800 bg-yellow-300 p-2 mt-4 items-center justify-center rounded-3xl`}
-                                >
-                                  {order.status}
-                                </span>
                                 <div
-                                  className={`sm:hidden flex capitalize items-center gap-1 text-xs`}
+                                  className={` flex capitalize items-center gap-1 text-xs sm:text-lg`}
                                 >
                                   <div
-                                    className={`bg-yellow-300 rounded-full h-2 w-2 border-2 border-yellow-600`}
+                                    className={`bg-yellow-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-yellow-600`}
                                   ></div>
                                   {order.status}
                                 </div>
                               </div>
                             ) : order.status === "cancelled" ? (
                               <div>
-                                <span
-                                  className={` max-sm:hidden flex capitalize w-24 text-md font-bold text-red-800 bg-red-300 p-2 mt-4 items-center justify-center rounded-3xl`}
-                                >
-                                  {order.status}
-                                </span>
                                 <div
                                   className={`sm:hidden flex  items-center gap-1 capitalize text-xs`}
                                 >
                                   <div
-                                    className={`bg-red-300 rounded-full h-2 w-2 border-2 border-red-600`}
+                                    className={`bg-red-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-red-600`}
                                   ></div>
                                   {order.status}
                                 </div>
                               </div>
                             ) : (
                               <div>
-                                <span
-                                  className={` max-sm:hidden flex w-24 capitalize text-md font-bold text-green-800 bg-green-300 p-2 mt-4 items-center justify-center rounded-3xl`}
-                                >
-                                  {order.status}
-                                </span>
                                 <div
                                   className={`sm:hidden flex  items-center gap-1 capitalize text-xs `}
                                 >
                                   <div
-                                    className={`bg-green-300 rounded-full h-2 w-2 border-2 border-green-600 `}
+                                    className={`bg-green-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-green-600 `}
                                   ></div>
                                   {order.status}
                                 </div>
@@ -336,25 +318,33 @@ const Orders = ({ setProgress }) => {
                     </div>
                   ))}
                 </div>
+                <hr></hr>
                 {order.status === "pending" ? (
-                  <button
-                    onClick={() => {
-                      setOrders((prev) =>
-                        prev.filter(
-                          (item) => item._id !== order._id
-                        )
-                      );
-                      cancelOrder(order._id, user._id);
-                    }}
-                    className="bg-red-400 hover:bg-red-500 text-sm p-2 rounded-md border-2 border-red-500 w-[150px] self-end mb-3 sm:mr-4 mr-6 "
-                  >
-                    Cancel Order
-                  </button>
+                  <div className="flex justify-between">
+                    <button
+                      onClick={() => {
+                        setOrders((prev) =>
+                          prev.filter((item) => item._id !== order._id)
+                        );
+                        cancelOrder(order._id, user._id);
+                      }}
+                      className=" hover:bg-red-500 hover:text-white font-bold text-sm sm:text-md p-4 sm:px-12 border-r border-gray-200  self-start sm:mr-4 flex items-center"
+                    >
+                      <i className="ri-close-fill px-1 text-lg  sm:text-xl"></i>
+                      CANCEL ORDER
+                    </button>
+                    <p className="font-bold sm:text-xl p-4 px-12">
+                      {" "}
+                      Rs. {order.totalAmount > 0
+                        ? parseFloat(order.totalAmount + 9.99).toFixed(2)
+                        : 0}
+                    </p>
+                  </div>
                 ) : null}
               </div>
             ))
           ) : (
-            <p className="w-full text-center">No Orders 😢</p>
+            <p className="w-full text-center text-3xl">No Orders 😢</p>
           )}
         </div>
       </motion.section>
