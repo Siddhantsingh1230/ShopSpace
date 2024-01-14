@@ -37,7 +37,6 @@ export const offersSlice = createSlice({
       })
       .addCase(getOffersAsync.fulfilled, (state, action) => {
         state.status = "idle";
-        console.log( action.payload)
         state.offers = action.payload.offers;
       })
       .addCase(getOffersAsync.rejected, (state, action) => {

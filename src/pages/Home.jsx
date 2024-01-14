@@ -516,7 +516,7 @@ const Home = ({ setProgress }) => {
                 <img
                 onClick={() => navigate(`/productdetail/${item.productId}`)}
                   src={item.posterImageURL}
-                  className="w-full h-full cursor-pointer"
+                  className="w-full h-full cursor-pointer object-cover"
                   alt=""
                 />
               </div>
