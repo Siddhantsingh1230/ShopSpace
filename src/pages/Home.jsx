@@ -921,23 +921,23 @@ const Home = ({ setProgress }) => {
                     className="w-2/4 max-sm:m-10 rounded-lg max-sm:w-full object-cover"
                   ></img>
                   <div className="w-2/4 max-sm:w-full">
-                    <Stars star={Math.round(parseInt(deal.productId.rating))} />
+                    <Stars star={Math.round(parseInt(deal?.productId.rating))} />
                     <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
-                      {deal.productId.title}
+                      {deal?.productId.title}
                     </h1>
                     <p className="my-2 text-[#787878] text-md max-sm:text-sm">
-                      {deal.productId.description}
+                      {deal?.productId.description}
                     </p>
                     <p className="text-blue-500 text-2xl font-bold max-sm:text-xl max-sm:mt-3">
                       ₹
                       {Math.round(
-                        deal.productId.price -
-                          (deal.productId.discountPercentage *
-                            deal.productId.price) /
+                        deal?.productId.price -
+                          (deal?.productId.discountPercentage *
+                            deal?.productId.price) /
                             100
                       )}
                       <span className="ml-5 text-black font-normal line-through">
-                        ₹{deal.productId.price}
+                        ₹{deal?.productId.price}
                       </span>
                     </p>
                     <button
@@ -946,7 +946,7 @@ const Home = ({ setProgress }) => {
                           return setOpenModal(true);
                         }
                         Toasts("info", "🛒 Added to cart");
-                        addTocart(user._id, deal.productId._id, 1);
+                        addTocart(user._id, deal?.productId._id, 1);
                       }}
                       className="py-2 px-3 hover:bg-black hover:text-white transition bg-blue-500 rounded-md text-white font-bold text-xl font-[GilroyB] my-5 max-sm:text-lg"
                     >
