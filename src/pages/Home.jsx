@@ -913,7 +913,7 @@ const Home = ({ setProgress }) => {
             {/* Deal of the Day */}
             <div className="flex flex-col mb-10">
               <h1 className="font-bold border-b py-3">Deal Of The Day</h1>
-              {deal !== null ? (
+              {deal ? (
                 <div className="flex border gap-5 rounded-md p-10 max-sm:flex-col max-sm:p-0 max-sm:items-center max-sm:px-6 ">
                   <img
                     src={deal?.productId.thumbnail}

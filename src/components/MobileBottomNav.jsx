@@ -39,6 +39,9 @@ const MobileBottomNav = () => {
   // opening a modal id user is not logged in
   const [openModal, setOpenModal] = useState(false);
 
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const cart = useSelector((state) => state.cart.carts);
+
   return (
     <>
       <div className="z-10 bg-white fixed bottom-0 w-full flex flex-1 left-2/4 -translate-x-2/4  justify-around items-center md:hidden bottom_mobile_nav">
@@ -59,8 +62,12 @@ const MobileBottomNav = () => {
           className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
         >
           <i className=" ri-shopping-bag-line"></i>
-          <span className="bg-red-400 absolute -top-0 right-0 text-white text-xs px-[5px] py-[1px] rounded-xl">
-            2
+          <span
+            className={`badge absolute top-0 right-0 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
+              (cart?.length == 0 || !user) && "invisible"
+            }`}
+          >
+            <b>{cart?.length}</b>
           </span>
         </button>
         <button
@@ -84,8 +91,12 @@ const MobileBottomNav = () => {
           className="relative text-2xl h-12 w-12 my-1 transition-colors active:bg-[#eeeeee] rounded-md"
         >
           <i className=" ri-heart-3-line"></i>
-          <span className="bg-red-400 absolute -top-0 right-0 text-white text-xs px-[5px] py-[2px] rounded-xl">
-            5
+          <span
+            className={`badge absolute  top-0 right-0 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
+              (wishlist?.length == 0 || !user) && "invisible"
+            }`}
+          >
+            <b>{wishlist?.length}</b>
           </span>
         </button>
         <button
@@ -124,7 +135,8 @@ const MobileBottomNav = () => {
             className="flex items-center my-3 "
           >
             <p className="">
-              {!user && <i className="ri-fingerprint-line"></i>} {user ? user.username.toUpperCase() : "Login"}
+              {!user && <i className="ri-fingerprint-line"></i>}{" "}
+              {user ? user.username.toUpperCase() : "Login"}
             </p>
           </div>
           <h1
