@@ -17,6 +17,7 @@ import { getCartAsync, emptyCartAsync } from "../slices/cartSlice";
 import { getOrderLocations } from "../api/orderLocation";
 import { createOrderAsync } from "../slices/orderSlice";
 import Toasts from "../app/Toasts";
+import Popup from "../components/Popup";
 
 const Checkout = ({ setProgress }) => {
   useEffect(() => {
@@ -44,13 +45,18 @@ const Checkout = ({ setProgress }) => {
     formState: { errors },
   } = useForm();
   const [paymentMethod, setPaymentMethod] = useState(COD);
-  const userCart = useSelector((state) => state.cart.carts);
+  const cart = useSelector((state) => state.cart.carts);
   const user = useSelector((state) => state.auth.user);
-  const [cart, setCart] = useState([]);
+  // const [cart, setCart] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [states, setStates] = useState([]);
+  // opening a popup if cart is empty
+  const [openPopup, setOpenPopup] = useState(false);
+  function arraysEqual(arr1, arr2) {
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
+  }
 
   const fetchStates = async () => {
     let data = await getOrderLocations();
@@ -66,7 +72,7 @@ const Checkout = ({ setProgress }) => {
   }, [paymentMethod]);
 
   useEffect(() => {
-    if (!user && cart.length <= 0) {
+    if (!user) {
       navigate("/");
     } else {
       dispatch(getCartAsync(user._id));
@@ -74,9 +80,11 @@ const Checkout = ({ setProgress }) => {
     }
   }, []);
 
-  useEffect(() => {
-    setCart(userCart);
-  }, [userCart]);
+  // useEffect(() => {
+  //   if (!arraysEqual(cart, userCart)) {
+  //     setCart(userCart);
+  //   }
+  // }, [userCart]);
 
   const totalAmount = cart
     ? cart.reduce(
@@ -94,11 +102,11 @@ const Checkout = ({ setProgress }) => {
         exit="exit"
         className="absolute w-full  h-full "
       >
-        {!user && navigate("/")}
+        
         {loading ? (
           <Spinner />
-        ) : (
-          <>
+        ) : ( cart?.length >0 ?
+          (<>
             <div className="flex flex-col px-4 border-b bg-white py-3 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
               {/* Bread crumbs */}
 
@@ -279,15 +287,13 @@ const Checkout = ({ setProgress }) => {
                             </span>
                             <div className="flex justify-between">
                               <p className="text-sm mt-2 ">
-                                Qty :{ " " + item.quantity}
+                                Qty :{" " + item.quantity}
                               </p>
                               <p className="text-sm mt-2 ">
-                                Total Amount : ₹ { " " + item.productId.price * item.quantity }
+                                Total Amount : ₹{" "}
+                                {" " + item.productId.price * item.quantity}
                               </p>
                             </div>
-                           
-                              
-                            
                           </div>
                         </div>
                       ))
@@ -676,9 +682,10 @@ const Checkout = ({ setProgress }) => {
               </form>
             </div>
           </>
-        )}
+        ):<Popup open={true} setOpen={true}></Popup>)}
       </motion.div>
       <MobileBottomNav />
+      
     </>
   );
 };
