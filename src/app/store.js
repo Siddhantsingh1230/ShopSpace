@@ -8,6 +8,7 @@ import wishlistReducer from "../slices/wishlistSlice";
 import cartreducer from "../slices/cartSlice";
 import orderSlice from "../slices/orderSlice";
 import dealOfTheDaySlice from "../slices/dealOfTheDaySlice";
+import offerSlice from "../slices/offerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export const store = configureStore({
     cart: cartreducer,
     order: orderSlice,
     dod: dealOfTheDaySlice, //dod => deal of the day
+    offer:offerSlice, // offer posters (Home)
   },
 });

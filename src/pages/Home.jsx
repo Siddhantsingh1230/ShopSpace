@@ -178,6 +178,7 @@ const Home = ({ setProgress }) => {
   const recommended = useSelector((state) => state.product.recommended);
   const deal = useSelector((state) => state.dod.deal); // deal of the day product
   const cart = useSelector((state) => state.cart.carts);
+  const offers = useSelector((state) => state.offer.offers); // offer posters
 
   useEffect(() => {
     if (user) {
@@ -336,9 +337,11 @@ const Home = ({ setProgress }) => {
               className="cursor-pointer flex justify-center items-center relative"
             >
               <i className="text-4xl ri-shopping-bag-line"></i>
-              <span className={`badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
+              <span
+                className={`badge absolute -top-2 -right-3 text-white bg-red-500 h-5 w-5 text-[10px] rounded-full flex justify-center items-center ${
                   (cart?.length == 0 || !user) && "invisible"
-                }`}>
+                }`}
+              >
                 <b>{cart?.length}</b>
               </span>
             </div>
@@ -504,9 +507,25 @@ const Home = ({ setProgress }) => {
         </div>
         {/* ScrollSnap Offer Carousel */}
         <div className="select-none offers w-full h-[450px] max-sm:h-80 pb-2 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
-          <div className="offer2 flex-none w-full h-full snap-center rounded-xl bg-pink-100"></div>
-          <div className="offer1 flex-none w-full h-full snap-center rounded-xl bg-blue-100"></div>
-          <div className="offer3 flex-none w-full h-full snap-center rounded-xl bg-yellow-100"></div>
+          {offers?.length > 0 ? (
+            offers.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex-none w-full h-full overflow-hidden snap-center rounded-xl bg-pink-100"
+              >
+                <img
+                onClick={() => navigate(`/productdetail/${item.productId}`)}
+                  src={item.posterImageURL}
+                  className="w-full h-full cursor-pointer"
+                  alt=""
+                />
+              </div>
+            ))
+          ) : (
+            <div className="rounded-xl overflow-hidden h-full w-full">
+              <ContentPlaceholder />
+            </div>
+          )}
         </div>
         {/* ScrollSnap categories Carousel */}
         <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
