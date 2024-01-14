@@ -959,14 +959,14 @@ const Home = ({ setProgress }) => {
                       <p>
                         AVAILABLE:{" "}
                         <span className="font-bold">
-                          {deal.productId.stock}
+                          {deal?.productId.stock}
                         </span>
                       </p>
                     </div>
                     <ProgressBar
                       value={
-                        (parseInt(deal.productId.stock) /
-                          (parseInt(deal.productId.stock) + 15)) *
+                        (parseInt(deal?.productId.stock) /
+                          (parseInt(deal?.productId.stock) + 15)) *
                         100
                       }
                     />
@@ -975,7 +975,7 @@ const Home = ({ setProgress }) => {
                     </p>
                     <CountDownTimer
                       seconds={
-                        (new Date(deal.offerDuration) - new Date()) / 1000
+                        (new Date(deal?.offerDuration) - new Date()) / 1000
                       }
                     />
                   </div>
