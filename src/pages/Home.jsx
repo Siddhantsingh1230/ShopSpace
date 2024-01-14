@@ -916,7 +916,7 @@ const Home = ({ setProgress }) => {
               {deal !== null ? (
                 <div className="flex border gap-5 rounded-md p-10 max-sm:flex-col max-sm:p-0 max-sm:items-center max-sm:px-6 ">
                   <img
-                    src={deal.productId.thumbnail}
+                    src={deal?.productId.thumbnail}
                     alt="offer"
                     className="w-2/4 max-sm:m-10 rounded-lg max-sm:w-full object-cover"
                   ></img>
