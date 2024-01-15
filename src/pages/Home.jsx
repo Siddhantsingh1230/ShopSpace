@@ -501,9 +501,6 @@ const Home = ({ setProgress }) => {
           >
             ORDERS
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
-            HOT OFFERS
-          </div>
         </div>
         {/* ScrollSnap Offer Carousel */}
         <div className="select-none offers w-full h-[450px] max-sm:h-80 pb-2 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
