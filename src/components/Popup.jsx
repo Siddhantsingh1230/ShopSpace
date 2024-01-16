@@ -11,7 +11,7 @@ const Popup = ({ open, setOpen }) => {
         as="div"
         className="relative z-10"
         initialFocus={cancelButtonRef}
-        onClose={setOpen}
+        onClose={() => setOpen(false)}
       >
         <Transition.Child
           as={Fragment}

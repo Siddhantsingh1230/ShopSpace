@@ -222,12 +222,12 @@ const Orders = ({ setProgress }) => {
                         </div>
                         <div className="grid gap-1 capitalize text-sm">
                           <p className="justify-self-end ">
-                            ₹{order.totalAmount}
+                            ₹{" "}{order.totalAmount}
                           </p>
                           <p className="justify-self-end"> + ₹ 9.99</p>
                           <hr className="justify-self-end mt-2 w-1/3 border border-gray-300"></hr>
                           <p className="justify-self-end pt-2">
-                            ₹{order.totalAmount + 9.99}
+                            ₹{" "}{parseFloat((order.totalAmount + 9.99).toFixed(2))}
                           </p>
                         </div>
                         <div className="grid gap-1 capitalize"></div>
@@ -298,7 +298,7 @@ const Orders = ({ setProgress }) => {
                             {order.status === "pending" ? (
                               <div>
                                 <div
-                                  className={` flex capitalize items-center gap-1 text-xs sm:text-lg`}
+                                  className={` flex  items-center gap-1 capitalize text-xs `}
                                 >
                                   <div
                                     className={`bg-yellow-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-yellow-600`}
@@ -309,7 +309,7 @@ const Orders = ({ setProgress }) => {
                             ) : order.status === "cancelled" ? (
                               <div>
                                 <div
-                                  className={` flex  items-center gap-1 capitalize sm:text-lg`}
+                                  className={` flex  items-center gap-1 capitalize text-xs`}
                                 >
                                   <div
                                     className={`bg-red-300 rounded-full h-2 w-2 sm:h-3 sm:w-3 border-2 border-red-600`}
