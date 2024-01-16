@@ -14,7 +14,6 @@ import { pageTransitionVariant } from "../constants/Transition";
 import MobileBottomNav from "../components/MobileBottomNav";
 import { useSelector, useDispatch } from "react-redux";
 import { getCartAsync, emptyCartAsync } from "../slices/cartSlice";
-import { getOrderLocations } from "../api/orderLocation";
 import { createOrderAsync } from "../slices/orderSlice";
 import Toasts from "../app/Toasts";
 import Popup from "../components/Popup";
@@ -47,21 +46,11 @@ const Checkout = ({ setProgress }) => {
   const [paymentMethod, setPaymentMethod] = useState(COD);
   const cart = useSelector((state) => state.cart.carts);
   const user = useSelector((state) => state.auth.user);
-  // const [cart, setCart] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [states, setStates] = useState([]);
-  // opening a popup if cart is empty
-  const [openPopup, setOpenPopup] = useState(false);
-  function arraysEqual(arr1, arr2) {
-    return JSON.stringify(arr1) === JSON.stringify(arr2);
-  }
 
-  const fetchStates = async () => {
-    let data = await getOrderLocations();
-    setStates(data);
-  };
   useEffect(() => {
     if (COD) {
       unregister("cardholder");
@@ -76,15 +65,9 @@ const Checkout = ({ setProgress }) => {
       navigate("/");
     } else {
       dispatch(getCartAsync(user._id));
-      fetchStates();
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (!arraysEqual(cart, userCart)) {
-  //     setCart(userCart);
-  //   }
-  // }, [userCart]);
 
   const totalAmount = cart
     ? cart.reduce(
@@ -102,11 +85,10 @@ const Checkout = ({ setProgress }) => {
         exit="exit"
         className="absolute w-full  h-full "
       >
-        
         {loading ? (
           <Spinner />
-        ) : ( cart?.length >0 ?
-          (<>
+        ) : cart?.length > 0 ? (
+          <>
             <div className="flex flex-col px-4 border-b bg-white py-3 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
               {/* Bread crumbs */}
 
@@ -420,7 +402,7 @@ const Checkout = ({ setProgress }) => {
                 <p className="text-gray-400 text-sm">
                   Complete your order by providing your payment details.
                 </p>
-                <div className="">
+                <>
                   <label
                     htmlFor="email"
                     className="mt-4 mb-1 block text-sm font-medium"
@@ -672,7 +654,7 @@ const Checkout = ({ setProgress }) => {
                         : 0}
                     </p>
                   </div>
-                </div>
+                </>
                 <button
                   type="submit"
                   className="mt-4 mb-8 max-sm:mb-20 w-full rounded-md bg-gray-900 px-6 py-3 font-medium text-white"
@@ -682,10 +664,11 @@ const Checkout = ({ setProgress }) => {
               </form>
             </div>
           </>
-        ):<Popup open={true} setOpen={true}></Popup>)}
+        ) : (
+          <Popup open={true} setOpen={true}></Popup>
+        )}
       </motion.div>
       <MobileBottomNav />
-      
     </>
   );
 };
