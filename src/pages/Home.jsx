@@ -501,9 +501,9 @@ const Home = ({ setProgress }) => {
           >
             ORDERS
           </div>
-          <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
+          {/* <div className="cursor-pointer text-md font-bold hover:text-blue-500 transition-all navlinks  ">
             HOT OFFERS
-          </div>
+          </div> */}
         </div>
         {/* ScrollSnap Offer Carousel */}
         <div className="select-none offers w-full h-[450px] max-sm:h-80 pb-2 overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex gap-3 max-sm:overflow-x-scroll">
@@ -514,7 +514,7 @@ const Home = ({ setProgress }) => {
                 className="flex-none w-full h-full overflow-hidden snap-center rounded-xl bg-pink-100"
               >
                 <img
-                onClick={() => navigate(`/productdetail/${item.productId}`)}
+                  onClick={() => navigate(`/productdetail/${item.productId}`)}
                   src={item.posterImageURL}
                   className="w-full h-full cursor-pointer object-cover"
                   alt=""
@@ -531,7 +531,7 @@ const Home = ({ setProgress }) => {
         <div className="select-none categoryCarousel m-10  pb-2  overflow-x-hidden cursor-grab hover:overflow-x-scroll  rounded-xl snap-mandatory snap-x flex  gap-10 max-sm:mx-0 max-sm:my-10 max-sm:overflow-x-scroll">
           {categories?.length > 0
             ? categories.map((item, idx) => {
-                if (item.label === "clothes") {
+                if (item.label !== "clothes") {
                   // can be changed based on top category
                   return item.subcategories.map((data, key) => (
                     <div
@@ -550,9 +550,14 @@ const Home = ({ setProgress }) => {
                           <p>{data.name.toUpperCase()}</p>
                           <span className="pr-2">({data.itemCount})</span>
                         </div>
-                        <div className="mt-3 text-blue-500 cursor-pointer text-sm">
+                        <Link
+                          to={`${PRODUCTSURL}?s=${encodeURIComponent(
+                            data?.name
+                          )}`}
+                          className="mt-3 text-blue-500 cursor-pointer text-sm"
+                        >
                           Show All
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   ));
@@ -921,7 +926,9 @@ const Home = ({ setProgress }) => {
                     className="w-2/4 max-sm:m-10 rounded-lg max-sm:w-full object-cover"
                   ></img>
                   <div className="w-2/4 max-sm:w-full">
-                    <Stars star={Math.round(parseInt(deal?.productId.rating))} />
+                    <Stars
+                      star={Math.round(parseInt(deal?.productId.rating))}
+                    />
                     <h1 className="font-bold font-[GilroyB] text-lg max-sm:mt-3 max-sm:text-md">
                       {deal?.productId.title}
                     </h1>
