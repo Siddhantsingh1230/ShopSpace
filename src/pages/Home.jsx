@@ -554,7 +554,7 @@ const Home = ({ setProgress }) => {
                           to={`${PRODUCTSURL}?s=${encodeURIComponent(
                             data?.name
                           )}`}
-                          className="mt-3 text-blue-500 cursor-pointer text-sm"
+                          className="mt-3 text-blue-500 cursor-pointer text-sm hover:underline"
                         >
                           Show All
                         </Link>
