@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { PRODUCTDETAILURL, PRODUCTSURL } from "../constants/constants";
 // Images
-import DressFrock from "../assets/images/dressfrock.svg";
 import glasses from "../assets/images/glasses.svg";
 import hatcaps from "../assets/images/hatcaps.svg";
 import quotes from "../assets/images/quotes.svg";
