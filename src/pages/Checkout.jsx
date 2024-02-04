@@ -17,6 +17,7 @@ import { getCartAsync, emptyCartAsync } from "../slices/cartSlice";
 import { createOrderAsync } from "../slices/orderSlice";
 import Toasts from "../app/Toasts";
 import Popup from "../components/Popup";
+import { getOrderLocations } from "../api/orderLocation";
 
 const Checkout = ({ setProgress }) => {
   useEffect(() => {
@@ -51,6 +52,10 @@ const Checkout = ({ setProgress }) => {
   const [loading, setLoading] = useState(false);
   const [states, setStates] = useState([]);
 
+  const fetchState = async () => {
+    const data = await getOrderLocations();
+    setStates(data);
+  };
   useEffect(() => {
     if (COD) {
       unregister("cardholder");
@@ -65,9 +70,9 @@ const Checkout = ({ setProgress }) => {
       navigate("/");
     } else {
       dispatch(getCartAsync(user._id));
+      fetchState();
     }
   }, []);
-
 
   const totalAmount = cart
     ? cart.reduce(

@@ -170,15 +170,42 @@ const Orders = ({ setProgress }) => {
                       </p>
                       {order.status == "pending" ? (
                         <p className="mt-1 text-sm ">
-                          Arriving on : {order.deliveredOn}
+                          Arriving on :{" "}
+                          {new Date(order.placedOn).getDate() + 15 < 30
+                            ? String(
+                                `${String(
+                                  new Date(order.placedOn).getDate() + 15
+                                ).padStart(2, "0")}/${String(
+                                  new Date(order.placedOn).getMonth() + 1
+                                ).padStart(2, "0")}/${new Date(
+                                  order.placedOn
+                                ).getFullYear()}`
+                              )
+                            : String(
+                                `${String(
+                                  new Date(order.placedOn).getDate() + 15 - 30
+                                ).padStart(2, "0")}/${String(
+                                  new Date(order.placedOn).getMonth() + 2
+                                ).padStart(2, "0")}/${new Date(
+                                  order.placedOn
+                                ).getFullYear()}`
+                              )}
                         </p>
                       ) : order.status === "cancelled" ? (
                         <p className="mt-1 text-sm "></p>
                       ) : (
-                        <p className="mt-1 text-sm ">
-                          Delivered on
-                          {order.deliveredOn}
-                        </p>
+                        <div className="flex gap-2 mt-1 text-sm ">
+                          <p>Delivered on </p>
+                          {String(
+                            `${String(
+                              new Date(order.deliveredOn).getDate()
+                            ).padStart(2, "0")}/${String(
+                              new Date(order.deliveredOn).getMonth() + 1
+                            ).padStart(2, "0")}/${new Date(
+                              order.deliveredOn
+                            ).getFullYear()}`
+                          )}
+                        </div>
                       )}
                     </div>
                     <i
@@ -222,12 +249,13 @@ const Orders = ({ setProgress }) => {
                         </div>
                         <div className="grid gap-1 capitalize text-sm">
                           <p className="justify-self-end ">
-                            ₹{" "}{order.totalAmount}
+                            ₹ {order.totalAmount}
                           </p>
                           <p className="justify-self-end"> + ₹ 9.99</p>
                           <hr className="justify-self-end mt-2 w-1/3 border border-gray-300"></hr>
                           <p className="justify-self-end pt-2">
-                            ₹{" "}{parseFloat((order.totalAmount + 9.99).toFixed(2))}
+                            ₹{" "}
+                            {parseFloat((order.totalAmount + 9.99).toFixed(2))}
                           </p>
                         </div>
                         <div className="grid gap-1 capitalize"></div>
