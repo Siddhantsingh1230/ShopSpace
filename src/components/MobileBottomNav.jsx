@@ -4,16 +4,12 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Drawer from "react-modern-drawer";
 import Accordian from "./Accordian";
 import Stars from "./Stars";
-import MenuAccordian from "./MenuAccordian";
 import { useSelector } from "react-redux";
 import Modal from "../components/Model";
 
 //Images
 import hatcaps from "../assets/images/hatcaps.svg";
 import tshirts from "../assets/images/tshirts.svg";
-import winterwear from "../assets/images/winterwear.svg";
-import DressFrock from "../assets/images/dressfrock.svg";
-import watch from "../assets/images/watch.svg";
 import shorts from "../assets/images/shorts.svg";
 import glasses from "../assets/images/glasses.svg";
 
