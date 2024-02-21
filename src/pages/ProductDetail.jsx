@@ -399,6 +399,7 @@ const ProductDetails = ({ setProgress }) => {
                         onClick={(e) => {
                           if (!user) {
                             setOpenModal(true);
+                            return;
                           }
                           //add to cart
                           Toasts("info", "🛒 Added to cart");
