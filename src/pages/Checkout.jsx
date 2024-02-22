@@ -355,6 +355,7 @@ const Checkout = ({ setProgress }) => {
                       id="radio_2"
                       type="radio"
                       name="radio"
+                      disabled
                       checked={paymentMethod === CRD}
                       onChange={(e) => {
                         if (e.target.checked) {
