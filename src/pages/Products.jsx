@@ -387,14 +387,29 @@ const Products = ({ setProgress }) => {
             {/* Navlinks */}
             <div className="flex items-center gap-5 max-sm:gap-2">
               <strong className=" font-[Montserrat] ">Shop</strong>
-              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all ">
+              <p
+                className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all "
+                onClick={() => {
+                  filter("women");
+                }}
+              >
                 Women
               </p>
-              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all ">
+              <p
+                className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all "
+                onClick={() => {
+                  filter("men");
+                }}
+              >
                 Men
               </p>
-              <p className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all ">
-                Children
+              <p
+                className="cursor-pointer font-[Montserrat] hover:bg-[#f4f4f4] px-3 py-2 rounded-md  transition-all "
+                onClick={() => {
+                  filter("electronics");
+                }}
+              >
+                Electronics
               </p>
               <div
                 onClick={toggleFilterDrawer}
