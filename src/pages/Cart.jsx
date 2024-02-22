@@ -243,7 +243,7 @@ const Cart = ({ setProgress }) => {
                     key={item._id}
                     className="cartItems justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start"
                   >
-                    <Link to={`/product/${item.productId._id}`}>
+                    <Link to={`/productdetail/${item.productId._id}`}>
                       <img
                         src={item.productId.thumbnail}
                         alt={item.productId.title}
