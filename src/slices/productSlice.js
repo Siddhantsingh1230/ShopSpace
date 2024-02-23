@@ -7,6 +7,7 @@ import {
   getRecommendations,
   getTopRated,
   getTopViewed,
+  getBestSeller
 } from "../api/products.js";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
   topRated: [],
   latestProducts: [],
   recommended: [],
+  bestSelled: [],
   pagesReturned: 0,
   count: 0,
   status: "idle",
@@ -81,6 +83,21 @@ export const getRecommendationsAsync = createAsyncThunk(
     }
   }
 );
+
+export const getBestSelledAsync = createAsyncThunk(
+  //actually this api is not fetching all products at once but in packets or quantized manner
+  "products/getBestSelled",
+  async (_, thunkAPI) => {
+    try {
+      const data = await getBestSeller();
+      console.log(data)
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
 
 export const productSlice = createSlice({
   name: "products",
@@ -164,6 +181,20 @@ export const productSlice = createSlice({
         state.recommended = action.payload.products;
       })
       .addCase(getRecommendationsAsync.rejected, (state, action) => {
+        state.status = "idle";
+        if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
+          console.log(action.payload.response.data.message || "Error Occurred");
+        } else {
+          console.log("Network Error");
+        }
+      }).addCase(getBestSelledAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getBestSelledAsync.fulfilled, (state, action) => {
+        state.status = "idle";
+        state.bestSelled = action.payload.products;
+      })
+      .addCase(getBestSelledAsync.rejected, (state, action) => {
         state.status = "idle";
         if (action.payload.response && action.payload.code !== "ERR_NETWORK") {
           console.log(action.payload.response.data.message || "Error Occurred");

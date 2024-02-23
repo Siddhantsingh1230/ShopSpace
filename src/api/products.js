@@ -36,33 +36,42 @@ export const incViewCount = async (productId) => {
 };
 
 // used in productsSlice
-export const getTopViewed = async ()=>{
+export const getTopViewed = async () => {
   const { data } = await axios.get(
     process.env.REACT_APP_SERVER_BASE_URL + `/v1/products/topviewed`
   );
   return data;
-}
+};
 
 // used in productsSlice
-export const getTopRated = async ()=>{
+export const getTopRated = async () => {
   const { data } = await axios.get(
     process.env.REACT_APP_SERVER_BASE_URL + `/v1/products/toprated`
   );
   return data;
-}
+};
 
 // used in productsSlice
-export const getLatestProducts = async ()=>{
+export const getLatestProducts = async () => {
   const { data } = await axios.get(
     process.env.REACT_APP_SERVER_BASE_URL + `/v1/products/latestproducts`
   );
   return data;
-}
+};
 // used in productsSlice
-export const getRecommendations = async ()=>{
+export const getRecommendations = async () => {
   //takes count as query params and returns the count X products
   const { data } = await axios.get(
-    process.env.REACT_APP_SERVER_BASE_URL + `/v1/products/getrecommendations?count=12`
+    process.env.REACT_APP_SERVER_BASE_URL +
+      `/v1/products/getrecommendations?count=12`
   );
   return data;
-}
+};
+
+export const getBestSeller = async () => {
+  const { data } = await axios.get(
+    process.env.REACT_APP_SERVER_BASE_URL + `/v1/orders/getBestSeller`
+  );
+  console.log("get best seller called");
+  return data;
+};
