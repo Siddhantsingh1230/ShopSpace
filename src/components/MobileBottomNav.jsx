@@ -203,7 +203,7 @@ const MobileBottomNav = () => {
           <div className="flex w-full justify-center gap-6 my-3">
             <div className="flex-1 w-5 h-11   rounded-xl  transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
-                href="#"
+                href="https://github.com/Siddhantsingh1230/ShopSpace/"
                 className="hover:text-white h-full w-full flex justify-center items-center"
               >
                 <i className="text-xl  transition-all   ri-github-fill"></i>
@@ -211,7 +211,7 @@ const MobileBottomNav = () => {
             </div>
             <div className="flex-1 w-5 h-11   rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/khushi-kandoi-70b887234/"
                 className="hover:text-white h-full w-full flex justify-center items-center"
               >
                 <i className="text-xl transition-all ri-linkedin-box-fill"></i>
@@ -219,7 +219,7 @@ const MobileBottomNav = () => {
             </div>
             <div className="flex-1 w-5 h-11    rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
-                href="#"
+                href="https://www.instagram.com/siddhantsingh1230/"
                 className="hover:text-white h-full w-full flex justify-center items-center"
               >
                 <i className="text-xl  transition-all   ri-instagram-line"></i>
@@ -227,7 +227,7 @@ const MobileBottomNav = () => {
             </div>
             <div className="flex-1 w-5 h-11    rounded-xl transition-all hover:bg-gray-950 bg-gray-200 flex justify-center items-center">
               <a
-                href="#"
+                href="https://www.linkedin.com/in/siddhantsingh1230/"
                 className="hover:text-white h-full w-full flex justify-center items-center"
               >
                 <i className="text-xl ransition-all  ri-facebook-circle-fill"></i>
