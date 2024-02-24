@@ -41,6 +41,7 @@ import Toasts from "../app/Toasts";
 import { addProductToWishlist } from "../api/wishlist";
 import { addTocart } from "../api/cart";
 import { getCartAsync } from "../slices/cartSlice";
+import { getBestSelledAsync } from "../slices/productSlice";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -142,6 +143,7 @@ const Home = ({ setProgress }) => {
   const topRated = useSelector((state) => state.product.topRated);
   const topViewed = useSelector((state) => state.product.topViewed);
   const latestProducts = useSelector((state) => state.product.latestProducts);
+  const bestSellerProduct = useSelector((state) => state.product.bestSelled);
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const recommended = useSelector((state) => state.product.recommended);
   const deal = useSelector((state) => state.dod.deal); // deal of the day product
@@ -154,7 +156,9 @@ const Home = ({ setProgress }) => {
       dispatch(getCartAsync(user._id));
     }
   }, [user, wishlist]);
-
+  useEffect(() => {
+    dispatch(getBestSelledAsync());
+  }, []);
   // opening a modal if user is not logged in
   const [openModal, setOpenModal] = useState(false);
 
@@ -673,26 +677,41 @@ const Home = ({ setProgress }) => {
               <div className="mt-6">
                 <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
                 <div className="flex flex-col gap-3">
-                  <div className="flex gap-5">
-                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                      <img
-                        className="object-cover w-10 h-10 cursor-pointer"
-                        src={hatcaps}
-                        alt="img"
-                      />
-                    </div>
-                    <div className="flex flex-col cursor-pointer">
-                      <h1>Baby Fabric Shoes</h1>
-                      <Stars star={4} />
-                      <p className="font-bold">
-                        <span className="line-through font-normal mr-5">
-                          ₹5
-                        </span>
-                        ₹4.00
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-5">
+                  {bestSellerProduct?.length > 0 ? (
+                    bestSellerProduct.map((item, idx) => (
+                      <div
+                        className="flex gap-5"
+                        key={idx}
+                        onClick={() => navigate(`/productdetail/${item._id}`)}
+                      >
+                        <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                          <img
+                            className="object-cover w-12 h-12 cursor-pointer"
+                            src={item.thumbnail}
+                            alt="img"
+                          />
+                        </div>
+                        <div className="flex flex-col cursor-pointer">
+                          <h1>{item.title.slice(0, 50)}</h1>
+                          <Stars star={4} />
+                          <p className="font-bold">
+                            <span className="line-through font-normal mr-5">
+                              ₹{item.price}
+                            </span>
+                            ₹
+                            {Math.round(
+                              item.price -
+                                (item.discountPercentage * item.price) / 100
+                            )}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="w-full h-full overflow-hidden"></div>
+                  )}
+
+                  {/* <div className="flex gap-5">
                     <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
                       <img
                         className="object-cover w-10 h-10 cursor-pointer"
@@ -748,7 +767,7 @@ const Home = ({ setProgress }) => {
                         ₹4.00
                       </p>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
