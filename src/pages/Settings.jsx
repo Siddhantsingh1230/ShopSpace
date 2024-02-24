@@ -164,12 +164,12 @@ const Settings = ({ setProgress }) => {
             {/* Content */}
             <div className="w-[85%] max-sm:w-full border-l max-sm:border-0 h-full">
               {accountActive ? (
-                <div className="account w-full h-full p-5">
+                <div className="account w-full h-full p-5 ">
                   <h1 className="text-3xl font-bold">Account</h1>
                   {/* All Account Setting goes here */}
-                  <div className="w-full flex gap-16 items-start max-sm:flex-col max-sm:gap-5">
-                    <div className="flex gap-5 flex-col mt-10 justify-center">
-                      <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
+                  <div className="w-full flex gap-16 items-start max-sm:flex-col max-sm:gap-5 max-sm:w-full">
+                    <div className="flex gap-5 flex-col mt-10 justify-center max-sm:w-full">
+                      <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2 ">
                         <label
                           className="font-[Montserrat] text-gray-500"
                           htmlFor="email"
@@ -177,7 +177,7 @@ const Settings = ({ setProgress }) => {
                           Email Address
                         </label>
                         <input
-                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5  max-sm:w-full"
                           type="text"
                           id="email"
                           defaultValue={user?.email}
@@ -192,7 +192,7 @@ const Settings = ({ setProgress }) => {
                           Username
                         </label>
                         <input
-                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5 max-sm:w-full"
                           type="text"
                           id="username"
                           defaultValue={user?.username}
@@ -207,7 +207,7 @@ const Settings = ({ setProgress }) => {
                           Password
                         </label>
                         <input
-                          className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className="outline-none border-2 text-sm py-2 rounded-lg  px-5 max-sm:w-full"
                           type="password"
                           id="pass"
                           placeholder="Enter password"
@@ -232,7 +232,7 @@ const Settings = ({ setProgress }) => {
                           Confirm Password
                         </label>
                         <input
-                          className="outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className="outline-none border-2 text-sm py-2 rounded-lg  px-5 max-sm:w-full"
                           type="password"
                           id="confPass"
                           placeholder="Confirm password"
@@ -249,7 +249,7 @@ const Settings = ({ setProgress }) => {
                         />
                       </div>
                     </div>
-                    <div className="flex gap-5 flex-col mt-10 justify-center max-sm:mt-0">
+                    <div className="flex gap-5 flex-col mt-10 justify-center max-sm:mt-0 max-sm:w-full">
                       <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
                         <label
                           className="font-[Montserrat] text-gray-500"
@@ -258,7 +258,7 @@ const Settings = ({ setProgress }) => {
                           Mobile No
                         </label>
                         <input
-                          className=" outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className=" outline-none border-2 text-sm py-2 rounded-lg  px-5 max-sm:w-full"
                           type="number"
                           id="mobileNo"
                           defaultValue={user?.mobileNo}
@@ -286,13 +286,13 @@ const Settings = ({ setProgress }) => {
                           Date
                         </label>
                         <input
-                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5 max-sm:w-full"
                           type="text"
                           id="date"
                           defaultValue={new Date().toLocaleDateString()}
                         />
                       </div>
-                      <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2">
+                      <div className=" flex gap-12  justify-between items-center max-sm:flex-col max-sm:items-start max-sm:gap-2 ">
                         <label
                           className="font-[Montserrat] text-gray-500"
                           htmlFor="location"
@@ -300,7 +300,7 @@ const Settings = ({ setProgress }) => {
                           Location
                         </label>
                         <input
-                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5"
+                          className="pointer-events-none outline-none border-2 text-sm py-2 rounded-lg  px-5 max-sm:w-full"
                           type="text"
                           id="location"
                           defaultValue={"India"}

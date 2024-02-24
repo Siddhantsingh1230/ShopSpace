@@ -90,7 +90,6 @@ export const getBestSelledAsync = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const data = await getBestSeller();
-      console.log(data)
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

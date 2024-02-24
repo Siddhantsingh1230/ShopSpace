@@ -42,6 +42,7 @@ import { addProductToWishlist } from "../api/wishlist";
 import { addTocart } from "../api/cart";
 import { getCartAsync } from "../slices/cartSlice";
 import { getBestSelledAsync } from "../slices/productSlice";
+import ListPlaceholder from "../components/ListPlaceholder";
 
 const Home = ({ setProgress }) => {
   // Top Loading Bar dummy progress in future we will update the progress based on API calls succession or failure
@@ -686,7 +687,7 @@ const Home = ({ setProgress }) => {
                       >
                         <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
                           <img
-                            className="object-cover w-12 h-12 cursor-pointer"
+                            className="object-cover w-10 h-10 cursor-pointer"
                             src={item.thumbnail}
                             alt="img"
                           />
@@ -708,7 +709,7 @@ const Home = ({ setProgress }) => {
                       </div>
                     ))
                   ) : (
-                    <div className="w-full h-full overflow-hidden"></div>
+                    <><ListPlaceholder /></>
                   )}
 
                   {/* <div className="flex gap-5">

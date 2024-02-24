@@ -72,6 +72,5 @@ export const getBestSeller = async () => {
   const { data } = await axios.get(
     process.env.REACT_APP_SERVER_BASE_URL + `/v1/orders/getBestSeller`
   );
-  console.log("get best seller called");
   return data;
 };

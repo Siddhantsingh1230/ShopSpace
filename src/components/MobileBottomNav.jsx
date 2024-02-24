@@ -12,6 +12,7 @@ import hatcaps from "../assets/images/hatcaps.svg";
 import tshirts from "../assets/images/tshirts.svg";
 import shorts from "../assets/images/shorts.svg";
 import glasses from "../assets/images/glasses.svg";
+import ListPlaceholder from "./ListPlaceholder";
 
 const MobileBottomNav = () => {
   const { pathname } = useLocation();
@@ -37,6 +38,7 @@ const MobileBottomNav = () => {
 
   const wishlist = useSelector((state) => state.wishlist.wishlist);
   const cart = useSelector((state) => state.cart.carts);
+  const bestSellerProduct = useSelector((state) => state.product.bestSelled);
 
   return (
     <>
@@ -49,8 +51,10 @@ const MobileBottomNav = () => {
         </button>
         <button
           onClick={() => {
-            if (pathname != "/cart" && user) {
-              navigate("/cart");
+            if (user) {
+              if (pathname != "/cart") {
+                navigate("/cart");
+              }
             } else {
               setOpenModal(true);
             }
@@ -78,8 +82,10 @@ const MobileBottomNav = () => {
         </button>
         <button
           onClick={() => {
-            if (pathname != "/wishlist" && user) {
-              navigate("/wishlist");
+            if (user) {
+              if (pathname != "/wishlist") {
+                navigate("/wishlist");
+              }
             } else {
               setOpenModal(true);
             }
@@ -138,9 +144,9 @@ const MobileBottomNav = () => {
           <h1
             onClick={() => {
               if (pathname != "/products") {
-                toggleMenuDrawer();
                 navigate("/products");
               }
+              toggleMenuDrawer();
             }}
             className="my-3"
           >
@@ -148,8 +154,10 @@ const MobileBottomNav = () => {
           </h1>
           <h1
             onClick={() => {
-              if (pathname != "/orders" && user) {
-                navigate("/orders");
+              if (user) {
+                if (pathname != "/orders") {
+                  navigate("/orders");
+                }
               } else {
                 setOpenModal(true);
               }
@@ -161,8 +169,10 @@ const MobileBottomNav = () => {
           </h1>
           <h1
             onClick={() => {
-              if (pathname != "/settings" && user) {
-                navigate("/settings");
+              if (user) {
+                if (pathname != "/settings") {
+                  navigate("/settings");
+                }
               } else {
                 setOpenModal(true);
               }
@@ -241,77 +251,44 @@ const MobileBottomNav = () => {
             className="ri-close-line text-2xl font-bold absolute right-5"
           ></i>
           <Accordian title={"CATEGORY"} data={categories} />
-          <div className="my-6">
+          <div className="mt-6 mb-11">
             <h1 className="text-lg font-bold mb-3">BEST SELLERS</h1>
             <div className="flex flex-col gap-3">
-              <div className="flex gap-5">
-                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                  <img
-                    className="object-cover w-10 h-10 cursor-pointer"
-                    src={hatcaps}
-                    alt="img"
-                  />
-                </div>
-                <div className="flex flex-col cursor-pointer">
-                  <h1>Baby Fabric Shoes</h1>
-                  <Stars star={4} />
-                  <p className="font-bold">
-                    <span className="line-through font-normal mr-5">₹5</span>
-                    ₹4.00
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-5">
-                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                  <img
-                    className="object-cover w-10 h-10 cursor-pointer"
-                    src={tshirts}
-                    alt="img"
-                  />
-                </div>
-                <div className="flex flex-col cursor-pointer">
-                  <h1>Baby Fabric Shoes</h1>
-                  <Stars star={4} />
-                  <p className="font-bold">
-                    <span className="line-through font-normal mr-5">₹5</span>
-                    ₹4.00
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-5">
-                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                  <img
-                    className="object-cover w-10 h-10 cursor-pointer"
-                    src={shorts}
-                    alt="img"
-                  />
-                </div>
-                <div className="flex flex-col cursor-pointer">
-                  <h1>Baby Fabric Shoes</h1>
-                  <Stars star={4} />
-                  <p className="font-bold">
-                    <span className="line-through font-normal mr-5">₹5</span>
-                    ₹4.00
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-5">
-                <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
-                  <img
-                    className="object-cover w-10 h-10 cursor-pointer"
-                    src={glasses}
-                    alt="img"
-                  />
-                </div>
-                <div className="flex flex-col cursor-pointer">
-                  <h1>Baby Fabric Shoes</h1>
-                  <Stars star={4} />
-                  <p className="font-bold">
-                    <span className="line-through font-normal mr-5">₹5</span>
-                    ₹4.00
-                  </p>
-                </div>
-              </div>
+              {bestSellerProduct?.length > 0 ? (
+                bestSellerProduct.map((item, idx) => (
+                  <div
+                    className="flex gap-5"
+                    key={idx}
+                    onClick={() => navigate(`/productdetail/${item._id}`)}
+                  >
+                    <div className="bg-[#F7F7F7] rounded-md w-[4.5rem] h-[4.5rem] flex justify-center items-center">
+                      <img
+                        className="object-cover w-10 h-10 cursor-pointer"
+                        src={item.thumbnail}
+                        alt="img"
+                      />
+                    </div>
+                    <div className="flex flex-col cursor-pointer">
+                      <h1>{item.title.slice(0, 50)}</h1>
+                      <Stars star={4} />
+                      <p className="font-bold">
+                        <span className="line-through font-normal mr-5">
+                          ₹{item.price}
+                        </span>
+                        ₹
+                        {Math.round(
+                          item.price -
+                            (item.discountPercentage * item.price) / 100
+                        )}
+                      </p>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <>
+                  <ListPlaceholder />
+                </>
+              )}
             </div>
           </div>
         </div>
